@@ -40,7 +40,8 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "assets/views/default.html",
         ncyBreadcrumb: {
             label: 'Default'
-        }
+        },
+        resolve: loadSequence('vAccordionCtrl')
     }).state('app.home', {
         url: '/home',
         templateUrl: "assets/views/home.html",
@@ -84,7 +85,24 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Wizard'
         },
         resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl')
-    }).state('app.ui', {
+    }).state('app.login', {
+        url: '/login',
+        template: '<div ui-view class="fade-in-right-big smooth"></div>',
+        abstract: true
+    }).state('app.login.signin', {
+        url: '/signin',
+        templateUrl: "assets/views/sing_in.html"
+    }).state('app.login.forgot', {
+        url: '/forgot',
+        templateUrl: "assets/views/login_forgot.html"
+    }).state('app.login.registration', {
+        url: '/registration',
+        templateUrl: "assets/views/sing_up.html"
+    })
+
+
+
+    .state('app.ui', {
         url: '/ui',
         template: '<div ui-view class="fade-in-up"></div>',
         title: 'UI Elements',
@@ -416,13 +434,15 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
 	    abstract: true
 	}).state('login.signin', {
 	    url: '/signin',
-	    templateUrl: "assets/views/login_login.html"
+	    // templateUrl: "assets/views/login_login.html"
+        templateUrl: "assets/views/sing_in.html"
 	}).state('login.forgot', {
 	    url: '/forgot',
 	    templateUrl: "assets/views/login_forgot.html"
 	}).state('login.registration', {
 	    url: '/registration',
-	    templateUrl: "assets/views/login_registration.html"
+	    // templateUrl: "assets/views/login_registration.html"
+        templateUrl: "assets/views/sing_up.html"
 	}).state('login.lockscreen', {
 	    url: '/lock',
 	    templateUrl: "assets/views/login_lock_screen.html"

@@ -26,7 +26,8 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     // -----------------------------------
     // For any unmatched url, redirect to /app/dashboard
     // $urlRouterProvider.otherwise("/app/dashboard");
-    $urlRouterProvider.otherwise("/app/home");
+
+    $urlRouterProvider.otherwise("/app/default");
     //
     // Set up the states
     $stateProvider.state('app', {
@@ -34,6 +35,12 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "assets/views/app.html",
         resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'toaster', 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl', 'truncate', 'htmlToPlaintext', 'angular-notification-icons'),
         abstract: true
+    }).state('app.default', {
+        url: '/default',
+        templateUrl: "assets/views/default.html",
+        ncyBreadcrumb: {
+            label: 'Default'
+        }
     }).state('app.home', {
         url: '/home',
         templateUrl: "assets/views/home.html",

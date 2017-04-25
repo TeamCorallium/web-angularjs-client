@@ -37,7 +37,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         abstract: true
     }).state('app.default', {
         url: '/default',
-        templateUrl: "assets/views/default.html",
+        templateUrl: "assets/views/news.html",
         ncyBreadcrumb: {
             label: 'Default'
         }

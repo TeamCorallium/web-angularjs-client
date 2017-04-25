@@ -1,0 +1,46 @@
+<!-- start: FEATURED BOX LINKS -->
+<div class="container-fluid bg-white col-sm-6 col-sm-offset-3 col-md-offset-4 col-md-4" id="box_login">
+	<div class="box-login">
+		<form class="form-login" action="index.html">
+			<fieldset>
+				<legend>
+					Sign in to your account
+				</legend>
+				<p>
+					Please enter your name and password to log in.
+				</p>
+				<div class="form-group">
+						<span class="input-icon">
+							<input type="text" class="form-control" name="username" placeholder="Username">
+							<i class="fa fa-user"></i> </span>
+				</div>
+				<div class="form-group form-actions">
+						<span class="input-icon">
+							<input type="password" class="form-control password" name="password" placeholder="Password">
+							<i class="fa fa-lock"></i>
+							<a class="forgot" ui-sref="login.forgot">
+								I forgot my password
+							</a> </span>
+				</div>
+				<div class="form-actions">
+					<div class="checkbox clip-check check-primary">
+						<input type="checkbox" id="remember" value="1">
+						<label for="remember">
+							Keep me signed in
+						</label>
+					</div>
+					<button type="submit" class="btn btn-primary pull-right" ui-sref="app.home">
+						Login <i class="fa fa-arrow-circle-right"></i>
+					</button>
+				</div>
+				<div class="new-account">
+					Don't have an account yet?
+					<a ui-sref="login.registration">
+						Create an account
+					</a>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+<!-- end: FEATURED BOX LINKS -->

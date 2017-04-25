@@ -11488,3 +11488,14 @@ div.portfolio-info {
   margin-right: 2px;
   padding: 6px 15px;
 }
+
+/* ---------------------------------------------------------------------- */
+/*  Box Login
+/* ---------------------------------------------------------------------- */
+#box_login{
+  margin-top: 10% !important;
+}
+
+#box_register{
+  margin-top: 5% !important;
+}

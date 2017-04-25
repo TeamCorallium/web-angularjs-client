@@ -5,6 +5,13 @@
 app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar',
 function($rootScope, $scope, $state, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar) {
 
+
+	$scope.isLogged = false;
+
+	$scope.setIsLogged = function(value) {
+		$scope.isLogged = value;
+	}
+
 	// Loading bar transition
 	// -----------------------------------
 	var $win = $($window);

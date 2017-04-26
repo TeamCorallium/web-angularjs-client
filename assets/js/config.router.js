@@ -85,6 +85,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Subproject'
         },
         resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl')
+    }).state('app.project.task_detail', {
+        url: '/task',
+        templateUrl: "assets/views/task_detail.html",
+        title: 'Project',
+        ncyBreadcrumb: {
+            label: 'Task'
+        },
+        resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl')
     }).state('app.project.wizard', {
         url: '/wizard',
         templateUrl: "assets/views/project_wizard.html",
@@ -106,11 +114,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     }).state('app.login.registration', {
         url: '/registration',
         templateUrl: "assets/views/sing_up.html"
-    })
-
-
-
-    .state('app.ui', {
+    }).state('app.ui', {
         url: '/ui',
         template: '<div ui-view class="fade-in-up"></div>',
         title: 'UI Elements',

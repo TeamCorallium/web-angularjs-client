@@ -11682,9 +11682,13 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 
 #section_subproject{
-  padding: 0px !important;
+  padding-top: 0px !important;
 }
 
 .panel-body-subproject{
   padding: 0px !important;
+}
+
+.list-task{
+  color: white !important;
 }

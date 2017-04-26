@@ -77,6 +77,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Project'
         }
+    }).state('app.project.subproject_detail', {
+        url: '/subpoject',
+        templateUrl: "assets/views/subproject.html",
+        title: 'Project',
+        ncyBreadcrumb: {
+            label: 'Subproject'
+        },
+        resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl')
     }).state('app.project.wizard', {
         url: '/wizard',
         templateUrl: "assets/views/project_wizard.html",

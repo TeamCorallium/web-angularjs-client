@@ -46,7 +46,7 @@
 									<div class="stepNumber">
 										3
 									</div>
-									<span class="stepDesc text-small"> Investors Information </span>
+									<span class="stepDesc text-small"> Project tasks </span>
 								</a>
 							</li>
 							<li ng-click="form.goTo(Form, 4)">
@@ -65,12 +65,6 @@
 								<div class="col-md-5">
 									<div class="padding-30">
 										<h2 class="StepTitle"><i class="ti-face-smile fa-2x text-primary block margin-bottom-10"></i> Enter your project information</h2>
-										<p>
-											This is an added measure against fraud and to help with billing issues.
-										</p>
-										<p class="text-small">
-											Enter security questions in case you lose access to your account.
-										</p>
 									</div>
 								</div>
 								<div class="col-md-7">
@@ -114,7 +108,7 @@
 														Total cost <span class="symbol required"></span>
 													</label>
 
-													<input type="text" value="0" touchspin data-min="-1000000000" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="myModel.totalCost" name="totalCost" ng-required="currentStep == 1">
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="myModel.totalCost" name="totalCost" ng-required="currentStep == 1">
 
 													<span class="error text-small block" ng-if="Form.totalCost.$dirty && Form.totalCost.$invalid">Total cost is required</span>
 													<span class="success text-small" ng-if="Form.totalCost.$valid">Thank You!</span>
@@ -127,7 +121,7 @@
 														Minimal cost <span class="symbol required"></span>
 													</label>
 
-													<input type="text" value="0" touchspin data-min="-1000000000" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="myModel.minimalCost" name="minimalCost" ng-required="currentStep == 1">
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="myModel.minimalCost" name="minimalCost" ng-required="currentStep == 1">
 
 													<span class="error text-small block" ng-if="Form.minimalCost.$dirty && Form.minimalCost.$invalid">Minimal cost is required</span>
 													<span class="success text-small" ng-if="Form.minimalCost.$valid">Thank You!</span>
@@ -141,7 +135,7 @@
 														Estimate duration <span class="symbol required"></span>
 													</label>
 
-													<input type="text" value="0" touchspin data-min="-1000000000" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks" data-ng-model="myModel.estimateDuration" name="estimateDuration" ng-required="currentStep == 1">
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks" data-ng-model="myModel.estimateDuration" name="estimateDuration" ng-required="currentStep == 1">
 
 													<span class="error text-small block" ng-if="Form.estimateDuration.$dirty && Form.estimateDuration.$invalid">Estimate duration is required</span>
 													<span class="success text-small" ng-if="Form.estimateDuration.$valid">Thank You!</span>
@@ -166,6 +160,135 @@
 											</div>
 										</div>																				
 									</fieldset>
+									<fieldset>
+										<legend>
+											Outcome and retribution
+										</legend>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>
+														Outcome
+													</label>
+
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox6" value="1">
+															<label for="checkbox6">
+																Production
+															</label>
+														</div>
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox7" value="1">
+															<label for="checkbox7">
+																Income
+															</label>
+														</div>
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox8" value="1">
+															<label for="checkbox8">
+																New business
+															</label>
+														</div>
+												</div>
+
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>
+														Retribution Ways
+													</label>
+
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox9" value="1">
+															<label for="checkbox9">
+																Pay Back, dividends, shared profits
+															</label>
+														</div>
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox10" value="1">
+															<label for="checkbox10">
+																Product Delivery
+															</label>
+														</div>
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox11" value="1">
+															<label for="checkbox11">
+																By Products
+															</label>
+														</div>
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox12" value="1">
+															<label for="checkbox12">
+																Stocks in the New Business
+															</label>
+														</div>														
+												</div>
+
+											</div>
+										</div>																
+									</fieldset>	
+									<fieldset>
+										<legend>
+											Investment
+										</legend>
+										<div class="row" ng-controller="DatepickerDemoCtrl">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>
+														Death Line
+													</label>
+
+													<div class="input-group">
+														<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline" ng-required="currentStep == 1">
+														<span class="input-group-btn">
+															<button type="button" class="btn btn-primary" ng-click="open()">
+																<i class="fa fa-calendar"></i>
+															</button> </span>
+													</div>
+												</div>
+
+											</div>
+											<div class="col-md-6">
+												<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
+													<label>
+														Revenue Share for the Owner <span class="symbol required"></span>
+													</label>
+
+													<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-prefix="%" data-ng-model="myModel.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
+
+													<span class="error text-small block" ng-if="Form.revenueOwner.$dirty && Form.revenueOwner.$invalid">Revenue Share for the Owner is required</span>
+													<span class="success text-small" ng-if="Form.revenueOwner.$valid">Thank You!</span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group" ng-class="{'has-error':Form.maxNumInves.$dirty && Form.maxNumInves.$invalid, 'has-success':Form.maxNumInves.$valid}">
+													<label>
+														Maximum Number of Investors <span class="symbol required"></span>
+													</label>
+
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="myModel.maxNumInves" name="maxNumInves" ng-required="currentStep == 1">
+
+													<span class="error text-small block" ng-if="Form.maxNumInves.$dirty && Form.maxNumInves.$invalid">Maximum Number of Investors is required</span>
+													<span class="success text-small" ng-if="Form.maxNumInves.$valid">Thank You!</span>
+												</div>
+
+											</div>
+											<div class="col-md-6">
+												<div class="form-group" ng-class="{'has-error':Form.minCapInves.$dirty && Form.minCapInves.$invalid, 'has-success':Form.minCapInves.$valid}">
+													<label>
+														Min Financier Capital Investment <span class="symbol required"></span>
+													</label>
+
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="$" data-ng-model="myModel.minCapInves" name="minCapInves" ng-required="currentStep == 1">
+
+													<span class="error text-small block" ng-if="Form.minCapInves.$dirty && Form.minCapInves.$invalid">Min Financier Capital is required</span>
+													<span class="success text-small" ng-if="Form.minCapInves.$valid">Thank You!</span>
+												</div>											
+											</div>
+										</div>																				
+									</fieldset>																	
 									<div class="form-group">
 										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
 											Next <i class="fa fa-arrow-circle-right"></i>
@@ -410,68 +533,10 @@
 											</div>
 										</div>
 									</fieldset> -->
-									<fieldset ng-controller="DatepickerDemoCtrl">
+									<fieldset>
 										<legend>
 											Investors Information
-										</legend>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group" ng-class="{'has-error':Form.ownerRevenue.$dirty && Form.ownerRevenue.$invalid, 'has-success':Form.ownerRevenue.$valid}">
-													<label>
-														Owner Revenue <span class="symbol required"></span>
-													</label>
-
-													<input type="text" value="0" touchspin data-min="-1000000000" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="myModel.ownerRevenue" name="ownerRevenue" ng-required="currentStep == 3">
-
-													<span class="error text-small block" ng-if="Form.ownerRevenue.$dirty && Form.ownerRevenue.$invalid">Owner Revenue is required</span>
-													<span class="success text-small" ng-if="Form.ownerRevenue.$valid">Thank You!</span>
-												</div>
-
-											</div>
-											<div class="col-md-6">
-												<div class="form-group" ng-class="{'has-error':Form.minFinancierCap.$dirty && Form.minFinancierCap.$invalid, 'has-success':Form.minFinancierCap.$valid}">
-													<label>
-														Minimal financier capital <span class="symbol required"></span>
-													</label>
-
-													<input type="text" value="0" touchspin data-min="-1000000000" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="myModel.minFinancierCap" name="minFinancierCap" ng-required="currentStep == 3">
-
-													<span class="error text-small block" ng-if="Form.minFinancierCap.$dirty && Form.minFinancierCap.$invalid">Minimal financier capital is required</span>
-													<span class="success text-small" ng-if="Form.minFinancierCap.$valid">Thank You!</span>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group" ng-class="{'has-error':Form.estimateDuration.$dirty && Form.estimateDuration.$invalid, 'has-success':Form.estimateDuration.$valid}">
-													<label>
-														Maximum number of investors <span class="symbol required"></span>
-													</label>
-
-													<input id="demo4" type="text" value="0" name="demo4" touchspin data-verticalbuttons="true" data-verticalupclass="ti-angle-up" data-verticaldownclass="ti-angle-down">
-
-													<span class="error text-small block" ng-if="Form.estimateDuration.$dirty && Form.estimateDuration.$invalid">Estimate duration is required</span>
-													<span class="success text-small" ng-if="Form.estimateDuration.$valid">Thank You!</span>
-												</div>
-
-											</div>
-											<div class="col-md-6">
-												<div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
-													<label>
-														Project state <span class="symbol required"></span>
-													</label>
-
-													<select class="cs-select cs-skin-slide" data-ng-model="myModel.state" name="state" ng-required="currentStep == 1">
-														<option value="0" disabled selected>Select an state</option>
-														<option value="1">In Preparation</option>
-														<option value="2">Active: On time</option>
-														<option value="3">Active: Best than Expected</option>
-														<option value="4">Active: Delayed</option>
-														<option value="5">Finished</option>
-													</select>
-												</div>												
-											</div>
-										</div>																				
+										</legend>																				
 									</fieldset>									
 									<div class="form-group">
 										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">

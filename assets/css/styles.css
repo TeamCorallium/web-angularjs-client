@@ -11668,13 +11668,13 @@ figure.effect-zoe:hover p.icon-links a:first-child {
   padding-top: 0px !important;
 }
 
-#section_news{
-  padding: 0px !important;
-}
-
 /*---------------*/
 /*** Subproject***/
 /*---------------*/
+
+.no-padding{
+  padding: 0px !important
+}
 
 #subproject{
   margin-left: 0px !important;
@@ -11685,12 +11685,12 @@ figure.effect-zoe:hover p.icon-links a:first-child {
   padding-top: 0px !important;
 }
 
-.panel-body-subproject{
-  padding: 0px !important;
-}
-
 .list-task{
   color: white !important;
+}
+
+.margin-top-minus-15{
+  margin-top: -15px !important;
 }
 
 /*---------------*/

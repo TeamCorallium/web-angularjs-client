@@ -11694,7 +11694,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 
 /*---------------*/
-/*** Tasks***/
+/***  Tasks    ***/
 /*---------------*/
 .task-padding{
   padding-top: 0px !important;
@@ -11704,3 +11704,15 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 .panel-task-margin{
   margin-top: 30px !important;
 }
+
+.width-full{
+  width: 100% !important;
+}
+
+.margin-space{
+  margin-bottom: 5px !important;
+}
+
+/*-------------*/
+/*** Finace  ***/
+/*-------------*/

@@ -12,7 +12,7 @@
 <!-- end: PAGE TITLE -->
 
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white">
+<div class="container-fluid container-fullw bg-white" ng-controller="taskCtrl">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -53,17 +53,13 @@
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 margin-bottom-15">
-                                <span class="label label-info pull-right"> In preparation</span>
+                                <span class="label label-info pull-right">{{stage}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                 <h4>Description</h4>
-                                <p class="taller margin-bottom-25"> Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Sed tempus nibh sed elimttis adipiscing. Fusce in hendrerit
-                                    purus. Suspendisse potenti. Proin quis eros odio, dapibus dictum mauris.
-                                    Donec nisi libero, adipiscing id pretium eget, consectetur sit amet leo. Nam
-                                    at eros quis mi egestas fringilla non nec purus. </p>
+                                <p class="taller margin-bottom-25"> {{description}}</p>
                             </div>
                             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                 <div class="panel panel-white" id="panel1">
@@ -91,7 +87,7 @@
                                                     <ul class="portfolio-details list-unstyled">
                                                         <li>
                                                             <p>
-                                                                <strong>Estimate Cost:</strong> 5000$
+                                                                <strong>Estimate Cost:</strong> {{totalCost}} $
                                                             </p>
                                                         </li>
                                                     </ul>
@@ -100,7 +96,7 @@
                                                     <ul class="portfolio-details list-unstyled margin-top-minus-15">
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>Estimate Duration:</strong> 4
+                                                                <strong>Estimate Duration:</strong> {{duration}}
                                                                 <strong>weeks</strong>
                                                             </p>
                                                         </li>
@@ -199,6 +195,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-6 col-md-6 col-md-offset-6 col-lg-6 col-mlg-offset-6 col-xs-12">
+                                <div class="pull-right">
+                                    <a type="button" class="btn btn-wide btn-primary">
+                                        Update
+                                    </a>
+                                    <a type="button" class="btn btn-wide btn-primary">
+                                        Delete
+                                    </a>
                                 </div>
                             </div>
                         </div>

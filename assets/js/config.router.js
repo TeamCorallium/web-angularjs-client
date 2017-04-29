@@ -39,7 +39,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         url: '/default',
         templateUrl: "assets/views/default.html",
         ncyBreadcrumb: {
-            label: 'Default'
+            label: 'Home'
         },
         resolve: loadSequence('vAccordionCtrl')
     }).state('app.home', {
@@ -76,6 +76,13 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         title: 'Project',
         ncyBreadcrumb: {
             label: 'Project'
+        }
+    }).state('app.project.create', {
+        url: '/create',
+        templateUrl: "assets/views/project_create.html",
+        title: 'Create Project',
+        ncyBreadcrumb: {
+            label: 'Create Project'
         }
     }).state('app.project.subproject_detail', {
         url: '/subpoject',

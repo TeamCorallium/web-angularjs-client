@@ -4,7 +4,7 @@
 		<div class="col-sm-8">
 			<!-- <h1 class="mainTitle" translate="sidebar.nav.forms.WIZARD">FORM WIZARD</h1> -->
 			<h1 class="mainTitle">PROJECT WIZARD</h1>
-			<span class="mainDescription">Using simple Angular.js guidelines you can turn a form into a multi-step form wizard</span>
+			<!-- <span class="mainDescription">Using simple Angular.js guidelines you can turn a form into a multi-step form wizard</span> -->
 		</div>
 		<div ncy-breadcrumb></div>
 	</div>
@@ -14,11 +14,12 @@
 <div class="container-fluid container-fullw bg-white">
 	<div class="row">
 		<div class="col-md-12">
-			<h5 class="over-title margin-bottom-15">Wizard <span class="text-bold">create project</span></h5>
-			<p>
+		<h3>Complete required information in each step</h3>
+			<!-- <h5 class="over-title margin-bottom-15">Wizard <span class="text-bold">create project</span></h5> -->
+<!-- 			<p>
 				Complete required information in each step.
 			</p>
-			<!-- /// controller:  'WizardCtrl' -  localtion: assets/js/controllers/wizardCtrl.js /// -->
+ -->			<!-- /// controller:  'WizardCtrl' -  localtion: assets/js/controllers/wizardCtrl.js /// -->
 			<div ng-controller="WizardCtrl">
 				<!-- start: WIZARD FORM -->
 				<form name="Form" id="form" novalidate>
@@ -444,7 +445,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>
-														Task cost
+														Cost
 													</label>
 
 													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$">
@@ -456,25 +457,34 @@
 													<label>
 														Outcome
 													</label>
-
+													<div class="row">
+													<div class="col-md-12">
+													<div class="col-md-4">
 														<div class="checkbox clip-check check-primary">
-															<input type="checkbox" id="checkbox6" value="1">
-															<label for="checkbox6">
+															<input type="checkbox" id="checkbox16" value="1">
+															<label for="checkbox16">
 																Production
 															</label>
 														</div>
+													</div>
+													<div class="col-md-4">	
 														<div class="checkbox clip-check check-primary">
-															<input type="checkbox" id="checkbox7" value="1">
-															<label for="checkbox7">
+															<input type="checkbox" id="checkbox17" value="1">
+															<label for="checkbox17">
 																Income
 															</label>
 														</div>
+													</div>
+													<div class="col-md-4">
 														<div class="checkbox clip-check check-primary">
-															<input type="checkbox" id="checkbox8" value="1">
-															<label for="checkbox8">
+															<input type="checkbox" id="checkbox18" value="1">
+															<label for="checkbox18">
 																New business
 															</label>
 														</div>
+													</div>
+													</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -492,7 +502,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>
-														Project state
+														State
 													</label>
 
 													<select class="cs-select cs-skin-slide">

@@ -70,6 +70,13 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Finance'
         }        
+    }).state('app.news', {
+        url: '/news',
+        templateUrl: "assets/views/news.html",
+        title: 'News',
+        ncyBreadcrumb: {
+            label: 'News'
+        }        
     }).state('app.project', {
         url: '/project',
         template: '<div ui-view class="fade-in-up"></div>',

@@ -365,8 +365,10 @@
 												</div>		
 											</div>
 											<div class="col-md-6">
-												<label>Description</label>
-												<textarea placeholder="Enter risk description" class="form-control autosize msd-elastic: \n;" data-ng-model="rdescription" name="rdescription"></textarea>
+												<div class="form-group">
+													<label>Description</label>
+													<textarea placeholder="Enter risk description" class="form-control autosize msd-elastic: \n;" data-ng-model="rdescription" name="rdescription"></textarea>
+												</div>
 											</div>				
 										</div>
 										<div class="row">
@@ -418,100 +420,126 @@
 						<!-- end: WIZARD STEP 2 -->
 						<!-- start: WIZARD STEP 3 -->
 						<div id="step-3" ng-show="currentStep == 3">
-							<div class="row">
-								<div class="col-md-5">
-									<div class="padding-30">
-										<h2 class="StepTitle">Enter billing details</h2>
-										<p class="text-large">
-											You will need to enter your billing address and select your payment method.
-										</p>
-										<p class="text-small">
-											You can use most major credit card, as well as PayPal.
-										</p>
-									</div>
-								</div>
-								<div class="col-md-7">
-									<!-- <fieldset>
-										<legend>
-											Payment Method
-										</legend>
-										<label>
-											Payment type
-										</label>
-										<div class="form-group">
-											<div class="btn-group">
-												<label class="btn btn-primary btn-sm" ng-model="myModel.paymentMethod" uib-btn-radio="'creditcard'">
-													<i class="fa fa-cc-visa" ></i> <i class="fa fa-cc-mastercard" ></i> Credit Card
-												</label>
-												<label class="btn btn-primary btn-sm" ng-model="myModel.paymentMethod" uib-btn-radio="'paypal'">
-													<i class="fa fa-cc-paypal" ></i> PayPal
-												</label>
-											</div>
-										</div>
-										<div class="form-group">
-											<label>
-												Card Number
-											</label>
-											<input type="text" class="form-control" name="cardNumber" ng-model="myModel.cardNumber" placeholder="Enter Your Card Number">
-										</div>
-										<label>
-											Expires
-										</label>
-										<div class="row">
-											<div class="col-md-4 col-sm-6">
-												<div class="form-group">
-													<select class="cs-select cs-skin-slide" ng-model="myModel.expiresMonth">
-														<option value="" disabled>Month</option>
-														<option value="January">January</option>
-														<option value="February">February</option>
-														<option value="March">March</option>
-														<option value="April">April</option>
-														<option value="May">May</option>
-														<option value="June">June</option>
-														<option value="July">July</option>
-														<option value="August">August</option>
-														<option value="September">September</option>
-														<option value="October">October</option>
-														<option value="November">November</option>
-														<option value="December">December</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<div class="form-group">
-													<select class="cs-select cs-skin-slide" ng-model="myModel.expiresYear">
-														<option value="" disabled>Year</option>
-														<option value="2015">2015</option>
-														<option value="2016">2016</option>
-														<option value="2017">2017</option>
-														<option value="2018">2018</option>
-														<option value="2019">2019</option>
-														<option value="2020">2020</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-12">
-												<label>
-													Security code
-												</label>
-												<div class="row">
-													<div class="col-xs-3">
-														<div class="form-group">
-															<input type="text" class="form-control" name="securityCode" placeholder="Security code" ng-model="myModel.securityCode">
-														</div>
-													</div>
-													<span class="help-inline col-xs-4"> <a href uib-popover="The security code is a three-digit number on the back of your credit card, immediately following your main card number." popover-placement="top" popover-title="How to find the security code"><i class="ti-help-alt text-large text-primary"></i></a> </span>
-												</div>
-											</div>
-										</div>
-									</fieldset> -->
+							<div class="row" ng-controller="dynamicTableCtrl">				
+								<div class="col-md-12">
 									<fieldset>
 										<legend>
-											Investors Information
-										</legend>																				
-									</fieldset>									
+											Add tasks
+										</legend>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Name</label>
+													<input type="text" class="form-control" name="name" ng-model="name" />
+												</div>		
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Description</label>
+													<textarea placeholder="Enter risk description" class="form-control autosize msd-elastic: \n;" data-ng-model="rdescription" name="rdescription"></textarea>
+												</div>
+											</div>				
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>
+														Task cost
+													</label>
+
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$">
+												</div>
+
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>
+														Outcome
+													</label>
+
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox6" value="1">
+															<label for="checkbox6">
+																Production
+															</label>
+														</div>
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox7" value="1">
+															<label for="checkbox7">
+																Income
+															</label>
+														</div>
+														<div class="checkbox clip-check check-primary">
+															<input type="checkbox" id="checkbox8" value="1">
+															<label for="checkbox8">
+																New business
+															</label>
+														</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>
+														Estimate duration
+													</label>
+
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks">
+												</div>
+
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>
+														Project state
+													</label>
+
+													<select class="cs-select cs-skin-slide">
+														<option value="0" disabled selected>Select an state</option>
+														<option value="1">In Preparation</option>
+														<option value="2">Active: On time</option>
+														<option value="3">Active: Best than Expected</option>
+														<option value="4">Active: Delayed</option>
+														<option value="5">Finished</option>
+													</select>
+												</div>												
+											</div>
+										</div>											
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="addRow()">
+														<i class="fa fa-circle-arrow-left"></i> Add
+													</button>
+												</div>	
+											</div>											
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+													<table class="table table-striped" wt-responsive-table>
+														<thead>
+															<tr>
+																<th>Name </th>
+																<th>Description </th>
+																<th>Action </th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="company in companies">
+																<td>{{company.name}} </td>
+																<td>{{company.rdescription}} </td>
+																<td>
+																<button type="button" class="btn btn-danger btn-xs" ng-click="removeRow(company.name)">
+																	<span class="glyphicon glyphicon-trash"></span>Remove
+																</button>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+											</div>	
+										</div>													
+									</fieldset>							
 									<div class="form-group">
 										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">
 											<i class="fa fa-circle-arrow-left"></i> Back

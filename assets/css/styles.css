@@ -11716,3 +11716,9 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 /*-------------*/
 /*** Finace  ***/
 /*-------------*/
+
+.img-list-finace{
+  width: 60px !important;
+  height: 60px !important;
+  margin-left: 20px !important;
+}

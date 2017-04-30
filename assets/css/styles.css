@@ -11720,5 +11720,9 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 .img-list-finace{
   width: 60px !important;
   height: 60px !important;
-  margin-left: 20px !important;
+  margin-left: 50%;
+}
+
+.margin-recent-activities{
+  margin-left: 2% !important;
 }

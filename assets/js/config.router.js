@@ -91,6 +91,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Create Project'
         }
+    }).state('app.project.create_complex', {
+        url: '/createcomplex',
+        templateUrl: "assets/views/project_create_complex.html",
+        title: 'Create Complex Project',
+        ncyBreadcrumb: {
+            label: 'Create Complex Project'
+        },
+        resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker')
     }).state('app.project.subproject_detail', {
         url: '/subpoject',
         templateUrl: "assets/views/subproject.html",

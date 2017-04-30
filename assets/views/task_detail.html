@@ -33,7 +33,7 @@
                                     <div class="row">
                                         <ul class="pull-right">
                                             <li>
-                                                <i class="fa fa-calendar"></i> 21 November 2014
+                                                <i class="fa fa-calendar"></i> 21 April 2017
                                             </li>
                                         </ul>
                                     </div>
@@ -109,6 +109,44 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 pull-right">
+                                <div class="panel panel-white" id="panel2">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title text-primary">Outcomes</h4>
+                                        <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
+                                                                                                           class="btn btn-transparent btn-sm"
+                                                                                                           panel-collapse=""
+                                                                                                           tooltip-placement="top"
+                                                                                                           uib-tooltip="Collapse"
+                                                                                                           ng-click="panel1 = !panel1"
+                                                                                                           ng-init="panel1=false">
+                                            <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel2"
+                                                                                          class="ti-minus ng-scope"
+                                                                                          style=""></i>
+                                            <!-- end ngIf: !panel1 --></a>
+                                        </ct-paneltool>
+                                    </div>
+                                    <div uib-collapse="panel2" ng-init="panel2=false"
+                                         class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                         style="height: auto;">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                                    <ul class=" portfolio-details list-unstyled">
+                                                        <li>
+                                                            <ul class="portfolio-details list-margin-25">
+                                                                <li>Production</li>
+                                                                <li>Income</li>
+                                                                <li>New Business</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                 <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
                                 <div ng-controller="vAccordionCtrl">
@@ -134,53 +172,6 @@
                                                     </v-pane-content>
                                                 </v-pane>
                                             </v-accordion>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                <div class="panel panel-white" id="panel2">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title text-primary">Outcomes</h4>
-                                        <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
-                                                                                                           class="btn btn-transparent btn-sm"
-                                                                                                           panel-collapse=""
-                                                                                                           tooltip-placement="top"
-                                                                                                           uib-tooltip="Collapse"
-                                                                                                           ng-click="panel1 = !panel1"
-                                                                                                           ng-init="panel1=false">
-                                            <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel2"
-                                                                                          class="ti-minus ng-scope"
-                                                                                          style=""></i>
-                                            <!-- end ngIf: !panel1 --></a>
-                                        </ct-paneltool>
-                                    </div>
-                                    <div uib-collapse="panel2" ng-init="panel2=false"
-                                         class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
-                                         style="height: auto;">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-                                                    <ul class="portfolio-details list-unstyled">
-                                                        <li>
-                                                            <ul class="portfolio-details list-unstyled">
-                                                                <li>
-                                                                    <p>AAAA</p>
-                                                                </li>
-                                                                <li>
-                                                                    <p>AAAA</p>
-                                                                </li>
-                                                                <li>
-                                                                    <p>AAAA</p>
-                                                                </li>
-                                                                <li>
-                                                                    <p>AAAA</p>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -11726,3 +11726,10 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 .margin-recent-activities{
   margin-left: 2% !important;
 }
+
+/*-------------*/
+/***  List   ***/
+/*-------------*/
+.list-margin-25{
+  margin-left: -25px !important;
+}

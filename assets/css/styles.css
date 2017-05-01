@@ -11760,9 +11760,9 @@ figure.effect-zoe:hover p.icon-links a:first-child {
   color: $darkGrey;
 }
 
-.notification-preview{
-  display: block;
-  font-size: $font-size-extra-small;
-  line-height: normal;
-  color: $darkGrey;
+.notification-preview {
+    display: block;
+    font-size: $ font-size-extra-small;
+    line-height: normal;
+    color: $ darkGrey;
 }

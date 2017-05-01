@@ -11733,3 +11733,36 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 .list-margin-25{
   margin-left: -25px !important;
 }
+
+/*--------------*/
+/* Notification */
+/*--------------*/
+.notification-image{
+  float: left;
+  height: 80px;
+  margin-right: 5%;
+  width: 80px;
+}
+
+.notification-author{
+  /*display: block;*/
+  font-size: $font-size-small;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.notification-time{
+  /*display: block;*/
+  float: right;
+  font-size: $font-size-extra-small;
+  font-style: italic;
+  font-weight: 600;
+  color: $darkGrey;
+}
+
+.notification-preview{
+  display: block;
+  font-size: $font-size-extra-small;
+  line-height: normal;
+  color: $darkGrey;
+}

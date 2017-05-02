@@ -70,7 +70,10 @@ function (cfpLoadingBarProvider) {
 
 }]);
 //Custom UI Bootstrap Calendar Popup Template
-app.run(["$templateCache", function ($templateCache) {
+app.run(["$templateCache", "$http", function ($templateCache, $http) {
+
+	// $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
     $templateCache.put("uib/template/datepickerPopup/popup.html",
         "<div>\n" +
 	    "  <ul class=\"uib-datepicker-popup clip-datepicker dropdown-menu\" dropdown-nested ng-if=\"isOpen\" ng-style=\"{top: position.top+'px', left: position.left+'px'}\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n" +

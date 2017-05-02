@@ -2,7 +2,7 @@
 /** 
   * controller for User Profile Example
 */
-app.controller('UserCtrl', ["$scope", "flowFactory", function ($scope, flowFactory) {
+app.controller('UserCtrl', ["$scope", "flowFactory", "RestService",function ($scope, flowFactory, RestService) {
     $scope.removeImage = function () {
         $scope.noImage = true;
     };
@@ -28,4 +28,28 @@ app.controller('UserCtrl', ["$scope", "flowFactory", function ($scope, flowFacto
     if ($scope.userInfo.avatar == '') {
         $scope.noImage = true;
     }
+
+    $scope.user = {
+        user: '',
+        password: '',
+        rol: '',
+        id: ''
+    };
+
+    $scope.signup = function() {
+        console.log('signup');
+        console.log('signup' + $scope.user.user + ' ' + $scope.user.password);
+
+        // RestService.fetchUser('1');
+        RestService.createUser($scope.user)
+            .then(
+                function(data) {
+                    $scope.user = data;
+                    console.log('ok ok ok ok');
+                },
+                function(errResponse){
+                    console.log('Error while fetching Currencies');
+                }
+        );
+    }; 
 }]);

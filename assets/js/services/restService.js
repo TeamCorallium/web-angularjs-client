@@ -2,12 +2,12 @@
  
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
- 	var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+ 	var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
 
     return {
          
-    fetchUser: function(id) {
-            return $http.get(serverUrl + 'user/' + id)
+    fetchUser: function(email) {
+            return $http.get(serverUrl + 'user/' + email)
             .then(
                     function(response){
                         return response.data;
@@ -20,7 +20,6 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
         },
      
     createUser: function(user){
-    		console.log('createUser' + user.user);
             return $http.post(serverUrl +'user/', user)
             .then(
                     function(response){

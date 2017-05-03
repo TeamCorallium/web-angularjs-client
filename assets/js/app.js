@@ -16,4 +16,5 @@ angular.module("clip-two", [
 	'duScroll',
 	'pascalprecht.translate',
 	'wt.responsive',
+	'LocalStorageModule',
 ]);

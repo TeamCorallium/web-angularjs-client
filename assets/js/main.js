@@ -61,6 +61,14 @@ function ($translateProvider) {
     $translateProvider.useSanitizeValueStrategy('sanitize');
 
 }]);
+
+app.config(function (localStorageServiceProvider) {
+  localStorageServiceProvider
+    .setPrefix('Corallium')
+    .setStorageType('sessionStorage')
+    .setNotify(true, true)
+});
+
 // Angular-Loading-Bar
 // configuration
 app.config(['cfpLoadingBarProvider',

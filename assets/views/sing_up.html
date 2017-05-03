@@ -10,7 +10,7 @@
 					Enter your personal details below:
 				</p>
 				<div class="form-group">
-					<input type="text" class="form-control" name="full_name" placeholder="Full Name" required="required">
+					<input type="text" ng-model="user.fullName" class="form-control" name="full_name" placeholder="Full Name" required="required">
 				</div>
 				<!--<div class="form-group">-->
 					<!--<input type="text" class="form-control" name="address" placeholder="Address">-->
@@ -23,11 +23,11 @@
 						Gender
 					</label>
 					<div class="clip-radio radio-primary">
-						<input type="radio" id="rg-female" name="gender" value="female">
+						<input type="radio" id="rg-female" name="gender" value="female" ng-model="user.gender">
 						<label for="rg-female">
 							Female
 						</label>
-						<input type="radio" id="rg-male" name="gender" value="male">
+						<input type="radio" id="rg-male" name="gender" value="male" ng-model="user.gender">
 						<label for="rg-male">
 							Male
 						</label>
@@ -38,7 +38,7 @@
 				</p>
 				<div class="form-group">
 						<span class="input-icon">
-							<input type="email" class="form-control" name="email" placeholder="Email" ng-model="user.user" required="required">
+							<input type="email" class="form-control" name="email" placeholder="Email" ng-model="user.email" required="required">
 							<i class="fa fa-envelope"></i> </span>
 				</div>
 				<div class="form-group">
@@ -48,12 +48,12 @@
 				</div>
 				<div class="form-group">
 						<span class="input-icon">
-							<input type="password" class="form-control" name="password_again" placeholder="Password Again" required="required">
+							<input type="password" class="form-control" name="password_again" placeholder="Password Again" required="required" ng-model="password_again">
 							<i class="fa fa-lock"></i> </span>
 				</div>
 				<div class="form-group">
 					<div class="checkbox clip-check check-primary">
-						<input type="checkbox" id="agree" value="agree">
+						<input type="checkbox" id="agree" value="agree" ng-model="term_check">
 						<label for="agree">
 							I agree
 						</label>

@@ -136,7 +136,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             abstract: true
         }).state('app.login.signin', {
             url: '/signin',
-            templateUrl: "assets/views/sing_in.html"
+            templateUrl: "assets/views/sing_in.html",
+            resolve: loadSequence('flow', 'userCtrl')
         }).state('app.login.forgot', {
             url: '/forgot',
             templateUrl: "assets/views/login_forgot.html"

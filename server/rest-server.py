@@ -2,12 +2,14 @@ from datetime import date
 import tornado.escape
 import tornado.ioloop
 import tornado.web
+import tornado.httpserver
+import tornado.httputil
 import json
 from tinydb import TinyDB, Query, where
 
 db = TinyDB('db.json')
 
-db.purge();
+# db.purge();
 
 table_user = db.table('table_user')
 table_profile = db.table('table_profile')
@@ -16,19 +18,6 @@ table_complex_project = db.table('table_complex_project')
 table_risk = db.table('table_risk')
 table_reference = db.table('table_reference')
 table_task = db.table('table_task')
-
-# texts.purge()
-# texts.insert({'id':'10', 'value':'Breathe New Life Into Your Home’s Furniture'})
-# texts.insert({'id':'11', 'value':'Get Your Furniture Refurbished To Perfection'})
-
-# db.purge()
-# gallery1.purge()
-# gallery1.insert({'image':'assets/images/1.jpg', 'name':'Cat on Fence'})
-# gallery1.insert({'image':'assets/images/2.jpg', 'name':'Cat in Sun'})
-# gallery1.insert({'image':'assets/images/3.jpg', 'name':'Blue Eyed Cat'})
-# gallery1.insert({'image':'assets/images/4.jpg', 'name':'Patchy Cat'})
-# gallery1.insert({'image':'assets/images/5.jpg', 'name':'Feral Cats'})
-# gallery1.insert({'image':'assets/images/1.jpg', 'name':'Cat on Fence'}) 
         
 class VersionHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -54,9 +43,7 @@ class GetTextHandler(tornado.web.RequestHandler):
     def get(self, id):
         text = texts.search(where('id') == id)
         self.write(json.dumps(text))
-        print('El id:'+id)
-
-    
+        print('El id:'+ id)
 
 class UserHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -66,31 +53,43 @@ class UserHandler(tornado.web.RequestHandler):
         self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
     
     def options(self):
-        print('options')
+        print('options!!!')
         self.set_status(204)
         self.finish()
 
-    def get(self):
-        print('get')
+    def get(self, email):
+        print('get!!!' + email)
+
+        user = table_user.search(where('email') == email)
+        self.write(json.dumps(user))
+
+        print(user)
 
     def post(self):
-        print("post.......!!!")
-
-        # u = user.get(eid=7)
-        # print(json.dumps(u))
+        print("post!!!")
 
         self.json_args = json.loads(self.request.body)
-        # print(self.json_args['user'])
-        # print(self.json_args['password'])
 
-        id = user.insert(self.json_args);
-        self.write(str(id))
-        print(id)
+        print(self.json_args['email'])
+        print(self.json_args['fullName'])
+        print(self.json_args['password'])
+        print(self.json_args['gender'])
+
+        print(len(table_user.search(where('email') == self.json_args['email'])))
+
+        if len(table_user.search(where('email') == self.json_args['email'])) != 0:
+            self.write('-1')
+        else:
+            id = table_user.insert(self.json_args)
+            table_user.update({'id': id}, eids=[id])
+            self.write(str(id))
+            print(id)
 
 application = tornado.web.Application([
     (r"/ravic/text/([0-9]+)", GetTextHandler),
     (r"/ravic/?", VersionHandler),
-    (r"/CoralliumRestAPI/user/?", UserHandler)
+    (r"/CoralliumRestAPI/user/?", UserHandler),
+    (r"/CoralliumRestAPI/user/(.*)", UserHandler)
 ])
 
 if __name__ == "__main__":

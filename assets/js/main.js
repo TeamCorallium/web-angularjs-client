@@ -33,6 +33,11 @@ function ($rootScope, $state, $stateParams) {
             logo: 'assets/images/logo2.png', // relative path of the project logo
         }
     };
+
+    // $rootScope.session = {
+    // 	isLogged: false;
+    // };
+
     $rootScope.user = {
         name: 'Peter',
         job: 'ng-Dev',

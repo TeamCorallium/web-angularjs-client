@@ -2,7 +2,9 @@
 /**
  * controller for User Profile Example
  */
-app.controller('UserCtrl', ["$scope", "$state","flowFactory", "RestService", "toaster" ,function ($scope, $state, flowFactory, RestService, toaster) {
+app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "toaster", "localStorageService", "$rootScope",
+    function ($scope, $state, flowFactory, RestService, toaster, localStorageService, $rootScope) {
+
     $scope.removeImage = function () {
         $scope.noImage = true;
     };
@@ -40,28 +42,33 @@ app.controller('UserCtrl', ["$scope", "$state","flowFactory", "RestService", "to
     $scope.password_again = '';
     $scope.term_check = '';
 
-    $scope.signup = function() {
+    $scope.updateSessionInfo = function () {
+        localStorageService.set('isLogged', $scope.user.id != '');
+        $rootScope.$broadcast('sessionChanged');
+    }
 
+    $scope.signup = function() {
         if($scope.user.fullName != '' && $scope.user.email != '' &&
-            $scope.user.gender != '' && $scope.user.password != ''){
-            if($scope.user.password == $scope.password_again){
-                if($scope.term_check == true){
+            $scope.user.gender != '' && $scope.user.password != '') {
+            if($scope.user.password == $scope.password_again) {
+                if($scope.term_check == true) {
                     RestService.createUser($scope.user)
                         .then(
                             function(data) {
-                                if(data == -1){
+                                if(data == -1) {
                                     toaster.pop('error', 'Error', 'Email in use. Please use another email to sign up.');
                                 }
                                 else{
                                     $scope.user.id = data;
+                                    $scope.updateSessionInfo();
                                     $state.go('app.default');
                                 }
                             },
-                            function(errResponse){
+                            function(errResponse) {
                                 console.log(errResponse);
                             }
                         );
-                }else{
+                } else {
                     toaster.pop('error', 'Error', 'Please accept the terms and conditions in this step before proceeding.');
                 }
             }
@@ -72,13 +79,15 @@ app.controller('UserCtrl', ["$scope", "$state","flowFactory", "RestService", "to
     };
 
     $scope.signin = function () {
-        if($scope.user.email != '' && $scope.user.password != ''){
+        if($scope.user.email != '' && $scope.user.password != '') {
             RestService.fetchUser($scope.user.email)
                 .then(
                     function(data) {
-                        if(data[0].password == $scope.user.password){
+                        if(data[0].password == $scope.user.password) {
+                            $scope.user.id = data[0].id;
+                            $scope.updateSessionInfo();
                             $state.go('app.default');
-                        }else{
+                        } else {
                             toaster.pop('error', 'Error', 'Wrong password.');
                         }
                     },
@@ -86,8 +95,9 @@ app.controller('UserCtrl', ["$scope", "$state","flowFactory", "RestService", "to
                         console.log(errResponse);
                     }
                 );
-        }else{
+        } else {
             toaster.pop('error', 'Error', 'Introduce the username and password.');
         }
     };
+
 }]);

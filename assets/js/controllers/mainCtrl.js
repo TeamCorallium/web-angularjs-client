@@ -2,15 +2,19 @@
 /**
  * Clip-Two Main Controller
  */
-app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar',
-function($rootScope, $scope, $state, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar) {
+app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'localStorageService',
+function($rootScope, $scope, $state, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, localStorageService) {
 
 
-	$scope.isLogged = false;
+	$scope.isLogged = localStorageService.get('isLogged');
 
-	$scope.setIsLogged = function(value) {
-		$scope.isLogged = value;
-	}
+	$rootScope.$on('sessionChanged', function() {
+    	$scope.isLogged = localStorageService.get('isLogged');
+  	});
+
+	// $scope.setIsLogged = function(value) {
+	// 	$scope.isLogged = value;
+	// }
 
 	// Loading bar transition
 	// -----------------------------------

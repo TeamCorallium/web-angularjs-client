@@ -30,9 +30,10 @@ app.controller('UserCtrl', ["$scope", "flowFactory", "RestService",function ($sc
     }
 
     $scope.user = {
-        user: '',
+        fullName: '',
+        gender: '',
+        email: '',
         password: '',
-        rol: '',
         id: ''
     };
 

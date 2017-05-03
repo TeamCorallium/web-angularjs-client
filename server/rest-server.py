@@ -9,13 +9,13 @@ db = TinyDB('db.json')
 
 db.purge();
 
-user = db.table('table_user')
-profile = db.table('table_profile')
-simple_project = db.table('table_simple_project')
-complex_project = db.table('table_complex_project')
-risk = db.table('table_risk')
-reference = db.table('table_reference')
-task = db.table('table_task')
+table_user = db.table('table_user')
+table_profile = db.table('table_profile')
+table_simple_project = db.table('table_simple_project')
+table_complex_project = db.table('table_complex_project')
+table_risk = db.table('table_risk')
+table_reference = db.table('table_reference')
+table_task = db.table('table_task')
 
 # texts.purge()
 # texts.insert({'id':'10', 'value':'Breathe New Life Into Your Home’s Furniture'})
@@ -62,8 +62,8 @@ class UserHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         print("setting headers!!!")
         self.set_header("Access-Control-Allow-Origin", "*")
-        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
     
     def options(self):
         print('options')
@@ -71,11 +71,21 @@ class UserHandler(tornado.web.RequestHandler):
         self.finish()
 
     def get(self):
-        print('hola mundo')
+        print('get')
 
     def post(self):
         print("post.......!!!")
-        print(self.get_argument('user'))
+
+        # u = user.get(eid=7)
+        # print(json.dumps(u))
+
+        self.json_args = json.loads(self.request.body)
+        # print(self.json_args['user'])
+        # print(self.json_args['password'])
+
+        id = user.insert(self.json_args);
+        self.write(str(id))
+        print(id)
 
 application = tornado.web.Application([
     (r"/ravic/text/([0-9]+)", GetTextHandler),

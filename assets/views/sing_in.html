@@ -7,16 +7,16 @@
 					Sign in to your account
 				</legend>
 				<p>
-					Please enter your name and password to log in.
+					Please enter your email and password to log in.
 				</p>
 				<div class="form-group">
 						<span class="input-icon">
-							<input type="text" class="form-control" name="email" placeholder="Email" ng-model="user.email">
+							<input type="email" class="form-control" name="email" placeholder="Email" ng-model="user.email" required="required">
 							<i class="fa fa-user"></i> </span>
 				</div>
 				<div class="form-group form-actions">
 						<span class="input-icon">
-							<input type="password" class="form-control password" name="password" placeholder="Password" ng-model="user.password">
+							<input type="password" class="form-control password" name="password" placeholder="Password" ng-model="user.password" required="required">
 							<i class="fa fa-lock"></i>
 							<a class="forgot" ui-sref="login.forgot">
 								I forgot my password
@@ -29,7 +29,6 @@
 							Keep me signed in
 						</label>
 					</div>
-					<!--<button type="submit" class="btn btn-primary pull-right" ui-sref="app.default" ng-click="setIsLogged(true)">-->
 					<button type="submit" class="btn btn-primary pull-right" ng-click="signin()">
 						Login <i class="fa fa-arrow-circle-right"></i>
 					</button>

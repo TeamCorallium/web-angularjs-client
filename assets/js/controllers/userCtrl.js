@@ -49,8 +49,13 @@ app.controller('UserCtrl', ["$scope", "$state","flowFactory", "RestService", "to
                     RestService.createUser($scope.user)
                         .then(
                             function(data) {
-                                if(data == -1)
+                                if(data == -1){
                                     toaster.pop('error', 'Error', 'Email in use. Please use another email to sign up.');
+                                }
+                                else{
+                                    $scope.user.id = data;
+                                    $state.go('app.default');
+                                }
                             },
                             function(errResponse){
                                 console.log(errResponse);

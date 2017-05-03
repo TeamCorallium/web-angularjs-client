@@ -78,6 +78,8 @@ app.controller('UserCtrl', ["$scope", "$state","flowFactory", "RestService", "to
                     function(data) {
                         if(data[0].password == $scope.user.password){
                             $state.go('app.default');
+                        }else{
+                            toaster.pop('error', 'Error', 'Wrong password.');
                         }
                     },
                     function(errResponse){

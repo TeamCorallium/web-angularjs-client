@@ -7,6 +7,9 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.simpleProjects = [];
         $scope.owner = '';
 
+        $scope.creationProjectDate = '';
+        $scope.deathLineProject = '';
+
         $scope.getProjects = function () {
             RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
                 .then(
@@ -37,4 +40,15 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
 
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
+        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        $scope.getCreationProject = function (DateProject) {
+            var dateTemp = new Date(DateProject);
+            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDay() + ", "+ dateTemp.getFullYear();
+        };
+
+        $scope.getDeathLineProject = function (DeathLine) {
+            var dateTemp = new Date(DeathLine);
+            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDay() + ", "+ dateTemp.getFullYear();
+        };
     }]);

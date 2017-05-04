@@ -20,24 +20,33 @@
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="project in simpleProjects">
 						<div class="clearfix">
-							<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<span class="mainTitle">{{project.projectName}}</span>
+							<div class="col-sm-2 col-md-2 col-lg-2">
+								<img  ng-src="assets/images/portfolio/image06.jpg" alt=""
+									  class="img-responsive img-rounded notification-image">
 							</div>
-							<!--<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
-								<!--<span class="mainDescription">{{ project.description | htmlToPlaintext | words:40 :true }}</span>-->
-							<!--</div>-->
-							<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<div class="post-meta text-light">
-									<span><i class="fa fa-calendar"></i> January 11, 2014 </span>
-									<span><i class="fa fa-user"></i> By <a> {{owner.userId}} </a> </span>
-									<span><i class="ti-money"></i> Total Cost: <a> {{project.totalCost}} </a> </span>
-									<span><i class="ti-timer"></i> Death Line: <a> {{project.deathLine}} </a> </span>
-									<span><i class="ti-layers-alt"></i> State: <a> {{stateArray[project.state]}} </a> </span>
-									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5">
-										<span class="fa fa-arrow-right"></span> Read more...
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10">
+								<span class="notification-author"> {{project.projectName}}</span>
+								<span class="notification-time"> {{getCreationProject(project.creationDate)}}</span>
+							</div>
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10">
+								<span class="notification-preview"><strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}</span>
+							</div>
+							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10">
+								<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 padding-left-0">
+									<span><i class="ti-timer"></i><strong>Deathline:</strong>  {{getDeathLineProject(project.deathLine)}} </span>
+								</div>
+								<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 padding-left-0">
+									<span><i class="ti-layers-alt"></i><strong>State:</strong>  {{stateArray[project.state]}} </span>
+								</div>
+								<div data-title="Actions" data-title-override="Actions" class="pull-rightcol-xs-12 col-sm-4 col-md-4 col-lg-4">
+									<button type="button" class="btn btn-success btn-xs">
+										<span class="fa fa-edit"></span> Update
 									</button>
-									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5 margin-right-5">
-										<span class="fa fa-edit"></span> Edit
+									<button type="button" class="btn btn-primary btn-xs">
+										<span class="fa fa-arrow-right"></span> Read more
+									</button>
+									<button type="button" class="btn btn-danger btn-xs">
+										<span class="glyphicon glyphicon-trash"></span> Delete
 									</button>
 								</div>
 							</div>

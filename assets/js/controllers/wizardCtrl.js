@@ -6,6 +6,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
     function ($scope, toaster, localStorageService, RestService, $state) {
         $scope.currentStep = 1;
         $scope.simpleProject = {
+            creationDate: '',
             id: '',
             userId: localStorageService.get('currentUserId'),
             projectName: '',
@@ -31,6 +32,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         }];
 
         $scope.createSimpleProject = function () {
+            $scope.simpleProject.creationDate = new Date();
             RestService.createSimpleProject($scope.simpleProject)
                 .then(
                     function(data) {
@@ -113,4 +115,97 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         var errorMessage = function (i) {
             toaster.pop('error', 'Error', 'please complete the form in this step before proceeding');
         };
-    }]);
+
+
+        //Date picker
+        $scope.today = function() {
+            $scope.simpleProject.deathLine = new Date();
+        };
+        $scope.today();
+        $scope.start = $scope.minDate;
+        $scope.end = $scope.maxDate;
+        $scope.clear = function() {
+            $scope.dt = null;
+        };
+        $scope.datepickerOptions = {
+            showWeeks : false,
+            startingDay : 1
+        };
+        $scope.dateDisabledOptions = {
+            dateDisabled : disabled,
+            showWeeks : false,
+            startingDay : 1
+        };
+        $scope.startOptions = {
+            showWeeks : false,
+            startingDay : 1,
+            minDate: $scope.minDate,
+            maxDate: $scope.maxDate
+        };
+        $scope.endOptions = {
+            showWeeks : false,
+            startingDay : 1,
+            minDate: $scope.minDate,
+            maxDate: $scope.maxDate
+        };
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date, mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+        $scope.setDate = function(year, month, day) {
+            $scope.simpleProject.deathLine = new Date(year, month, day);
+        };
+        $scope.toggleMin = function() {
+            $scope.datepickerOptions.minDate = $scope.datepickerOptions.minDate ? null : new Date();
+            $scope.dateDisabledOptions.minDate = $scope.dateDisabledOptions.minDate ? null : new Date();
+        };
+        $scope.maxDate = new Date(2020, 5, 22);
+        $scope.minDate = new Date(1970, 12, 31);
+        $scope.open = function() {
+            $scope.opened = !$scope.opened;
+        };
+        $scope.endOpen = function() {
+            $scope.endOptions.minDate = $scope.start;
+            $scope.startOpened = false;
+            $scope.endOpened = !$scope.endOpened;
+        };
+        $scope.startOpen = function() {
+            $scope.startOptions.maxDate = $scope.end;
+            $scope.endOpened = false;
+            $scope.startOpened = !$scope.startOpened;
+        };
+        $scope.dateOptions = {
+            formatYear : 'yy',
+            startingDay : 1
+        };
+        $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        $scope.format = $scope.formats[0];
+
+        $scope.hstep = 1;
+        $scope.mstep = 15;
+
+        // Time Picker
+        $scope.options = {
+            hstep : [1, 2, 3],
+            mstep : [1, 5, 10, 15, 25, 30]
+        };
+
+        $scope.ismeridian = true;
+        $scope.toggleMode = function() {
+            $scope.ismeridian = !$scope.ismeridian;
+        };
+        $scope.update = function() {
+            var d = new Date();
+            d.setHours(14);
+            d.setMinutes(0);
+            $scope.dt = d;
+        };
+        $scope.changed = function() {
+            $log.log('Time changed to: ' + $scope.simpleProject.deathLine);
+        };
+        $scope.clear = function() {
+            $scope.simpleProject.deathLine = null;
+        };
+
+}]);

@@ -237,7 +237,7 @@
 												<legend>
 													Investment
 												</legend>
-												<div class="row" ng-controller="DatepickerDemoCtrl">
+												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
 															<label>
@@ -245,7 +245,7 @@
 															</label>
 
 															<div class="input-group">
-																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline" ng-required="currentStep == 1">
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="simpleProject.deathLine" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline" ng-required="currentStep == 1">
 																<span class="input-group-btn">
 																<button type="button" class="btn btn-primary" ng-click="open()">
 																	<i class="fa fa-calendar"></i>

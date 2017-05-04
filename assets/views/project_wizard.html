@@ -14,12 +14,12 @@
 <div class="container-fluid container-fullw bg-white">
 	<div class="row">
 		<div class="col-md-12">
-		<h3>Complete required information in each step</h3>
+			<h3>Complete required information in each step</h3>
 			<!-- <h5 class="over-title margin-bottom-15">Wizard <span class="text-bold">create project</span></h5> -->
-<!-- 			<p>
-				Complete required information in each step.
-			</p>
- -->			<!-- /// controller:  'WizardCtrl' -  localtion: assets/js/controllers/wizardCtrl.js /// -->
+			<!-- 			<p>
+                            Complete required information in each step.
+                        </p>
+             -->			<!-- /// controller:  'WizardCtrl' -  localtion: assets/js/controllers/wizardCtrl.js /// -->
 			<div ng-controller="WizardCtrl">
 				<!-- start: WIZARD FORM -->
 				<form name="Form" id="form" novalidate>
@@ -76,7 +76,7 @@
 															<label>
 																Project Name <span class="symbol required"></span>
 															</label>
-															<input type="text" placeholder="Enter your Project Name" class="form-control" name="projectName" ng-model="myModel.projectName" ng-required="currentStep == 1"/>
+															<input type="text" placeholder="Enter your Project Name" class="form-control" name="projectName" ng-model="simpleProject.projectName" ng-required="currentStep == 1"/>
 															<span class="error text-small block" ng-if="Form.projectName.$dirty && Form.projectName.$invalid">Project Name is required</span>
 															<span class="success text-small" ng-if="Form.projectName.$valid">Thank You!</span>
 														</div>
@@ -87,7 +87,7 @@
 																Project description <span class="symbol required"></span>
 															</label>
 
-															<textarea placeholder="Enter your project description" class="form-control autosize msd-elastic: \n;" data-ng-model="myModel.description" name="description" ng-required="currentStep == 1"></textarea>
+															<textarea placeholder="Enter your project description" class="form-control autosize msd-elastic: \n;" data-ng-model="simpleProject.description" name="description" ng-required="currentStep == 1"></textarea>
 
 															<span class="error text-small block" ng-if="Form.description.$dirty && Form.description.$invalid">Project description is required</span>
 															<span class="success text-small" ng-if="Form.description.$valid">Wonderful!</span>
@@ -96,7 +96,7 @@
 												</div>
 											</fieldset>
 										</div>
-										<div class="col-md-6">			
+										<div class="col-md-6">
 											<fieldset>
 												<legend>
 													Costs, duration and state
@@ -108,7 +108,7 @@
 																Total cost <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="myModel.totalCost" name="totalCost" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalCost" name="totalCost" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.totalCost.$dirty && Form.totalCost.$invalid">Total cost is required</span>
 															<span class="success text-small" ng-if="Form.totalCost.$valid">Thank You!</span>
@@ -121,7 +121,7 @@
 																Minimal cost <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="myModel.minimalCost" name="minimalCost" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minimalCost" name="minimalCost" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.minimalCost.$dirty && Form.minimalCost.$invalid">Minimal cost is required</span>
 															<span class="success text-small" ng-if="Form.minimalCost.$valid">Thank You!</span>
@@ -135,7 +135,7 @@
 																Estimate duration <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks" data-ng-model="myModel.estimateDuration" name="estimateDuration" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks" data-ng-model="simpleProject.estimateDuration" name="estimateDuration" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.estimateDuration.$dirty && Form.estimateDuration.$invalid">Estimate duration is required</span>
 															<span class="success text-small" ng-if="Form.estimateDuration.$valid">Thank You!</span>
@@ -148,7 +148,7 @@
 																Project state <span class="symbol required"></span>
 															</label>
 
-															<select class="cs-select cs-skin-slide" data-ng-model="myModel.state" name="state" ng-required="currentStep == 1">
+															<select class="cs-select cs-skin-slide" data-ng-model="simpleProject.state" name="state" ng-required="currentStep == 1">
 																<option value="0" disabled selected>Select an state</option>
 																<option value="1">In Preparation</option>
 																<option value="2">Active: On time</option>
@@ -156,24 +156,24 @@
 																<option value="4">Active: Delayed</option>
 																<option value="5">Finished</option>
 															</select>
-														</div>												
+														</div>
 													</div>
-												</div>																
+												</div>
 											</fieldset>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
-										<fieldset>
-											<legend>
-												Outcome and retribution
-											</legend>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>
-															Outcome
-														</label>
+											<fieldset>
+												<legend>
+													Outcome and retribution
+												</legend>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label>
+																Outcome
+															</label>
 
 															<div class="checkbox clip-check check-primary">
 																<input type="checkbox" id="checkbox6" value="1">
@@ -193,14 +193,14 @@
 																	New business
 																</label>
 															</div>
-													</div>
+														</div>
 
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>
-															Retribution Ways
-														</label>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label>
+																Retribution Ways
+															</label>
 
 															<div class="checkbox clip-check check-primary">
 																<input type="checkbox" id="checkbox9" value="1">
@@ -225,78 +225,78 @@
 																<label for="checkbox12">
 																	Stocks in the New Business
 																</label>
-															</div>														
+															</div>
+														</div>
+
 													</div>
-
 												</div>
-											</div>																
-										</fieldset>	
-									</div>
-									<div class="col-md-6">	
-										<fieldset>
-											<legend>
-												Investment
-											</legend>
-											<div class="row" ng-controller="DatepickerDemoCtrl">
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>
-															Death Line
-														</label>
+											</fieldset>
+										</div>
+										<div class="col-md-6">
+											<fieldset>
+												<legend>
+													Investment
+												</legend>
+												<div class="row" ng-controller="DatepickerDemoCtrl">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label>
+																Death Line
+															</label>
 
-														<div class="input-group">
-															<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline" ng-required="currentStep == 1">
-															<span class="input-group-btn">
+															<div class="input-group">
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline" ng-required="currentStep == 1">
+																<span class="input-group-btn">
 																<button type="button" class="btn btn-primary" ng-click="open()">
 																	<i class="fa fa-calendar"></i>
 																</button> </span>
+															</div>
+														</div>
+
+													</div>
+													<div class="col-md-6">
+														<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
+															<label>
+																Revenue Share for the Owner <span class="symbol required"></span>
+															</label>
+
+															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-prefix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
+
+															<span class="error text-small block" ng-if="Form.revenueOwner.$dirty && Form.revenueOwner.$invalid">Revenue Share for the Owner is required</span>
+															<span class="success text-small" ng-if="Form.revenueOwner.$valid">Thank You!</span>
 														</div>
 													</div>
-
 												</div>
-												<div class="col-md-6">
-													<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
-														<label>
-															Revenue Share for the Owner <span class="symbol required"></span>
-														</label>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group" ng-class="{'has-error':Form.maxNumInves.$dirty && Form.maxNumInves.$invalid, 'has-success':Form.maxNumInves.$valid}">
+															<label>
+																Maximum Number of Investors <span class="symbol required"></span>
+															</label>
 
-														<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-prefix="%" data-ng-model="myModel.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="simpleProject.maxNumInves" name="maxNumInves" ng-required="currentStep == 1">
 
-														<span class="error text-small block" ng-if="Form.revenueOwner.$dirty && Form.revenueOwner.$invalid">Revenue Share for the Owner is required</span>
-														<span class="success text-small" ng-if="Form.revenueOwner.$valid">Thank You!</span>
+															<span class="error text-small block" ng-if="Form.maxNumInves.$dirty && Form.maxNumInves.$invalid">Maximum Number of Investors is required</span>
+															<span class="success text-small" ng-if="Form.maxNumInves.$valid">Thank You!</span>
+														</div>
+
+													</div>
+													<div class="col-md-6">
+														<div class="form-group" ng-class="{'has-error':Form.minCapInves.$dirty && Form.minCapInves.$invalid, 'has-success':Form.minCapInves.$valid}">
+															<label>
+																Minimun Financier Investment <span class="symbol required"></span>
+															</label>
+
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
+
+															<span class="error text-small block" ng-if="Form.minCapInves.$dirty && Form.minCapInves.$invalid">Min Financier Capital is required</span>
+															<span class="success text-small" ng-if="Form.minCapInves.$valid">Thank You!</span>
+														</div>
 													</div>
 												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group" ng-class="{'has-error':Form.maxNumInves.$dirty && Form.maxNumInves.$invalid, 'has-success':Form.maxNumInves.$valid}">
-														<label>
-															Maximum Number of Investors <span class="symbol required"></span>
-														</label>
-
-														<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="myModel.maxNumInves" name="maxNumInves" ng-required="currentStep == 1">
-
-														<span class="error text-small block" ng-if="Form.maxNumInves.$dirty && Form.maxNumInves.$invalid">Maximum Number of Investors is required</span>
-														<span class="success text-small" ng-if="Form.maxNumInves.$valid">Thank You!</span>
-													</div>
-
-												</div>
-												<div class="col-md-6">
-													<div class="form-group" ng-class="{'has-error':Form.minCapInves.$dirty && Form.minCapInves.$invalid, 'has-success':Form.minCapInves.$valid}">
-														<label>
-															Minimun Financier Investment <span class="symbol required"></span>
-														</label>
-
-														<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="$" data-ng-model="myModel.minCapInves" name="minCapInves" ng-required="currentStep == 1">
-
-														<span class="error text-small block" ng-if="Form.minCapInves.$dirty && Form.minCapInves.$invalid">Min Financier Capital is required</span>
-														<span class="success text-small" ng-if="Form.minCapInves.$valid">Thank You!</span>
-													</div>											
-												</div>
-											</div>																				
-										</fieldset>
+											</fieldset>
+										</div>
 									</div>
-									</div>																	
 									<div class="form-group">
 										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
 											Next <i class="fa fa-arrow-circle-right"></i>
@@ -308,7 +308,7 @@
 						<!-- end: WIZARD STEP 1 -->
 						<!-- start: WIZARD STEP 2 -->
 						<div id="step-2" ng-show="currentStep == 2"  ng-controller="UploadCtrl2" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
-							<div class="row">								
+							<div class="row">
 								<div class="col-md-12">
 									<fieldset>
 										<legend>
@@ -316,43 +316,43 @@
 										</legend>
 
 										<div class="row">
-										<div class="col-md-12">
+											<div class="col-md-12">
 											<span class="btn btn-primary btn-o btn-file"> Select single file
 												<input type="file" nv-file-select="" uploader="uploader" />
-											</span>	
-										</div>	
+											</span>
+											</div>
 										</div>
-											<table class="table table-striped" wt-responsive-table>
-												<thead>
-													<tr>
-														<th width="50%">Name</th>
-														<th ng-show="uploader.isHTML5">Size</th>
-														<th>Status</th>
-														<th>Actions</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr ng-repeat="item in uploader.queue">
-														<td><strong>{{ item.file.name }}</strong></td>
-														<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-														<td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
-														<td nowrap>
-														<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-															<span class="glyphicon glyphicon-upload"></span> Upload
-														</button>
-														<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-															<span class="glyphicon glyphicon-ban-circle"></span> Cancel
-														</button>
-														<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-															<span class="glyphicon glyphicon-trash"></span> Remove
-														</button></td>
-													</tr>
-												</tbody>
-											</table>
-									</fieldset>		
+										<table class="table table-striped" wt-responsive-table>
+											<thead>
+											<tr>
+												<th width="50%">Name</th>
+												<th ng-show="uploader.isHTML5">Size</th>
+												<th>Status</th>
+												<th>Actions</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr ng-repeat="item in uploader.queue">
+												<td><strong>{{ item.file.name }}</strong></td>
+												<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+												<td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
+												<td nowrap>
+													<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+														<span class="glyphicon glyphicon-upload"></span> Upload
+													</button>
+													<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+														<span class="glyphicon glyphicon-ban-circle"></span> Cancel
+													</button>
+													<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+														<span class="glyphicon glyphicon-trash"></span> Remove
+													</button></td>
+											</tr>
+											</tbody>
+										</table>
+									</fieldset>
 								</div>
 							</div>
-							<div class="row" ng-controller="dynamicTableCtrl">				
+							<div class="row" ng-controller="dynamicTableCtrl">
 								<div class="col-md-12">
 									<fieldset>
 										<legend>
@@ -363,14 +363,14 @@
 												<div class="form-group">
 													<label>Name</label>
 													<input type="text" class="form-control" name="name" ng-model="name" />
-												</div>		
+												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Description</label>
 													<textarea placeholder="Enter risk description" class="form-control autosize msd-elastic: \n;" data-ng-model="rdescription" name="rdescription"></textarea>
 												</div>
-											</div>				
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-12">
@@ -378,32 +378,32 @@
 													<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="addRow()">
 														<i class="fa fa-circle-arrow-left"></i> Add
 													</button>
-												</div>	
-											</div>											
+												</div>
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-12">
-													<table class="table table-striped" wt-responsive-table>
-														<thead>
-															<tr>
-																<th>Name </th>
-																<th>Description </th>
-																<th>Action </th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr ng-repeat="company in companies">
-																<td>{{company.name}} </td>
-																<td>{{company.rdescription}} </td>
-																<td>
-																<button type="button" class="btn btn-danger btn-xs" ng-click="removeRow(company.name)">
-																	<span class="glyphicon glyphicon-trash"></span>Remove
-																</button>
-																</td>
-															</tr>
-														</tbody>
-													</table>
-											</div>	
+												<table class="table table-striped" wt-responsive-table>
+													<thead>
+													<tr>
+														<th>Name </th>
+														<th>Description </th>
+														<th>Action </th>
+													</tr>
+													</thead>
+													<tbody>
+													<tr ng-repeat="company in companies">
+														<td>{{company.name}} </td>
+														<td>{{company.rdescription}} </td>
+														<td>
+															<button type="button" class="btn btn-danger btn-xs" ng-click="removeRow(company.name)">
+																<span class="glyphicon glyphicon-trash"></span>Remove
+															</button>
+														</td>
+													</tr>
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</fieldset>
 									<div class="form-group">
@@ -415,13 +415,13 @@
 										</button>
 									</div>
 								</div>
-							</div>		
+							</div>
 						</div>
 
 						<!-- end: WIZARD STEP 2 -->
 						<!-- start: WIZARD STEP 3 -->
 						<div id="step-3" ng-show="currentStep == 3">
-							<div class="row" ng-controller="dynamicTableCtrl">				
+							<div class="row" ng-controller="dynamicTableCtrl">
 								<div class="col-md-12">
 									<fieldset>
 										<legend>
@@ -432,14 +432,14 @@
 												<div class="form-group">
 													<label>Name</label>
 													<input type="text" class="form-control" name="name" ng-model="name" />
-												</div>		
+												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Description</label>
-													<textarea placeholder="Enter risk description" class="form-control autosize msd-elastic: \n;" data-ng-model="rdescription" name="rdescription"></textarea>
+													<textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" data-ng-model="rdescription" name="rdescription"></textarea>
 												</div>
-											</div>				
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
@@ -458,32 +458,32 @@
 														Outcome
 													</label>
 													<div class="row">
-													<div class="col-md-12">
-													<div class="col-md-4">
-														<div class="checkbox clip-check check-primary">
-															<input type="checkbox" id="checkbox16" value="1">
-															<label for="checkbox16">
-																Production
-															</label>
+														<div class="col-md-12">
+															<div class="col-md-4">
+																<div class="checkbox clip-check check-primary">
+																	<input type="checkbox" id="checkbox16" value="1">
+																	<label for="checkbox16">
+																		Production
+																	</label>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="checkbox clip-check check-primary">
+																	<input type="checkbox" id="checkbox17" value="1">
+																	<label for="checkbox17">
+																		Income
+																	</label>
+																</div>
+															</div>
+															<div class="col-md-4">
+																<div class="checkbox clip-check check-primary">
+																	<input type="checkbox" id="checkbox18" value="1">
+																	<label for="checkbox18">
+																		New business
+																	</label>
+																</div>
+															</div>
 														</div>
-													</div>
-													<div class="col-md-4">	
-														<div class="checkbox clip-check check-primary">
-															<input type="checkbox" id="checkbox17" value="1">
-															<label for="checkbox17">
-																Income
-															</label>
-														</div>
-													</div>
-													<div class="col-md-4">
-														<div class="checkbox clip-check check-primary">
-															<input type="checkbox" id="checkbox18" value="1">
-															<label for="checkbox18">
-																New business
-															</label>
-														</div>
-													</div>
-													</div>
 													</div>
 												</div>
 											</div>
@@ -513,43 +513,43 @@
 														<option value="4">Active: Delayed</option>
 														<option value="5">Finished</option>
 													</select>
-												</div>												
+												</div>
 											</div>
-										</div>											
+										</div>
 										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
 													<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="addRow()">
 														<i class="fa fa-circle-arrow-left"></i> Add
 													</button>
-												</div>	
-											</div>											
+												</div>
+											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-12">
-													<table class="table table-striped" wt-responsive-table>
-														<thead>
-															<tr>
-																<th>Name </th>
-																<th>Description </th>
-																<th>Action </th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr ng-repeat="company in companies">
-																<td>{{company.name}} </td>
-																<td>{{company.rdescription}} </td>
-																<td>
-																<button type="button" class="btn btn-danger btn-xs" ng-click="removeRow(company.name)">
-																	<span class="glyphicon glyphicon-trash"></span>Remove
-																</button>
-																</td>
-															</tr>
-														</tbody>
-													</table>
-											</div>	
-										</div>													
-									</fieldset>							
+												<table class="table table-striped" wt-responsive-table>
+													<thead>
+													<tr>
+														<th>Name </th>
+														<th>Description </th>
+														<th>Action </th>
+													</tr>
+													</thead>
+													<tbody>
+													<tr ng-repeat="company in companies">
+														<td>{{company.name}} </td>
+														<td>{{company.rdescription}} </td>
+														<td>
+															<button type="button" class="btn btn-danger btn-xs" ng-click="removeRow(company.name)">
+																<span class="glyphicon glyphicon-trash"></span>Remove
+															</button>
+														</td>
+													</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</fieldset>
 									<div class="form-group">
 										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">
 											<i class="fa fa-circle-arrow-left"></i> Back
@@ -572,15 +572,15 @@
 										<p class="text-large">
 											Your project is complete.
 										</p>
-<!-- 										<p class="text-small">
-											Thank you for your registration. Your transaction has been completed, and a receipt for your purchase has been emailed to you.  You may log into your account to view details of this transaction.
-										</p> -->
+										<!-- 										<p class="text-small">
+                                                                                    Thank you for your registration. Your transaction has been completed, and a receipt for your purchase has been emailed to you.  You may log into your account to view details of this transaction.
+                                                                                </p> -->
 										<a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
 											Back to first step
 										</a>
-										<a class="btn btn-primary btn-o" href ng-click="">
-											View your project
-										</a>										
+										<a class="btn btn-primary btn-o" href ng-click="createSimpleProject()">
+											Submit your project
+										</a>
 									</div>
 								</div>
 							</div>

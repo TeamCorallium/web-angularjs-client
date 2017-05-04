@@ -122,6 +122,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Task'
             },
             resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl')
+        }).state('app.project.user_project', {
+            url: '/userprojects ',
+            templateUrl: "assets/views/project_user.html",
+            title: 'User Projects',
+            ncyBreadcrumb: {
+                label: 'User Projects'
+            },
+            resolve: loadSequence('currentUserProjects')
         }).state('app.project.wizard', {
             url: '/wizard',
             templateUrl: "assets/views/project_wizard.html",

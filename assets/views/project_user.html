@@ -1,0 +1,54 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+	<div class="row">
+		<div class="col-sm-8">
+			<!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
+			<h1 class="mainTitle">WELCOME TO CORALLIUM</h1>
+			<span class="mainDescription">Use this page to start from scratch and put your custom content</span>
+		</div>
+		<div ncy-breadcrumb></div>
+	</div>
+</section>
+<!-- end: PAGE TITLE -->
+<!-- start: YOUR CONTENT HERE -->
+<!-- end: YOUR CONTENT HERE -->
+<!-- start: FEATURED BOX LINKS -->
+<section class="container-fluid container-fullw bg-white" ng-controller="CurrentUserProjects">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<ul class="list-unstyled">
+					<li class="margin-bottom-15" ng-repeat="project in simpleProjects">
+						<div class="clearfix">
+							<!--<div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">-->
+								<!--<img  ng-src="{{ message.avatar && message.avatar || noAvatarImg }}" alt=""-->
+									  <!--class="img-responsive img-rounded notification-image">-->
+							<!--</div>-->
+							<div class="thread-content col-xs-7 col-sm-10 col-md-10 col-lg-10">
+								<span class="notification-author">{{project.projectName}}</span>
+								<!--<span class="notification-time"> {{ message.date | date: "MM/dd/yyyy 'at' h:mma" }}</span>-->
+							</div>
+							<!--<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">-->
+								<!--<span class="notification-preview">{{ message.content | htmlToPlaintext | words:40 :true }}</span>-->
+							<!--</div>-->
+							<!--<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">-->
+								<!--<div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">-->
+									<!--<button type="button" class="btn btn-success btn-xs">-->
+										<!--<span class="glyphicon glyphicon-upload"></span> Upload-->
+									<!--</button>-->
+									<!--<button type="button" class="btn btn-warning btn-xs">-->
+										<!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
+									<!--</button>-->
+									<!--<button type="button" class="btn btn-danger btn-xs">-->
+										<!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+									<!--</button>-->
+								<!--</div>-->
+							<!--</div>-->
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end: FEATURED BOX LINKS -->

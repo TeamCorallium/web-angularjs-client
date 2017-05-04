@@ -27,6 +27,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             google: '',
             skype: 'peterclark82'
         };
+
         if ($scope.userInfo.avatar == '') {
             $scope.noImage = true;
         }
@@ -44,8 +45,9 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
 
         $scope.updateSessionInfo = function () {
             localStorageService.set('isLogged', $scope.user.id != '');
+            localStorageService.set('currentUserId', $scope.user.id);
             $rootScope.$broadcast('sessionChanged');
-        }
+        };
 
         $scope.signup = function() {
             if($scope.user.fullName != '' && $scope.user.email != '' &&
@@ -57,8 +59,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                                 function(data) {
                                     if(data == -1) {
                                         toaster.pop('error', 'Error', 'Email in use. Please use another email to sign up.');
-                                    }
-                                    else{
+                                    } else {
                                         $scope.user.id = data;
                                         $scope.updateSessionInfo();
                                         $state.go('app.default');
@@ -72,8 +73,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                         toaster.pop('error', 'Error', 'Please accept the terms and conditions in this step before proceeding.');
                     }
                 }
-            }
-            else {
+            } else {
                 toaster.pop('error', 'Error', 'Please complete the form in this step before proceeding.');
             }
         };
@@ -105,8 +105,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 localStorageService.set('isLogged', false);
                 $rootScope.$broadcast('sessionChanged');
                 $state.go('app.default');
-            }
-            else {
+            } else {
                 toaster.pop('error', 'Error', 'Not logged in.');
             }
         }

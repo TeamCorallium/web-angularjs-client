@@ -12,7 +12,7 @@
 <!-- start: YOUR CONTENT HERE -->
 <!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white">
+<div class="container-fluid container-fullw bg-white"  ng-controller="CurrentUserProjects">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -21,7 +21,7 @@
                     <div class="portfolio-title">
                         <div class="row">
                             <div class="col-md-12 left">
-                                <h2 class="shorter">Subproject name</h2>
+                                <h2 class="shorter"> {{currenProjectActive.projectName}}</h2>
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                                         <div class="col-md-12">
                                             <ul class="pull-right">
                                                 <li>
-                                                    <i class="fa fa-calendar"></i> 21 April 2017
+                                                    <i class="fa fa-calendar"></i> {{getCreationProject(currenProjectActive.creationDate)}}
                                                 </li>
                                                 <li>
                                                     <i class="fa fa-tags"></i>
@@ -122,11 +122,7 @@
                                     </div>
                                 </div>
                                 <h4>Description</h4>
-                                <p class="taller margin-bottom-25"> Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Sed tempus nibh sed elimttis adipiscing. Fusce in hendrerit
-                                    purus. Suspendisse potenti. Proin quis eros odio, dapibus dictum mauris.
-                                    Donec nisi libero, adipiscing id pretium eget, consectetur sit amet leo. Nam
-                                    at eros quis mi egestas fringilla non nec purus. </p>
+                                <p class="taller margin-bottom-25"> {{currenProjectActive.description}} </p>
                                 <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
                                     <li>
                                         <p>
@@ -169,12 +165,12 @@
                                                     <ul class="portfolio-details list-unstyled">
                                                         <li>
                                                             <p>
-                                                                <strong>Death Line:</strong> 1/5/2017
+                                                                <strong>Death Line:</strong> {{getDeathLineProject(currenProjectActive.deathLine)}}
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p>
-                                                                <strong>Maximum Numbers of Investor:</strong> 5
+                                                                <strong>Maximum Numbers of Investor:</strong> {{currenProjectActive.maxNumInves}}
                                                             </p>
                                                         </li>
                                                     </ul>
@@ -183,13 +179,14 @@
                                                     <ul class="portfolio-details list-unstyled">
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>Revenue Share for the Owner:</strong> 5000$
+                                                                <strong>Revenue Share for the Owner:</strong>
+                                                                {{currenProjectActive.revenueOwner}}
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p class="margin-top-15">
                                                                 <strong>Minimal Fincancier Capital Investment:</strong>
-                                                                10000$
+                                                                {{currenProjectActive.minCapInves}}
                                                             </p>
                                                         </li>
                                                     </ul>
@@ -227,12 +224,14 @@
                                                     <ul class="portfolio-details list-unstyled">
                                                         <li>
                                                             <p>
-                                                                <strong>Total Cost:</strong> 25000$
+                                                                <strong>Total Cost:</strong>
+                                                                {{currenProjectActive.totalCost}}
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>Minimal Cost:</strong> 5000$
+                                                                <strong>Minimal Cost:</strong>
+                                                                {{currenProjectActive.minimalCost}}
                                                             </p>
                                                         </li>
                                                     </ul>
@@ -241,13 +240,13 @@
                                                     <ul class="portfolio-details list-unstyled margin-top-minus-15">
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>Estimate Duration:</strong> 4
+                                                                <strong>Estimate Duration:</strong> {{currenProjectActive.estimateDuration}}
                                                                 <strong>weeks</strong>
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>Project State:</strong> In Preparation
+                                                                <strong>Project State:</strong> {{stateArray[currenProjectActive.state]}}
                                                             </p>
                                                         </li>
                                                     </ul>

@@ -20,30 +20,27 @@
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="project in simpleProjects">
 						<div class="clearfix">
-							<!--<div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">-->
-								<!--<img  ng-src="{{ message.avatar && message.avatar || noAvatarImg }}" alt=""-->
-									  <!--class="img-responsive img-rounded notification-image">-->
-							<!--</div>-->
-							<div class="thread-content col-xs-7 col-sm-10 col-md-10 col-lg-10">
-								<span class="notification-author">{{project.projectName}}</span>
-								<!--<span class="notification-time"> {{ message.date | date: "MM/dd/yyyy 'at' h:mma" }}</span>-->
+							<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<span class="mainTitle">{{project.projectName}}</span>
 							</div>
-							<!--<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">-->
-								<!--<span class="notification-preview">{{ message.content | htmlToPlaintext | words:40 :true }}</span>-->
+							<!--<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
+								<!--<span class="mainDescription">{{ project.description | htmlToPlaintext | words:40 :true }}</span>-->
 							<!--</div>-->
-							<!--<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">-->
-								<!--<div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">-->
-									<!--<button type="button" class="btn btn-success btn-xs">-->
-										<!--<span class="glyphicon glyphicon-upload"></span> Upload-->
-									<!--</button>-->
-									<!--<button type="button" class="btn btn-warning btn-xs">-->
-										<!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
-									<!--</button>-->
-									<!--<button type="button" class="btn btn-danger btn-xs">-->
-										<!--<span class="glyphicon glyphicon-trash"></span> Remove-->
-									<!--</button>-->
-								<!--</div>-->
-							<!--</div>-->
+							<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="post-meta text-light">
+									<span><i class="fa fa-calendar"></i> January 11, 2014 </span>
+									<span><i class="fa fa-user"></i> By <a> {{owner.userId}} </a> </span>
+									<span><i class="ti-money"></i> Total Cost: <a> {{project.totalCost}} </a> </span>
+									<span><i class="ti-timer"></i> Death Line: <a> {{project.deathLine}} </a> </span>
+									<span><i class="ti-layers-alt"></i> State: <a> {{stateArray[project.state]}} </a> </span>
+									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5">
+										<span class="fa fa-arrow-right"></span> Read more...
+									</button>
+									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5 margin-right-5">
+										<span class="fa fa-edit"></span> Edit
+									</button>
+								</div>
+							</div>
 						</div>
 					</li>
 				</ul>

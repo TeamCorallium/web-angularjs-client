@@ -25,7 +25,7 @@
 									  class="img-responsive img-rounded notification-image">
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10">
-								<span class="notification-author"> {{project.projectName}}</span>
+								<span class="notification-author"><a ng-click="goToProject(project.id)"> {{project.projectName}} </a></span>
 								<span class="notification-time"> {{getCreationProject(project.creationDate)}}</span>
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10">
@@ -42,7 +42,7 @@
 									<button type="button" class="btn btn-success btn-xs">
 										<span class="fa fa-edit"></span> Update
 									</button>
-									<button type="button" class="btn btn-primary btn-xs">
+									<button type="button" class="btn btn-primary btn-xs" ng-click="goToProject(project.id)">
 										<span class="fa fa-arrow-right"></span> Read more
 									</button>
 									<button type="button" class="btn btn-danger btn-xs">

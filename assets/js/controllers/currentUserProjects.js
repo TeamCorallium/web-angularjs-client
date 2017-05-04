@@ -2,13 +2,29 @@
 /**
  * controller for User Projects
  */
-app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestService",
-    function ($scope, localStorageService, RestService) {
+app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestService", "$state",
+    function ($scope, localStorageService, RestService, $state) {
         $scope.simpleProjects = [];
         $scope.owner = '';
 
         $scope.creationProjectDate = '';
         $scope.deathLineProject = '';
+
+        $scope.getProjectById = function (projectId) {
+            RestService.fetchProjectById(projectId)
+                .then(
+                    function(data) {
+                        $scope.currenProjectActive =  data[0];
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        if(localStorageService.get('currentProjectId')!= null){
+            $scope.getProjectById(localStorageService.get('currentProjectId'));
+        }
 
         $scope.getProjects = function () {
             RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
@@ -50,5 +66,11 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.getDeathLineProject = function (DeathLine) {
             var dateTemp = new Date(DeathLine);
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDay() + ", "+ dateTemp.getFullYear();
+        };
+
+        $scope.goToProject = function (projectId) {
+            localStorageService.set('currentProjectId',projectId);
+            $scope.getProjectById(projectId);
+            $state.go('app.project.subproject_detail');
         };
     }]);

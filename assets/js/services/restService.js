@@ -2,7 +2,7 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
- 	var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
 
     return {
 
@@ -82,6 +82,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                         return $q.reject(errResponse);
                     }
                 );
-        }
+        },
+
+        fetchProjectById: function(projectId) {
+            return $http.get(serverUrl + 'simpleProjectById/' + projectId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching simple Projects By Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
     };
 }]);

@@ -58,7 +58,7 @@ class UserHandler(tornado.web.RequestHandler):
         self.finish()
 
     def get(self, email):
-        print('get!!!' + email)
+        print('User:GET!!!' + email)
 
         user = table_user.search(where('email') == email)
         self.write(json.dumps(user))
@@ -66,7 +66,7 @@ class UserHandler(tornado.web.RequestHandler):
         print(user)
 
     def post(self):
-        print("post!!!")
+        print("User:POST!!!")
 
         self.json_args = json.loads(self.request.body)
 
@@ -85,11 +85,53 @@ class UserHandler(tornado.web.RequestHandler):
             self.write(str(id))
             print(id)
 
+
+class SimpleProjectHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, userId):
+        print('SimpleProject:GET!!!')
+
+        print('userId: ' + userId)
+
+        projects = table_simple_project.search(where('userId') == int(userId))
+        self.write(json.dumps(projects))
+
+        print(projects)
+
+    def post(self):
+        print("SimpleProject:POST!!!")
+
+        self.json_args = json.loads(self.request.body)
+
+        print(self.json_args['projectName'])
+
+        # print(len(table_user.search(where('email') == self.json_args['email'])))
+
+        if len(table_simple_project.search(where('projectName') == self.json_args['projectName'])) != 0:
+            self.write('-1')
+        else:
+            id = table_simple_project.insert(self.json_args)
+            table_simple_project.update({'id': id}, eids=[id])
+            self.write(str(id))
+            print(id)
+
 application = tornado.web.Application([
     (r"/ravic/text/([0-9]+)", GetTextHandler),
     (r"/ravic/?", VersionHandler),
     (r"/CoralliumRestAPI/user/?", UserHandler),
-    (r"/CoralliumRestAPI/user/(.*)", UserHandler)
+    (r"/CoralliumRestAPI/user/(.*)", UserHandler),
+    (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
+    (r"/CoralliumRestAPI/simpleProject/(.*)", SimpleProjectHandler)
 ])
 
 if __name__ == "__main__":

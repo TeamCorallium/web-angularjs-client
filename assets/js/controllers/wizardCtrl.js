@@ -232,6 +232,14 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                     {id:5, source:5, target:6, type:"0"}
                 ]
             };
+            gantt.config.columns =  [
+                {name:"text",       label:"Task name", tree:true },
+                {name:"duration",   label:"Duration"},
+                {name:"add",        label:""}
+            ];
+
+            gantt.config.keyboard_navigation_cells = true;
+            gantt.config.touch = true;
             gantt.init("gantt_here"); 
             gantt.parse (tasks);
         }

@@ -19,34 +19,35 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="project in simpleProjects">
+						<hr>
 						<div class="clearfix">
-							<div class="col-sm-2 col-md-2 col-lg-2">
+							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
 								<img  ng-src="assets/images/portfolio/image06.jpg" alt=""
 									  class="img-responsive img-rounded notification-image">
 							</div>
-							<div class="thread-content col-sm-10 col-md-10 col-lg-10">
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<span class="notification-author"><a ng-click="goToProject(project.id)"> {{project.projectName}} </a></span>
 								<span class="notification-time"> {{getCreationProject(project.creationDate)}}</span>
 							</div>
-							<div class="thread-content col-sm-10 col-md-10 col-lg-10">
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<span class="notification-preview"><strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}</span>
 							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10">
-								<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 padding-left-0">
+							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 									<span><i class="ti-timer"></i><strong>Deathline:</strong>  {{getDeathLineProject(project.deathLine)}} </span>
 								</div>
-								<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 padding-left-0">
+								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
 									<span><i class="ti-layers-alt"></i><strong>State:</strong>  {{stateArray[project.state]}} </span>
 								</div>
-								<div data-title="Actions" data-title-override="Actions" class="pull-rightcol-xs-12 col-sm-4 col-md-4 col-lg-4">
-									<button type="button" class="btn btn-success btn-xs">
-										<span class="fa fa-edit"></span> Update
+								<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 no-padding">
+									<button type="button" class="btn btn-danger btn-xs pull-right margin-left-5">
+										<span class="glyphicon glyphicon-trash"></span> Delete
 									</button>
-									<button type="button" class="btn btn-primary btn-xs" ng-click="goToProject(project.id)">
+									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5" ng-click="goToProject(project.id)">
 										<span class="fa fa-arrow-right"></span> Read more
 									</button>
-									<button type="button" class="btn btn-danger btn-xs">
-										<span class="glyphicon glyphicon-trash"></span> Delete
+									<button type="button" class="btn btn-success btn-xs pull-right">
+										<span class="fa fa-edit"></span> Update
 									</button>
 								</div>
 							</div>

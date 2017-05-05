@@ -96,5 +96,18 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     }
                 );
         },
+
+        deleteProject: function(projectId) {
+            return $http.get(serverUrl + 'simpleProjectDelete/' + projectId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while deleting simple Projects');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
     };
 }]);

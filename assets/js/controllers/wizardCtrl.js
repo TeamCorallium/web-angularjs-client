@@ -40,6 +40,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                             toaster.pop('error', 'Error', 'Invalid project info.');
                         } else {
                             $scope.simpleProject.id = data;
+                            toaster.pop('success', 'Good!!!', 'Project created correctly.');
                             $state.go('app.project.user_project');
                         }
                     },

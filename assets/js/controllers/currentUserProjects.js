@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestService", "$state",
-    function ($scope, localStorageService, RestService, $state) {
+app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestService", "$state", "toaster",
+    function ($scope, localStorageService, RestService, $state, toaster) {
         $scope.simpleProjects = [];
         $scope.owner = '';
 
@@ -73,4 +73,17 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
             $scope.getProjectById(projectId);
             $state.go('app.project.subproject_detail');
         };
+        
+        $scope.deleteProject = function (projectId) {
+            RestService.deleteProject(projectId)
+                .then(
+                    function(data) {
+                        toaster.pop('success', 'Good!!!', 'Project deleted correctly.');
+                        $scope.getProjects();
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        }
     }]);

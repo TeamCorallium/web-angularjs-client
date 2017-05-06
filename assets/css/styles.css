@@ -11766,3 +11766,19 @@ figure.effect-zoe:hover p.icon-links a:first-child {
     line-height: normal;
     color: $ darkGrey;
 }
+
+/*************************/
+/**** Projects User   ****/
+/*************************/
+
+.margin-combo-projects{
+  margin-top: -8px !important;
+}
+
+.margin-left-minus-15{
+  margin-left: -15px !important;
+}
+
+.border-combo-projects > span {
+  border: none !important;
+}

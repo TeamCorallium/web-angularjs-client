@@ -73,7 +73,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
             $scope.getProjectById(projectId);
             $state.go('app.project.subproject_detail');
         };
-        
+
         $scope.deleteProject = function (projectId) {
             RestService.deleteProject(projectId)
                 .then(
@@ -85,5 +85,5 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                         console.log(errResponse);
                     }
                 );
-        }
+        };
     }]);

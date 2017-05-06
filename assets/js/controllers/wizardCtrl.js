@@ -21,15 +21,24 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             minCapInves: ''
         };
 
-        $scope.risks = [{
-            name: '',
-            description: ''
-        }];
+        $scope.risks = [
+        // {
+        //     name: '',
+        //     description: ''
+        // }
+        ];
 
-        $scope.task = [{
-            name: '',
-            description: ''
-        }];
+        $scope.tasks = [
+        // {
+        //     name: '',
+        //     description: '',
+        //     cost: '',
+        //     outcome: '',
+        //     startDate: '',
+        //     duration: '',
+        //     state: ''
+        // }
+        ];
 
         $scope.createSimpleProject = function () {
             $scope.simpleProject.creationDate = new Date();
@@ -45,9 +54,37 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                         }
                     },
                     function(errResponse) {
-                        console.log(errResponse);
+                        toaster.pop('error', 'Error', 'Database connection error.');
                     }
                 );
+        };
+
+        $scope.addTask = function() {     
+            $scope.tasks.push({ 'name':$scope.task.name, 'description': $scope.task.description, 
+                                'cost':$scope.task.cost, 'outcome':$scope.task.outcome, 'startDate':$scope.start, 
+                                'duration':$scope.task.duration, 'state':$scope.task.state });     
+            $scope.task.name = '';
+            $scope.task.description = '';
+            $scope.task.cost = '';
+            $scope.task.outcome = '';
+            $scope.start = '';
+            $scope.task.duration = '';
+            $scope.task.state = '';
+        };
+
+        $scope.removeTask = function(name){              
+            var index = -1;     
+            var comArr = eval( $scope.tasks );
+            for( var i = 0; i < comArr.length; i++ ) {
+                if( comArr[i].name === name ) {
+                    index = i;
+                    break;
+                }
+            }
+            if( index === -1 ) {
+                alert( "Something gone wrong" );
+            }
+            $scope.tasks.splice( index, 1 );        
         };
 
         // Initial Value
@@ -209,40 +246,40 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             $scope.simpleProject.deathLine = null;
         };
 
-        $scope.ganttStart = function () {
-            var tasks = {
-                data:[
-                    {id:1, text:"Project #1",start_date:"01-04-2013", duration:100,
-                    progress: 0.6, open: true},
-                    {id:2, text:"Task #1",   start_date:"03-04-2013", duration:5, 
-                    progress: 1,   open: true, parent:1},
-                    {id:3, text:"Task #2",   start_date:"02-04-2013", duration:7, 
-                    progress: 0.5, open: true, parent:1},
-                    {id:4, text:"Task #2.1", start_date:"03-04-2013", duration:2, 
-                    progress: 1,   open: true, parent:3},
-                    {id:5, text:"Task #2.2", start_date:"04-04-2013", duration:3, 
-                    progress: 0.8, open: true, parent:3},
-                    {id:6, text:"Task #2.3", start_date:"05-04-2013", duration:4, 
-                    progress: 0.2, open: true, parent:3}
-                ],
-                links:[
-                    {id:1, source:1, target:2, type:"1"},
-                    {id:2, source:1, target:3, type:"1"},
-                    {id:3, source:3, target:4, type:"1"},
-                    {id:4, source:4, target:5, type:"0"},
-                    {id:5, source:5, target:6, type:"0"}
-                ]
-            };
-            gantt.config.columns =  [
-                {name:"text",       label:"Task name", tree:true },
-                {name:"duration",   label:"Duration"},
-                {name:"add",        label:""}
-            ];
+        // $scope.ganttStart = function () {
+        //     var tasks = {
+        //         data:[
+        //             {id:1, text:"Project #1",start_date:"01-04-2013", duration:100,
+        //             progress: 0.6, open: true},
+        //             {id:2, text:"Task #1",   start_date:"03-04-2013", duration:5, 
+        //             progress: 1,   open: true, parent:1},
+        //             {id:3, text:"Task #2",   start_date:"02-04-2013", duration:7, 
+        //             progress: 0.5, open: true, parent:1},
+        //             {id:4, text:"Task #2.1", start_date:"03-04-2013", duration:2, 
+        //             progress: 1,   open: true, parent:3},
+        //             {id:5, text:"Task #2.2", start_date:"04-04-2013", duration:3, 
+        //             progress: 0.8, open: true, parent:3},
+        //             {id:6, text:"Task #2.3", start_date:"05-04-2013", duration:4, 
+        //             progress: 0.2, open: true, parent:3}
+        //         ],
+        //         links:[
+        //             {id:1, source:1, target:2, type:"1"},
+        //             {id:2, source:1, target:3, type:"1"},
+        //             {id:3, source:3, target:4, type:"1"},
+        //             {id:4, source:4, target:5, type:"0"},
+        //             {id:5, source:5, target:6, type:"0"}
+        //         ]
+        //     };
+        //     gantt.config.columns =  [
+        //         {name:"text",       label:"Task name", tree:true },
+        //         {name:"duration",   label:"Duration"},
+        //         {name:"add",        label:""}
+        //     ];
 
-            gantt.config.keyboard_navigation_cells = true;
-            gantt.config.touch = true;
-            gantt.init("gantt_here"); 
-            gantt.parse (tasks);
-        }
-        $scope.ganttStart();
+        //     gantt.config.keyboard_navigation_cells = true;
+        //     gantt.config.touch = true;
+        //     gantt.init("gantt_here"); 
+        //     gantt.parse (tasks);
+        // }
+        // $scope.ganttStart();
 }]);

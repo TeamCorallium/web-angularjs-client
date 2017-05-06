@@ -431,13 +431,13 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Name</label>
-													<input type="text" class="form-control" name="name" ng-model="name" />
+													<input type="text" class="form-control" ng-model="task.name" />
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Description</label>
-													<textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" data-ng-model="rdescription" name="rdescription"></textarea>
+													<textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="task.description"></textarea>
 												</div>
 											</div>
 										</div>
@@ -448,7 +448,7 @@
 														Cost
 													</label>
 
-													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$">
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="task.cost">
 												</div>
 
 											</div>
@@ -491,21 +491,34 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
+													<label for="exampleInputPassword1"> Start date </label>
+													<div class="input-group">
+														<input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="start" is-open="startOpened" datepicker-options="startOptions" close-text="Close">
+														<span class="input-group-btn">
+														<button type="button" class="btn btn-primary" ng-click="startOpen()">
+															<i class="fa fa-calendar"></i>
+														</button> </span>
+													</div>													
+												</div>						
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
 													<label>
 														Estimate duration
 													</label>
 
-													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks">
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks" ng-model="task.duration">
 												</div>
-
 											</div>
+										</div>
+										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>
 														State
 													</label>
 
-													<select class="cs-select cs-skin-slide">
+													<select class="cs-select cs-skin-slide" ng-model="task.state">
 														<option value="0" disabled selected>Select an state</option>
 														<option value="1">In Preparation</option>
 														<option value="2">Active: On time</option>
@@ -513,48 +526,40 @@
 														<option value="4">Active: Delayed</option>
 														<option value="5">Finished</option>
 													</select>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPassword1"> Task Range Picker </label>
-													<div class="input-group range-picker">
-														<div class="start-date">
-															<input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" datepicker-options="startOptions" ng-model="start" is-open="startOpened" ng-init="startOpened = false" ng-required="currentStep == 3" close-text="Close" ng-click="startOpen()" />
-														</div>
-														<span class="input-group-addon">to</span>
-														<div class="end-date">
-															<input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" datepicker-options="endOptions" ng-model="end" is-open="endOpened" ng-init="endOpened = false" ng-required="currentStep == 3" close-text="Close" ng-click="endOpen()" />
-														</div>
-													</div>
-												</div>
+												</div>												
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="addRow()">
+													<br>
+													<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="addTask()">
 														<i class="fa fa-circle-arrow-left"></i> Add task
 													</button>
 												</div>
 											</div>																	
 										</div>
+										<hr>
 										<div class="row">
 											<div class="col-md-12">
 												<table class="table table-striped" wt-responsive-table>
 													<thead>
 													<tr>
 														<th>Name </th>
-														<th>Description </th>
-														<th>Action </th>
+														<th>Cost </th>
+														<th>Start date </th>
+														<th>Duration </th>
+														<th>State </th>
+														<th>Actions </th>
 													</tr>
 													</thead>
 													<tbody>
-													<tr ng-repeat="company in companies">
-														<td>{{company.name}} </td>
-														<td>{{company.rdescription}} </td>
+													<tr ng-repeat="task in tasks">
+														<td>{{task.name}} </td>
+														<td>{{task.cost}} </td>
+														<td>{{task.startDate}} </td>
+														<td>{{task.duration}} </td>
+														<td>{{task.state}} </td>
 														<td>
-															<button type="button" class="btn btn-danger btn-xs" ng-click="removeRow(company.name)">
+															<button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task.name)">
 																<span class="glyphicon glyphicon-trash"></span>Remove
 															</button>
 														</td>
@@ -574,9 +579,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="row" id="gantt_here" style='height:400px;'>
+<!-- 							<div class="row" id="gantt_here" style='height:400px;'>
 								
-							</div>
+							</div> -->
 						</div>
 						<!-- end: WIZARD STEP 3 -->
 						<!-- start: WIZARD STEP 4 -->
@@ -604,7 +609,7 @@
 						</div>
 						<!-- end: WIZARD STEP 4 -->
 					</div>
-					<pre class="code margin-top-20">{{ myModel | json }}</pre>
+					<!-- <pre class="code margin-top-20">{{ myModel | json }}</pre> -->
 				</form>
 				<!-- end: WIZARD FORM -->
 			</div>

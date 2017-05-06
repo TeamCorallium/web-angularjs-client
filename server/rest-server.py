@@ -60,9 +60,15 @@ class UserHandler(tornado.web.RequestHandler):
     def get(self, email):
         print('User:GET!!!' + email)
 
-        user = table_user.search(where('email') == email)
-        self.write(json.dumps(user))
+        user = '';
 
+        try: 
+            int(email)
+            user = table_user.search(where('id') == int(email))
+        except ValueError:
+            user = table_user.search(where('email') == email)
+
+        self.write(json.dumps(user))
         print(user)
 
     def post(self):
@@ -125,13 +131,55 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
             self.write(str(id))
             print(id)
 
+class simpleProjectByIdHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, projectId):
+        print('SimpleProjectById:GET!!!')
+
+        print('projectId: ' + projectId)
+
+        projects = table_simple_project.search(where('id') == int(projectId))
+        self.write(json.dumps(projects))
+
+        print(projects)
+
+class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, projectId):
+        print('SimpleProjectById:DELETE!!!')
+
+        table_simple_project.remove(eids=[int(projectId)])
+        self.write(str(projectId))      
+
 application = tornado.web.Application([
     (r"/ravic/text/([0-9]+)", GetTextHandler),
     (r"/ravic/?", VersionHandler),
     (r"/CoralliumRestAPI/user/?", UserHandler),
     (r"/CoralliumRestAPI/user/(.*)", UserHandler),
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
-    (r"/CoralliumRestAPI/simpleProject/(.*)", SimpleProjectHandler)
+    (r"/CoralliumRestAPI/simpleProject/(.*)", SimpleProjectHandler),
+    (r"/CoralliumRestAPI/simpleProjectById/(.*)", simpleProjectByIdHandler),
+    (r"/CoralliumRestAPI/simpleProjectDelete/([0-9]+)", SimpleProjectDeleteHandler)
 ])
 
 if __name__ == "__main__":

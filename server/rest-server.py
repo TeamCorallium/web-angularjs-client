@@ -153,6 +153,24 @@ class simpleProjectByIdHandler(tornado.web.RequestHandler):
 
         print(projects)
 
+class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, projectId):
+        print('SimpleProjectById:DELETE!!!')
+
+        table_simple_project.remove(eids=[int(projectId)])
+        self.write(str(projectId))      
+
 application = tornado.web.Application([
     (r"/ravic/text/([0-9]+)", GetTextHandler),
     (r"/ravic/?", VersionHandler),
@@ -160,7 +178,8 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/user/(.*)", UserHandler),
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
     (r"/CoralliumRestAPI/simpleProject/(.*)", SimpleProjectHandler),
-    (r"/CoralliumRestAPI/simpleProjectById/(.*)", simpleProjectByIdHandler)
+    (r"/CoralliumRestAPI/simpleProjectById/(.*)", simpleProjectByIdHandler),
+    (r"/CoralliumRestAPI/simpleProjectDelete/([0-9]+)", SimpleProjectDeleteHandler)
 ])
 
 if __name__ == "__main__":

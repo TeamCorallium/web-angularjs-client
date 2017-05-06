@@ -113,7 +113,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             $scope.currentStep = i;
         };
         var errorMessage = function (i) {
-            toaster.pop('error', 'Error', 'please complete the form in this step before proceeding');
+            toaster.pop('error', 'Error', 'Please complete the form in this step before proceeding');
         };
 
 

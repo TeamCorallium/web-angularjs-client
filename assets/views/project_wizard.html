@@ -421,7 +421,7 @@
 						<!-- end: WIZARD STEP 2 -->
 						<!-- start: WIZARD STEP 3 -->
 						<div id="step-3" ng-show="currentStep == 3">
-							<div class="row" ng-controller="dynamicTableCtrl">
+							<div class="row">
 								<div class="col-md-12">
 									<fieldset>
 										<legend>
@@ -517,13 +517,27 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-md-12">
+											<div class="col-md-6">
 												<div class="form-group">
-													<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="addRow()">
-														<i class="fa fa-circle-arrow-left"></i> Add
-													</button>
+													<label for="exampleInputPassword1"> Task Range Picker </label>
+													<div class="input-group range-picker">
+														<div class="start-date">
+															<input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" datepicker-options="startOptions" ng-model="start" is-open="startOpened" ng-init="startOpened = false" ng-required="currentStep == 3" close-text="Close" ng-click="startOpen()" />
+														</div>
+														<span class="input-group-addon">to</span>
+														<div class="end-date">
+															<input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" datepicker-options="endOptions" ng-model="end" is-open="endOpened" ng-init="endOpened = false" ng-required="currentStep == 3" close-text="Close" ng-click="endOpen()" />
+														</div>
+													</div>
 												</div>
 											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="addRow()">
+														<i class="fa fa-circle-arrow-left"></i> Add task
+													</button>
+												</div>
+											</div>																	
 										</div>
 										<div class="row">
 											<div class="col-md-12">

@@ -17,4 +17,5 @@ angular.module("clip-two", [
 	'pascalprecht.translate',
 	'wt.responsive',
 	'LocalStorageModule',
+	'ngWebSocket',
 ]);

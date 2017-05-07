@@ -10,6 +10,10 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.creationProjectDate = '';
         $scope.deathLineProject = '';
 
+        $scope.orderBy = 0;
+
+        $scope.filtres = [];
+
         $scope.getProjectById = function (projectId) {
             RestService.fetchProjectById(projectId)
                 .then(
@@ -85,5 +89,24 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                         console.log(errResponse);
                     }
                 );
+        };
+        
+        $scope.addFiltre = function () {
+            $scope.filtres.push($scope.orderBy);
+        };
+        
+        $scope.removeFiltre = function (name) {
+            var index = -1;
+            var comArr = eval( $scope.filtres );
+            for( var i = 0; i < comArr.length; i++ ) {
+                if( comArr[i] === name ) {
+                    index = i;
+                    break;
+                }
+            }
+            if( index === -1 ) {
+                alert( "Something gone wrong" );
+            }
+            $scope.filtres.splice( index, 1 );
         };
     }]);

@@ -59,15 +59,24 @@
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-				<select class="cs-select cs-skin-elastic pull-right border-combo-projects">
-					<option value="0">Order By</option>
-					<option value="1">Deathline</option>
-					<option value="2">State</option>
-					<option value="3">Owner</option>
-					<option value="4">Date</option>
-					<option value="5">Cost</option>
+				<select ng-model="orderBy" ng-change="addFiltre()" class="cs-select cs-skin-elastic pull-right border-combo-projects">
+					<option value="Order By" disabled selected>Order By</option>
+					<option value="Deathline">Deathline</option>
+					<option value="State">State</option>
+					<option value="Owner">Owner</option>
+					<option value="Date">Date</option>
+					<option value="Cost">Cost</option>
 				</select>
 			</div>
+		</div>
+		<div id="filter-box" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+			<ul class="list-unstyled">
+				<li ng-repeat="filtre in filtres" class="inline">
+					<button type="button" class="btn btn-success btn-wide btn-scroll btn-scroll-left fa-times" ng-click="removeFiltre(filtre)">
+						<span>{{filtre}}</span>
+					</button>
+				</li>
+			</ul>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

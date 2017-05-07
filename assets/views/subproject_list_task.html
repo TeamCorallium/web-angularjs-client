@@ -9,84 +9,46 @@
     </div>
 </section>
 <!-- end: PAGE TITLE -->
-
+<!-- start: YOUR CONTENT HERE -->
+<!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white" ng-controller="CurrentUserProjects">
+<div class="container-fluid container-fullw bg-white"  ng-controller="CurrentUserProjects">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
             <section class="container-fluid container-fullw bg-white" id="section_subproject">
                 <div class="container">
+                    <hr class="tall">
                     <div class="row">
-                        <div class="portfolio-title">
-                            <div class="row">
-                                <div class="col-md-12 left">
-                                    <h2 class="shorter">Task Name</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="tall">
+                        <!-- List of Tasks -->
                         <div class="row">
-                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 pull-right">
-                                <div class="portfolio-info">
-                                    <div class="row">
-                                        <ul class="pull-right text-right">
-                                            <li>
-                                                <i class="fa fa-calendar"></i> <strong>Starting Date:</strong> 21 April 2017
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-calendar"></i> <strong>Proposed Finishing:</strong> 21 April 2017
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-calendar"></i> <strong>Date:</strong> 21 April 2017
-                                            </li>
-                                        </ul>
-                                    </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="panel-title margin-bottom-10">
+                                    Task
                                 </div>
-                            </div>
-                            <!-- The color of the progres bar depend of the task stage -->
-                            <div class="col-md-7 col-sm-7 col-lg-7 col-xs-12 margin-top-15">
-                                <div class="progress progress-striped ng-isolate-scope" value="dynamic" type="success">
-                                    <div class="progress-bar progress-bar-info"
-                                         ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar"
-                                         aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"
-                                         ng-style="{width: (percent &lt; 100 ? percent : 100) + '%'}"
-                                         aria-valuetext="24%" aria-labelledby="progressbar" ng-transclude=""
-                                         style="width: 24%;">
-                                        <!--<span class="ng-binding ng-scope">Active </span>-->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 margin-top-15">
-                                <span class="label label-info pull-right">{{stateArray[currenProjectActive.state]}}</span>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span class="badge badge-success"><a class="fa fa-check-circle"></a></span>
+                                        Cras justo odio
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge badge-warning"><a class="fa fa-spinner"></a></span>
+                                        Dapibus ac facilisis in
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge badge-inverse"><a class="fa fa-at"></a></span>
+                                        Morbi leo risus
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <hr class="tall">
-                        <div class="row">
-                            <div class="col-md-10 col-sm-10 col-lg-10 col-xs-12">
-                                <h4>Description</h4>
-                                <p class="taller margin-bottom-25"> {{currenProjectActive.description}}</p>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12">
-                                <address>
-                                    <strong class="text-dark">Financial Execution:</strong>
-                                    <br>
-                                    1 Infinite Loop
-                                    <br>
-                                </address>
-                                <address>
-                                    <strong class="text-dark">Fisical Execution:</strong>
-                                    <br>
-                                    1 Infinite Loop
-                                    <br>
-                                </address>
-                            </div>
-                        </div>
-                        <hr class="tall">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                 <button ui-sref="app.forum" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
                                     <span>Go to forum</span>
+                                </button>
+                                <button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+                                    <span>Back to my project</span>
                                 </button>
                             </div>
                         </div>

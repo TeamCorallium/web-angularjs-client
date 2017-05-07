@@ -4,6 +4,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpserver
 import tornado.httputil
+import tornado.websocket
 import json
 from tinydb import TinyDB, Query, where
 
@@ -171,6 +172,31 @@ class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
         table_simple_project.remove(eids=[int(projectId)])
         self.write(str(projectId))      
 
+class WebSocketHandler(tornado.websocket.WebSocketHandler):
+    def open(self, *args):
+        # self.id = self.get_argument("Id")
+        self.stream.set_nodelay(True)
+        # clients[self.id] = {"id": self.id, "object": self}
+        self.write_message("you've been connected. Congratz.")
+        print('WebSocketHandler:OPEN')
+
+    def on_message(self, message):    
+        print('WebSocketHandler:on_message: ' + message)    
+        """
+        when we receive some message we want some message handler..
+        for this example i will just print message to console
+        """
+        # print "Client %s received a message : %s" % (self.id, message)
+        
+    def on_close(self):
+        print('WebSocketHandler:on_close')
+        # if self.id in clients:
+        #     del clients[self.id]
+
+    def check_origin(self, origin):
+        print('WebSocketHandler:check_origin')
+        return True        
+
 application = tornado.web.Application([
     (r"/ravic/text/([0-9]+)", GetTextHandler),
     (r"/ravic/?", VersionHandler),
@@ -179,7 +205,8 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
     (r"/CoralliumRestAPI/simpleProject/(.*)", SimpleProjectHandler),
     (r"/CoralliumRestAPI/simpleProjectById/(.*)", simpleProjectByIdHandler),
-    (r"/CoralliumRestAPI/simpleProjectDelete/([0-9]+)", SimpleProjectDeleteHandler)
+    (r"/CoralliumRestAPI/simpleProjectDelete/([0-9]+)", SimpleProjectDeleteHandler),
+    (r"/CoralliumRestAPI/ws/", WebSocketHandler)
 ])
 
 if __name__ == "__main__":

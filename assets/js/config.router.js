@@ -513,7 +513,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Base',
             ncyBreadcrumb: {
                 label: 'Base'
-            }
+            },
+            resolve: loadSequence('forumCtrl')
         });
 
 

@@ -15,7 +15,13 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket",
 
         dataStream.onOpen(function() {
             console.log('onOpen');
-            dataStream.send("hola mundo");
+            // dataStream.send("hola mundo");
         });
 
+        $scope.newComment = '';
+        $scope.sendMessageTest = function() {
+            console.log($scope.newComment);
+            dataStream.send($scope.newComment);
+            $scope.newComment = '';
+        }
 }]);

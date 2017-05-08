@@ -6,6 +6,7 @@ import tornado.httpserver
 import tornado.httputil
 import tornado.websocket
 import json
+import logging
 from tinydb import TinyDB, Query, where
 
 db = TinyDB('db.json')
@@ -173,15 +174,20 @@ class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
         self.write(str(projectId))      
 
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
+    waiters = set()
+
     def open(self, *args):
         # self.id = self.get_argument("Id")
         self.stream.set_nodelay(True)
         # clients[self.id] = {"id": self.id, "object": self}
         self.write_message("you've been connected. Congratz.")
+
+        WebSocketHandler.waiters.add(self)
         print('WebSocketHandler:OPEN')
 
     def on_message(self, message):    
-        print('WebSocketHandler:on_message: ' + message)    
+        print('WebSocketHandler:on_message: ' + message) 
+        WebSocketHandler.send_updates(message)   
         """
         when we receive some message we want some message handler..
         for this example i will just print message to console
@@ -189,9 +195,19 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         # print "Client %s received a message : %s" % (self.id, message)
         
     def on_close(self):
+        WebSocketHandler.waiters.remove(self)
         print('WebSocketHandler:on_close')
         # if self.id in clients:
         #     del clients[self.id]
+
+    @classmethod
+    def send_updates(cls, message):
+        logging.info("sending message to %d waiters", len(cls.waiters))
+        for waiter in cls.waiters:
+            try:
+                waiter.write_message(message)
+            except:
+                logging.error("Error sending message", exc_info=True)
 
     def check_origin(self, origin):
         print('WebSocketHandler:check_origin')

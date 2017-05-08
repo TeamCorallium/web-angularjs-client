@@ -12,7 +12,7 @@
 <!-- start: YOUR CONTENT HERE -->
 <!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white"  ng-controller="CurrentUserProjects">
+<div class="container-fluid container-fullw bg-white"  ng-controller="InboxCtrl">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -20,37 +20,51 @@
                 <div class="container">
                     <hr class="tall">
                     <div class="row">
-                        <!-- List of Tasks -->
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="panel-title margin-bottom-10">
-                                    Task
-                                </div>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <span class="badge badge-success"><a class="fa fa-check-circle"></a></span>
-                                        Cras justo odio
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="badge badge-warning"><a class="fa fa-spinner"></a></span>
-                                        Dapibus ac facilisis in
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="badge badge-inverse"><a class="fa fa-at"></a></span>
-                                        Morbi leo risus
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <ul class="list-unstyled">
+                                <li class="margin-bottom-15" ng-repeat="message in messages | orderBy: 'date':true">
+                                    <hr class="tall">
+                                    <div class="clearfix">
+                                        <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
+                                            <img  ng-src="{{ message.avatar && message.avatar || noAvatarImg }}" alt=""
+                                                  class="img-responsive img-rounded notification-image">
+                                        </div>
+                                        <div class="thread-content col-xs-7 col-sm-10 col-md-10 col-lg-10">
+                                            <span class="notification-author">{{message.from}}</span>
+                                            <span class="notification-time"> {{ message.date | date: "MM/dd/yyyy 'at' h:mma" }}</span>
+                                        </div>
+                                        <div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                            <span class="notification-preview">{{ message.content | htmlToPlaintext | words:40 :true }}</span>
+                                        </div>
+                                        <div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                            <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
+                                                <button type="button" class="btn btn-success btn-xs">
+                                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                                </button>
+                                                <button type="button" class="btn btn-warning btn-xs">
+                                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-xs">
+                                                    <span class="glyphicon glyphicon-trash"></span> Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                <button ui-sref="app.forum" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
-                                    <span>Go to forum</span>
-                                </button>
-                                <button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
-                                    <span>Back to my project</span>
-                                </button>
-                            </div>
+                    </div>
+                    <hr class="tall">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-lg-2 col-xs-6">
+                            <button ui-sref="app.forum" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+                                <span>Go to forum</span>
+                            </button>
+                        </div>
+                        <div class="col-md-2 col-md-offset-8 col-sm-2 col-sm-offset-8 col-lg-2 col-lg-offset-8 col-xs-6">
+                            <button ui-sref="app.project.subproject_detail" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
+                                <span> Back </span>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -84,9 +84,100 @@
                         </div>
                         <hr class="tall">
                         <div class="row">
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                <div class="panel panel-white" id="panel1">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title text-primary">Costs and duration</h4>
+                                        <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
+                                                                                                           class="btn btn-transparent btn-sm"
+                                                                                                           panel-collapse=""
+                                                                                                           tooltip-placement="top"
+                                                                                                           uib-tooltip="Collapse"
+                                                                                                           ng-click="panel1 = !panel1"
+                                                                                                           ng-init="panel1=false">
+                                            <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel1"
+                                                                                          class="ti-minus ng-scope"
+                                                                                          style=""></i>
+                                            <!-- end ngIf: !panel1 --></a>
+                                        </ct-paneltool>
+                                    </div>
+                                    <div uib-collapse="panel1" ng-init="panel1=false"
+                                         class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                         style="height: auto;">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
+                                                    <ul class="portfolio-details list-unstyled">
+                                                        <li>
+                                                            <p>
+                                                                <strong>Estimate Cost:</strong> {{currenProjectActive.totalCost}} $
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p class="margin-top-15">
+                                                                <strong>Estimate Duration:</strong> {{currenProjectActive.estimateDuration}}
+                                                                <strong>weeks</strong>
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                                    <ul class="portfolio-details list-unstyled margin-top-minus-15">
+                                                        <li>
+                                                            <p class="margin-top-15">
+                                                                <strong>Outcomes:</strong>
+                                                            </p>
+                                                            <ul class="portfolio-details list-margin-25">
+                                                                <li>Production</li>
+                                                                <li>Income</li>
+                                                                <li>New Business</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
+                                <div ng-controller="vAccordionCtrl">
+                                    <div class="panel panel-transparent">
+                                        <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
+                                        <div class="panel-heading no-padding">
+                                            <div class="panel-title">
+                                                Risks
+                                            </div>
+                                        </div>
+                                        <!--<hr class="no-padding">-->
+                                        <div class="panel-body no-padding">
+                                            <v-accordion class="vAccordion--default"
+                                                         control="firstAccordionControl">
+                                                <v-pane ng-repeat="pane in panes" expanded="$first">
+                                                    <v-pane-header>
+                                                        <h5>{{ pane.header }}</h5>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <p>
+                                                            {{ pane.content }}
+                                                        </p>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                            </v-accordion>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="tall">
+                        <div class="row">
                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                 <button ui-sref="app.forum" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
                                     <span>Go to forum</span>
+                                </button>
+                                <button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+                                    <span>Back to my project</span>
                                 </button>
                             </div>
                         </div>

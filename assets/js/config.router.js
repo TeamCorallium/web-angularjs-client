@@ -84,6 +84,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Notification'
             }
+        }).state('app.opportunities-list-task', {
+            url: '/opportunitieslisttask',
+            templateUrl: "assets/views/opportunities-list-task.html",
+            title: 'Opportunities List Task',
+            ncyBreadcrumb: {
+                label: 'Opportunities List Task'
+            },
+            resolve: loadSequence('currentUserProjects', 'inboxCtrl')
         }).state('app.project', {
             url: '/project',
             template: '<div ui-view class="fade-in-up"></div>',
@@ -114,6 +122,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Subproject'
             },
             resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects')
+        }).state('app.project.opportunities_detail', {
+            url: '/opportunitiesdetail',
+            templateUrl: "assets/views/opportunities-detail.html",
+            title: 'Opportunities',
+            ncyBreadcrumb: {
+                label: 'Opportunities detail'
+            },
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects')
         }).state('app.project.subproject_list_task', {
             url: '/listtask',
             templateUrl: "assets/views/subproject_list_task.html",
@@ -121,7 +137,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'List Tasks'
             },
-            resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl', 'currentUserProjects')
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl', 'currentUserProjects', 'inboxCtrl')
         }).state('app.project.task_detail', {
             url: '/task',
             templateUrl: "assets/views/task_detail.html",

@@ -114,6 +114,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Subproject'
             },
             resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects')
+        }).state('app.project.subproject_list_task', {
+            url: '/listtask',
+            templateUrl: "assets/views/subproject_list_task.html",
+            title: 'Project',
+            ncyBreadcrumb: {
+                label: 'List Tasks'
+            },
+            resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl', 'currentUserProjects')
         }).state('app.project.task_detail', {
             url: '/task',
             templateUrl: "assets/views/task_detail.html",
@@ -121,13 +129,21 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Task'
             },
-            resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl')
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects')
         }).state('app.project.user_project', {
             url: '/userprojects ',
             templateUrl: "assets/views/project_user.html",
             title: 'User Projects',
             ncyBreadcrumb: {
                 label: 'User Projects'
+            },
+            resolve: loadSequence('currentUserProjects', 'xeditable', 'checklist-model')
+        }).state('app.project.opportunities', {
+            url: '/opportunities ',
+            templateUrl: "assets/views/opportunities.html",
+            title: 'Opportunities',
+            ncyBreadcrumb: {
+                label: 'Opportunities'
             },
             resolve: loadSequence('currentUserProjects', 'xeditable', 'checklist-model')
         }).state('app.project.wizard', {

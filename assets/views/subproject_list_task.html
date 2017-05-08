@@ -1,0 +1,173 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title" ng-controller="CurrentUserProjects">
+    <div class="row">
+        <div class="col-sm-8">
+            <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
+            <h1 class="mainTitle">{{currenProjectActive.projectName}}</h1>
+        </div>
+        <div ncy-breadcrumb></div>
+    </div>
+</section>
+<!-- end: PAGE TITLE -->
+<!-- start: YOUR CONTENT HERE -->
+<!-- end: YOUR CONTENT HERE -->
+<!-- start: FEATURED BOX LINKS -->
+<div class="container-fluid container-fullw bg-white"  ng-controller="CurrentUserProjects">
+    <!-- start: APP CONTENT -->
+    <div class="app-content">
+        <div class="main-content" id="subproject">
+            <section class="container-fluid container-fullw bg-white" id="section_subproject">
+                <div class="container">
+                    <hr class="tall">
+                    <div class="row">
+                        <!-- List of Tasks -->
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="panel-title margin-bottom-10">
+                                    Task
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span class="badge badge-success"><a class="fa fa-check-circle"></a></span>
+                                        Cras justo odio
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge badge-warning"><a class="fa fa-spinner"></a></span>
+                                        Dapibus ac facilisis in
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge badge-inverse"><a class="fa fa-at"></a></span>
+                                        Morbi leo risus
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                <button ui-sref="app.forum" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+                                    <span>Go to forum</span>
+                                </button>
+                                <button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+                                    <span>Back to my project</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script>
+    jQuery(document).ready(function () {
+        var swiperDefault = $('.horizontal-slider');
+        if (swiperDefault.length) {
+            swiperDefault.each(function () {
+                var _this = $(this);
+                var swiper = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination'),
+                    paginationClickable: _this.find('.swiper-pagination'),
+                    loop: true,
+                    autoplay: 3000,
+                    nextButton: _this.find('.swiper-button-next'),
+                    prevButton: _this.find('.swiper-button-prev')
+
+                });
+            });
+        }
+
+        var swiperVertical = $('.vertical-slider');
+        if (swiperVertical.length) {
+            swiperVertical.each(function () {
+                var _this = $(this);
+                var swiper = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination'),
+                    paginationClickable: _this.find('.swiper-pagination'),
+                    loop: true,
+                    autoplay: 3000,
+                    direction: 'vertical'
+
+                });
+            });
+        }
+
+        var swiperNestedHorizontal = $('.swiper-container-h');
+        if (swiperNestedHorizontal.length) {
+            swiperNestedHorizontal.each(function () {
+                var _this = $(this);
+                var swiperH = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination-h'),
+                    paginationClickable: true,
+                    spaceBetween: 50
+                });
+            });
+        }
+        var swiperNestedVertical = $('.swiper-container-v');
+        if (swiperNestedVertical.length) {
+            swiperNestedVertical.each(function () {
+                var _this = $(this);
+                var swiperV = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination-v'),
+                    paginationClickable: true,
+                    direction: 'vertical',
+                    spaceBetween: 50
+                });
+            });
+        }
+        var swiperFade = $('.fade-slider');
+        if (swiperFade.length) {
+            swiperFade.each(function () {
+                var _this = $(this);
+                var swiper = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination'),
+                    paginationClickable: _this.find('.swiper-pagination'),
+                    loop: true,
+                    autoplay: 3000,
+                    nextButton: _this.find('.swiper-button-next'),
+                    prevButton: _this.find('.swiper-button-prev'),
+                    effect: 'fade'
+
+                });
+            });
+        }
+
+        var swiperParallax = $('.parallax-slider');
+        if (swiperParallax.length) {
+            swiperParallax.each(function () {
+                var _this = $(this);
+                var swiper = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination'),
+                    paginationClickable: true,
+                    nextButton: _this.find('.swiper-button-next'),
+                    prevButton: _this.find('.swiper-button-prev'),
+                    parallax: true,
+                    speed: 600,
+                });
+            });
+        }
+
+        var swiperThumbs = $('.gallery-top');
+        if (swiperThumbs.length) {
+            swiperThumbs.each(function () {
+                var _this = $(this);
+                var _thumbs = _this.next('.gallery-thumbs');
+                var galleryTop = new Swiper(_this, {
+                    nextButton: _this.find('.swiper-button-next'),
+                    prevButton: _this.find('.swiper-button-prev'),
+                    spaceBetween: 10,
+                });
+                var galleryThumbs = new Swiper(_thumbs, {
+                    spaceBetween: 10,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    touchRatio: 0.2,
+                    slideToClickedSlide: true
+                });
+                galleryTop.params.control = galleryThumbs;
+                galleryThumbs.params.control = galleryTop;
+            });
+        }
+    });
+</script>
+<!-- end: FEATURED BOX LINKS -->

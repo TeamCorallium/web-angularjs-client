@@ -122,5 +122,18 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     }
                 );
         },
+
+        fetchTaskByProjectId: function(projectId) {
+            return $http.get(serverUrl + 'taskByProjectId/' + projectId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching tasks By Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
     };
 }]);

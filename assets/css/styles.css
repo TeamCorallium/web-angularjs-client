@@ -11713,6 +11713,13 @@ figure.effect-zoe:hover p.icon-links a:first-child {
   margin-bottom: 5px !important;
 }
 
+.state-list-tasks{
+  font-size: $font-size-extra-small;
+  font-style: italic;
+  font-weight: 600;
+  color: $darkGrey;
+}
+
 /*-------------*/
 /*** Finace  ***/
 /*-------------*/

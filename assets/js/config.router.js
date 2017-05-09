@@ -547,6 +547,22 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Base'
             },
             resolve: loadSequence('forumCtrl')
+        }).state('app.forum.proposal', {
+            url: '/createproposal',
+            templateUrl: "assets/views/forum_base_proposal.html",
+            title: 'Create Proposal',
+            ncyBreadcrumb: {
+                label: 'Create Proposal'
+            },
+            resolve: loadSequence('forumCtrl')
+        }).state('app.forum.proposalview', {
+            url: '/proposalview',
+            templateUrl: "assets/views/forum_base_proposal_view.html",
+            title: 'Proposal View',
+            ncyBreadcrumb: {
+                label: 'Proposal View'
+            },
+            resolve: loadSequence('forumCtrl')
         });
 
 

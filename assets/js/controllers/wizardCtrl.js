@@ -49,6 +49,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                             toaster.pop('error', 'Error', 'Invalid project info.');
                         } else {
                             $scope.simpleProject.id = data;
+                            $scope.addtasktoServer($scope.simpleProject.id);
                             toaster.pop('success', 'Good!!!', 'Project created correctly.');
                             $state.go('app.project.user_project');
                         }
@@ -57,6 +58,14 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                         toaster.pop('error', 'Error', 'Database connection error.');
                     }
                 );
+        };
+
+        $scope.addtasktoServer = function(projectId) {
+            var comArr = eval( $scope.tasks );
+            for (var i = 0; i<comArr.length; i++) {
+                comArr[i].projecId = projectId;
+                RestService.createTask(comArr[i]);
+            }
         };
 
         $scope.addTask = function() {     
@@ -153,7 +162,6 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         var errorMessage = function (i) {
             toaster.pop('error', 'Error', 'Please complete the form in this step before proceeding');
         };
-
 
         //Date picker
         $scope.today = function() {

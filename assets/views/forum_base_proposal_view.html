@@ -16,10 +16,10 @@
 <div class="container-fluid container-fullw bg-white" ng-controller="ForumCtrl">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<p><strong>Title: </strong> Title here.....</p>
+			<p><strong>Title: </strong> {{currentProposal.name}}</p>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<p><strong>Description: </strong> Description here.....</p>
+			<p><strong>Description: </strong> {{currentProposal.description}}</p>
 		</div>
 	</div>
 	<div class="row">
@@ -45,12 +45,12 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
-			<button  type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+			<button  type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check">
 				<span>Done</span>
 			</button>
 		</div>
 		<div class="col-xs-6 col-sm-2 col-sm-offset-8 col-md-2 col-md-offset-8 col-lg-2 col-lg-offset-8 margin-top-10">
-			<button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+			<button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-comments-o">
 				<span>Go to forum</span>
 			</button>
 		</div>

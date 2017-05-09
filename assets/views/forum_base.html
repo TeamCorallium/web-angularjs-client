@@ -20,12 +20,38 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<ul class="list-unstyled">
+				<li ng-repeat="proposal in proposalsProject">
+					<div class="post-media post-comments margin-top-30">
+						<div class="media">
+							<a href="" class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
+							<div class="media-body">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<a class="notification-author" ng-click="goToTaskByTaskId(proposal)">{{proposal.name}}</a>
+									<span class="notification-time"> January 12, 2014 at 1:38 pm</span>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<p>
+										{{proposal.description}}
+									</p>
+								</div>
+								<button ng-click="goToTaskByTaskId(proposal)" ui-sref="app.forum.proposalview"  type="button" class="btn btn-primary btn-xs pull-right">
+									<span class="fa fa-arrow-right"></span> View Proposal
+								</button>
+							</div>
+							<hr class="tall">
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
-			<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
+
+			<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-thumbs-o-up margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
 				<span>Create Proposal</span>
-			</a>
-			<a ui-sref="app.forum.proposalview" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right margin-top-15 margin-right-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
-				<span>View Proposal</span>
 			</a>
 		</div>
 	</div>
@@ -75,7 +101,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<a class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900" ng-click="sendMessageTest()"> <span>Post Comment</span> </a>
+							<a class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900" ng-click="sendMessageTest()"> <span>Post Comment</span> </a>
 						</div>
 					</div>
 				</form>

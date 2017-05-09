@@ -148,5 +148,18 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     }
                 );
         },
+
+        fetchProposalByProjectId: function(projectId) {
+            return $http.get(serverUrl + 'proposalByProjectId/' + projectId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching propsal By Project Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
     };
 }]);

@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket",
-    function ($scope, $state, toaster, $websocket) {
+app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "localStorageService", "RestService",
+    function ($scope, $state, toaster, $websocket, localStorageService, RestService) {
 
         console.log('controller....');
 
@@ -27,4 +27,37 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket",
 
         $scope.proposalTitle = '';
         $scope.proposalDescription = '';
-}]);
+
+        $scope.proposalsProject = [];
+        $scope.currentProposal = {
+            name: '',
+            description: '',
+            projectId: '',
+        };
+
+        $scope.createProposal = function () {
+            $scope.currentProposal.name = $scope.proposalTitle;
+            $scope.currentProposal.description = $scope.proposalDescription;
+            $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
+            dataStream.send($scope.currentProposal);
+        };
+
+        $scope.getProposalByProjectId= function(){
+            RestService.fetchProposalByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.proposalsProject =  data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getProposalByProjectId();
+
+        $scope.goToTaskByTaskId = function (proposal) {
+            $scope.currentProposal = proposal;
+            $state.go('app.forum.proposalview');
+        };
+    }]);

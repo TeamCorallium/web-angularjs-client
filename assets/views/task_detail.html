@@ -2,7 +2,6 @@
 <section id="page-title" ng-controller="CurrentUserProjects">
     <div class="row">
         <div class="col-sm-8">
-            <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
             <h1 class="mainTitle">{{currenProjectActive.projectName}}</h1>
         </div>
         <div ncy-breadcrumb></div>
@@ -11,7 +10,7 @@
 <!-- end: PAGE TITLE -->
 
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white" ng-controller="CurrentUserProjects">
+<div class="container-fluid container-fullw bg-white" ng-controller="TaskCtrl">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -21,7 +20,7 @@
                         <div class="portfolio-title">
                             <div class="row">
                                 <div class="col-md-12 left">
-                                    <h2 class="shorter">Task Name</h2>
+                                    <h2 class="shorter">{{currentTaskActive.name}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +31,7 @@
                                     <div class="row">
                                         <ul class="pull-right text-right">
                                             <li>
-                                                <i class="fa fa-calendar"></i> <strong>Starting Date:</strong> 21 April 2017
+                                                <i class="fa fa-calendar"></i> <strong>Starting Date:</strong> {{ currentTaskActive.startDate | date: "MM/dd/yyyy" }}
                                             </li>
                                             <li>
                                                 <i class="fa fa-calendar"></i> <strong>Proposed Finishing:</strong> 21 April 2017
@@ -58,29 +57,29 @@
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 margin-top-15">
-                                <span class="label label-info pull-right">{{stateArray[currenProjectActive.state]}}</span>
+                                <span class="label label-info pull-right">{{stateArray[currentTaskActive.state]}}</span>
                             </div>
                         </div>
                         <hr class="tall">
                         <div class="row">
-                            <div class="col-md-10 col-sm-10 col-lg-10 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                 <h4>Description</h4>
-                                <p class="taller margin-bottom-25"> {{currenProjectActive.description}}</p>
+                                <p class="taller margin-bottom-25"> {{currentTaskActive.description}}</p>
                             </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12">
-                                <address>
-                                    <strong class="text-dark">Financial Execution:</strong>
-                                    <br>
-                                    1 Infinite Loop
-                                    <br>
-                                </address>
-                                <address>
-                                    <strong class="text-dark">Phisical Execution:</strong>
-                                    <br>
-                                    1 Infinite Loop
-                                    <br>
-                                </address>
-                            </div>
+                            <!--<div class="col-md-2 col-sm-2 col-lg-2 col-xs-12">-->
+                                <!--<address>-->
+                                    <!--<strong class="text-dark">Financial Execution:</strong>-->
+                                    <!--<br>-->
+                                    <!--1 Infinite Loop-->
+                                    <!--<br>-->
+                                <!--</address>-->
+                                <!--<address>-->
+                                    <!--<strong class="text-dark">Phisical Execution:</strong>-->
+                                    <!--<br>-->
+                                    <!--1 Infinite Loop-->
+                                    <!--<br>-->
+                                <!--</address>-->
+                            <!--</div>-->
                         </div>
                         <hr class="tall">
                         <div class="row">
@@ -110,12 +109,12 @@
                                                     <ul class="portfolio-details list-unstyled">
                                                         <li>
                                                             <p>
-                                                                <strong>Estimate Cost:</strong> {{currenProjectActive.totalCost}} $
+                                                                <strong>Estimate Cost:</strong> {{currentTaskActive.cost}} $
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>Estimate Duration:</strong> {{currenProjectActive.estimateDuration}}
+                                                                <strong>Estimate Duration:</strong> {{currentTaskActive.duration}}
                                                                 <strong>weeks</strong>
                                                             </p>
                                                         </li>

@@ -2,7 +2,7 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
-    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
 
     return {
 
@@ -105,6 +105,32 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     },
                     function(errResponse){
                         console.error('Error while deleting simple Projects');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        createTask: function(task) {
+            return $http.post(serverUrl +'task/', task)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while creating task');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        fetchTaskByProjectId: function(projectId) {
+            return $http.get(serverUrl + 'taskByProjectId/' + projectId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching tasks By Id');
                         return $q.reject(errResponse);
                     }
                 );

@@ -22,22 +22,22 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         };
 
         $scope.risks = [
-        // {
-        //     name: '',
-        //     description: ''
-        // }
+            // {
+            //     name: '',
+            //     description: ''
+            // }
         ];
 
         $scope.tasks = [
-        // {
-        //     name: '',
-        //     description: '',
-        //     cost: '',
-        //     outcome: '',
-        //     startDate: '',
-        //     duration: '',
-        //     state: ''
-        // }
+            // {
+            //     name: '',
+            //     description: '',
+            //     cost: '',
+            //     outcome: '',
+            //     startDate: '',
+            //     duration: '',
+            //     state: ''
+            // }
         ];
 
         $scope.createSimpleProject = function () {
@@ -49,6 +49,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                             toaster.pop('error', 'Error', 'Invalid project info.');
                         } else {
                             $scope.simpleProject.id = data;
+                            $scope.addtasktoServer($scope.simpleProject.id);
                             toaster.pop('success', 'Good!!!', 'Project created correctly.');
                             $state.go('app.project.user_project');
                         }
@@ -59,10 +60,26 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                 );
         };
 
-        $scope.addTask = function() {     
-            $scope.tasks.push({ 'name':$scope.task.name, 'description': $scope.task.description, 
-                                'cost':$scope.task.cost, 'outcome':$scope.task.outcome, 'startDate':$scope.start, 
-                                'duration':$scope.task.duration, 'state':$scope.task.state });     
+        $scope.addtasktoServer = function(projectId) {
+            var comArr = eval( $scope.tasks );
+            for (var i = 0; i<comArr.length; i++) {
+                comArr[i].projectId = projectId;
+                RestService.createTask(comArr[i])
+                    .then(
+                        function(data) {
+                            console.log(data + "Tasks");
+                        },
+                        function(errResponse) {
+                            console.log("error");
+                        }
+                    );
+            }
+        };
+
+        $scope.addTask = function() {
+            $scope.tasks.push({ 'name':$scope.task.name, 'description': $scope.task.description,
+                'cost':$scope.task.cost, 'outcome':$scope.task.outcome, 'startDate':$scope.start,
+                'duration':$scope.task.duration, 'state':$scope.task.state });
             $scope.task.name = '';
             $scope.task.description = '';
             $scope.task.cost = '';
@@ -72,8 +89,8 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             $scope.task.state = '';
         };
 
-        $scope.removeTask = function(name){              
-            var index = -1;     
+        $scope.removeTask = function(name){
+            var index = -1;
             var comArr = eval( $scope.tasks );
             for( var i = 0; i < comArr.length; i++ ) {
                 if( comArr[i].name === name ) {
@@ -84,7 +101,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             if( index === -1 ) {
                 alert( "Something gone wrong" );
             }
-            $scope.tasks.splice( index, 1 );        
+            $scope.tasks.splice( index, 1 );
         };
 
         // Initial Value
@@ -153,7 +170,6 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         var errorMessage = function (i) {
             toaster.pop('error', 'Error', 'Please complete the form in this step before proceeding');
         };
-
 
         //Date picker
         $scope.today = function() {
@@ -282,4 +298,4 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         //     gantt.parse (tasks);
         // }
         // $scope.ganttStart();
-}]);
+    }]);

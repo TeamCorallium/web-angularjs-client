@@ -12,7 +12,7 @@
 <!-- start: YOUR CONTENT HERE -->
 <!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white"  ng-controller="InboxCtrl">
+<div class="container-fluid container-fullw bg-white"  ng-controller="TaskCtrl">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -21,27 +21,26 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <ul class="list-unstyled">
-                                <li class="margin-bottom-15" ng-repeat="message in messages | orderBy: 'date':true">
+                                <li class="margin-bottom-15" ng-repeat="task in tasksProject">
                                     <hr class="tall">
                                     <div class="clearfix">
-                                        <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
-                                            <img  ng-src="{{ message.avatar && message.avatar || noAvatarImg }}" alt=""
-                                                  class="img-responsive img-rounded notification-image">
+                                        <div class="thread-content col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-top-10">
+                                            <span class="notification-author"><a>{{task.name}}</a></span>
                                         </div>
-                                        <div class="thread-content col-xs-7 col-sm-10 col-md-10 col-lg-10">
-                                            <span class="notification-author">{{message.from}}</span>
-                                            <span class="notification-time"> {{ message.date | date: "MM/dd/yyyy 'at' h:mma" }}</span>
+                                        <div class="thread-content col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3 margin-top-10">
+                                            <span class="label label-inverse state-list-tasks">{{ stateArray[task.state]}}</span>
+                                            <span class="notification-time"> {{ task.startDate | date: "MM/dd/yyyy" }}</span>
                                         </div>
-                                        <div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">
-                                            <span class="notification-preview">{{ message.content | htmlToPlaintext | words:40 :true }}</span>
+                                        <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
+                                            <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
                                         </div>
-                                        <div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                        <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
                                                 <button type="button" class="btn btn-success btn-xs">
-                                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                                    <span class="glyphicon glyphicon-upload"></span> Update
                                                 </button>
                                                 <button type="button" class="btn btn-warning btn-xs">
-                                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                    <span class="glyphicon glyphicon-ban-circle"></span> View
                                                 </button>
                                                 <button type="button" class="btn btn-danger btn-xs">
                                                     <span class="glyphicon glyphicon-trash"></span> Remove
@@ -56,7 +55,7 @@
                     <hr class="tall">
                     <div class="row">
                         <div class="col-md-2 col-sm-2 col-lg-2 col-xs-6">
-                            <button ui-sref="app.forum" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+                            <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
                                 <span>Go to forum</span>
                             </button>
                         </div>

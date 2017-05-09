@@ -7,7 +7,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "local
 
         console.log('controller....');
 
-        var dataStream = $websocket('ws://10.8.25.241:9090/CoralliumRestAPI/ws/');
+        var dataStream = $websocket('ws://127.0.0.1:9090/CoralliumRestAPI/ws/');
 
         dataStream.onMessage(function(message) {
             console.log(message.data);

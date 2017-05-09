@@ -20,7 +20,9 @@ table_complex_project = db.table('table_complex_project')
 table_risk = db.table('table_risk')
 table_reference = db.table('table_reference')
 table_task = db.table('table_task')
-        
+table_proposal = db.table('table_proposal')
+table_notification = db.table('table_notification')
+
 class VersionHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         print("setting headers!!!")
@@ -214,6 +216,28 @@ class TaskByProjectIdHandler(tornado.web.RequestHandler):
 
         print(tasks)     
 
+class ProposalByProjectIdHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, projectId):
+        print('ProposalByProjectIdHandler:GET!!!')
+
+        print('projectId: ' + projectId)
+
+        proposals = table_proposal.search(where('projectId') == int(projectId))
+        self.write(json.dumps(proposals))
+
+        print(proposals)
+
 class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         print("setting headers!!!")
@@ -246,7 +270,11 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
     def on_message(self, message):    
         print('WebSocketHandler:on_message: ' + message) 
-        WebSocketHandler.send_updates(message)   
+        WebSocketHandler.send_updates(message) 
+
+        self.json_args = json.loads(message)
+        table_proposal.insert(self.json_args)
+
         """
         when we receive some message we want some message handler..
         for this example i will just print message to console
@@ -284,7 +312,8 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/task/?", TaskHandler),
     (r"/CoralliumRestAPI/task/(.*)", TaskHandler),
     (r"/CoralliumRestAPI/taskByProjectId/(.*)", TaskByProjectIdHandler),
-    (r"/CoralliumRestAPI/ws/", WebSocketHandler)
+    (r"/CoralliumRestAPI/proposalByProjectId/(.*)", ProposalByProjectIdHandler),
+    (r"/CoralliumRestAPI/ws/(.*)", WebSocketHandler)
 ])
 
 if __name__ == "__main__":

@@ -145,7 +145,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Task'
             },
-            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects')
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects', 'taskCtrl')
         }).state('app.project.user_project', {
             url: '/userprojects ',
             templateUrl: "assets/views/project_user.html",
@@ -545,6 +545,22 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Base',
             ncyBreadcrumb: {
                 label: 'Base'
+            },
+            resolve: loadSequence('forumCtrl')
+        }).state('app.forum.proposal', {
+            url: '/createproposal',
+            templateUrl: "assets/views/forum_base_proposal.html",
+            title: 'Create Proposal',
+            ncyBreadcrumb: {
+                label: 'Create Proposal'
+            },
+            resolve: loadSequence('forumCtrl')
+        }).state('app.forum.proposalview', {
+            url: '/proposalview',
+            templateUrl: "assets/views/forum_base_proposal_view.html",
+            title: 'Proposal View',
+            ncyBreadcrumb: {
+                label: 'Proposal View'
             },
             resolve: loadSequence('forumCtrl')
         });

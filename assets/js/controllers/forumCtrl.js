@@ -24,4 +24,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket",
             dataStream.send($scope.newComment);
             $scope.newComment = '';
         }
+
+        $scope.proposalTitle = '';
+        $scope.proposalDescription = '';
 }]);

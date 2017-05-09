@@ -25,7 +25,7 @@
                                     <hr class="tall">
                                     <div class="clearfix">
                                         <div class="thread-content col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-top-10">
-                                            <span class="notification-author"><a>{{task.name}}</a></span>
+                                            <span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
                                         </div>
                                         <div class="thread-content col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3 margin-top-10">
                                             <span class="label label-inverse state-list-tasks">{{ stateArray[task.state]}}</span>

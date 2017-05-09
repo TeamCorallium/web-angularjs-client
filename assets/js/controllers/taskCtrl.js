@@ -6,7 +6,7 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
     function ($scope, localStorageService, RestService, $state, toaster) {
 
         $scope.tasksProject = [];
-
+        $scope.currentTaskActive = '';
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
         $scope.getTaskByProjectsId = function (projectId) {
@@ -22,5 +22,27 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
         };
 
         $scope.getTaskByProjectsId(localStorageService.get('currentProjectId'));
+
+        $scope.getTaskById = function(taskId){
+            RestService.fetchTaskByTaskId(taskId)
+                .then(
+                    function(data) {
+                        $scope.currentTaskActive =  data[0];
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        if(localStorageService.get('currentTaskId')!= null){
+            $scope.getTaskById(localStorageService.get('currentTaskId'));
+        }
+
+        $scope.goToTask = function (taskId) {
+            localStorageService.set('currentTaskId',taskId);
+            $scope.getTaskById(taskId);
+            $state.go('app.project.task_detail');
+        };
 
     }]);

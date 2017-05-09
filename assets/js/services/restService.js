@@ -135,5 +135,18 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     }
                 );
         },
+
+        fetchTaskByTaskId: function(taskId) {
+            return $http.get(serverUrl + 'task/' + taskId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching tasks By Task Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
     };
 }]);

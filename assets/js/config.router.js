@@ -91,7 +91,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Opportunities List Task'
             },
-            resolve: loadSequence('currentUserProjects', 'inboxCtrl')
+            resolve: loadSequence('currentUserProjects', 'taskCtrl')
         }).state('app.project', {
             url: '/project',
             template: '<div ui-view class="fade-in-up"></div>',

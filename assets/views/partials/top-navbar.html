@@ -13,14 +13,14 @@
 		<!-- start: MESSAGES DROPDOWN -->
 		<!-- /// controller:  'InboxCtrl' -  localtion: assets/js/controllers/InboxCtrl.js /// -->
 		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-controller="InboxCtrl">
-			<a href class="dropdown-toggle" uib-dropdown-toggle ng-show="isLogged">
+			<a href class="dropdown-toggle" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
 				<notification-icon count='scopeVariable'>
 					<i class="ti-bell"></i>
 				</notification-icon> 
 				<!-- <span translate="topbar.messages.MAIN">MESSAGES</span>  -->
 				<span>NOTIFIES</span>
 			</a>
-			<ul class="dropdown-menu dropdown-light dropdown-messages dropdown-large">
+<!-- 			<ul class="dropdown-menu dropdown-light dropdown-messages dropdown-large">
 				<li>
 					<span class="dropdown-header"> Notifications</span>
 				</li>
@@ -47,13 +47,13 @@
 				<li class="view-all">
 					<a ui-sref="app.notification" translate="topbar.messages.SEEALL"> See All </a>
 				</li>
-			</ul>
+			</ul> -->
 		</li>
 		<!-- end: MESSAGES DROPDOWN -->
 		<!-- start: ACTIVITIES DROPDOWN -->
 		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged">
-			<a href class="dropdown-toggle" uib-dropdown-toggle> <i class="ti-check-box"></i> <span translate="topbar.activities.MAIN">ACTIVITIES</span> </a>
-			<ul class="dropdown-menu dropdown-light dropdown-messages dropdown-large">
+			<a href class="dropdown-toggle" uib-dropdown-toggle ui-sref="app.pages.timeline"> <i class="ti-check-box"></i> <span translate="topbar.activities.MAIN">ACTIVITIES</span> </a>
+<!-- 			<ul class="dropdown-menu dropdown-light dropdown-messages dropdown-large">
 				<li>
 					<span class="dropdown-header" translate="topbar.activities.HEADER"> You have new notifications</span>
 				</li>
@@ -68,7 +68,7 @@
 				<li class="view-all">
 					<a ui-sref="app.pages.timeline" translate="topbar.activities.SEEALL"> See All </a>
 				</li>
-			</ul>
+			</ul> -->
 		</li>
 		<!-- end: ACTIVITIES DROPDOWN -->
 		<!-- start: LANGUAGE SWITCHER -->

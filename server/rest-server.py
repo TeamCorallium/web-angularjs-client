@@ -113,7 +113,9 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
 
         print('userId: ' + userId)
 
-        projects = table_simple_project.search(where('userId') == int(userId))
+        #Project = table_simple_project.Query()
+        # projects = table_simple_project.search((Project.userId == userId) | (Project.userId == int(userId)))
+        projects = table_simple_project.search((where('userId') == userId) | (where('userId') == int(userId)))
         self.write(json.dumps(projects))
 
         print(projects)

@@ -23,31 +23,13 @@ table_task = db.table('table_task')
 table_proposal = db.table('table_proposal')
 table_notification = db.table('table_notification')
 
-class VersionHandler(tornado.web.RequestHandler):
-    def set_default_headers(self):
-        print("setting headers!!!")
-        self.set_header("Access-Control-Allow-Origin", "*")
-        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-        
-    def get(self):
-        response = { 'version': '3.5.1',
-                     'last_build':  date.today().isoformat() }
-        self.write(json.dumps(gallery1.all()))
-#        gallery1.all()
-        print(json.dumps(gallery1.all()))
+class Client:
+    def __init__(self, clientId, connection):
+        self.id = clientId
+        # self.name = name
+        self.connection = connection
 
-class GetTextHandler(tornado.web.RequestHandler):
-    def set_default_headers(self):
-        print("setting headers!!!")
-        self.set_header("Access-Control-Allow-Origin", "*")
-        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-        
-    def get(self, id):
-        text = texts.search(where('id') == id)
-        self.write(json.dumps(text))
-        print('El id:'+ id)
+clients = []
 
 class UserHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -113,8 +95,6 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
 
         print('userId: ' + userId)
 
-        #Project = table_simple_project.Query()
-        # projects = table_simple_project.search((Project.userId == userId) | (Project.userId == int(userId)))
         projects = table_simple_project.search((where('userId') == userId) | (where('userId') == int(userId)))
         self.write(json.dumps(projects))
 
@@ -126,8 +106,6 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
         self.json_args = json.loads(self.request.body)
 
         print(self.json_args['projectName'])
-
-        # print(len(table_user.search(where('email') == self.json_args['email'])))
 
         if len(table_simple_project.search(where('projectName') == self.json_args['projectName'])) != 0:
             self.write('-1')
@@ -163,7 +141,6 @@ class TaskHandler(tornado.web.RequestHandler):
         self.json_args = json.loads(self.request.body)
         print(self.json_args)
         print(self.json_args['projectId'])
-        # print(len(table_user.search(where('email') == self.json_args['email'])))
 
         if len(table_simple_project.search(where('id') == int(self.json_args['projectId']))) != 0:
             id = table_task.insert(self.json_args)
@@ -235,7 +212,7 @@ class ProposalByProjectIdHandler(tornado.web.RequestHandler):
 
         print('projectId: ' + projectId)
 
-        proposals = table_proposal.search(where('projectId') == int(projectId))
+        proposals = table_proposal.search((where('projectId') == int(projectId)) | (where('projectId') == projectId))
         self.write(json.dumps(proposals))
 
         print(proposals)
@@ -259,52 +236,52 @@ class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
         self.write(str(projectId))      
 
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
-    waiters = set()
-
     def open(self, *args):
-        # self.id = self.get_argument("Id")
         self.stream.set_nodelay(True)
-        # clients[self.id] = {"id": self.id, "object": self}
-        self.write_message("you've been connected. Congratz.")
+        
+        newclient = True
+        self.id = self.get_argument("userId")
+        for client in clients:
+            if client.id == self.id:
+                client.connection.write_message("Hello Again %s !" %(client.id))
+                newclient = False
+                break
+        if newclient:
+            clientRef = Client(self.id, self)
+            clients.append(clientRef)
+            self.write_message("Hello %s !" %(self.id)) 
 
-        WebSocketHandler.waiters.add(self)
         print('WebSocketHandler:OPEN')
 
-    def on_message(self, message):    
+    def on_message(self, message):  
         print('WebSocketHandler:on_message: ' + message) 
-        WebSocketHandler.send_updates(message) 
 
-        self.json_args = json.loads(message)
-        table_proposal.insert(self.json_args)
-
-        """
-        when we receive some message we want some message handler..
-        for this example i will just print message to console
-        """
-        # print "Client %s received a message : %s" % (self.id, message)
+        for client in clients:
+            if client.id == self.id:
+                self.json_args = json.loads(message)
+                table_proposal.insert(self.json_args)
         
     def on_close(self):
-        WebSocketHandler.waiters.remove(self)
         print('WebSocketHandler:on_close')
-        # if self.id in clients:
-        #     del clients[self.id]
+        for client in clients:
+            if self.id == client.id:
+                clients.remove(client)
+                break        
 
-    @classmethod
-    def send_updates(cls, message):
-        logging.info("sending message to %d waiters", len(cls.waiters))
-        for waiter in cls.waiters:
-            try:
-                waiter.write_message(message)
-            except:
-                logging.error("Error sending message", exc_info=True)
+    # @classmethod
+    # def send_updates(cls, message):
+    #     logging.info("sending message to %d waiters", len(cls.waiters))
+    #     for waiter in cls.waiters:
+    #         try:
+    #             waiter.write_message(message)
+    #         except:
+    #             logging.error("Error sending message", exc_info=True)
 
     def check_origin(self, origin):
         print('WebSocketHandler:check_origin')
         return True        
 
 application = tornado.web.Application([
-    (r"/ravic/text/([0-9]+)", GetTextHandler),
-    (r"/ravic/?", VersionHandler),
     (r"/CoralliumRestAPI/user/?", UserHandler),
     (r"/CoralliumRestAPI/user/(.*)", UserHandler),
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
@@ -315,7 +292,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/task/(.*)", TaskHandler),
     (r"/CoralliumRestAPI/taskByProjectId/(.*)", TaskByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalByProjectId/(.*)", ProposalByProjectIdHandler),
-    (r"/CoralliumRestAPI/ws/(.*)", WebSocketHandler)
+    (r"/CoralliumRestAPI/ws(.*)", WebSocketHandler)
 ])
 
 if __name__ == "__main__":

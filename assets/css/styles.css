@@ -11789,3 +11789,11 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 .border-combo-projects > span {
   border: none !important;
 }
+
+/*******************************/
+/********* Proposal   **********/
+/*******************************/
+.proposal-image{
+  height: 80px !important;
+  width: 80px !important;
+}

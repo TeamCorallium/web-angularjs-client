@@ -1,0 +1,59 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title" ng-controller="CurrentUserProjects">
+    <div class="row">
+        <div class="col-sm-8">
+            <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
+            <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+        </div>
+        <div ncy-breadcrumb></div>
+    </div>
+</section>
+<!-- end: PAGE TITLE -->
+<!-- start: YOUR CONTENT HERE -->
+<!-- end: YOUR CONTENT HERE -->
+<!-- start: FEATURED BOX LINKS -->
+<div class="container-fluid container-fullw bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right margin-top-15">
+                <img  ng-src="assets/images/team-3.jpg" alt=""
+                      class="img-responsive img-rounded proposal-image pull-right">
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+                <div class="form-group">
+                    <label>Evaluation</label>
+                    <textarea placeholder="Evaluate the owner" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
+                <div class="center margin-top-10 margin-bottom-10">
+                    <label>Votation</label>
+                </div>
+                <div class="panel-body center margin-bottom-10">
+                    <div class="radio clip-radio radio-primary inline">
+                        <input name="popoverType" id="e" value="e" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
+                        <label for="e">E</label>
+                    </div>
+                    <div class="radio clip-radio radio-primary inline">
+                        <input name="popoverType" id="g" value="g" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
+                        <label for="g">G</label>
+                    </div>
+                    <div class="radio clip-radio radio-primary inline">
+                        <input name="popoverType" id="a" value="a" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
+                        <label for="a">A</label>
+                    </div>
+                    <div class="radio clip-radio radio-primary inline">
+                        <input name="popoverType" id="w" value="w" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
+                        <label for="w">W</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check pull-right">
+                    <span>Done</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: FEATURED BOX LINKS -->

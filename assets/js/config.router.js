@@ -114,6 +114,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Create Complex Project'
             },
             resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker')
+        }).state('app.project.owner_evaluation', {
+            url: 'evaluation',
+            templateUrl: "assets/views/owner_evaluation.html",
+            title: 'Owner Evaluation',
+            ncyBreadcrumb: {
+                label: 'Owner Evaluation'
+            },
+            resolve: loadSequence('currentUserProjects')
         }).state('app.project.subproject_detail', {
             url: '/subpoject',
             templateUrl: "assets/views/subproject.html",

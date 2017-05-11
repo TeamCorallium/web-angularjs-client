@@ -14,7 +14,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
             RestService.fetchProjectById(projectId)
                 .then(
                     function(data) {
-                        $scope.currenProjectActive =  data[0];
+                        $scope.currentProjectActive =  data[0];
                     },
                     function(errResponse){
                         console.log(errResponse);

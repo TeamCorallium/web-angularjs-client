@@ -122,6 +122,30 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Owner Evaluation'
             },
             resolve: loadSequence('currentUserProjects')
+        }).state('app.project.finish_proyect_summary', {
+            url: 'finishproyects',
+            templateUrl: "assets/views/finish_proyect_sumary.html",
+            title: 'Finish Proyects',
+            ncyBreadcrumb: {
+                label: 'Finish Proyects Summary'
+            },
+            resolve: loadSequence('currentUserProjects')
+        }).state('app.project.proposal_sharing', {
+            url: 'proposalsharing',
+            templateUrl: "assets/views/proposal_sharing.html",
+            title: 'Proposal Sharing',
+            ncyBreadcrumb: {
+                label: 'Proposal Sharing'
+            },
+            resolve: loadSequence('currentUserProjects','xeditable', 'checklist-model', 'xeditableCtrl')
+        }).state('app.project.multiproposal_sharing', {
+            url: 'multiproposalsharing',
+            templateUrl: "assets/views/proposal_sharing.html",
+            title: 'Multiproposal Sharing',
+            ncyBreadcrumb: {
+                label: 'Multiproposal Sharing'
+            },
+            resolve: loadSequence('currentUserProjects','xeditable', 'checklist-model', 'xeditableCtrl')
         }).state('app.project.subproject_detail', {
             url: '/subpoject',
             templateUrl: "assets/views/subproject.html",

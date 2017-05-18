@@ -161,5 +161,18 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     }
                 );
         },
+
+        fetchAllNotifications: function(userId) {
+            return $http.get(serverUrl + 'notificationsByUserId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching notifications By User Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
     };
 }]);

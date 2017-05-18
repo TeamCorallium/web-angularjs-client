@@ -23,7 +23,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "local
             console.log($scope.newComment);
             dataStream.send($scope.newComment);
             $scope.newComment = '';
-        }
+        };
 
         $scope.proposalTitle = '';
         $scope.proposalContent = '';

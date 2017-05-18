@@ -33,7 +33,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         $stateProvider.state('app', {
             url: "/app",
             templateUrl: "assets/views/app.html",
-            resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'toaster', 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl', 'truncate', 'htmlToPlaintext', 'angular-notification-icons','flow','userCtrl'),
+            resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'toaster',
+                'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl',
+                'truncate', 'htmlToPlaintext', 'angular-notification-icons','flow','userCtrl'),
             abstract: true
         }).state('app.default', {
             url: '/default',
@@ -83,7 +85,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Notification',
             ncyBreadcrumb: {
                 label: 'Notification'
-            }
+            },
+            resolve: loadSequence('notificationCtrl')
         }).state('app.opportunities-list-task', {
             url: '/opportunitieslisttask',
             templateUrl: "assets/views/opportunities-list-task.html",

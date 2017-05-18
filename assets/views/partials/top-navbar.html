@@ -12,7 +12,7 @@
 	<ul class="nav navbar-right" ct-fullheight="window" data-ct-fullheight-exclusion="header" data-ct-fullheight-if="isSmallDevice">
 		<!-- start: MESSAGES DROPDOWN -->
 		<!-- /// controller:  'InboxCtrl' -  localtion: assets/js/controllers/InboxCtrl.js /// -->
-		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-controller="InboxCtrl">
+		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-controller="NotificationCtrl">
 			<a href class="dropdown-toggle" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
 				<notification-icon count='scopeVariable'>
 					<i class="ti-bell"></i>

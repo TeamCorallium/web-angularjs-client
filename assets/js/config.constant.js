@@ -57,6 +57,7 @@ app.constant('JS_REQUIRES', {
         'currentUserProjects': 'assets/js/controllers/currentUserProjects.js',
         'forumCtrl': 'assets/js/controllers/forumCtrl.js',
         'taskCtrl': 'assets/js/controllers/taskCtrl.js',
+        'notificationCtrl': 'assets/js/controllers/notificationCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'
     },

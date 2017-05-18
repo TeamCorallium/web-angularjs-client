@@ -26,18 +26,21 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "local
         }
 
         $scope.proposalTitle = '';
-        $scope.proposalDescription = '';
+        $scope.proposalContent = '';
+        $scope.itemSubject = '';
 
         $scope.proposalsProject = [];
         $scope.currentProposal = {
             name: '',
-            description: '',
+            proposalContent: '',
+            itemSubject: '',
             projectId: '',
         };
 
         $scope.createProposal = function () {
             $scope.currentProposal.name = $scope.proposalTitle;
-            $scope.currentProposal.description = $scope.proposalDescription;
+            $scope.currentProposal.proposalContent = $scope.proposalContent;
+            $scope.currentProposal.itemSubject = $scope.itemSubject;
             $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
             dataStream.send($scope.currentProposal);
         };

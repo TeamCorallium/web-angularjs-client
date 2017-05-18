@@ -33,7 +33,10 @@
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 									<p>
-										{{proposal.description}}
+										{{proposal.proposalContent}}
+									</p>
+									<p>
+										{{proposal.itemSubject}}
 									</p>
 								</div>
 								<button ng-click="goToTaskByTaskId(proposal)" ui-sref="app.forum.proposalview"  type="button" class="btn btn-primary btn-xs pull-right">

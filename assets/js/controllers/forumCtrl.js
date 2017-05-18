@@ -63,4 +63,20 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "local
             $scope.currentProposal = proposal;
             $state.go('app.forum.proposalview');
         };
+
+        $scope.allMyForums = [];
+
+        $scope.getAllMyForums = function () {
+            RestService.fetchAllForums(localStorageService.get('currentUserId'))
+                .then(
+                    function(data) {
+                        $scope.allMyForums =  data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getAllMyForums();
     }]);

@@ -64,7 +64,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Explore',
             ncyBreadcrumb: {
                 label: 'Explore'
-            }
+            },
+            resolve: loadSequence('currentUserProjects')
         }).state('app.finance', {
             url: '/finance',
             templateUrl: "assets/views/finance.html",
@@ -213,6 +214,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             url: '/signin',
             templateUrl: "assets/views/sing_in.html",
             resolve: loadSequence('flow', 'userCtrl')
+        }).state('app.login.password_forgot', {
+            url: '/forgot',
+            templateUrl: "assets/views/password_forgot.html"
         }).state('app.login.forgot', {
             url: '/forgot',
             templateUrl: "assets/views/login_forgot.html"
@@ -580,6 +584,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Base',
             ncyBreadcrumb: {
                 label: 'Base'
+            },
+            resolve: loadSequence('forumCtrl')
+        }).state('app.forum.allforum', {
+            url: '/allforums',
+            templateUrl: "assets/views/allMyForums.html",
+            title: 'All My Forums',
+            ncyBreadcrumb: {
+                label: 'All My Forums'
             },
             resolve: loadSequence('forumCtrl')
         }).state('app.forum.proposal', {

@@ -2,8 +2,8 @@
 /**
  * controller for User Profile Example
  */
-app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "toaster", "localStorageService", "$rootScope",
-    function ($scope, $state, flowFactory, RestService, toaster, localStorageService, $rootScope) {
+app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "toaster", "localStorageService", "$rootScope", "WebSocketService",
+    function ($scope, $state, flowFactory, RestService, toaster, localStorageService, $rootScope, WebSocketService) {
 
         $scope.removeImage = function () {
             $scope.noImage = true;
@@ -63,6 +63,9 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                                         $scope.user.id = data;
                                         $scope.updateSessionInfo();
                                         $state.go('app.default');
+
+                                        //open websocket
+                                        WebSocketService.open();
                                     }
                                 },
                                 function(errResponse) {
@@ -87,6 +90,9 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                                 $scope.user.id = data[0].id;
                                 $scope.updateSessionInfo();
                                 $state.go('app.default');
+
+                                //open websocket
+                                WebSocketService.open();
                             } else {
                                 toaster.pop('error', 'Error', 'Wrong password.');
                             }

@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "localStorageService", "RestService",
-    function ($scope, $state, toaster, $websocket, localStorageService, RestService) {
+app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "localStorageService", "RestService", "$rootScope",
+    function ($scope, $state, toaster, $websocket, localStorageService, RestService, $rootScope) {
 
         console.log('controller....');
 
@@ -11,6 +11,10 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "local
 
         dataStream.onMessage(function(message) {
             console.log(message.data);
+            if(message.data == 'NOTIFICATION') {
+                $rootScope.$broadcast('newNotification');
+                console.log("newNotification");
+            }
         });
 
         dataStream.onOpen(function() {

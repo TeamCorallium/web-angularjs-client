@@ -41,7 +41,11 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             if client.id == self.id:
                 self.json_args = json.loads(message)
                 table_proposal.insert(self.json_args)
-        
+
+                table_notification.insert({'userId': self.id, 'read': False, 'content': "New proposal was created"})
+            
+            client.connection.write_message("NOTIFICATION")
+
     def on_close(self):
         print('WebSocketHandler:on_close')
         for client in clients:

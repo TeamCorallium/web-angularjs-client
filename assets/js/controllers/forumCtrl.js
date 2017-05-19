@@ -2,13 +2,30 @@
 /**
  * controller for User Projects
  */
-app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService", "$rootScope",
-    function ($scope, $state, toaster, WebSocketService, localStorageService, RestService, $rootScope) {
+app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "localStorageService", "RestService", "$rootScope",
+    function ($scope, $state, toaster, $websocket, localStorageService, RestService, $rootScope) {
+
+        console.log('controller....');
+
+        var dataStream = $websocket('ws://127.0.0.1:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
+
+        dataStream.onMessage(function(message) {
+            console.log(message.data);
+            if(message.data == 'NOTIFICATION') {
+                $rootScope.$broadcast('newNotification');
+                console.log("newNotification");
+            }
+        });
+
+        dataStream.onOpen(function() {
+            console.log('onOpen');
+            // dataStream.send("hola mundo");
+        });
 
         $scope.newComment = '';
         $scope.sendMessageTest = function() {
             console.log($scope.newComment);
-            // dataStream.send($scope.newComment);
+            dataStream.send($scope.newComment);
             $scope.newComment = '';
         };
 
@@ -18,23 +35,10 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
 
         $scope.proposalsProject = [];
         $scope.currentProposal = {
-            id: '',
             name: '',
             proposalContent: '',
             itemSubject: '',
             projectId: '',
-            proposalOwnerId: '',
-            state: '',
-        };
-
-        $scope.currentProposalView = {
-            id: '',
-            name: '',
-            proposalContent: '',
-            itemSubject: '',
-            projectId: '',
-            proposalOwnerId: '',
-            state: '',
         };
 
         $scope.createProposal = function () {
@@ -42,17 +46,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
             $scope.currentProposal.proposalContent = $scope.proposalContent;
             $scope.currentProposal.itemSubject = $scope.itemSubject;
             $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
-            $scope.currentProposal.proposalOwnerId = localStorageService.get('currentUserId');
-            $scope.currentProposal.state = 'publish';
-
-            var obj = {
-                type: 'PROPOSAL',
-                value: $scope.currentProposal
-            };
-            WebSocketService.send(obj);
-            // WebSocketService.send($scope.currentProposal);
-
-            $state.go('app.forum.base');
+            dataStream.send($scope.currentProposal);
         };
 
         $scope.getProposalByProjectId= function(){
@@ -68,29 +62,6 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
         };
 
         $scope.getProposalByProjectId();
-
-        $scope.getProposalById= function(proposalId){
-            RestService.fetchProposalById(proposalId)
-                .then(
-                    function(data) {
-                        $scope.currentProposalView =  data[0];
-                        localStorageService.set('currentProposalId',$scope.currentProposalView.id);
-                    },
-                    function(errResponse){
-                        console.log(errResponse);
-                    }
-                );
-        };
-
-        if(localStorageService.get('currentProposalId')!= null){
-            $scope.getProposalById(localStorageService.get('currentProposalId'));
-        }
-
-        $scope.goToProposalById = function (proposalId) {
-            localStorageService.set('currentProposalId', proposalId);
-            $scope.getProposalById(proposalId);
-            $state.go('app.forum.proposalview');
-        };
 
         $scope.goToTaskByTaskId = function (proposal) {
             $scope.currentProposal = proposal;

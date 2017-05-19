@@ -30,7 +30,12 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
             $scope.currentProposal.itemSubject = $scope.itemSubject;
             $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
 
-            WebSocketService.send($scope.currentProposal);
+            var obj = {
+                type: 'PROPOSAL',
+                value: $scope.currentProposal
+            };
+            WebSocketService.send(obj);
+            // WebSocketService.send($scope.currentProposal);
         };
 
         $scope.getProposalByProjectId= function(){

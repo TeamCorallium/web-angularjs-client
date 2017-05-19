@@ -24,6 +24,17 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
             itemSubject: '',
             projectId: '',
             proposalOwnerId: '',
+            state: '',
+        };
+
+        $scope.currentProposalView = {
+            id: '',
+            name: '',
+            proposalContent: '',
+            itemSubject: '',
+            projectId: '',
+            proposalOwnerId: '',
+            state: '',
         };
 
         $scope.createProposal = function () {
@@ -32,6 +43,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
             $scope.currentProposal.itemSubject = $scope.itemSubject;
             $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
             $scope.currentProposal.proposalOwnerId = localStorageService.get('currentUserId');
+            $scope.currentProposal.state = 'publish';
 
             var obj = {
                 type: 'PROPOSAL',
@@ -39,6 +51,8 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
             };
             WebSocketService.send(obj);
             // WebSocketService.send($scope.currentProposal);
+
+            $state.go('app.forum.base');
         };
 
         $scope.getProposalByProjectId= function(){
@@ -54,6 +68,29 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
         };
 
         $scope.getProposalByProjectId();
+
+        $scope.getProposalById= function(proposalId){
+            RestService.fetchProposalById(proposalId)
+                .then(
+                    function(data) {
+                        $scope.currentProposalView =  data[0];
+                        localStorageService.set('currentProposalId',$scope.currentProposalView.id);
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        if(localStorageService.get('currentProposalId')!= null){
+            $scope.getProposalById(localStorageService.get('currentProposalId'));
+        }
+
+        $scope.goToProposalById = function (proposalId) {
+            localStorageService.set('currentProposalId', proposalId);
+            $scope.getProposalById(proposalId);
+            $state.go('app.forum.proposalview');
+        };
 
         $scope.goToTaskByTaskId = function (proposal) {
             $scope.currentProposal = proposal;

@@ -25,10 +25,10 @@
 				<li ng-repeat="proposal in proposalsProject">
 					<div class="post-media post-comments margin-top-30">
 						<div class="media">
-							<a href="" class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
+							<a class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
 							<div class="media-body">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-									<a class="notification-author" ng-click="goToTaskByTaskId(proposal)">{{proposal.name}}</a>
+									<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>
 									<span class="notification-time"> January 12, 2014 at 1:38 pm</span>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -39,7 +39,7 @@
 										{{proposal.itemSubject}}
 									</p>
 								</div>
-								<button ng-click="goToTaskByTaskId(proposal)" ui-sref="app.forum.proposalview"  type="button" class="btn btn-primary btn-xs pull-right">
+								<button ng-click="goToProposalById(proposal.id)" type="button" class="btn btn-primary btn-xs pull-right">
 									<span class="fa fa-arrow-right"></span> View Proposal
 								</button>
 							</div>

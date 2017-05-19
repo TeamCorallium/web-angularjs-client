@@ -190,6 +190,20 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+
+        fetchProposalById: function(proposalId) {
+            return $http.get(serverUrl + 'proposalById/' + proposalId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching propsal By Proposal aId');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         fetchAllNotifications: function(userId) {
             return $http.get(serverUrl + 'notificationsByUserId/' + userId)
                 .then(

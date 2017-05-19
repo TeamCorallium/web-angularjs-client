@@ -97,6 +97,34 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        /** EYE **/
+        fetchAllProject: function() {
+            return $http.get(serverUrl + 'simpleProjectById/allProjects')
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching All Projects');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        /** EYE **/
+        fetchAllForums: function(userId) {
+            return $http.get(serverUrl + 'forumsByUserId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching All Projects');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         deleteProject: function(projectId) {
             return $http.get(serverUrl + 'simpleProjectDelete/' + projectId)
                 .then(
@@ -157,6 +185,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     },
                     function(errResponse){
                         console.error('Error while fetching propsal By Project Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        fetchAllNotifications: function(userId) {
+            return $http.get(serverUrl + 'notificationsByUserId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching notifications By User Id');
                         return $q.reject(errResponse);
                     }
                 );

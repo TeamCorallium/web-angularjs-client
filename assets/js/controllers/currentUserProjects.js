@@ -5,6 +5,7 @@
 app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
         $scope.simpleProjects = [];
+        $scope.allProjects = [];
         $scope.owner = '';
 
         $scope.creationProjectDate = '';
@@ -16,7 +17,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                     function(data) {
                         $scope.currentProjectActive =  data[0];
                     },
-                    function(errResponse){
+                    function(errResponse) {
                         console.log(errResponse);
                     }
                 );
@@ -32,7 +33,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                     function(data) {
                         $scope.simpleProjects = data;
                     },
-                    function(errResponse){
+                    function(errResponse) {
                         console.log(errResponse);
                     }
                 );
@@ -40,13 +41,27 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
 
         $scope.getProjects();
 
+        $scope.getAllProjects = function () {
+            RestService.fetchAllProject()
+                .then(
+                    function(data) {
+                        $scope.allProjects = data;
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getAllProjects();
+
         $scope.getOwnerData = function () {
             RestService.fetchUser(localStorageService.get('currentUserId'))
                 .then(
                     function(data) {
                         $scope.owner = data[0];
                     },
-                    function(errResponse){
+                    function(errResponse) {
                         console.log(errResponse);
                     }
                 );

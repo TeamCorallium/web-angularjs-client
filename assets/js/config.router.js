@@ -33,7 +33,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         $stateProvider.state('app', {
             url: "/app",
             templateUrl: "assets/views/app.html",
-            resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'toaster', 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl', 'truncate', 'htmlToPlaintext', 'angular-notification-icons','flow','userCtrl'),
+            resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'toaster',
+                'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl',
+                'truncate', 'htmlToPlaintext', 'angular-notification-icons','flow','userCtrl'),
             abstract: true
         }).state('app.default', {
             url: '/default',
@@ -62,7 +64,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Explore',
             ncyBreadcrumb: {
                 label: 'Explore'
-            }
+            },
+            resolve: loadSequence('currentUserProjects')
         }).state('app.finance', {
             url: '/finance',
             templateUrl: "assets/views/finance.html",
@@ -83,7 +86,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Notification',
             ncyBreadcrumb: {
                 label: 'Notification'
-            }
+            },
+            resolve: loadSequence('notificationCtrl')
         }).state('app.opportunities-list-task', {
             url: '/opportunitieslisttask',
             templateUrl: "assets/views/opportunities-list-task.html",
@@ -210,6 +214,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             url: '/signin',
             templateUrl: "assets/views/sing_in.html",
             resolve: loadSequence('flow', 'userCtrl')
+        }).state('app.login.password_forgot', {
+            url: '/forgot',
+            templateUrl: "assets/views/password_forgot.html"
         }).state('app.login.forgot', {
             url: '/forgot',
             templateUrl: "assets/views/login_forgot.html"
@@ -577,6 +584,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Base',
             ncyBreadcrumb: {
                 label: 'Base'
+            },
+            resolve: loadSequence('forumCtrl')
+        }).state('app.forum.allforum', {
+            url: '/allforums',
+            templateUrl: "assets/views/allMyForums.html",
+            title: 'All My Forums',
+            ncyBreadcrumb: {
+                label: 'All My Forums'
             },
             resolve: loadSequence('forumCtrl')
         }).state('app.forum.proposal', {

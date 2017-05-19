@@ -9,245 +9,175 @@
 		<div ncy-breadcrumb></div>
 	</div>
 </section>
-<section class="container-fluid container-fullw bg-white">
+<section class="container-fluid container-fullw bg-white" ng-controller="CurrentUserProjects">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
-				<aside class="sidebar">
-					<form>
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search..." name="s" id="s">
-							<span class="input-group-btn">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-search"></i>
-								</button> </span>
-						</div>
-					</form>
-					<hr>
-					<h4>Categories</h4>
-					<ul class="nav nav-list blog-categories">
-						<li>
-							<a href="#"> Travel </a>
-						</li>
-						<li>
-							<a href="#"> Design </a>
-						</li>
-						<li>
-							<a href="#"> Videos </a>
-						</li>
-						<li>
-							<a href="#"> Photography </a>
-						</li>
-						<li>
-							<a href="#"> Lifestyle </a>
-						</li>
-					</ul>
-					<div class="tabbable">
-						<div class="tabs">
-							<ul class="nav nav-tabs nav-justified">
-								<li class="active">
-									<a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> Popular</a>
-								</li>
-								<li>
-									<a href="#recentPosts" data-toggle="tab"> Recent </a>
-								</li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane active" id="popularPosts">
-									<ul class="post-list">
-										<li>
-											<div class="post-image">
-												<div class="img-thumbnail">
-													<a href="#"> <img src="assets/images/portfolio/image01_th.jpg" alt="" class="img-responsive"> </a>
-												</div>
-											</div>
-											<div class="post-info">
-												<a href="#"> Nullam Vitae Nibh Un Odiosters </a>
-												<div class="post-meta">
-													Jan 10, 2014
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="post-image">
-												<div class="img-thumbnail">
-													<a href="#"> <img src="assets/images/portfolio/image02_th.jpg" alt="" class="img-responsive"> </a>
-												</div>
-											</div>
-											<div class="post-info">
-												<a href="#"> Vitae Nibh Un Odiosters </a>
-												<div class="post-meta">
-													Jan 10, 2014
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="post-image">
-												<div class="img-thumbnail">
-													<a href="#"> <img src="assets/images/portfolio/image03_th.jpg" alt="" class="img-responsive"> </a>
-												</div>
-											</div>
-											<div class="post-info">
-												<a href="#"> Odiosters Nullam Vitae </a>
-												<div class="post-meta">
-													Jan 10, 2014
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-								<div class="tab-pane" id="recentPosts">
-									<ul class="post-list">
-										<li>
-											<div class="post-image">
-												<div class="img-thumbnail">
-													<a href="#"> <img src="assets/images/portfolio/image04_th.jpg" alt="" class="img-responsive"> </a>
-												</div>
-											</div>
-											<div class="post-info">
-												<a href="#"> Vitae Nibh Un Odiosters </a>
-												<div class="post-meta">
-													Jan 10, 2014
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="post-image">
-												<div class="img-thumbnail">
-													<a href="#"> <img src="assets/images/portfolio/image05_th.jpg" alt="" class="img-responsive"> </a>
-												</div>
-											</div>
-											<div class="post-info">
-												<a href="#"> Odiosters Nullam Vitae </a>
-												<div class="post-meta">
-													Jan 10, 2014
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="post-image">
-												<div class="img-thumbnail">
-													<a href="#"> <img src="assets/images/portfolio/image06_th.jpg" alt="" class="img-responsive"> </a>
-												</div>
-											</div>
-											<div class="post-info">
-												<a href="#"> Nullam Vitae Nibh Un Odiosters </a>
-												<div class="post-meta">
-													Jan 10, 2014
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</aside>
-			</div>			
-			<div class="col-md-9">
+			<!--<div class="col-md-3">-->
+			<!--<aside class="sidebar">-->
+			<!--<form>-->
+			<!--<div class="input-group">-->
+			<!--<input type="text" class="form-control" placeholder="Search..." name="s" id="s">-->
+			<!--<span class="input-group-btn">-->
+			<!--<button type="submit" class="btn btn-primary">-->
+			<!--<i class="fa fa-search"></i>-->
+			<!--</button> </span>-->
+			<!--</div>-->
+			<!--</form>-->
+			<!--<hr>-->
+			<!--<h4>Categories</h4>-->
+			<!--<ul class="nav nav-list blog-categories">-->
+			<!--<li>-->
+			<!--<a href="#"> Travel </a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#"> Design </a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#"> Videos </a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#"> Photography </a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#"> Lifestyle </a>-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--<div class="tabbable">-->
+			<!--<div class="tabs">-->
+			<!--<ul class="nav nav-tabs nav-justified">-->
+			<!--<li class="active">-->
+			<!--<a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> Popular</a>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<a href="#recentPosts" data-toggle="tab"> Recent </a>-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--<div class="tab-content">-->
+			<!--<div class="tab-pane active" id="popularPosts">-->
+			<!--<ul class="post-list">-->
+			<!--<li>-->
+			<!--<div class="post-image">-->
+			<!--<div class="img-thumbnail">-->
+			<!--<a href="#"> <img src="assets/images/portfolio/image01_th.jpg" alt="" class="img-responsive"> </a>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--<div class="post-info">-->
+			<!--<a href="#"> Nullam Vitae Nibh Un Odiosters </a>-->
+			<!--<div class="post-meta">-->
+			<!--Jan 10, 2014-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<div class="post-image">-->
+			<!--<div class="img-thumbnail">-->
+			<!--<a href="#"> <img src="assets/images/portfolio/image02_th.jpg" alt="" class="img-responsive"> </a>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--<div class="post-info">-->
+			<!--<a href="#"> Vitae Nibh Un Odiosters </a>-->
+			<!--<div class="post-meta">-->
+			<!--Jan 10, 2014-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<div class="post-image">-->
+			<!--<div class="img-thumbnail">-->
+			<!--<a href="#"> <img src="assets/images/portfolio/image03_th.jpg" alt="" class="img-responsive"> </a>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--<div class="post-info">-->
+			<!--<a href="#"> Odiosters Nullam Vitae </a>-->
+			<!--<div class="post-meta">-->
+			<!--Jan 10, 2014-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--</div>-->
+			<!--<div class="tab-pane" id="recentPosts">-->
+			<!--<ul class="post-list">-->
+			<!--<li>-->
+			<!--<div class="post-image">-->
+			<!--<div class="img-thumbnail">-->
+			<!--<a href="#"> <img src="assets/images/portfolio/image04_th.jpg" alt="" class="img-responsive"> </a>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--<div class="post-info">-->
+			<!--<a href="#"> Vitae Nibh Un Odiosters </a>-->
+			<!--<div class="post-meta">-->
+			<!--Jan 10, 2014-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<div class="post-image">-->
+			<!--<div class="img-thumbnail">-->
+			<!--<a href="#"> <img src="assets/images/portfolio/image05_th.jpg" alt="" class="img-responsive"> </a>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--<div class="post-info">-->
+			<!--<a href="#"> Odiosters Nullam Vitae </a>-->
+			<!--<div class="post-meta">-->
+			<!--Jan 10, 2014-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+			<!--<div class="post-image">-->
+			<!--<div class="img-thumbnail">-->
+			<!--<a href="#"> <img src="assets/images/portfolio/image06_th.jpg" alt="" class="img-responsive"> </a>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--<div class="post-info">-->
+			<!--<a href="#"> Nullam Vitae Nibh Un Odiosters </a>-->
+			<!--<div class="post-meta">-->
+			<!--Jan 10, 2014-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</aside>-->
+			<!--</div>-->
+			<div class="col-sm-12 col-md-12 col-lg-12">
 				<div class="blog-posts">
-					<hr />
-					<article>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="margin-bottom-30">
-									<img src="assets/images/slider/slider-slide2.jpg" class="img-responsive" alt=""/>
+					<ul class="list-unstyled">
+						<li ng-repeat="projects in allProjects">
+							<hr />
+							<article>
+								<div class="row">
+									<div class="col-sm-5">
+										<div class="margin-bottom-30">
+											<img src="assets/images/slider/slider-slide2.jpg" class="img-responsive" alt=""/>
+										</div>
+									</div>
+									<div class="col-sm-7">
+										<div class="post-content">
+											<h2><a href="blog_post.html"> {{projects.name}} </a></h2>
+											<p class="text-dark">
+												{{projects.description}}
+											</p>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="col-sm-7">
-								<div class="post-content">
-									<h2><a href="blog_post.html"> Euismod atras vulputate iltricies etri elit </a></h2>
-									<p class="text-dark">
-										Euismod atras vulputate iltricies etri elit per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin rhoncus consequat nisl, eu ornare mauris tincidunt vitae. [...]
-									</p>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="post-meta text-light">
+											<span><i class="fa fa-calendar"></i> {{getCreationProject(project.creationDate)}} </span>
+											<span><i class="fa fa-user"></i> By <a href="#"> {{project.owner} </a> </span>
+											<!--<span><i class="fa fa-tag"></i> <a href="#">Bootstrap</a>, <a href="#">Design</a> </span>-->
+											<span><i class="fa fa-comments"></i> <a href="#"> 36 Comments </a></span>
+											<a ui-sref="app.project.subproject_detail" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right pull-right" data-caption-class="fadeIn" data-caption-delay="900" > <span>Read more...</span> </a>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="post-meta text-light">
-									<span><i class="fa fa-calendar"></i> January 11, 2014 </span>
-									<span><i class="fa fa-user"></i> By <a href="#"> Peter Clark </a> </span>
-									<span><i class="fa fa-tag"></i> <a href="#">Bootstrap</a>, <a href="#">Design</a> </span>
-									<span><i class="fa fa-comments"></i> <a href="#"> 36 Comments </a></span>
-									<a ui-sref="app.project.subproject_detail" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right pull-right" data-caption-class="fadeIn" data-caption-delay="900" > <span>Read more...</span> </a>
-								</div>
-							</div>
-						</div>
-					</article>
-					<hr />					
-					<article>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="margin-bottom-30">
-									<img src="assets/images/portfolio/image03_th.jpg" class="img-responsive" alt=""/>
-								</div>
-							</div>
-							<div class="col-sm-7">
-								<div class="post-content">
-									<h2><a href="blog_post.html"> Euismod atras vulputate iltricies etri elit </a></h2>
-									<p class="text-dark">
-										Euismod atras vulputate iltricies etri elit per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin rhoncus consequat nisl, eu ornare mauris tincidunt vitae. [...]
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="post-meta text-light">
-									<span><i class="fa fa-calendar"></i> January 11, 2014 </span>
-									<span><i class="fa fa-user"></i> By <a href="#"> Peter Clark </a> </span>
-									<span><i class="fa fa-tag"></i> <a href="#">Bootstrap</a>, <a href="#">Design</a> </span>
-									<span><i class="fa fa-comments"></i> <a href="#"> 36 Comments </a></span>
-									<a href="blog_post.html" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right pull-right" data-caption-class="fadeIn" data-caption-delay="900" > <span>Read more...</span> </a>
-								</div>
-							</div>
-						</div>
-					</article>
-					<hr />
-					<article>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="post-media margin-bottom-30">
-									<img src="assets/images/portfolio/image03_th.jpg" class="img-responsive" alt=""/>
-								</div>
-							</div>
-							<div class="col-sm-7">
-								<div class="post-content">
-									<h2><a href="blog_post.html"> Euismod atras vulputate iltricies etri elit </a></h2>
-									<p class="text-dark">
-										Euismod atras vulputate iltricies etri elit per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin rhoncus consequat nisl, eu ornare mauris tincidunt vitae. [...]
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="post-meta text-light">
-									<span><i class="fa fa-calendar"></i> January 11, 2014 </span>
-									<span><i class="fa fa-user"></i> By <a href="#"> Peter Clark </a> </span>
-									<span><i class="fa fa-tag"></i> <a href="#">Bootstrap</a>, <a href="#">Design</a> </span>
-									<span><i class="fa fa-comments"></i> <a href="#"> 36 Comments </a></span>
-									<a href="blog_post.html" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right pull-right" data-caption-class="fadeIn" data-caption-delay="900" > <span>Read more...</span> </a>
-								</div>
-							</div>
-						</div>
-					</article>
-					<ul class="pagination">
-						<li>
-							<a href="#"> « </a>
-						</li>
-						<li class="active">
-							<a href="#"> 1 </a>
-						</li>
-						<li>
-							<a href="#"> 2 </a>
-						</li>
-						<li>
-							<a href="#"> 3 </a>
-						</li>
-						<li>
-							<a href="#"> » </a>
+							</article>
+							<hr />
 						</li>
 					</ul>
 				</div>

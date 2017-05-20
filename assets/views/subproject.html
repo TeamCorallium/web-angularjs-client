@@ -1,11 +1,11 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title">
+<section id="page-title" ng-controller="CurrentUserProjects">
     <div class="row">
         <div class="col-sm-8">
             <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
-            <h1 class="mainTitle">Project name</h1>
+            <h1 class="mainTitle"></h1>
         </div>
-        <div ncy-breadcrumb></div>
+        <div ncy-breadcrumb>{{currentProjectActive.projectName}}</div>
     </div>
 </section>
 <!-- end: PAGE TITLE -->
@@ -21,7 +21,7 @@
                     <div class="portfolio-title">
                         <div class="row">
                             <div class="col-md-12 left no-padding">
-                                <h2 class="shorter"> {{currenProjectActive.projectName}}</h2>
+                                <h2 class="shorter">{{currentProjectActive.projectName}}</h2>
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                                         <div class="col-md-12">
                                             <ul class="pull-right">
                                                 <li>
-                                                    <i class="fa fa-calendar"></i> {{getCreationProject(currenProjectActive.creationDate)}}
+                                                    <i class="fa fa-calendar"></i> {{getCreationProject(currentProjectActive.creationDate)}}
                                                 </li>
                                                 <li>
                                                     <i class="fa fa-tags"></i>
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                                 <h4>Description</h4>
-                                <p class="taller margin-bottom-25"> {{currenProjectActive.description}} </p>
+                                <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
                                 <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
                                     <li>
                                         <p>
@@ -233,13 +233,13 @@
                                                         <li>
                                                             <p>
                                                                 <strong>Total Cost:</strong>
-                                                                {{currenProjectActive.totalCost}}
+                                                                {{currentProjectActive.totalCost}}
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p class="margin-top-15">
                                                                 <strong>Minimal Cost:</strong>
-                                                                {{currenProjectActive.minimalCost}}
+                                                                {{currentProjectActive.minimalCost}}
                                                             </p>
                                                         </li>
                                                     </ul>
@@ -248,13 +248,13 @@
                                                     <ul class="portfolio-details list-unstyled margin-top-minus-15">
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>Estimate Duration:</strong> {{currenProjectActive.estimateDuration}}
+                                                                <strong>Estimate Duration:</strong> {{currentProjectActive.estimateDuration}}
                                                                 <strong>weeks</strong>
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>Project State:</strong> {{stateArray[currenProjectActive.state]}}
+                                                                <strong>Project State:</strong> {{stateArray[currentProjectActive.state]}}
                                                             </p>
                                                         </li>
                                                     </ul>

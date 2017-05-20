@@ -104,7 +104,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
         $scope.allMyForums = [];
 
         $scope.getAllMyForums = function () {
-            RestService.fetchProjectById(localStorageService.get('currentUserId'))
+            RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
                 .then(
                     function(data) {
                         $scope.allMyForums =  data;
@@ -116,4 +116,9 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
         };
 
         $scope.getAllMyForums();
+
+        $scope.goToForum = function (projectId) {
+            localStorageService.set('currentProjectId',projectId);
+            $state.go('app.forum.base');
+        }
     }]);

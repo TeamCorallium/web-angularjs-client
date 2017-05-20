@@ -2,13 +2,30 @@
 /**
  * controller for User Projects
  */
-app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService", "$rootScope",
-    function ($scope, $state, toaster, WebSocketService, localStorageService, RestService, $rootScope) {
+app.controller('ForumCtrl', ["$scope", "$state", "toaster", "$websocket", "localStorageService", "RestService", "$rootScope",
+    function ($scope, $state, toaster, $websocket, localStorageService, RestService, $rootScope) {
+
+        console.log('controller....');
+
+        var dataStream = $websocket('ws://127.0.0.1:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
+
+        dataStream.onMessage(function(message) {
+            console.log(message.data);
+            if(message.data == 'NOTIFICATION') {
+                $rootScope.$broadcast('newNotification');
+                console.log("newNotification");
+            }
+        });
+
+        dataStream.onOpen(function() {
+            console.log('onOpen');
+            // dataStream.send("hola mundo");
+        });
 
         $scope.newComment = '';
         $scope.sendMessageTest = function() {
             console.log($scope.newComment);
-            // dataStream.send($scope.newComment);
+            dataStream.send($scope.newComment);
             $scope.newComment = '';
         };
 
@@ -29,13 +46,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
             $scope.currentProposal.proposalContent = $scope.proposalContent;
             $scope.currentProposal.itemSubject = $scope.itemSubject;
             $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
-
-            var obj = {
-                type: 'PROPOSAL',
-                value: $scope.currentProposal
-            };
-            WebSocketService.send(obj);
-            // WebSocketService.send($scope.currentProposal);
+            dataStream.send($scope.currentProposal);
         };
 
         $scope.getProposalByProjectId= function(){

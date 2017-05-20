@@ -43,7 +43,9 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 print(self.json_args['type'])
                 print(self.json_args['value'])
                 if self.json_args['type'] == 'PROPOSAL':
-                    table_proposal.insert(self.json_args['value'])
+                    id = table_proposal.insert(self.json_args['value'])
+                    table_proposal.update({'id': id}, eids=[id])
+
                     table_notification.insert({'userId': self.id, 'read': False, 'content': "New proposal was created"})
             
             client.connection.write_message("NOTIFICATION")
@@ -79,6 +81,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/task/(.*)", TaskHandler),
     (r"/CoralliumRestAPI/taskByProjectId/(.*)", TaskByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalByProjectId/(.*)", ProposalByProjectIdHandler),
+    (r"/CoralliumRestAPI/proposalById/(.*)", ProposalByIdHandler),
     (r"/CoralliumRestAPI/ws(.*)", WebSocketHandler)
 ])
 

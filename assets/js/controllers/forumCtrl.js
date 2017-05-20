@@ -16,7 +16,10 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
         $scope.proposalContent = '';
         $scope.itemSubject = '';
 
+        //Array for all proposal of one project
         $scope.proposalsProject = [];
+
+        //Actual proposal of the current project
         $scope.currentProposal = {
             id: '',
             name: '',
@@ -27,6 +30,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
             state: '',
         };
 
+        //Actual proposal for proposal view
         $scope.currentProposalView = {
             id: '',
             name: '',
@@ -100,7 +104,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
         $scope.allMyForums = [];
 
         $scope.getAllMyForums = function () {
-            RestService.fetchAllForums(localStorageService.get('currentUserId'))
+            RestService.fetchProjectById(localStorageService.get('currentUserId'))
                 .then(
                     function(data) {
                         $scope.allMyForums =  data;

@@ -14,4 +14,12 @@ table_task = db.table('table_task')
 table_proposal = db.table('table_proposal')
 table_notification = db.table('table_notification')
 
+table_user.purge();
+table_profile.purge();
+table_simple_project.purge();
+table_complex_project.purge();
+table_risk.purge();
+table_reference.purge();
+table_task.purge();
 table_proposal.purge();
+table_notification.purge();

@@ -65,6 +65,9 @@ class UserHandler(tornado.web.RequestHandler):
 
         table_user.update({'projectsFollow': self.json_args['projectsFollow']}, eids=[self.json_args['id']])
 
+        # users = table_user.search(where('id') == self.json_args['id'])
+        # print(users[0]['projectsFollow'][0])
+        
         # print(len(table_user.search(where('email') == self.json_args['email'])))
 
         # if len(table_user.search(where('email') == self.json_args['email'])) != 0:

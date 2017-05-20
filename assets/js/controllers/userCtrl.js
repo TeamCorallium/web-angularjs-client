@@ -37,7 +37,8 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             gender: '',
             email: '',
             password: '',
-            id: ''
+            id: '',
+            projectsFollow: [],
         };
 
         $scope.password_again = '';

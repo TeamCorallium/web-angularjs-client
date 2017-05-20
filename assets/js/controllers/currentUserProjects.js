@@ -42,7 +42,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.getProjects();
 
         $scope.getAllProjects = function () {
-            RestService.fetchAllProject()
+            RestService.fetchAllProject(localStorageService.get('currentUserId'))
                 .then(
                     function(data) {
                         $scope.allProjects = data;
@@ -106,5 +106,51 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                         console.log(errResponse);
                     }
                 );
+        };
+
+        $scope.isFollowProject = function (projectId) {
+            var followFlag = false;
+
+            if($scope.owner.projectsFollow) {
+                for (var i = 0; i<$scope.owner.projectsFollow.length; i++) {
+                    if (projectId == $scope.owner.projectsFollow[i]) {
+                        followFlag = true;
+                        break;
+                    }
+                }
+            }
+
+            return followFlag;
+        };
+
+        $scope.updateUser = function () {
+            RestService.updateUser($scope.owner)
+                .then(
+                    function(data) {
+                        toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.follow = function (projectId) {
+            if(!$scope.owner.projectsFollow) {
+                $scope.owner.projectsFollow = [];
+            }
+            $scope.owner.projectsFollow.push(projectId);
+
+            $scope.updateUser();
+        };
+
+        $scope.unfollow = function (projectId) {
+            for (var i = 0; i<$scope.owner.projectsFollow.length; i++) {
+                if (projectId == $scope.owner.projectsFollow[i]) {
+                    $scope.owner.projectsFollow.splice( i , 1 );
+                    break;
+                }
+            }
+            $scope.updateUser();
         };
     }]);

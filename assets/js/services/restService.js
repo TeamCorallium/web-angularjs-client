@@ -2,7 +2,7 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
-    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
 
     return {
 
@@ -32,8 +32,8 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
-        updateUser: function(user, id) {
-            return $http.put(serverUrl + 'user/' + id, user)
+        updateUser: function(user) {
+            return $http.put(serverUrl + 'user/' , user)
                 .then(
                     function(response){
                         return response.data;
@@ -98,8 +98,8 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
         },
 
         /** EYE **/
-        fetchAllProject: function() {
-            return $http.get(serverUrl + 'simpleProjectById/allProjects')
+        fetchAllProject: function(userId) {
+            return $http.get(serverUrl + 'allProjectsExceptId/' + userId)
                 .then(
                     function(response){
                         return response.data;

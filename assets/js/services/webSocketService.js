@@ -25,7 +25,7 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
             return ws.readyState;
         },
         open: function() {
-            ws = $websocket('ws://127.0.0.1:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
+            ws = $websocket('ws://localhost:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
         },
         send: function(message) {
             ws.send(message);

@@ -112,4 +112,5 @@ xcuserdata
 /RTL/**
 /standardversion/**
 .idea/**
-
+server/databases/__pycache__
+server/databases/__pycache__/**

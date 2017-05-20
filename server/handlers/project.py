@@ -87,4 +87,26 @@ class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
 
         table_simple_project.remove(eids=[int(projectId)])
         self.write(str(projectId))
+
+class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, userId):
+        print('AllProjectsExceptIdHandler:GET!!!')
+
+        print('userId: ' + userId)
+
+        projects = table_simple_project.search(where('userId') != userId)
+        self.write(json.dumps(projects))
+
+        print(projects)        
                 

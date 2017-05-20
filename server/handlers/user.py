@@ -55,3 +55,25 @@ class UserHandler(tornado.web.RequestHandler):
             table_user.update({'id': id}, eids=[id])
             self.write(str(id))
             print(id)
+
+    def put(self):
+        print("User:PUT!!!")
+
+        self.json_args = json.loads(self.request.body)
+
+        print(self.json_args)
+
+        table_user.update({'projectsFollow': self.json_args['projectsFollow']}, eids=[self.json_args['id']])
+
+        # users = table_user.search(where('id') == self.json_args['id'])
+        # print(users[0]['projectsFollow'][0])
+        
+        # print(len(table_user.search(where('email') == self.json_args['email'])))
+
+        # if len(table_user.search(where('email') == self.json_args['email'])) != 0:
+        #     self.write('-1')
+        # else:
+        #     id = table_user.insert(self.json_args)
+        #     table_user.update({'id': id}, eids=[id])
+        #     self.write(str(id))
+        #     print(id)            

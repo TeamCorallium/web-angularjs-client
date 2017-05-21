@@ -2,7 +2,7 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
-    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
 
     return {
 
@@ -97,23 +97,9 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
-        /** EYE **/
+        //Function for obtain all projects excepts the user's projects
         fetchAllProject: function(userId) {
             return $http.get(serverUrl + 'allProjectsExceptId/' + userId)
-                .then(
-                    function(response){
-                        return response.data;
-                    },
-                    function(errResponse){
-                        console.error('Error while fetching All Projects');
-                        return $q.reject(errResponse);
-                    }
-                );
-        },
-
-        /** EYE **/
-        fetchAllForums: function(userId) {
-            return $http.get(serverUrl + 'forumsByUserId/' + userId)
                 .then(
                     function(response){
                         return response.data;
@@ -205,13 +191,13 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
         },
 
         fetchAllNotifications: function(userId) {
-            return $http.get(serverUrl + 'notificationsByUserId/' + userId)
+            return $http.get(serverUrl + 'notifiesByUserId/' + userId)
                 .then(
                     function(response){
                         return response.data;
                     },
                     function(errResponse){
-                        console.error('Error while fetching notifications By User Id');
+                        console.error('Error while fetching notifies By User Id');
                         return $q.reject(errResponse);
                     }
                 );

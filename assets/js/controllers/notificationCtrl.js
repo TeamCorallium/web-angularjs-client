@@ -2,19 +2,10 @@
  * Created by Ale on 5/17/2017.
  */
 
-app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService",
-    function($scope, $rootScope, localStorageService) {
+app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService", "RestService",
+    function($scope, $rootScope, localStorageService, RestService) {
 
         $scope.scopeVariable = 0;
-
-        // var dataStream = $websocket('ws://10.8.25.241:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
-
-        // dataStream.onMessage(function(message) {
-        //     console.log(message.data);
-        //     if(message.data == "NOTIFICATION") {
-        //         $scope.scopeVariable++;
-        //     }
-        // });
 
         $rootScope.$on('newNotification', function() {
             $scope.scopeVariable++;
@@ -22,13 +13,28 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
         
         $scope.notifications = [];
         $scope.currentNotification = {
-            "from" : '',
-            "date" : '',
-            "subject" : '',
-            "read" : '',
-            "content" : '',
-            "avatar" : 'assets/images/default-user.png',
-            "type": ''
+            userId: '',
+            from: '',
+            date: '',
+            subject: '',
+            read: '',
+            content: '',
+            avatar: 'assets/images/default-user.png',
+            type: ''
         };
+
+        $scope.getNotificationsByUserId = function () {
+            RestService.fetchAllNotifications(localStorageService.get('currentUserId'))
+                .then(
+                    function(data) {
+                        $scope.notifications = data;
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getNotificationsByUserId();
 
     }]);

@@ -23,138 +23,6 @@
 			</div>
 		</div>
 		<div class="row">
-			<!--<div class="col-md-3">-->
-			<!--<aside class="sidebar">-->
-			<!--<form>-->
-			<!--<div class="input-group">-->
-			<!--<input type="text" class="form-control" placeholder="Search..." name="s" id="s">-->
-			<!--<span class="input-group-btn">-->
-			<!--<button type="submit" class="btn btn-primary">-->
-			<!--<i class="fa fa-search"></i>-->
-			<!--</button> </span>-->
-			<!--</div>-->
-			<!--</form>-->
-			<!--<hr>-->
-			<!--<h4>Categories</h4>-->
-			<!--<ul class="nav nav-list blog-categories">-->
-			<!--<li>-->
-			<!--<a href="#"> Travel </a>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<a href="#"> Design </a>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<a href="#"> Videos </a>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<a href="#"> Photography </a>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<a href="#"> Lifestyle </a>-->
-			<!--</li>-->
-			<!--</ul>-->
-			<!--<div class="tabbable">-->
-			<!--<div class="tabs">-->
-			<!--<ul class="nav nav-tabs nav-justified">-->
-			<!--<li class="active">-->
-			<!--<a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> Popular</a>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<a href="#recentPosts" data-toggle="tab"> Recent </a>-->
-			<!--</li>-->
-			<!--</ul>-->
-			<!--<div class="tab-content">-->
-			<!--<div class="tab-pane active" id="popularPosts">-->
-			<!--<ul class="post-list">-->
-			<!--<li>-->
-			<!--<div class="post-image">-->
-			<!--<div class="img-thumbnail">-->
-			<!--<a href="#"> <img src="assets/images/portfolio/image01_th.jpg" alt="" class="img-responsive"> </a>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--<div class="post-info">-->
-			<!--<a href="#"> Nullam Vitae Nibh Un Odiosters </a>-->
-			<!--<div class="post-meta">-->
-			<!--Jan 10, 2014-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<div class="post-image">-->
-			<!--<div class="img-thumbnail">-->
-			<!--<a href="#"> <img src="assets/images/portfolio/image02_th.jpg" alt="" class="img-responsive"> </a>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--<div class="post-info">-->
-			<!--<a href="#"> Vitae Nibh Un Odiosters </a>-->
-			<!--<div class="post-meta">-->
-			<!--Jan 10, 2014-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<div class="post-image">-->
-			<!--<div class="img-thumbnail">-->
-			<!--<a href="#"> <img src="assets/images/portfolio/image03_th.jpg" alt="" class="img-responsive"> </a>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--<div class="post-info">-->
-			<!--<a href="#"> Odiosters Nullam Vitae </a>-->
-			<!--<div class="post-meta">-->
-			<!--Jan 10, 2014-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</li>-->
-			<!--</ul>-->
-			<!--</div>-->
-			<!--<div class="tab-pane" id="recentPosts">-->
-			<!--<ul class="post-list">-->
-			<!--<li>-->
-			<!--<div class="post-image">-->
-			<!--<div class="img-thumbnail">-->
-			<!--<a href="#"> <img src="assets/images/portfolio/image04_th.jpg" alt="" class="img-responsive"> </a>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--<div class="post-info">-->
-			<!--<a href="#"> Vitae Nibh Un Odiosters </a>-->
-			<!--<div class="post-meta">-->
-			<!--Jan 10, 2014-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<div class="post-image">-->
-			<!--<div class="img-thumbnail">-->
-			<!--<a href="#"> <img src="assets/images/portfolio/image05_th.jpg" alt="" class="img-responsive"> </a>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--<div class="post-info">-->
-			<!--<a href="#"> Odiosters Nullam Vitae </a>-->
-			<!--<div class="post-meta">-->
-			<!--Jan 10, 2014-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</li>-->
-			<!--<li>-->
-			<!--<div class="post-image">-->
-			<!--<div class="img-thumbnail">-->
-			<!--<a href="#"> <img src="assets/images/portfolio/image06_th.jpg" alt="" class="img-responsive"> </a>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--<div class="post-info">-->
-			<!--<a href="#"> Nullam Vitae Nibh Un Odiosters </a>-->
-			<!--<div class="post-meta">-->
-			<!--Jan 10, 2014-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</li>-->
-			<!--</ul>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</div>-->
-			<!--</aside>-->
-			<!--</div>-->
 			<div class="col-sm-12 col-md-12 col-lg-12">
 				<div class="blog-posts">
 					<ul class="list-unstyled">
@@ -166,7 +34,7 @@
 										  class="img-responsive img-rounded notification-image">
 								</div>
 								<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-									<span class="notification-author"><a ng-click="goToProject(project.id)"> {{project.projectName}} </a></span>
+									<span class="notification-author"><a ng-click="goToExploreProject(project.id)"> {{project.projectName}} </a></span>
 									<span class="notification-time"> {{getCreationProject(project.creationDate)}}</span>
 								</div>
 								<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
@@ -181,7 +49,7 @@
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 no-padding">
 										<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
-												ng-click="goToProject(project.id)">
+												ng-click="goToExploreProject(project.id)">
 											<span class="fa fa-arrow-right"></span> Read more
 										</button>
 										<button ng-click="follow(project.id)" ng-hide="isFollowProject(project.id)" type="button" class="btn btn-success btn-xs pull-right margin-left-5">

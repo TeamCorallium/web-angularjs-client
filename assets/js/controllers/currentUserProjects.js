@@ -89,6 +89,12 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
             $state.go('app.project.subproject_detail');
         };
 
+        $scope.goToExploreProject = function (projectId) {
+            localStorageService.set('currentProjectId',projectId);
+            $scope.getProjectById(projectId);
+            $state.go('app.project.explore_subproject');
+        };
+
         $scope.goToOpportunities = function (projectId) {
             localStorageService.set('currentProjectId',projectId);
             $scope.getProjectById(projectId);

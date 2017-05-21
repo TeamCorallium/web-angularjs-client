@@ -45,4 +45,10 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
             $state.go('app.project.task_detail');
         };
 
+        $scope.goToExploreTask = function (taskId) {
+            localStorageService.set('currentTaskId',taskId);
+            $scope.getTaskById(taskId);
+            $state.go('app.project.explore_task_detail');
+        };
+
     }]);

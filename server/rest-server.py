@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 import tornado.escape
 import tornado.ioloop
@@ -12,6 +13,7 @@ from handlers.project import *
 from handlers.user import *
 from handlers.task import *
 from handlers.proposal import *
+from handlers.notifies import *
 
 from databases.coralliumTiny import *
 from localutils.client import * 
@@ -46,7 +48,10 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                     id = table_proposal.insert(self.json_args['value'])
                     table_proposal.update({'id': id}, eids=[id])
 
-                    table_notification.insert({'userId': self.id, 'read': False, 'content': "New proposal was created"})
+                    users = table_user.search(where('id') == int(self.id))
+
+                    table_notification.insert({'userId': self.id, 'from': users[0]['fullName'], 'read': False, 'type': "0", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                               'subject': "Creation", 'content': "New proposal was created"})
             
             client.connection.write_message("NOTIFICATION")
 
@@ -83,10 +88,11 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/taskByProjectId/(.*)", TaskByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalByProjectId/(.*)", ProposalByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalById/(.*)", ProposalByIdHandler),
+    (r"/CoralliumRestAPI/notifiesByUserId/(.*)", NotifiesByUserIdHandler),
     (r"/CoralliumRestAPI/ws(.*)", WebSocketHandler)
 ])
 
 if __name__ == "__main__":
-    print('Ravic server---host:localhost---port:9090')
+    print('Corallium Server---host:localhost---port:9090')
     application.listen(9090)
     tornado.ioloop.IOLoop.instance().start()

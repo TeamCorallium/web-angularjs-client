@@ -110,6 +110,8 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
         $scope.logout = function () {
             if(localStorageService.get('isLogged')) {
                 localStorageService.set('isLogged', false);
+                localStorageService.remove('currentUserId');
+                localStorageService.remove('currentProjectId');
                 $rootScope.$broadcast('sessionChanged');
                 $state.go('app.default');
             } else {

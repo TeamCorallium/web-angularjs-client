@@ -46,9 +46,10 @@ class UserHandler(tornado.web.RequestHandler):
         print(self.json_args['password'])
         print(self.json_args['gender'])
 
-        print(len(table_user.search(where('email') == self.json_args['email'])))
+        users = table_user.search(where('email') == self.json_args['email'])
+        print(users)
 
-        if len(table_user.search(where('email') == self.json_args['email'])) != 0:
+        if len(users) != 0:
             self.write('-1')
         else:
             id = table_user.insert(self.json_args)
@@ -67,7 +68,7 @@ class UserHandler(tornado.web.RequestHandler):
 
         # users = table_user.search(where('id') == self.json_args['id'])
         # print(users[0]['projectsFollow'][0])
-        
+
         # print(len(table_user.search(where('email') == self.json_args['email'])))
 
         # if len(table_user.search(where('email') == self.json_args['email'])) != 0:

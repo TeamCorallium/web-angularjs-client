@@ -105,7 +105,12 @@ class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
 
         print('userId: ' + userId)
 
-        projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
+        projects = []
+        if userId != 'null':
+            projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
+        else:
+            projects = table_simple_project.all()
+
         self.write(json.dumps(projects))
 
         print(projects)        

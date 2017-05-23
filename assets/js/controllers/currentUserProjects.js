@@ -28,15 +28,19 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         }
 
         $scope.getProjects = function () {
-            RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
-                .then(
-                    function(data) {
-                        $scope.simpleProjects = data;
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
-                    }
-                );
+
+            if(localStorageService.get('isLogged')) {
+                
+                RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
+                    .then(
+                        function(data) {
+                            $scope.simpleProjects = data;
+                        },
+                        function(errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            }
         };
 
         $scope.getProjects();
@@ -117,11 +121,14 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.isFollowProject = function (projectId) {
             var followFlag = false;
 
-            if($scope.owner.projectsFollow) {
-                for (var i = 0; i<$scope.owner.projectsFollow.length; i++) {
-                    if (projectId == $scope.owner.projectsFollow[i]) {
-                        followFlag = true;
-                        break;
+            if(localStorageService.get('isLogged')) {
+
+                if($scope.owner.projectsFollow) {
+                    for (var i = 0; i<$scope.owner.projectsFollow.length; i++) {
+                        if (projectId == $scope.owner.projectsFollow[i]) {
+                            followFlag = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -142,12 +149,19 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         };
 
         $scope.follow = function (projectId) {
-            if(!$scope.owner.projectsFollow) {
-                $scope.owner.projectsFollow = [];
-            }
-            $scope.owner.projectsFollow.push(projectId);
 
-            $scope.updateUser();
+            if(localStorageService.get('isLogged')) {
+
+                if(!$scope.owner.projectsFollow) {
+                    $scope.owner.projectsFollow = [];
+                }
+                $scope.owner.projectsFollow.push(projectId);
+
+                $scope.updateUser();
+            } 
+            else {
+                toaster.pop('error', 'Error!!!', 'Must be login first.');
+            }
         };
 
         $scope.unfollow = function (projectId) {

@@ -642,6 +642,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Proposal View'
             },
             resolve: loadSequence('forumCtrl')
+        }).state('app.inversion', {
+            url: '/inversion',
+            templateUrl: "assets/views/inversion.html",
+            title: 'Inversion',
+            ncyBreadcrumb: {
+                label: 'Inversion'
+            }
         });
 
 

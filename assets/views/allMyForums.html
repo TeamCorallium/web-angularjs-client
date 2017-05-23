@@ -32,7 +32,7 @@
 					<li class="margin-bottom-15" ng-repeat="forum in allMyForums">
 						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<hr class="tall">
-							<span class="notification-author"><a ng-click="goToForum(project.id)"> {{forum.projectName}} </a></span>
+							<span class="notification-author"><a ng-click="goToForum(forum.id)"> {{forum.projectName}} </a></span>
 							<span class="notification-preview"><strong>Description:</strong> {{forum.description | htmlToPlaintext | words:40 :true}} </span>
 						</div>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -11,6 +11,8 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.creationProjectDate = '';
         $scope.deathLineProject = '';
 
+        $scope.listUserOwners = [];
+
         $scope.getProjectById = function (projectId) {
             RestService.fetchProjectById(projectId)
                 .then(
@@ -46,6 +48,10 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                 .then(
                     function(data) {
                         $scope.allProjects = data;
+
+                        for(var i = 0 ; i < $scope.allProjects.length; i++) {
+                            $scope.getUserName($scope.allProjects[i].userId);
+                        }
                     },
                     function(errResponse) {
                         console.log(errResponse);
@@ -68,6 +74,18 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         };
 
         $scope.getOwnerData();
+
+        $scope.getUserName = function (userId) {
+            RestService.fetchUser(userId)
+                .then(
+                    function(data) {
+                        $scope.listUserOwners.push(data[0].fullName);
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
 
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 

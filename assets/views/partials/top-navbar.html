@@ -7,7 +7,7 @@
 	<a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" ng-click="navbarCollapsed = !navbarCollapsed"> <span class="sr-only">Toggle navigation</span> <i class="ti-view-grid"></i> </a>
 	<a ng-controller="NotificationCtrl" class="visible-xs-block pull-right margin-right-10" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
 		<notification-icon count='scopeVariable'>
-			<i class="ti-bell"></i>
+			<i class="ti-bell" id="notification-header"></i>
 		</notification-icon>
 	</a>
 </div>

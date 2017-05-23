@@ -11752,14 +11752,12 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 
 .notification-author{
-  /*display: block;*/
   font-size: $font-size-small;
   font-weight: 600;
   line-height: normal;
 }
 
 .notification-time{
-  /*display: block;*/
   float: right;
   font-size: $font-size-extra-small;
   font-style: italic;
@@ -11777,12 +11775,11 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 /*************************/
 /**** Projects User   ****/
 /*************************/
-
-.margin-combo-projects{
+.margin-combo-projects {
   margin-top: -8px !important;
 }
 
-.margin-left-minus-15{
+.margin-left-minus-15 {
   margin-left: -15px !important;
 }
 
@@ -11793,7 +11790,14 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 /*******************************/
 /********* Proposal   **********/
 /*******************************/
-.proposal-image{
+.proposal-image {
   height: 80px !important;
   width: 80px !important;
+}
+
+/*******************************/
+/********* Top-Navbar **********/
+/*******************************/
+#notification-header {
+  color: #ffffff !important;
 }

@@ -10,24 +10,24 @@
 	</div>
 </section>
 <section class="container-fluid container-fullw bg-white" ng-controller="CurrentUserProjects">
-	<div class="container">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right no-padding">
-				<select class="cs-select cs-skin-elastic border-combo-projects">
-					<option value="Order By" disabled selected>Order By</option>
-					<option value="Cost">Cost</option>
-					<option value="State">State</option>
-					<option value="Owner">Owner</option>
-					<option value="Deathline">Deathline</option>
-				</select>
-			</div>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-bottom-15">
+		<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right">
+			<select class="cs-select cs-skin-elastic border-combo-projects">
+				<option value="Order By" disabled selected>Order By</option>
+				<option value="Cost">Cost</option>
+				<option value="State">State</option>
+				<option value="Owner">Owner</option>
+				<option value="Deathline">Deathline</option>
+			</select>
 		</div>
-		<div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-12">
+	</div>
+	<div class="container">
+		<uib-tabset class="tabbable">
+			<uib-tab heading="Projects">
 				<div class="blog-posts">
 					<ul class="list-unstyled">
 						<li class="margin-bottom-15" ng-repeat="project in allProjects">
-							<hr>
+							<hr class="tall">
 							<div class="clearfix">
 								<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
 									<img  ng-src="assets/images/portfolio/image06.jpg" alt=""
@@ -38,25 +38,25 @@
 									<span class="notification-time"> {{getCreationProject(project.creationDate)}}</span>
 								</div>
 								<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-									<span class="notification-preview">
-                                        <strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
-                                    </span>
+											<span class="notification-preview">
+												<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
+											</span>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
-										<span><i class="ti-timer"></i>
-                                            <strong> Deathline:</strong>  {{getDeathLineProject(project.deathLine)}}
-                                        </span>
+												<span><i class="ti-timer"></i>
+													<strong> Deathline:</strong>  {{getDeathLineProject(project.deathLine)}}
+												</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
-										<span><i class="ti-layers-alt"></i>
-                                            <strong> State:</strong>  {{stateArray[project.state]}}
-                                        </span>
+												<span><i class="ti-layers-alt"></i>
+													<strong> State:</strong>  {{stateArray[project.state]}}
+												</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
-										<span><i class="ti-layers-alt"></i>
-                                            <strong> Owner:</strong> {{listUserOwners[$index]}}
-                                        </span>
+												<span><i class="ti-layers-alt"></i>
+													<strong> Owner:</strong> {{listUserOwners[$index]}}
+												</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
 										<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
@@ -75,7 +75,10 @@
 						</li>
 					</ul>
 				</div>
-			</div>
-		</div>
+			</uib-tab>
+			<uib-tab heading="Users" active="editActive">
+
+			</uib-tab>
+		</uib-tabset>
 	</div>
 </section>

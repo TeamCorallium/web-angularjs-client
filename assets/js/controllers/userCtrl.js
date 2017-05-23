@@ -61,7 +61,8 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                                     if(data == -1) {
                                         toaster.pop('error', 'Error', 'Email in use. Please use another email to sign up.');
                                     } else {
-                                        $scope.user.id = data;
+                                        $scope.user.id = data[0].id;
+                                        $scope.userFirstName($scope.user.email);
                                         $scope.updateSessionInfo();
                                         $state.go('app.default');
 
@@ -89,6 +90,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                         function(data) {
                             if(data[0].password == $scope.user.password) {
                                 $scope.user.id = data[0].id;
+                                $scope.userFirstName(data[0].email);
                                 $scope.updateSessionInfo();
                                 $state.go('app.default');
 
@@ -117,5 +119,9 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             } else {
                 toaster.pop('error', 'Error', 'Not logged in.');
             }
+        };
+
+        $scope.userFirstName = function (email) {
+            $rootScope.user.name =  email.split("@")[0];
         }
     }]);

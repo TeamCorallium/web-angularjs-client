@@ -19,6 +19,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        // fetchUserById: function(userId) {
+        //     return $http.get(serverUrl + 'userById/' + userId)
+        //         .then(
+        //             function(response){
+        //                 return response.data;
+        //             },
+        //             function(errResponse){
+        //                 console.error('Error while fetching user by id');
+        //                 return $q.reject(errResponse);
+        //             }
+        //         );
+        // },
+
         createUser: function(user) {
             return $http.post(serverUrl +'user/', user)
                 .then(

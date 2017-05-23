@@ -17,8 +17,8 @@
 	<ul class="nav navbar-right" ct-fullheight="window" data-ct-fullheight-exclusion="header" data-ct-fullheight-if="isSmallDevice">
 		<!-- start: MESSAGES DROPDOWN -->
 		<!-- /// controller:  'InboxCtrl' -  localtion: assets/js/controllers/InboxCtrl.js /// -->
-		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-controller="NotificationCtrl">
-			<a href class="dropdown-toggle" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
+		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-click="navbarCollapsed = true">
+			<a href class="dropdown-toggle" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification" ng-controller="NotificationCtrl">
 				<notification-icon count='scopeVariable'>
 					<i class="ti-bell"></i>
 				</notification-icon>
@@ -28,9 +28,24 @@
 		</li>
 		<!-- end: MESSAGES DROPDOWN -->
 		<!-- start: ACTIVITIES DROPDOWN -->
-		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged">
-			<a href class="dropdown-toggle" uib-dropdown-toggle ui-sref="app.pages.timeline"> <i class="ti-check-box"></i>
-				<span translate="topbar.activities.MAIN">ACTIVITIES</span> </a>
+		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged" ng-click="navbarCollapsed = true">
+			<a href class="dropdown-toggle" uib-dropdown-toggle ui-sref="app.pages.timeline"> <i class="ti-check-box"></i> <span translate="topbar.activities.MAIN">ACTIVITIES</span> </a>
+<!-- 			<ul class="dropdown-menu dropdown-light dropdown-messages dropdown-large">
+				<li>
+					<span class="dropdown-header" translate="topbar.activities.HEADER"> You have new notifications</span>
+				</li>
+				<li>
+					<div class="drop-down-wrapper ps-container">
+						<div class="list-group no-margin">
+							<a class="media list-group-item" href=""> <img class="img-circle" alt="..." src="assets/images/avatar-1.jpg"> <span class="media-body block no-margin"> Use awesome animate.css <small class="block text-grey">10 minutes ago</small> </span> </a>
+							<a class="media list-group-item" href=""> <span class="media-body block no-margin"> 1.0 initial released <small class="block text-grey">1 hour ago</small> </span> </a>
+						</div>
+					</div>
+				</li>
+				<li class="view-all">
+					<a ui-sref="app.pages.timeline" translate="topbar.activities.SEEALL"> See All </a>
+				</li>
+			</ul> -->
 		</li>
 		<!-- end: ACTIVITIES DROPDOWN -->
 		<!-- start: LANGUAGE SWITCHER -->
@@ -38,7 +53,7 @@
 			<a href class="dropdown-toggle" uib-dropdown-toggle> <i class="ti-world"></i> {{language.selected}} </a>
 			<ul role="menu" class="dropdown-menu dropdown-light fadeInUpShort">
 				<li ng-repeat="(localeId, langName) in language.available">
-					<a ng-click="language.set(localeId, $event)" href="#" class="menu-toggler"> {{langName}} </a>
+					<a ng-click="language.set(localeId, $event)" href="#"> {{langName}} </a>
 				</li>
 			</ul>
 		</li>
@@ -48,14 +63,20 @@
 			<a href class="dropdown-toggle" uib-dropdown-toggle> <img src="assets/images/avatar-1.jpg" alt="">
 				<span class="username"> {{user.name}} <i class="ti-angle-down"></i></i></span> </a>
 			<ul class="dropdown-menu dropdown-dark">
-				<li>
+				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.user" translate="topbar.user.PROFILE"> My Profile </a>
 				</li>
-				<li>
+				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.calendar" translate="topbar.user.CALENDAR"> My Calendar </a>
 				</li>
-				<li ng-controller="UserCtrl">
-					<a translate="topbar.user.LOGOUT" ng-click="logout()"> Log Out </a>
+<!-- 				<li>
+					<a ui-sref="app.pages.messages" translate="topbar.user.MESSAGES"> My Messages (3) </a>
+				</li>
+				<li>
+					<a ui-sref="login.lockscreen" translate="topbar.user.LOCKSCREEN"> Lock Screen </a>
+				</li> -->
+				<li ng-click="navbarCollapsed = true" ng-controller="UserCtrl">
+					<a ng-controller="UserCtrl" translate="topbar.user.LOGOUT" ng-click="logout()"> Log Out </a>
 				</li>
 			</ul>
 		</li>
@@ -63,10 +84,10 @@
 
 		<!-- start: LANGUAGE SWITCHER -->
 		<!-- start: USER OPTIONS -->
-		<li class="current-user" ng-hide="isLogged">
+		<li class="current-user" ng-hide="isLogged" ng-click="navbarCollapsed = true">
 			<a ui-sref="app.login.signin"><i class="fa fa-sign-in"></i> Signin</a>
 		</li>
-		<li class="current-user" ng-hide="isLogged">
+		<li class="current-user" ng-hide="isLogged" ng-click="navbarCollapsed = true">
 			<a ui-sref="app.login.registration"><i class="fa fa-user"></i> Signup </a>
 		</li>
 		<!-- end: USER OPTIONS -->

@@ -135,7 +135,7 @@
 																Estimate duration <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks" data-ng-model="simpleProject.estimateDuration" name="estimateDuration" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="1" data-maxboostedstep="10000000" data-postfix="weeks" data-ng-model="simpleProject.estimateDuration" name="estimateDuration" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.estimateDuration.$dirty && Form.estimateDuration.$invalid">Estimate duration is required</span>
 															<span class="success text-small" ng-if="Form.estimateDuration.$valid">Thank You!</span>
@@ -274,7 +274,7 @@
 																Maximum Number of Investors <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="simpleProject.maxNumInves" name="maxNumInves" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="simpleProject.maxNumInves" name="maxNumInves" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.maxNumInves.$dirty && Form.maxNumInves.$invalid">Maximum Number of Investors is required</span>
 															<span class="success text-small" ng-if="Form.maxNumInves.$valid">Thank You!</span>
@@ -287,7 +287,7 @@
 																Minimun Financier Investment <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-postfix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.minCapInves.$dirty && Form.minCapInves.$invalid">Min Financier Capital is required</span>
 															<span class="success text-small" ng-if="Form.minCapInves.$valid">Thank You!</span>

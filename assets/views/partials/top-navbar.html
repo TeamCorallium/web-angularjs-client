@@ -2,7 +2,7 @@
 <!-- start: NAVBAR HEADER -->
 <div class="navbar-header">
 	<a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" ng-click="toggle('sidebar')" class="btn btn-navbar sidebar-toggle"> <i class="ti-align-justify"></i> </a>
-	<a class="navbar-brand" ui-sref="app.dashboard"> <img ng-src="{{app.layout.logo}}" alt="{{app.name}}"/> </a>
+	<a class="navbar-brand" ui-sref="app.default"> <img ng-src="{{app.layout.logo}}" alt="{{app.name}}"/> </a>
 	<a href="#" class="sidebar-toggler pull-right visible-md visible-lg" ng-click="app.layout.isSidebarClosed = !app.layout.isSidebarClosed"> <i class="ti-align-justify"></i> </a>
 	<a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" ng-click="navbarCollapsed = !navbarCollapsed"> <span class="sr-only">Toggle navigation</span> <i class="ti-view-grid"></i> </a>
 	<a ng-controller="NotificationCtrl" class="visible-xs-block pull-right margin-right-10" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
@@ -30,22 +30,6 @@
 		<!-- start: ACTIVITIES DROPDOWN -->
 		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged" ng-click="navbarCollapsed = true">
 			<a href class="dropdown-toggle" uib-dropdown-toggle ui-sref="app.pages.timeline"> <i class="ti-check-box"></i> <span translate="topbar.activities.MAIN">ACTIVITIES</span> </a>
-<!-- 			<ul class="dropdown-menu dropdown-light dropdown-messages dropdown-large">
-				<li>
-					<span class="dropdown-header" translate="topbar.activities.HEADER"> You have new notifications</span>
-				</li>
-				<li>
-					<div class="drop-down-wrapper ps-container">
-						<div class="list-group no-margin">
-							<a class="media list-group-item" href=""> <img class="img-circle" alt="..." src="assets/images/avatar-1.jpg"> <span class="media-body block no-margin"> Use awesome animate.css <small class="block text-grey">10 minutes ago</small> </span> </a>
-							<a class="media list-group-item" href=""> <span class="media-body block no-margin"> 1.0 initial released <small class="block text-grey">1 hour ago</small> </span> </a>
-						</div>
-					</div>
-				</li>
-				<li class="view-all">
-					<a ui-sref="app.pages.timeline" translate="topbar.activities.SEEALL"> See All </a>
-				</li>
-			</ul> -->
 		</li>
 		<!-- end: ACTIVITIES DROPDOWN -->
 		<!-- start: LANGUAGE SWITCHER -->
@@ -69,20 +53,12 @@
 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.calendar" translate="topbar.user.CALENDAR"> My Calendar </a>
 				</li>
-<!-- 				<li>
-					<a ui-sref="app.pages.messages" translate="topbar.user.MESSAGES"> My Messages (3) </a>
-				</li>
-				<li>
-					<a ui-sref="login.lockscreen" translate="topbar.user.LOCKSCREEN"> Lock Screen </a>
-				</li> -->
 				<li ng-click="navbarCollapsed = true" ng-controller="UserCtrl">
 					<a ng-controller="UserCtrl" translate="topbar.user.LOGOUT" ng-click="logout()"> Log Out </a>
 				</li>
 			</ul>
 		</li>
 		<!-- end: USER OPTIONS DROPDOWN -->
-
-		<!-- start: LANGUAGE SWITCHER -->
 		<!-- start: USER OPTIONS -->
 		<li class="current-user" ng-hide="isLogged" ng-click="navbarCollapsed = true">
 			<a ui-sref="app.login.signin"><i class="fa fa-sign-in"></i> Signin</a>

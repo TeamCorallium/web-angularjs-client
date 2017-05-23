@@ -28,17 +28,19 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<hr class="tall">
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="forum in allMyForums">
-						<a class="list-group-item" ng-click="goToForum(forum.id)">
-							<h5 class="list-group-item-heading">
-								{{forum.projectName}}
-							</h5>
-							<p class="list-group-item-text">
-								{{forum.description | htmlToPlaintext | words:40 :true}}
-							</p>
-						</a>
+						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<hr class="tall">
+							<span class="notification-author"><a ng-click="goToForum(project.id)"> {{forum.projectName}} </a></span>
+							<span class="notification-preview"><strong>Description:</strong> {{forum.description | htmlToPlaintext | words:40 :true}} </span>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<button type="button" class="btn btn-primary btn-xs pull-right"
+									ng-click="goToForum(project.id)">
+								<span class="fa fa-arrow-right"></span> Read more
+							</button>
+						</div>
 					</li>
 				</ul>
 			</div>

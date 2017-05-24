@@ -32,6 +32,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        fetchConnectedUsers: function(userId) {
+            return $http.get(serverUrl + 'connectedUsers/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching connected users by id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         createUser: function(user) {
             return $http.post(serverUrl +'user/', user)
                 .then(

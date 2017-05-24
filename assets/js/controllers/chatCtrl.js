@@ -2,7 +2,8 @@
 /**
  * controller for Messages
  */
-app.controller('ChatCtrl', ["$scope", function ($scope) {
+app.controller('ChatCtrl', ["$scope", "$rootScope", "RestService", "localStorageService",
+    function ($scope, $rootScope, RestService, localStorageService) {
 
     $scope.selfIdUser = 50223456;
     $scope.otherIdUser = 50223457;
@@ -11,6 +12,30 @@ app.controller('ChatCtrl', ["$scope", function ($scope) {
         $scope.otherIdUser = value;
     };
     var exampleDate = new Date().setTime(new Date().getTime() - 240000 * 60);
+
+    $scope.connectedUsers = [];
+
+    $scope.getConnectedUsers = function (userId) {
+        RestService.fetchConnectedUsers(userId)
+            .then(
+                function(data) {
+                    $scope.connectedUsers = data;
+                    console.log(data[0]);
+                },
+                function(errResponse) {
+                    console.log(errResponse);
+                }
+            );
+    };
+
+    console.log("ChatCtrl");
+    $rootScope.$on('new-user-connected', function() {
+        console.log("chat........new user..." + localStorageService.get('isLogged'));
+        if (localStorageService.get('isLogged')) {
+            var userId = localStorageService.get('currentUserId');
+            $scope.getConnectedUsers(userId);
+        }
+    });
 
     $scope.chat = [{
         "user": "Peter Clark",

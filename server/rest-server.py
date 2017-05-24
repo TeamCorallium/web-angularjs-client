@@ -14,6 +14,7 @@ from handlers.user import *
 from handlers.task import *
 from handlers.proposal import *
 from handlers.notifies import *
+from handlers.chat import *
 
 from databases.coralliumTiny import *
 from localutils.client import * 
@@ -32,7 +33,11 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         if newclient:
             clientRef = Client(self.id, self)
             clients.append(clientRef)
-            self.write_message("Hello %s !" %(self.id)) 
+
+            for client in clients:
+                client.connection.write_message("NEW-USER-CONNECTED") 
+
+            self.write_message("Hello %s !" %(self.id))
 
         print('WebSocketHandler:OPEN')
 
@@ -78,6 +83,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 application = tornado.web.Application([
     (r"/CoralliumRestAPI/user/?", UserHandler),
     (r"/CoralliumRestAPI/user/(.*)", UserHandler),
+    (r"/CoralliumRestAPI/allUsersExceptId/(.*)", AllUsersExceptIdHandler),
+    (r"/CoralliumRestAPI/connectedUsers/(.*)", ConnectedUserHandler),
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
     (r"/CoralliumRestAPI/simpleProject/(.*)", SimpleProjectHandler),
     (r"/CoralliumRestAPI/simpleProjectById/(.*)", SimpleProjectByIdHandler),

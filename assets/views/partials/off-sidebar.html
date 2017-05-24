@@ -11,17 +11,17 @@
 				<div class="sidebar-content" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
 					<h5 class="sidebar-title" translate="offsidebar.chat.ONLINE">On-line</h5>
 					<ul class="media-list">
-						<li class="media">
+						<li class="media"  ng-repeat="user in connectedUsers">
 							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223457)">
 								<i class="fa fa-circle status-online"></i>
-								<img alt="..." src="assets/images/avatar-2.jpg" class="media-object">
+								<img alt="..." src="assets/images/avatar-1.jpg" class="media-object">
 								<div class="media-body">
-									<h4 class="media-heading">Nicole Bell</h4>
-									<span> Content Designer </span>
+									<h4 class="media-heading">{{user.fullName}}</h4>
+									<span> Owner </span>
 								</div>
 							</a>
 						</li>
-						<li class="media">
+						<!-- <li class="media">
 							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223458)">
 								<div class="user-label">
 									<span class="label label-success">3</span>
@@ -53,8 +53,8 @@
 									<span> Senior Designer </span>
 								</div>
 							</a>
-						</li>
-					</ul>
+						</li> -->
+<!-- 					</ul>
 					<h5 class="sidebar-title" translate="offsidebar.chat.OFFLINE">Off-line</h5>
 					<ul class="media-list">
 						<li class="media">
@@ -114,7 +114,7 @@
 								</div>
 							</a>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 			<div class="user-chat">				

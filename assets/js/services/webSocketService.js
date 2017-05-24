@@ -13,8 +13,12 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
             console.log("WebSocketService:onMessage: " + message.data);
 
             if(message.data == 'NOTIFICATION') {
-                $rootScope.$broadcast('newNotification');
-                console.log("WebSocketService:newNotification");
+                $rootScope.$broadcast('new-notification');
+                console.log("WebSocketService:new-notification");
+            }
+            if (message.data == 'NEW-USER-CONNECTED') {
+                $rootScope.$broadcast('new-user-connected');
+                console.log("WebSocketService:new-user-connected");
             }
         });
 
@@ -33,7 +37,6 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
             return ws.readyState;
         },
         open: function() {
-            // ws = $websocket('ws://127.0.0.1:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
             wsBinding();
         },
         send: function(message) {

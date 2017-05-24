@@ -7,7 +7,7 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
 
         $scope.scopeVariable = 0;
 
-        $rootScope.$on('newNotification', function() {
+        $rootScope.$on('new-notification', function() {
             $scope.scopeVariable++;
         });
         

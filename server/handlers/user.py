@@ -9,6 +9,7 @@ import json
 import logging
 
 from databases.coralliumTiny import *
+from localutils.client import * 
 
 class UserHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -78,3 +79,53 @@ class UserHandler(tornado.web.RequestHandler):
         #     table_user.update({'id': id}, eids=[id])
         #     self.write(str(id))
         #     print(id)            
+
+class AllUsersExceptIdHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, userId):
+        print('AllUsersExceptIdHandler:GET!!!')
+
+        print('userId: ' + userId)
+
+        users = []
+        if userId != 'null':
+            users = table_user.search((where('id') != userId) & (where('id') != int(userId)))
+        else:
+            users = table_user.all()
+
+        self.write(json.dumps(users))
+
+        print(users)
+
+class ConnectedUserHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, userId):
+        print('ConnectedUser:GET!!!' + userId)
+
+        users = []
+        for client in clients:
+            print(client.id)
+            user = table_user.get(eid=int(client.id))
+            users.append(user)
+
+        self.write(json.dumps(users))

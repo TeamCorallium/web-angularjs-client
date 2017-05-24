@@ -198,12 +198,20 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Task'
             },
             resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects', 'taskCtrl')
-        }).state('app.project.explore_task_detail', {
-            url: '/task',
-            templateUrl: "assets/views/explore_task_detail.html",
-            title: 'Project',
+        }).state('app.project.opportunities_task_detail', {
+            url: '/opportunitytask',
+            templateUrl: "assets/views/opportunities_task_detail.html",
+            title: 'Task',
             ncyBreadcrumb: {
-                label: 'Task'
+                label: 'Opportunity Task'
+            },
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects', 'taskCtrl')
+        }).state('app.project.explore_task_detail', {
+            url: '/exploretask',
+            templateUrl: "assets/views/explore_task_detail.html",
+            title: 'Task',
+            ncyBreadcrumb: {
+                label: 'Explore Task'
             },
             resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects', 'taskCtrl')
         }).state('app.project.user_project', {
@@ -634,6 +642,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Proposal View'
             },
             resolve: loadSequence('forumCtrl')
+        }).state('app.inversion', {
+            url: '/inversion',
+            templateUrl: "assets/views/inversion.html",
+            title: 'Inversion',
+            ncyBreadcrumb: {
+                label: 'Inversion'
+            }
         });
 
 

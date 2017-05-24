@@ -15,6 +15,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
         $scope.proposalTitle = '';
         $scope.proposalContent = '';
         $scope.itemSubject = '';
+        $scope.currentForumActive = '';
 
         //Array for all proposal of one project
         $scope.proposalsProject = [];
@@ -119,6 +120,24 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
 
         $scope.goToForum = function (projectId) {
             localStorageService.set('currentProjectId',projectId);
+            $scope.getProjectById(projectId);
             $state.go('app.forum.base');
+        };
+
+        $scope.getProjectById = function(projectId){
+            RestService.fetchProjectById(projectId)
+                .then(
+                    function(data) {
+                        $scope.currentForumActive =  data[0];
+                        console.log($scope.currentForumActive.projectName + " currentForumActive");
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        if(localStorageService.get('currentProjectId')!= null){
+            $scope.getProjectById(localStorageService.get('currentProjectId'));
         }
     }]);

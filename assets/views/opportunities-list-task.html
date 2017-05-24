@@ -22,7 +22,7 @@
 						<hr class="tall">
 						<div class="clearfix">
 							<div class="thread-content col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-top-10">
-								<span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
+								<span class="notification-author"><a ng-click="goToOpportunitiesTask(task.id)">{{task.name}}</a></span>
 							</div>
 							<div class="thread-content col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3 margin-top-10">
 								<span class="label label-inverse state-list-tasks">{{ stateArray[task.state]}}</span>
@@ -36,7 +36,7 @@
 									<button type="button" class="btn btn-success btn-xs">
 										<span class="fa fa-edit"></span> Update
 									</button>
-									<button type="button" class="btn btn-warning btn-xs">
+									<button ng-click="goToOpportunitiesTask(task.id)" type="button" class="btn btn-warning btn-xs">
 										<span class="fa fa-arrow-right"></span> View
 									</button>
 									<button type="button" class="btn btn-danger btn-xs">

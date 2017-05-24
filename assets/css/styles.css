@@ -2552,6 +2552,18 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
   width: 200px !important;
 }
 
+.width-220 {
+  width: 220px !important;
+}
+
+.width-240 {
+  width: 240px !important;
+}
+
+.width-250 {
+  width: 250px !important;
+}
+
 .vertical-align-bottom {
   vertical-align: bottom !important;
 }
@@ -11748,6 +11760,13 @@ figure.effect-zoe:hover p.icon-links a:first-child {
   float: left;
   height: 80px;
   margin-right: 5%;
+  width: 80px;
+}
+
+.explore-user-image{
+  display: block !important;
+  height: 80px;
+  margin: auto !important;
   width: 80px;
 }
 

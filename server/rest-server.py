@@ -64,9 +64,10 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         print('WebSocketHandler:on_close')
         for client in clients:
             if self.id == client.id:
-                clients.remove(client)
-                break        
+                clients.remove(client)  
 
+                for client in clients:
+                    client.connection.write_message("NEW-USER-CONNECTED")
     # @classmethod
     # def send_updates(cls, message):
     #     logging.info("sending message to %d waiters", len(cls.waiters))

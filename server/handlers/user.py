@@ -125,7 +125,9 @@ class ConnectedUserHandler(tornado.web.RequestHandler):
         users = []
         for client in clients:
             print(client.id)
-            user = table_user.get(eid=int(client.id))
-            users.append(user)
+
+            if int(client.id) != int(userId):
+                user = table_user.get(eid=int(client.id))
+                users.append(user)
 
         self.write(json.dumps(users))

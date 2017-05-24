@@ -114,6 +114,8 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 localStorageService.set('isLogged', false);
                 localStorageService.remove('currentUserId');
                 localStorageService.remove('currentProjectId');
+
+                WebSocketService.close();
                 $rootScope.$broadcast('sessionChanged');
                 $state.go('app.default');
             } else {

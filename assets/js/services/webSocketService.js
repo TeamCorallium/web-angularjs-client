@@ -7,7 +7,7 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
 
     var ws = '';
     var wsBinding = function() {
-        ws = $websocket('ws://10.8.25.241:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
+        ws = $websocket('ws://127.0.0.1:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
 
         ws.onMessage(function(message) {
             console.log("WebSocketService:onMessage: " + message.data);
@@ -25,6 +25,10 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
         ws.onOpen(function() {
             console.log('WebSocketService:onOpen');
         });
+
+        ws.onClose(function() {
+            console.log('WebSocketService:onClose');
+        });       
     }
 
     if(localStorageService.get('currentUserId')) {
@@ -39,6 +43,9 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
         open: function() {
             wsBinding();
         },
+        close: function() {
+            ws.close();
+        },        
         send: function(message) {
             ws.send(message);
             console.log('WebSocketService:send: ' + message);

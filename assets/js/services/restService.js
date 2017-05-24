@@ -6,14 +6,27 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
 
     return {
 
-        fetchUser: function(email) {
-            return $http.get(serverUrl + 'user/' + email)
+        fetchUser: function(userId) {
+            return $http.get(serverUrl + 'user/' + userId)
                 .then(
                     function(response){
                         return response.data;
                     },
                     function(errResponse){
                         console.error('Error while fetching user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        fetchAllUsers: function(userId) {
+            return $http.get(serverUrl + 'allUsersExceptId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching all users');
                         return $q.reject(errResponse);
                     }
                 );

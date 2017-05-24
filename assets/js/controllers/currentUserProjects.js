@@ -12,6 +12,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.deathLineProject = '';
 
         $scope.listUserOwners = [];
+        $scope.listAllUser = [];
 
         $scope.getProjectById = function (projectId) {
             RestService.fetchProjectById(projectId)
@@ -32,7 +33,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.getProjects = function () {
 
             if(localStorageService.get('isLogged')) {
-                
+
                 RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
                     .then(
                         function(data) {
@@ -176,7 +177,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                 $scope.owner.projectsFollow.push(projectId);
 
                 $scope.updateUser();
-            } 
+            }
             else {
                 toaster.pop('error', 'Error!!!', 'Must be login first.');
             }
@@ -191,4 +192,19 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
             }
             $scope.updateUser();
         };
+
+        $scope.getAllUsers = function () {
+            RestService.fetchAllUsers(localStorageService.get('currentUserId'))
+                .then(
+                    function(data) {
+                        $scope.listAllUser = data;
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getAllUsers(localStorageService.get('currentUserId'));
+
     }]);

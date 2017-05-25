@@ -73,6 +73,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Finance'
             }
+        }).state('app.allfinance', {
+            url: '/allfinance',
+            templateUrl: "assets/views/allMyFinanciersProjects.html",
+            title: 'Finance',
+            ncyBreadcrumb: {
+                label: 'Finance'
+            },
+            resolve: loadSequence('financierCtrl')
         }).state('app.news', {
             url: '/news',
             templateUrl: "assets/views/news.html",
@@ -157,7 +165,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Subproject'
             },
-            resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects')
+            resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects', 'taskCtrl')
         }).state('app.project.explore_subproject', {
             url: '/exploresubpoject',
             templateUrl: "assets/views/explore_subproject.html",
@@ -645,6 +653,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.inversion', {
             url: '/inversion',
             templateUrl: "assets/views/inversion.html",
+            title: 'Inversion',
+            ncyBreadcrumb: {
+                label: 'Inversion'
+            }
+        }).state('app.inversion_finished', {
+            url: '/inversion',
+            templateUrl: "assets/views/inversion_finished.html",
             title: 'Inversion',
             ncyBreadcrumb: {
                 label: 'Inversion'

@@ -6,6 +6,7 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
     function ($scope, localStorageService, RestService, $state, toaster) {
 
         $scope.tasksProject = [];
+        $scope.tasksFiltre = [];
         $scope.currentTaskActive = '';
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
@@ -14,6 +15,8 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
                 .then(
                     function(data) {
                         $scope.tasksProject = data;
+                        $scope.getTaskByState();
+                        $scope.changeStateFiltre();
                     },
                     function(errResponse){
                         toaster.pop('error', 'Error', 'Problems occurred while getting the tasks.');
@@ -22,6 +25,23 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
         };
 
         $scope.getTaskByProjectsId(localStorageService.get('currentProjectId'));
+
+        $scope.getTaskByState = function () {
+            for (var i=0; i < $scope.tasksProject.length; i++) {
+                if ($scope.tasksProject[i].state == 2 || $scope.tasksProject[i].state == 3 ||
+                    $scope.tasksProject[i].state == 4 || $scope.tasksProject[i].state == 5) {
+                    $scope.tasksFiltre.push($scope.tasksProject[i]);
+                }
+            }
+        };
+
+        $scope.nullTasksFiltre = true;
+
+        $scope.changeStateFiltre  = function () {
+            if($scope.tasksFiltre.length > 0) {
+                $scope.nullTasksFiltre = false;
+            }
+        };
 
         $scope.getTaskById = function(taskId){
             RestService.fetchTaskByTaskId(taskId)

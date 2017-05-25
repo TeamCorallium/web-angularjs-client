@@ -1133,9 +1133,10 @@ canvas[tc-chartjs-line], canvas[tc-chartjs-bar], canvas[tc-chartjs-radar] {
 
 .gallery-thumbs {
   box-sizing: border-box;
-  height: 200px;
+  /*height: 200px;*/
   padding: 10px 0;
 }
+
 @media (max-width: 991px) {
   .gallery-thumbs {
     height: 150px;

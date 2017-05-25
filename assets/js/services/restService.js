@@ -45,6 +45,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        fetchChatMessages: function(userId) {
+            return $http.get(serverUrl + 'chats/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching connected users by id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         createUser: function(user) {
             return $http.post(serverUrl +'user/', user)
                 .then(

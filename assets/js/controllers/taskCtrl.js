@@ -7,6 +7,7 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
 
         $scope.tasksProject = [];
         $scope.tasksFiltre = [];
+        $scope.tasksFiltreInPreparation = [];
         $scope.currentTaskActive = '';
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
@@ -15,7 +16,8 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
                 .then(
                     function(data) {
                         $scope.tasksProject = data;
-                        $scope.getTaskByState();
+                        $scope.getTaskByStateStartedOrFinished();
+                        $scope.getTaskByStateInPreparation();
                         $scope.changeStateFiltre();
                     },
                     function(errResponse){
@@ -26,11 +28,19 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
 
         $scope.getTaskByProjectsId(localStorageService.get('currentProjectId'));
 
-        $scope.getTaskByState = function () {
+        $scope.getTaskByStateStartedOrFinished = function () {
             for (var i=0; i < $scope.tasksProject.length; i++) {
                 if ($scope.tasksProject[i].state == 2 || $scope.tasksProject[i].state == 3 ||
                     $scope.tasksProject[i].state == 4 || $scope.tasksProject[i].state == 5) {
                     $scope.tasksFiltre.push($scope.tasksProject[i]);
+                }
+            }
+        };
+
+        $scope.getTaskByStateInPreparation = function () {
+            for (var i=0; i < $scope.tasksProject.length; i++) {
+                if ($scope.tasksProject[i].state == 1) {
+                    $scope.tasksFiltreInPreparation.push($scope.tasksProject[i]);
                 }
             }
         };

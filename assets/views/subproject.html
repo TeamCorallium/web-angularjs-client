@@ -329,26 +329,9 @@
                                     </div>
                                     <div class="panel-body no-padding">
                                         <ul class="list-group" ng-hide="nullTasksFiltre">
-                                            <li class="list-group-item" ng-repeat="task in tasksFiltre">
-                                                <!--<span class="badge badge-success">-->
-                                                    <!--<a class="fa fa-check list-task"></a>-->
-                                                <!--</span>-->
+                                            <li class="list-group-item" ng-repeat="task in tasksFiltre">a
                                                 <a ng-click="goToTask(task.id)">{{task.name}}</a>
                                             </li>
-                                            <!--<li class="list-group-item">-->
-                                                <!--<span class="badge">-->
-                                                    <!--<a ui-sref="app.project.task_detail"-->
-                                                       <!--class="fa fa-spinner list-task"></a>-->
-                                                <!--</span>-->
-                                                <!--Fusce in hendrerit purus. Suspendisse potenti.-->
-                                            <!--</li>-->
-                                            <!--<li class="list-group-item">-->
-                                                <!--<span class="badge badge-inverse">-->
-                                                    <!--<a ui-sref="app.project.task_detail"-->
-                                                       <!--class="fa fa-ban list-task"></a>-->
-                                                <!--</span>-->
-                                                <!--Donec nisi libero, adipiscing id pretium eget, consectetur sit amet leo.-->
-                                            <!--</li>-->
                                         </ul>
                                         <span ng-show="nullTasksFiltre">Not exists active or finished tasks</span>
                                     </div>

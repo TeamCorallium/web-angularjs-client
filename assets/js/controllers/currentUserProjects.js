@@ -207,4 +207,15 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
 
         $scope.getAllUsers(localStorageService.get('currentUserId'));
 
+        $scope.possibleInvestmentArray = [];
+
+        $scope.getPossibleInvestment = function () {
+            $scope.possibleInvestmentArray.push("100");
+            $scope.possibleInvestmentArray.push("200");
+            $scope.possibleInvestmentArray.push("300");
+            $scope.possibleInvestmentArray.push("400");
+        };
+
+        $scope.getPossibleInvestment();
+
     }]);

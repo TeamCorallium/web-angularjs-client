@@ -77,26 +77,17 @@
 				</div>
 			</uib-tab>
 			<uib-tab heading="Users" active="editActive">
-				<ul class="list-unstyled">
-					<li class="margin-bottom-15" ng-repeat="user in listAllUser">
-						<hr>
+				<ul class="list-unstyled list-inline">
+					<li class="margin-bottom-15 center width-240" ng-repeat="user in listAllUser">
 						<div class="clearfix">
-							<div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
-								<img  ng-src="assets/images/default-user.png" alt=""
-									  class="img-responsive img-rounded notification-image">
-							</div>
-							<div class="thread-content col-xs-7 col-sm-10 col-md-10 col-lg-10">
-								<span class="notification-author">{{user.fullName}}</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">
-								<span class="notification-preview">{{user.email}}</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">
-								<div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
-									<button type="button" class="btn btn-primary btn-xs">
-										<span class="glyphicon glyphicon-upload"></span> View Profile
-									</button>
-								</div>
+							<img  ng-src="assets/images/default-user.png" alt=""
+								  class="img-responsive img-rounded explore-user-image">
+							<span class="notification-author">{{user.fullName}}</span>
+							<span class="notification-preview">{{user.email}}</span>
+							<div data-title="Actions" data-title-override="Actions" class="margin-top-10">
+								<button type="button" class="btn btn-primary btn-xs">
+									<span class="glyphicon glyphicon-upload"></span> View Profile
+								</button>
 							</div>
 						</div>
 					</li>

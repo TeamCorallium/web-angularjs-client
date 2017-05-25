@@ -658,7 +658,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Inversion'
             }
         }).state('app.inversion_finished', {
-            url: '/inversion',
+            url: '/inversionfinished',
             templateUrl: "assets/views/inversion_finished.html",
             title: 'Inversion',
             ncyBreadcrumb: {

@@ -29,8 +29,8 @@ function ($rootScope, $state, $stateParams) {
             isSidebarFixed: true, // true if you want to initialize the template with fixed sidebar
             isSidebarClosed: false, // true if you want to initialize the template with closed sidebar
             isFooterFixed: false, // true if you want to initialize the template with fixed footer
-            theme: 'theme-2', // indicate the theme chosen for your project
-            logo: 'assets/images/logo2.png', // relative path of the project logo
+            theme: 'theme-4', // indicate the theme chosen for your project
+            logo: 'assets/images/clogo.png', // relative path of the project logo
         }
     };
 

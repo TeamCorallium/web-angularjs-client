@@ -26,13 +26,13 @@ class ChatHandler(tornado.web.RequestHandler):
     def get(self, userId):
         print('Chat:GET!!!' + userId)
 
-        user = '';
-
         for client in clients:
             print(client.id)
 
-        # self.write(json.dumps(user))
-        # print(user)
+        chats = table_chat.search(where('idUser') == int(userId))
+        self.write(json.dumps(chats))
+        
+        print(chats)
 
     def post(self):
         print("Chat:POST!!!")

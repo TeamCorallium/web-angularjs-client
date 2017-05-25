@@ -20,6 +20,10 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
                 $rootScope.$broadcast('new-user-connected');
                 console.log("WebSocketService:new-user-connected");
             }
+            if (message.data == 'NEW-CHAT-MESSAGE') {
+                $rootScope.$broadcast('new-chat-message');
+                console.log("WebSocketService:new-chat-message");
+            }            
         });
 
         ws.onOpen(function() {

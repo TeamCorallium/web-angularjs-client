@@ -43,10 +43,12 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
     def on_message(self, message):  
         print('WebSocketHandler:on_message: ' + message) 
+        
+        self.json_args = json.loads(message)
 
         for client in clients:
             if client.id == self.id:
-                self.json_args = json.loads(message)
+                
                 print(self.json_args['type'])
                 print(self.json_args['value'])
                 if self.json_args['type'] == 'PROPOSAL':
@@ -57,8 +59,14 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
                     table_notification.insert({'userId': self.id, 'from': users[0]['fullName'], 'read': False, 'type': "0", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                                'subject': "Creation", 'content': "New proposal was created"})
-            
-            client.connection.write_message("NOTIFICATION")
+                
+                if self.json_args['type'] == 'CHAT':
+                    table_chat.insert(self.json_args['value'])
+
+            if self.json_args['type'] == 'PROPOSAL':
+                client.connection.write_message("NOTIFICATION")
+            if self.json_args['type'] == 'CHAT':
+                client.connection.write_message("NEW-CHAT-MESSAGE")
 
     def on_close(self):
         print('WebSocketHandler:on_close')
@@ -84,6 +92,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 application = tornado.web.Application([
     (r"/CoralliumRestAPI/user/?", UserHandler),
     (r"/CoralliumRestAPI/user/(.*)", UserHandler),
+    (r"/CoralliumRestAPI/chats/(.*)", ChatHandler),
     (r"/CoralliumRestAPI/allUsersExceptId/(.*)", AllUsersExceptIdHandler),
     (r"/CoralliumRestAPI/connectedUsers/(.*)", ConnectedUserHandler),
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),

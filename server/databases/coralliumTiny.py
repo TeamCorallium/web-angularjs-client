@@ -14,6 +14,7 @@ table_task = db.table('table_task')
 table_proposal = db.table('table_proposal')
 table_notification = db.table('table_notification')
 table_chat = db.table('table_chat')
+table_invertion = db.table('table_invertion')
 
 # table_user.purge();
 # table_profile.purge();

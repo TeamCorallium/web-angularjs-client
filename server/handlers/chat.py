@@ -29,29 +29,11 @@ class ChatHandler(tornado.web.RequestHandler):
         for client in clients:
             print(client.id)
 
-        chats = table_chat.search(where('idUser') == int(userId))
+        chats = table_chat.search((where('idUser') == int(userId)) | (where('idOther') == int(userId)))
         self.write(json.dumps(chats))
-        
+
         print(chats)
 
     def post(self):
         print("Chat:POST!!!")
-
-        self.json_args = json.loads(self.request.body)
-
-        print(self.json_args['email'])
-        print(self.json_args['fullName'])
-        print(self.json_args['password'])
-        print(self.json_args['gender'])
-
-        users = table_user.search(where('email') == self.json_args['email'])
-        print(users)
-
-        if len(users) != 0:
-            self.write('-1')
-        else:
-            id = table_user.insert(self.json_args)
-            table_user.update({'id': id}, eids=[id])
-            self.write(str(id))
-            print(id)
            

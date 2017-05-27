@@ -56,14 +56,14 @@ function ($scope, FileUploader) {
 
     console.info('uploader', uploaderImages);
 }]);
-app.controller('UploadCtrl2', ['$scope', 'FileUploader',
-function ($scope, FileUploader) {
+
+app.controller('UploadCtrl2', ['$scope', 'FileUploader', 'RestService',
+function ($scope, FileUploader, RestService) {
     var uploader = $scope.uploader = new FileUploader({
-        url: 'upload.php'
+        url: RestService.url + 'upload/'
     });
 
     // FILTERS
-
     uploader.filters.push({
         name: 'customFilter',
         fn: function (item/*{File|FileLikeObject}*/, options) {

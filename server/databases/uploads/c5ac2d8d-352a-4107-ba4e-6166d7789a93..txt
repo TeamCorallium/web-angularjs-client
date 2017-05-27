@@ -1,0 +1,27 @@
+Proposed filter scheme
+
+Frontend
+	Prepare custom get request.	
+
+	Custom protocol -> Get ‘baseUrl/filter?ObjectName1=name&parametersCount=count&param1=value1&paramN=valueN
+					      &ObjectName2=name&parametersCount=count&param1=value1&paramN=valueN
+					      &ObjectNameN=name&parametersCount=count&param1=value1&paramN=valueN’
+
+	Maybe we need to pass some info related with the parameters data types. 
+
+	We can add other parameters, for example related with the pagination info (page=n&pageSize=n).
+
+	$httpParamSerializer -> Serialize the entire array.
+
+
+Backend
+	Develop a service to parse custom get requests.
+
+	We can use ParamFetcher class to obtain the request parameters, maybe full() method.
+	
+	We need some parameters to interact with mongodb, for example:
+	-> documents_path: Relative path to entities (‘UserBundle/Document/’)
+	-> I guess we need others, but right now i don't know, jeje. 
+
+	Use the Filter service in a controller that received a requests for GET /filter
+

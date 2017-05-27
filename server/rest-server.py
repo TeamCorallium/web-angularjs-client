@@ -15,6 +15,8 @@ from handlers.task import *
 from handlers.proposal import *
 from handlers.notifies import *
 from handlers.chat import *
+from handlers.upload import *
+from handlers.invertion import *
 
 from databases.coralliumTiny import *
 from localutils.client import * 
@@ -93,6 +95,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/user/?", UserHandler),
     (r"/CoralliumRestAPI/user/(.*)", UserHandler),
     (r"/CoralliumRestAPI/chats/(.*)", ChatHandler),
+    (r"/CoralliumRestAPI/upload/", UploadHandler),
     (r"/CoralliumRestAPI/allUsersExceptId/(.*)", AllUsersExceptIdHandler),
     (r"/CoralliumRestAPI/connectedUsers/(.*)", ConnectedUserHandler),
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
@@ -102,6 +105,8 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/simpleProjectDelete/([0-9]+)", SimpleProjectDeleteHandler),
     (r"/CoralliumRestAPI/task/?", TaskHandler),
     (r"/CoralliumRestAPI/task/(.*)", TaskHandler),
+    (r"/CoralliumRestAPI/invertion/?", InvertionHandler),
+    (r"/CoralliumRestAPI/invertion/(.*)", InvertionHandler),    
     (r"/CoralliumRestAPI/taskByProjectId/(.*)", TaskByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalByProjectId/(.*)", ProposalByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalById/(.*)", ProposalByIdHandler),

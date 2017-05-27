@@ -7,10 +7,13 @@ app.controller('ChatCtrl', ["$scope", "$rootScope", "RestService", "localStorage
 
     $scope.selfIdUser = localStorageService.get('currentUserId');;
     $scope.otherIdUser;
-    $scope.setOtherId = function (value) {
 
+    $scope.setOtherId = function (value) {
         $scope.otherIdUser = value;
+        var id = localStorageService.get('currentUserId');
+        $scope.getChatMessages(id);
     };
+
     var exampleDate = new Date().setTime(new Date().getTime() - 240000 * 60);
 
     $scope.connectedUsers = [];
@@ -55,7 +58,7 @@ app.controller('ChatCtrl', ["$scope", "$rootScope", "RestService", "localStorage
             .then(
                 function(data) {
                     $scope.chat = data;
-                    console.log(data[0]);
+                    console.log(data);
                 },
                 function(errResponse) {
                     console.log(errResponse);
@@ -80,16 +83,16 @@ app.controller('ChatCtrl', ["$scope", "$rootScope", "RestService", "localStorage
     });
 
     $scope.sendMessage = function () {
-        console.log('self:'+$scope.selfIdUser + ' other:'+$scope.otherIdUser)
+        console.log('self:'+$scope.selfIdUser + ' other:'+ $scope.otherIdUser)
         var newMessage = {
-            "user": "Peter Clark",
+            "user": user.name,
             "avatar": "assets/images/default-user.png",
             "date": new Date(),
             "content": $scope.chatMessage,
             "idUser": $scope.selfIdUser,
             "idOther": $scope.otherIdUser
         };
-        $scope.chat.push(newMessage);
+        // $scope.chat.push(newMessage);
         $scope.chatMessage = '';
 
         var obj = {

@@ -5,11 +5,11 @@
 	<a class="navbar-brand" ui-sref="app.default"> <img ng-src="{{app.layout.logo}}" alt="{{app.name}}"/> </a>
 	<a href="#" class="sidebar-toggler pull-right visible-md visible-lg" ng-click="app.layout.isSidebarClosed = !app.layout.isSidebarClosed"> <i class="ti-align-justify"></i> </a>
 	<a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" ng-click="navbarCollapsed = !navbarCollapsed"> <span class="sr-only">Toggle navigation</span> <i class="ti-view-grid"></i> </a>
-	<a ng-controller="NotificationCtrl" class="visible-xs-block pull-right margin-right-10" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
+<!-- 	<a ng-controller="NotificationCtrl" class="visible-xs-block pull-right margin-right-10" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
 		<notification-icon count='scopeVariable'>
 			<i class="ti-bell" id="notification-header"></i>
 		</notification-icon>
-	</a>
+	</a> -->
 </div>
 <!-- end: NAVBAR HEADER -->
 <!-- start: NAVBAR COLLAPSE -->

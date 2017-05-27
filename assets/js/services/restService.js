@@ -5,6 +5,7 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
     var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
 
     return {
+        url : serverUrl,
 
         fetchUser: function(userId) {
             return $http.get(serverUrl + 'user/' + userId)

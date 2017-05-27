@@ -8,7 +8,7 @@
 	</div>
 </section>
 
-<div class="container-fluid bg-white col-sm-6 col-sm-offset-3 col-md-offset-4 col-md-4" id="box_invest">
+<div class="container-fluid bg-white col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" id="box_invest" ng-controller="InvertionCtrl">
 	<fieldset>
 		<legend>Thanks you for using PayPal</legend>
 		<div class="row">
@@ -16,20 +16,20 @@
 				<span>Receiver</span>
 				<span class="pull-right">Amount</span>
 				<hr class="margin-top-10 margin-bottom-10">
-				<span>Project Name</span>
-				<span class="pull-right">$1.00</span>
+				<span>{{invertionUserName}}</span>
+				<span class="pull-right">{{invertion.amount}}</span>
 			</div>
 			<div class="col-xs-12 col-sm-4 col-sm-offset-8 col-md-4 col-md-offset-8 col-lg-4 col-lg-offset-8">
 				<hr class="margin-top-10 margin-bottom-10">
 				<span>Total</span>
-				<span class="pull-right">$1.00</span>
+				<span class="pull-right">{{invertion.amount}}</span>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<hr class="margin-top-10 margin-bottom-10">
 			</div>
 		</div>
 		<div class="row margin-top-10">
-			<button ui-sref="app.finance" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-money col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+			<button ui-sref="app.finance" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-money col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-4 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-4">
 				<span>Close</span>
 			</button>
 		</div>

@@ -214,8 +214,13 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
             $scope.possibleInvestmentArray.push("200");
             $scope.possibleInvestmentArray.push("300");
             $scope.possibleInvestmentArray.push("400");
+            $scope.amount = $scope.possibleInvestmentArray[$scope.possibleInvestmentArray.length-1];
         };
 
         $scope.getPossibleInvestment();
+
+        $scope.setInvestmentValue = function () {
+            localStorageService.set('currentAmountInvestment', $scope.amount);
+        };
 
     }]);

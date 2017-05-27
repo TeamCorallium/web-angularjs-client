@@ -656,14 +656,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Inversion',
             ncyBreadcrumb: {
                 label: 'Inversion'
-            }
+            },
+            resolve: loadSequence('invertionCtrl')
         }).state('app.inversion_finished', {
             url: '/inversionfinished',
             templateUrl: "assets/views/inversion_finished.html",
             title: 'Inversion',
             ncyBreadcrumb: {
                 label: 'Inversion'
-            }
+            },
+            resolve: loadSequence('invertionCtrl')
         });
 
 

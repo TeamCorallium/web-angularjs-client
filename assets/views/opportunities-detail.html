@@ -220,13 +220,12 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 no-padding">
-                                    <select class="cs-select cs-skin-slide">
-                                        <option value="Select possible investment" disabled selected>Select possible investment</option>
-                                        <option ng-repeat="pInvestment in possibleInvestmentArray" value="pInvestment"> {{pInvestment}}</option>
+                                    <select ng-model="amount" class="cs-select cs-skin-slide">
+                                        <option selected ng-repeat="pInvestment in possibleInvestmentArray"> {{pInvestment}}</option>
                                     </select>
                                 </div>
                                 <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
-                                    <button ui-sref="app.inversion" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-eye">
+                                    <button ng-click="setInvestmentValue()" ui-sref="app.inversion" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-eye">
                                         <span> Invest </span>
                                     </button>
                                 </div>
@@ -239,13 +238,8 @@
                                     <span> Back </span>
                                 </button>
                             </div>
-                            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
-                                <button type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-link">
-                                    <span> Follow </span>
-                                </button>
-                            </div>
-                            <div class="col-xs-6 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6 col-lg-2 col-lg-offset-6 margin-top-10">
-                                <button ui-sref="app.opportunities-list-task" type="button" class=" btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-right">
+                            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10 pull-right">
+                                <button ui-sref="app.opportunities-list-task" type="button" class=" btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-right pull-right">
                                     <span> View Details </span>
                                 </button>
                             </div>

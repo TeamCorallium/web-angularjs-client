@@ -2,6 +2,7 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
+    // var serverUrl = 'http://192.168.2.1:9090/CoralliumRestAPI/';
     var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
 
     return {

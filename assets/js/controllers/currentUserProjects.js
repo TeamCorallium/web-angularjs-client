@@ -2,9 +2,10 @@
 /**
  * controller for User Projects
  */
-app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestService", "$state", "toaster",
-    function ($scope, localStorageService, RestService, $state, toaster) {
+app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert",
+    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert) {
         $scope.simpleProjects = [];
+        $scope.invertions = [];
         $scope.allProjects = [];
         $scope.owner = '';
 
@@ -125,16 +126,43 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         };
 
         $scope.deleteProject = function (projectId) {
-            RestService.deleteProject(projectId)
-                .then(
-                    function(data) {
-                        toaster.pop('success', 'Good!!!', 'Project deleted correctly.');
-                        $scope.getProjects();
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
-                    }
-                );
+            SweetAlert.swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    RestService.deleteProject(projectId)
+                        .then(
+                            function(data) {
+                                // toaster.pop('success', 'Good!!!', 'Project deleted correctly.');
+                                $scope.getProjects();
+                                SweetAlert.swal({
+                                    title: "Deleted!",
+                                    text: "Your project has been deleted.",
+                                    type: "success",
+                                    confirmButtonColor: "#007AFF"
+                                });
+                            },
+                            function(errResponse) {
+                                console.log(errResponse);
+                            }
+                        );
+                } else {
+                    SweetAlert.swal({
+                        title: "Cancelled",
+                        text: "Your project is safe :)",
+                        type: "error",
+                        confirmButtonColor: "#007AFF"
+                    });
+                }
+            });
         };
 
         $scope.isFollowProject = function (projectId) {
@@ -222,5 +250,34 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
         $scope.setInvestmentValue = function () {
             localStorageService.set('currentAmountInvestment', $scope.amount);
         };
+
+        $scope.projectRole = function (userId) {
+            if (localStorageService.get('currentUserId') == userId) {
+                return 'Owner';
+            }
+            else {
+                return 'Financier';
+            }
+        };
+
+        $scope.investmentCapitalProject = 0;
+
+        $scope.invertionByProjectId = function () {
+            RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.invertions = data;
+
+                        for (var i = 0; i<$scope.invertions.length; i++) {
+                            $scope.investmentCapitalProject += parseInt($scope.invertions[i].amount);
+                        }
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.invertionByProjectId();
 
     }]);

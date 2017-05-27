@@ -229,7 +229,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'User Projects'
             },
-            resolve: loadSequence('currentUserProjects', 'xeditable', 'checklist-model')
+            resolve: loadSequence('currentUserProjects', 'xeditable', 'checklist-model','sweetAlertCtrl')
         }).state('app.project.opportunities', {
             url: '/opportunities ',
             templateUrl: "assets/views/opportunities.html",

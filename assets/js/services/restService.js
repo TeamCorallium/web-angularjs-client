@@ -256,5 +256,18 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     }
                 );
         },
+
+        fetchInvertionByProjectId: function(projectId) {
+            return $http.get(serverUrl + 'invertion/' + projectId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching invertions By ProjectId');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
     };
 }]);

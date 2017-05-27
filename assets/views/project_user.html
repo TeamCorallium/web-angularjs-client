@@ -44,8 +44,8 @@
 								<span class="notification-preview"><strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}</span>
 							</div>
 							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 no-padding">
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding margin-top-10">
-									<span><i class="ti-timer"></i><strong> Deathline:</strong>  {{getDeathLineProject(project.deathLine)}} </span>
+								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding margin-top-10">
+									<span><i class="fa fa-users"></i><strong> Role:</strong>  {{projectRole(project.userId)}} </span>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding margin-top-10">
 									<span><i class="ti-layers-alt"></i><strong> State:</strong>  {{stateArray[project.state]}} </span>
@@ -59,9 +59,9 @@
 											ng-click="goToProject(project.id)">
 										<span class="fa fa-arrow-right"></span> Read more
 									</button>
-									<button type="button" class="btn btn-success btn-xs pull-right">
-										<span class="fa fa-edit"></span> Update
-									</button>
+									<!--<button type="button" class="btn btn-success btn-xs pull-right">-->
+										<!--<span class="fa fa-edit"></span> Update-->
+									<!--</button>-->
 								</div>
 							</div>
 						</div>

@@ -114,3 +114,5 @@ xcuserdata
 .idea/**
 server/databases/__pycache__
 server/databases/__pycache__/**
+server/databases/uploads/**
+server/databases/uploads

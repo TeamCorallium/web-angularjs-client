@@ -85,7 +85,7 @@ app.controller('ChatCtrl', ["$scope", "$rootScope", "RestService", "localStorage
     $scope.sendMessage = function () {
         console.log('self:'+$scope.selfIdUser + ' other:'+ $scope.otherIdUser)
         var newMessage = {
-            "user": user.name,
+            "user": $rootScope.user.name,
             "avatar": "assets/images/default-user.png",
             "date": new Date(),
             "content": $scope.chatMessage,

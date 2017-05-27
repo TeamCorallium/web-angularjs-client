@@ -11820,3 +11820,8 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 #notification-header {
   color: #ffffff !important;
 }
+
+#box_invest{
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+}

@@ -1,17 +1,14 @@
 <!-- start: PAGE TITLE -->
+<!--suppress ALL -->
 <section id="page-title">
 	<div class="row">
 		<div class="col-sm-8">
-			<!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
 			<h1 class="mainTitle">Opportunities</h1>
-			<!--<span class="mainDescription">Use this page to start from scratch and put your custom content</span>-->
 		</div>
 		<div ncy-breadcrumb></div>
 	</div>
 </section>
 <!-- end: PAGE TITLE -->
-<!-- start: YOUR CONTENT HERE -->
-<!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
 <section class="container-fluid container-fullw bg-white" ng-controller="CurrentUserProjects">
 	<div class="container">
@@ -33,7 +30,7 @@
 						<hr>
 						<div class="clearfix">
 							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
-								<img  ng-src="assets/images/portfolio/image06.jpg" alt=""
+								<img  ng-src="assets/images/portfolio/image06.jpg"
 									  class="img-responsive img-rounded notification-image">
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
@@ -44,24 +41,26 @@
 								<span class="notification-preview"><strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}</span>
 							</div>
 							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-									<span><i class="ti-timer"></i><strong> Deathline:</strong>  {{getDeathLineProject(project.deathLine)}} </span>
+								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
+									<span><i class="ti-timer"></i>
+										<strong> Deathline:</strong>  {{getDeathLineProject(project.deathLine)}}
+									</span>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
-									<span><i class="ti-layers-alt"></i><strong> State:</strong>  {{stateArray[project.state]}} </span>
+									<span><i class="ti-layers-alt"></i>
+										<strong> State:</strong>  {{stateArray[project.state]}}
+									</span>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 no-padding">
-									<!--<button type="button" class="btn btn-danger btn-xs pull-right margin-left-5"-->
-											<!--ng-click="deleteProject(project.id)">-->
-										<!--<span class="glyphicon glyphicon-trash"></span> Delete-->
-									<!--</button>-->
+								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
+									<span><i class="ti-layers-alt"></i>
+										<strong> Owner:</strong> {{listUserOwners[$index]}}
+									</span>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
 									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
 											ng-click="goToOpportunities(project.id)">
 										<span class="fa fa-arrow-right"></span> Read more
 									</button>
-									<!--<button type="button" class="btn btn-success btn-xs pull-right">-->
-										<!--<span class="fa fa-edit"></span> Update-->
-									<!--</button>-->
 								</div>
 							</div>
 						</div>

@@ -2,7 +2,7 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
-    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
 
     return {
         url : serverUrl,
@@ -238,6 +238,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     },
                     function(errResponse){
                         console.error('Error while fetching notifies By User Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        createInvertion: function(invertion) {
+            return $http.post(serverUrl +'invertion/', invertion)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while creating invertion');
                         return $q.reject(errResponse);
                     }
                 );

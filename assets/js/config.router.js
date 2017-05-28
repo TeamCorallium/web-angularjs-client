@@ -80,7 +80,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Finance'
             },
-            resolve: loadSequence('financierCtrl')
+            resolve: loadSequence('allMyFinancierProjectsCtrl')
         }).state('app.news', {
             url: '/news',
             templateUrl: "assets/views/news.html",

@@ -59,6 +59,7 @@ app.constant('JS_REQUIRES', {
         'taskCtrl': 'assets/js/controllers/taskCtrl.js',
         'notificationCtrl': 'assets/js/controllers/notificationCtrl.js',
         'financierCtrl': 'assets/js/controllers/financierCtrl.js',
+        'allMyFinancierProjectsCtrl': 'assets/js/controllers/allMyFinancierProjectsCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

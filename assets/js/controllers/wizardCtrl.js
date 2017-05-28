@@ -14,11 +14,14 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             totalCost: '',
             minimalCost: '',
             estimateDuration: '',
-            state: '',
+            state: '', //1->In Preparation 2->On time 3->Best than Expected 4-Delayed 5->Finished
             deathLine: '',
+            totalRevenue: '',
             revenueOwner: '',
             maxNumInves: '',
-            minCapInves: ''
+            minCapInves: '',
+            outomes: '',
+            retributions: ''
         };
 
         $scope.risks = [
@@ -40,8 +43,49 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             // }
         ];
 
+        // outcomes
+        $scope.outcomes = ['Producction', 'Income', 'New business'];
+        // selected outcomes
+        $scope.outcomesSelection = [];
+
+        // retributions
+        $scope.retributions = ['Pay Back, shared profits', 'Product Delivery', 'By Products', 'Stocks in the New Business'];
+        // selected retributions
+        $scope.retributionsSelection = [];        
+        
+        // toggle selection for a given outomes by name
+        $scope.toggleOutcomeSelection = function (name) {
+            var idx = $scope.outcomesSelection.indexOf(name);
+            // is currently selected
+            if (idx > -1) {
+                $scope.outcomesSelection.splice(idx, 1);
+            }
+            // is newly selected
+            else {
+                $scope.outcomesSelection.push(name);
+            }
+            console.log($scope.outcomesSelection);
+        };
+        // toggle selection for a given retribution by name
+        $scope.toggleRetributionSelection = function (name) {
+            var idx = $scope.retributionsSelection.indexOf(name);
+            // is currently selected
+            if (idx > -1) {
+                $scope.retributionsSelection.splice(idx, 1);
+            }
+            // is newly selected
+            else {
+                $scope.retributionsSelection.push(name);
+            }
+            console.log($scope.retributionsSelection);
+        };
+
         $scope.createSimpleProject = function () {
             $scope.simpleProject.creationDate = new Date();
+            $scope.simpleProject.state = '1';
+            $scope.simpleProject.outomes = $scope.outcomesSelection;
+            $scope.simpleProject.retributions = $scope.retributionsSelection;
+
             RestService.createSimpleProject($scope.simpleProject)
                 .then(
                     function(data) {

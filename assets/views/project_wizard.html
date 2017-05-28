@@ -99,7 +99,7 @@
 										<div class="col-md-6">
 											<fieldset>
 												<legend>
-													Costs, duration and state
+													Costs, duration and death line
 												</legend>
 												<div class="row">
 													<div class="col-md-6">
@@ -143,7 +143,20 @@
 
 													</div>
 													<div class="col-md-6">
-														<div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
+														<div class="form-group">
+															<label>
+																Death Line
+															</label>
+
+															<div class="input-group">
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="simpleProject.deathLine" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline" ng-required="currentStep == 1">
+																<span class="input-group-btn">
+																<button type="button" class="btn btn-primary" ng-click="open()">
+																	<i class="fa fa-calendar"></i>
+																</button> </span>
+															</div>
+														</div>													
+<!-- 														<div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
 															<label>
 																Project state <span class="symbol required"></span>
 															</label>
@@ -156,7 +169,7 @@
 																<option value="4">Active: Delayed</option>
 																<option value="5">Finished</option>
 															</select>
-														</div>
+														</div> -->
 													</div>
 												</div>
 											</fieldset>
@@ -174,8 +187,13 @@
 															<label>
 																Outcome
 															</label>
-
-															<div class="checkbox clip-check check-primary">
+														      <div ng-repeat="outcome in outcomes" class="checkbox clip-check check-primary">
+														        <input type="checkbox" id="{{outcome}}" value="{{outcome}}" ng-checked="outomesSelection.indexOf(outcome) > -1" ng-click="toggleOutcomeSelection(outcome)"> 					
+														        <label for="{{outcome}}">
+																	{{outcome}}
+																</label>
+														      </div>	
+<!-- 															<div class="checkbox clip-check check-primary">
 																<input type="checkbox" id="checkbox6" value="1">
 																<label for="checkbox6">
 																	Production
@@ -192,7 +210,7 @@
 																<label for="checkbox8">
 																	New business
 																</label>
-															</div>
+															</div> -->
 														</div>
 
 													</div>
@@ -201,8 +219,13 @@
 															<label>
 																Retribution Ways
 															</label>
-
-															<div class="checkbox clip-check check-primary">
+														      <div ng-repeat="retribution in retributions" class="checkbox clip-check check-primary">
+														        <input type="checkbox" id="{{retribution}}" value="{{retribution}}" ng-checked="retributionsSelection.indexOf(retribution) > -1" ng-click="toggleRetributionSelection(retribution)"> 					
+														        <label for="{{retribution}}">
+																	{{retribution}}
+																</label>
+														      </div>
+<!-- 															<div class="checkbox clip-check check-primary">
 																<input type="checkbox" id="checkbox9" value="1">
 																<label for="checkbox9">
 																	Pay Back, shared profits
@@ -225,7 +248,7 @@
 																<label for="checkbox12">
 																	Stocks in the New Business
 																</label>
-															</div>
+															</div> -->
 														</div>
 
 													</div>
@@ -239,7 +262,17 @@
 												</legend>
 												<div class="row">
 													<div class="col-md-6">
-														<div class="form-group">
+														<div class="form-group" ng-class="{'has-error':Form.totalRevenue.$dirty && Form.totalRevenue.$invalid, 'has-success':Form.totalRevenue.$valid}">
+															<label>
+																Total Estimate Revenue <span class="symbol required"></span>
+															</label>
+
+															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-prefix="%" data-ng-model="simpleProject.totalRevenue" name="totalRevenue" ng-required="currentStep == 1">
+
+															<span class="error text-small block" ng-if="Form.totalRevenue.$dirty && Form.totalRevenue.$invalid">Total Estimate Revenueis required</span>
+															<span class="success text-small" ng-if="Form.totalRevenue.$valid">Thank You!</span>
+														</div>													
+<!-- 														<div class="form-group">
 															<label>
 																Death Line
 															</label>
@@ -251,18 +284,18 @@
 																	<i class="fa fa-calendar"></i>
 																</button> </span>
 															</div>
-														</div>
+														</div> -->
 
 													</div>
 													<div class="col-md-6">
 														<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
 															<label>
-																Revenue Share for the Owner <span class="symbol required"></span>
+																My estimate revenue <span class="symbol required"></span>
 															</label>
 
 															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-prefix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
 
-															<span class="error text-small block" ng-if="Form.revenueOwner.$dirty && Form.revenueOwner.$invalid">Revenue Share for the Owner is required</span>
+															<span class="error text-small block" ng-if="Form.revenueOwner.$dirty && Form.revenueOwner.$invalid">My Estimate Revenue is required</span>
 															<span class="success text-small" ng-if="Form.revenueOwner.$valid">Thank You!</span>
 														</div>
 													</div>
@@ -271,12 +304,12 @@
 													<div class="col-md-6">
 														<div class="form-group" ng-class="{'has-error':Form.maxNumInves.$dirty && Form.maxNumInves.$invalid, 'has-success':Form.maxNumInves.$valid}">
 															<label>
-																Maximum Number of Investors <span class="symbol required"></span>
+																Max Number of Investors <span class="symbol required"></span>
 															</label>
 
 															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="simpleProject.maxNumInves" name="maxNumInves" ng-required="currentStep == 1">
 
-															<span class="error text-small block" ng-if="Form.maxNumInves.$dirty && Form.maxNumInves.$invalid">Maximum Number of Investors is required</span>
+															<span class="error text-small block" ng-if="Form.maxNumInves.$dirty && Form.maxNumInves.$invalid">Max Number of Investors is required</span>
 															<span class="success text-small" ng-if="Form.maxNumInves.$valid">Thank You!</span>
 														</div>
 
@@ -284,7 +317,7 @@
 													<div class="col-md-6">
 														<div class="form-group" ng-class="{'has-error':Form.minCapInves.$dirty && Form.minCapInves.$invalid, 'has-success':Form.minCapInves.$valid}">
 															<label>
-																Minimun Financier Investment <span class="symbol required"></span>
+																Min Financier Investment <span class="symbol required"></span>
 															</label>
 
 															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-postfix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
@@ -458,7 +491,7 @@
 														Outcome
 													</label>
 													<div class="row">
-														<div class="col-md-12">
+														<div class="col-md-12">	
 															<div class="col-md-4">
 																<div class="checkbox clip-check check-primary">
 																	<input type="checkbox" id="checkbox16" value="1">

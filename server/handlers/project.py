@@ -28,9 +28,24 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
         print('userId: ' + userId)
 
         projects = table_simple_project.search((where('userId') == userId) | (where('userId') == int(userId)))
-        self.write(json.dumps(projects))
+        
+        print("Project len1: " + str(len(projects)))
 
-        print(projects)
+        investions = table_invertion.search((where('userId') == userId) | (where('userId') == int(userId)))
+        
+        # create copy by value
+        rp = projects[:]
+
+        for inv in investions:
+            projectId = inv['projectId']
+            p = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+            if len(p) != 0:
+                rp.append(p[0])
+
+        self.write(json.dumps(rp))
+
+        print("Project len2: " + str(len(rp)))
+        print(rp)
 
     def post(self):
         print("SimpleProject:POST!!!")

@@ -22,15 +22,13 @@ class InvertionHandler(tornado.web.RequestHandler):
         self.set_status(204)
         self.finish()
 
-    def get(self, userId):
-        print('Invertion:GET!!!')
+    def get(self, projectId):
+        print('Invertion:GET!!!-prjectId:'+ projectId)
 
-        # print('userId: ' + userId)
+        invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+        self.write(json.dumps(invertions))
 
-        # projects = table_simple_project.search((where('userId') == userId) | (where('userId') == int(userId)))
-        # self.write(json.dumps(projects))
-
-        # print(projects)
+        print(invertions)
 
     def post(self):
         print("Invertion:POST!!!")

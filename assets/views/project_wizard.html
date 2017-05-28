@@ -31,7 +31,7 @@
 									<div class="stepNumber">
 										1
 									</div>
-									<span class="stepDesc text-small"> General Information </span>
+									<span class="stepDesc text-small"> General information </span>
 								</a>
 							</li>
 							<li ng-click="form.goTo(Form, 2)">
@@ -39,7 +39,7 @@
 									<div class="stepNumber">
 										2
 									</div>
-									<span class="stepDesc text-small"> References and Risks </span>
+									<span class="stepDesc text-small"> References and risks </span>
 								</a>
 							</li>
 							<li ng-click="form.goTo(Form, 3)">
@@ -68,7 +68,7 @@
 										<div class="col-md-6">
 											<fieldset>
 												<legend>
-													General Information
+													General information
 												</legend>
 												<div class="row">
 													<div class="col-md-6">
@@ -267,7 +267,7 @@
 																Total Estimate Revenue <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-prefix="%" data-ng-model="simpleProject.totalRevenue" name="totalRevenue" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.totalRevenue.$dirty && Form.totalRevenue.$invalid">Total Estimate Revenueis required</span>
 															<span class="success text-small" ng-if="Form.totalRevenue.$valid">Thank You!</span>
@@ -293,7 +293,7 @@
 																My estimate revenue <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-prefix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.revenueOwner.$dirty && Form.revenueOwner.$invalid">My Estimate Revenue is required</span>
 															<span class="success text-small" ng-if="Form.revenueOwner.$valid">Thank You!</span>
@@ -320,7 +320,7 @@
 																Min Financier Investment <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-postfix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.minCapInves.$dirty && Form.minCapInves.$invalid">Min Financier Capital is required</span>
 															<span class="success text-small" ng-if="Form.minCapInves.$valid">Thank You!</span>

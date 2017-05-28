@@ -20,7 +20,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             revenueOwner: '',
             maxNumInves: '',
             minCapInves: '',
-            outomes: '',
+            outcomes: '',
             retributions: ''
         };
 
@@ -83,7 +83,7 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         $scope.createSimpleProject = function () {
             $scope.simpleProject.creationDate = new Date();
             $scope.simpleProject.state = '1';
-            $scope.simpleProject.outomes = $scope.outcomesSelection;
+            $scope.simpleProject.outcomes = $scope.outcomesSelection;
             $scope.simpleProject.retributions = $scope.retributionsSelection;
 
             RestService.createSimpleProject($scope.simpleProject)

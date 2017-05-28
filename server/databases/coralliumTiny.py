@@ -16,12 +16,13 @@ table_notification = db.table('table_notification')
 table_chat = db.table('table_chat')
 table_invertion = db.table('table_invertion')
 
-# table_user.purge();
-# table_profile.purge();
-# table_simple_project.purge();
-# table_complex_project.purge();
-# table_risk.purge();
-# table_reference.purge();
-# table_task.purge();
-# table_proposal.purge();
+# table_user.purge()
+# table_profile.purge()
+# table_simple_project.purge()
+# table_complex_project.purge()
+# table_risk.purge()
+# table_reference.purge()
+# table_task.purge()
+# table_proposal.purge()
 # table_notification.purge()
+# table_invertion.purge()

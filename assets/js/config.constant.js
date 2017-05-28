@@ -63,6 +63,7 @@ app.constant('JS_REQUIRES', {
         'allMyForumsCtrl': 'assets/js/controllers/allMyForumsCtrl.js',
         'forumBaseCtrl': 'assets/js/controllers/forumBaseCtrl.js',
         'forumBaseProposalViewCtrl': 'assets/js/controllers/forumBaseProposalViewCtrl.js',
+        'forumBaseProposalCtrl': 'assets/js/controllers/forumBaseProposalCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

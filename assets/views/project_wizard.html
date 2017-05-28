@@ -469,55 +469,27 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Description</label>
-													<textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="task.description"></textarea>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
 													<label>
 														Cost
 													</label>
 
 													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="task.cost">
 												</div>
-
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Description</label>
+													<textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="task.description"></textarea>
+												</div>											
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>
 														Outcome
 													</label>
-													<div class="row">
-														<div class="col-md-12">	
-															<div class="col-md-4">
-																<div class="checkbox clip-check check-primary">
-																	<input type="checkbox" id="checkbox16" value="1">
-																	<label for="checkbox16">
-																		Production
-																	</label>
-																</div>
-															</div>
-															<div class="col-md-4">
-																<div class="checkbox clip-check check-primary">
-																	<input type="checkbox" id="checkbox17" value="1">
-																	<label for="checkbox17">
-																		Income
-																	</label>
-																</div>
-															</div>
-															<div class="col-md-4">
-																<div class="checkbox clip-check check-primary">
-																	<input type="checkbox" id="checkbox18" value="1">
-																	<label for="checkbox18">
-																		New business
-																	</label>
-																</div>
-															</div>
-														</div>
-													</div>
+													<textarea placeholder="Declare outcomes" class="form-control autosize msd-elastic: \n;" ng-model="task.outcome"></textarea>							
 												</div>
 											</div>
 										</div>
@@ -546,7 +518,7 @@
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group">
+<!-- 												<div class="form-group">
 													<label>
 														State
 													</label>
@@ -559,7 +531,7 @@
 														<option value="4">Active: Delayed</option>
 														<option value="5">Finished</option>
 													</select>
-												</div>												
+												</div>	 -->
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
@@ -580,7 +552,6 @@
 														<th>Cost </th>
 														<th>Start date </th>
 														<th>Duration </th>
-														<th>State </th>
 														<th>Actions </th>
 													</tr>
 													</thead>
@@ -590,7 +561,6 @@
 														<td>{{task.cost}} </td>
 														<td>{{task.startDate}} </td>
 														<td>{{task.duration}} </td>
-														<td>{{task.state}} </td>
 														<td>
 															<button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task.name)">
 																<span class="glyphicon glyphicon-trash"></span>Remove

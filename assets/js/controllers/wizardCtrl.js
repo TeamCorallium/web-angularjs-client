@@ -123,14 +123,14 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         $scope.addTask = function() {
             $scope.tasks.push({ 'name':$scope.task.name, 'description': $scope.task.description,
                 'cost':$scope.task.cost, 'outcome':$scope.task.outcome, 'startDate':$scope.start,
-                'duration':$scope.task.duration, 'state':$scope.task.state });
+                'duration':$scope.task.duration, 'state': '1' });
             $scope.task.name = '';
             $scope.task.description = '';
             $scope.task.cost = '';
             $scope.task.outcome = '';
             $scope.start = '';
             $scope.task.duration = '';
-            $scope.task.state = '';
+            $scope.task.state = '1';
         };
 
         $scope.removeTask = function(name){

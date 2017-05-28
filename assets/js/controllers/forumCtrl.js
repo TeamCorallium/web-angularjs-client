@@ -102,28 +102,6 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
             $state.go('app.forum.proposalview');
         };
 
-        $scope.allMyForums = [];
-
-        $scope.getAllMyForums = function () {
-            RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
-                .then(
-                    function(data) {
-                        $scope.allMyForums =  data;
-                    },
-                    function(errResponse){
-                        console.log(errResponse);
-                    }
-                );
-        };
-
-        $scope.getAllMyForums();
-
-        $scope.goToForum = function (projectId) {
-            localStorageService.set('currentProjectId',projectId);
-            $scope.getProjectById(projectId);
-            $state.go('app.forum.base');
-        };
-
         $scope.getProjectById = function(projectId){
             RestService.fetchProjectById(projectId)
                 .then(

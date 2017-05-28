@@ -59,6 +59,10 @@ app.constant('JS_REQUIRES', {
         'taskCtrl': 'assets/js/controllers/taskCtrl.js',
         'notificationCtrl': 'assets/js/controllers/notificationCtrl.js',
         'financierCtrl': 'assets/js/controllers/financierCtrl.js',
+        'allMyFinancierProjectsCtrl': 'assets/js/controllers/allMyFinancierProjectsCtrl.js',
+        'allMyForumsCtrl': 'assets/js/controllers/allMyForumsCtrl.js',
+        'forumBaseCtrl': 'assets/js/controllers/forumBaseCtrl.js',
+        'forumBaseProposalViewCtrl': 'assets/js/controllers/forumBaseProposalViewCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

@@ -641,7 +641,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Create Proposal'
             },
-            resolve: loadSequence('forumCtrl')
+            resolve: loadSequence('forumBaseProposalCtrl')
         }).state('app.forum.proposalview', {
             url: '/proposalview',
             templateUrl: "assets/views/forum_base_proposal_view.html",

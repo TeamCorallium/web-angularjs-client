@@ -625,7 +625,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Base'
             },
-            resolve: loadSequence('forumCtrl')
+            resolve: loadSequence('forumBaseCtrl')
         }).state('app.forum.allforum', {
             url: '/allforums',
             templateUrl: "assets/views/allMyForums.html",
@@ -649,7 +649,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Proposal View'
             },
-            resolve: loadSequence('forumCtrl')
+            resolve: loadSequence('forumBaseProposalViewCtrl')
         }).state('app.inversion', {
             url: '/inversion',
             templateUrl: "assets/views/inversion.html",

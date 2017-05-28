@@ -35,7 +35,7 @@
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<span class="notification-author"><a ng-click="goToOpportunities(project.id)"> {{project.projectName}} </a></span>
-								<span class="notification-time"> {{getCreationProject(project.creationDate)}}</span>
+								<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<span class="notification-preview"><strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}</span>

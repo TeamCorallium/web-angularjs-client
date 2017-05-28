@@ -22,22 +22,6 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                 );
         };
 
-        $scope.getProjectById = function (projectId) {
-            RestService.fetchProjectById(projectId)
-                .then(
-                    function(data) {
-                        $scope.currentProjectActive =  data[0];
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
-                    }
-                );
-        };
-
-        if(localStorageService.get('currentProjectId')!= null){
-            $scope.getProjectById(localStorageService.get('currentProjectId'));
-        }
-
         $scope.getAllProjects = function () {
             RestService.fetchAllProject(localStorageService.get('currentUserId'))
                 .then(
@@ -60,19 +44,13 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
 
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-        $scope.getCreationProject = function (DateProject) {
-            var dateTemp = new Date(DateProject);
-            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDay() + ", "+ dateTemp.getFullYear();
-        };
-
-        $scope.getDeathLineProject = function (DeathLine) {
-            var dateTemp = new Date(DeathLine);
-            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDay() + ", "+ dateTemp.getFullYear();
+        $scope.getProjectDate = function (date) {
+            var dateTemp = new Date(date);
+            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
         };
 
         $scope.goToOpportunities = function (projectId) {
             localStorageService.set('currentProjectId',projectId);
-            $scope.getProjectById(projectId);
             $state.go('app.project.opportunities_detail');
         };
 

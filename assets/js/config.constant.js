@@ -65,6 +65,8 @@ app.constant('JS_REQUIRES', {
         'forumBaseProposalViewCtrl': 'assets/js/controllers/forumBaseProposalViewCtrl.js',
         'forumBaseProposalCtrl': 'assets/js/controllers/forumBaseProposalCtrl.js',
         'opportunitiesCtrl': 'assets/js/controllers/opportunitiesCtrl.js',
+        'opportunitiesDetailCtrl': 'assets/js/controllers/opportunitiesDetailCtrl.js',
+        'opportunitiesListTaskCtrl': 'assets/js/controllers/opportunitiesListTaskCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

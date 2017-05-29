@@ -70,6 +70,7 @@ app.constant('JS_REQUIRES', {
         'opportunitiesTaskDetailCtrl': 'assets/js/controllers/opportunitiesTaskDetailCtrl.js',
         'subprojectCtrl': 'assets/js/controllers/subprojectCtrl.js',
         'subprojectListTaskCtrl': 'assets/js/controllers/subprojectListTaskCtrl.js',
+        'projectUserCtrl': 'assets/js/controllers/projectUserCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

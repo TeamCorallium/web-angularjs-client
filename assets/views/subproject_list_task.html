@@ -1,5 +1,5 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="CurrentUserProjects">
+<section id="page-title" ng-controller="SubprojectListTaskCtrl">
     <div class="row">
         <div class="col-sm-8">
             <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
@@ -12,7 +12,7 @@
 <!-- start: YOUR CONTENT HERE -->
 <!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white"  ng-controller="TaskCtrl">
+<div class="container-fluid container-fullw bg-white"  ng-controller="SubprojectListTaskCtrl">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="thread-content col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3 margin-top-10">
                                             <span class="label label-inverse state-list-tasks">{{ stateArray[task.state]}}</span>
-                                            <span class="notification-time"> {{ task.startDate | date: "MM/dd/yyyy" }}</span>
+                                            <span class="notification-time"> {{ getCreationProject(task.startDate)}}</span>
                                         </div>
                                         <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
                                             <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>

@@ -189,7 +189,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'List Tasks'
             },
-            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl', 'currentUserProjects', 'taskCtrl')
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl', 'subprojectListTaskCtrl')
         }).state('app.project.explore_subproject_list_task', {
             url: '/explorelisttask',
             templateUrl: "assets/views/explore_subproject_list_task.html",

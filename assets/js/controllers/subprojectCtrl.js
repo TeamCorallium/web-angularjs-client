@@ -19,7 +19,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 );
         };
 
-            $scope.getProjectById();
+        $scope.getProjectById();
 
 
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];

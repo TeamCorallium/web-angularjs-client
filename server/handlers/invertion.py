@@ -23,7 +23,7 @@ class InvertionHandler(tornado.web.RequestHandler):
         self.finish()
 
     def get(self, projectId):
-        print('Invertion:GET!!!-prjectId:'+ projectId)
+        print('Invertion:GET!!!->prjectId:'+ projectId)
 
         invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
         self.write(json.dumps(invertions))
@@ -36,11 +36,21 @@ class InvertionHandler(tornado.web.RequestHandler):
         self.json_args = json.loads(self.request.body)
 
         print(self.json_args)
+        projectId = self.json_args['projectId']
+        userId = self.json_args['userId']
+        invertions = table_invertion.search((where('projectId') == projectId) & (where('userId') == userId))
 
-        id = table_invertion.insert(self.json_args)
-        table_invertion.update({'id': id}, eids=[id])
-        self.write(str(id))
-        print(id)
+        if len(invertions) != 0:
+            id = invertions[0]['id'];
+            amount = float(invertions[0]['amount']) + float(self.json_args['amount']) 
+            table_invertion.update({'amount': amount}, eids=[id])
+            self.write(str(id))
+            print(id)
+        else:
+            id = table_invertion.insert(self.json_args)
+            table_invertion.update({'id': id}, eids=[id])
+            self.write(str(id))
+            print(id)
 
 # class SimpleProjectByIdHandler(tornado.web.RequestHandler):
 #     def set_default_headers(self):

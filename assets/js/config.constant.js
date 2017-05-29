@@ -67,6 +67,7 @@ app.constant('JS_REQUIRES', {
         'opportunitiesCtrl': 'assets/js/controllers/opportunitiesCtrl.js',
         'opportunitiesDetailCtrl': 'assets/js/controllers/opportunitiesDetailCtrl.js',
         'opportunitiesListTaskCtrl': 'assets/js/controllers/opportunitiesListTaskCtrl.js',
+        'opportunitiesTaskDetailCtrl': 'assets/js/controllers/opportunitiesTaskDetailCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

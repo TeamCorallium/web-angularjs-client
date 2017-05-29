@@ -86,6 +86,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                             $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
                         }
 
+                        $scope.coveredCapital();
                         $scope.getPossibleInvestment();
                     },
                     function(errResponse) {
@@ -96,17 +97,39 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
         $scope.invertionByProjectId();
 
+
+        //Upgrade While(true)
         $scope.getPossibleInvestment = function () {
-            var remainingInvertion = 0;
+            if ($scope.coveredCapitalPercent != 100) {
+                var remainingInvertion = 0;
 
-            remainingInvertion = parseFloat($scope.currentProjectActive.totalCost) - $scope.investmentCapitalProject;
+                remainingInvertion = parseInt($scope.currentProjectActive.totalCost) - $scope.investmentCapitalProject;
 
-            var remainingInverters = (parseInt($scope.currentProjectActive.maxNumInves)-$scope.invertions.length);
+                var n = 0;
 
-            var fraction = remainingInvertion/remainingInverters;
+                while(true) {
+                    var a = remainingInvertion-n*$scope.currentProjectActive.minCapInves;
+                    if (a >= $scope.currentProjectActive.minCapInves) {
+                        $scope.possibleInvestmentArray.push(a);
+                    } else {
+                        break;
+                    }
 
-            for (var i=0; i<remainingInverters; i++) {
-                $scope.possibleInvestmentArray.push((i+1)*parseFloat(fraction));
+                    n += 1;
+                }
             }
+        };
+
+        $scope.estimateRevenueF = 0;
+
+        $scope.estimatePersonalRevenue = function () {
+            var porcientoF= (parseFloat($scope.amount)/parseFloat($scope.currentProjectActive.totalCost)*100.0);
+
+            var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner)/100.0)* parseFloat($scope.currentProjectActive.totalRevenue);
+            $scope.estimateRevenueF = (porcientoF/100.0)* (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
+        };
+
+        $scope.coveredCapital = function () {
+            $scope.coveredCapitalPercent  = ($scope.investmentCapitalProject/parseFloat($scope.currentProjectActive.totalCost))*100;
         };
     }]);

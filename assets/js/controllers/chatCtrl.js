@@ -2,8 +2,8 @@
 /**
  * controller for Messages
  */
-app.controller('ChatCtrl', ["$scope", "$rootScope", "RestService", "localStorageService", "WebSocketService",
-    function ($scope, $rootScope, RestService, localStorageService, WebSocketService) {
+app.controller('ChatCtrl', ["$scope", "$rootScope", "RestService", "localStorageService", "WebSocketService", "$timeout",
+    function ($scope, $rootScope, RestService, localStorageService, WebSocketService, $timeout) {
 
     $scope.selfIdUser = localStorageService.get('currentUserId');;
     $scope.otherIdUser;
@@ -101,4 +101,19 @@ app.controller('ChatCtrl', ["$scope", "$rootScope", "RestService", "localStorage
         };
         WebSocketService.send(obj);
     };
+
+    $scope.intervalFunction = function(){
+        $timeout(function() {
+
+            if (localStorageService.get('isLogged')) {
+                var userId = localStorageService.get('currentUserId');
+                $scope.getConnectedUsers(userId);
+            }
+
+            $scope.intervalFunction();
+        }, 60000)
+    };
+
+    // Kick off the interval
+    $scope.intervalFunction();    
 }]);

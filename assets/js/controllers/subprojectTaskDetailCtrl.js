@@ -2,7 +2,7 @@
 /**
  * controller for User Projects
  */
-app.controller('OpportunitiesTaskDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
+app.controller('SubprojectTaskDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
 
         $scope.currentProjectActive = '';

@@ -205,7 +205,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Task'
             },
-            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects', 'taskCtrl')
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'subprojectTaskDetailCtrl')
         }).state('app.project.opportunities_task_detail', {
             url: '/opportunitytask',
             templateUrl: "assets/views/opportunities_task_detail.html",
@@ -213,7 +213,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Opportunity Task'
             },
-            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'currentUserProjects', 'opportunitiesTaskDetailCtrl')
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'opportunitiesTaskDetailCtrl')
         }).state('app.project.explore_task_detail', {
             url: '/exploretask',
             templateUrl: "assets/views/explore_task_detail.html",

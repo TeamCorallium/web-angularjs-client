@@ -1,5 +1,5 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="CurrentUserProjects">
+<section id="page-title" ng-controller="ExploreTaskDetailCtrl">
     <div class="row">
         <div class="col-sm-8">
             <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
@@ -10,7 +10,7 @@
 <!-- end: PAGE TITLE -->
 
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white" ng-controller="TaskCtrl">
+<div class="container-fluid container-fullw bg-white" ng-controller="ExploreTaskDetailCtrl">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -31,13 +31,13 @@
                                     <div class="row">
                                         <ul class="pull-right text-right">
                                             <li>
-                                                <i class="fa fa-calendar"></i> <strong>Starting Date:</strong> {{ currentTaskActive.startDate | date: "MM/dd/yyyy" }}
+                                                <i class="fa fa-calendar"></i> <strong>Starting Date:</strong> {{getProjectDate(currentTaskActive.startDate)}}
                                             </li>
                                             <li>
                                                 <i class="fa fa-calendar"></i> <strong>Proposed Finishing:</strong> 21 April 2017
                                             </li>
                                             <li>
-                                                <i class="fa fa-calendar"></i> <strong>Date:</strong> 21 April 2017
+                                                <i class="fa fa-calendar"></i> <strong>Date:</strong> {{getTodayDate()}}
                                             </li>
                                         </ul>
                                     </div>
@@ -124,11 +124,9 @@
                                                             <p class="margin-top-15">
                                                                 <strong>Outcomes:</strong>
                                                             </p>
-                                                            <ul class="portfolio-details list-margin-25">
-                                                                <li>Production</li>
-                                                                <li>Income</li>
-                                                                <li>New Business</li>
-                                                            </ul>
+                                                            <p>
+                                                                {{currentTaskActive.outcome}}
+                                                            </p>
                                                         </li>
                                                     </ul>
                                                 </div>

@@ -9,7 +9,7 @@
 		<div ncy-breadcrumb></div>
 	</div>
 </section>
-<section class="container-fluid container-fullw bg-white" ng-controller="CurrentUserProjects">
+<section class="container-fluid container-fullw bg-white" ng-controller="ExploreCtrl">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-bottom-15">
 		<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right">
 			<select class="cs-select cs-skin-elastic border-combo-projects">
@@ -35,7 +35,7 @@
 								</div>
 								<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 									<span class="notification-author"><a ng-click="goToExploreProject(project.id)"> {{project.projectName}} </a></span>
-									<span class="notification-time"> {{getCreationProject(project.creationDate)}}</span>
+									<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
 								</div>
 								<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 											<span class="notification-preview">
@@ -45,7 +45,7 @@
 								<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
 												<span><i class="ti-timer"></i>
-													<strong> Deathline:</strong>  {{getDeathLineProject(project.deathLine)}}
+													<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
 												</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">

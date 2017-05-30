@@ -22,7 +22,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
         $scope.getProjectById();
 
-
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];

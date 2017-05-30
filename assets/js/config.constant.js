@@ -71,6 +71,10 @@ app.constant('JS_REQUIRES', {
         'subprojectCtrl': 'assets/js/controllers/subprojectCtrl.js',
         'subprojectListTaskCtrl': 'assets/js/controllers/subprojectListTaskCtrl.js',
         'subprojectTaskDetailCtrl': 'assets/js/controllers/subprojectTaskDetailCtrl.js',
+        'exploreSubprojectCtrl': 'assets/js/controllers/exploreSubprojectCtrl.js',
+        'exploreSubprojectListTaskCtrl': 'assets/js/controllers/exploreSubprojectListTaskCtrl.js',
+        'exploreTaskDetailCtrl': 'assets/js/controllers/exploreTaskDetailCtrl.js',
+        'exploreCtrl': 'assets/js/controllers/exploreCtrl.js',
         'projectUserCtrl': 'assets/js/controllers/projectUserCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',
         //*** Filters

@@ -41,7 +41,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
         $scope.deleteProject = function (projectId) {
             SweetAlert.swal({
                 title: "Are you sure?",
-                text: "Your will not be able to recover this imaginary file!",
+                text: "Your will not be able to recover this project!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",

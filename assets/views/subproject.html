@@ -166,12 +166,16 @@
                                                         <li>
                                                             <p>
                                                                 <strong>Total Cost:</strong>
-                                                                {{currentProjectActive.totalCost}}
+                                                                {{currentProjectActive.totalCost}} $
                                                             </p>
                                                         </li>
                                                         <li>
-                                                            <p>
-                                                                <strong>Owner Invested Capital:</strong>
+                                                            <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                <strong>My Invested Capital:</strong>
+                                                                {{amount}} $
+                                                            </p>
+                                                            <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                <strong>My Invested Capital:</strong>
                                                             </p>
                                                         </li>
                                                         <li>
@@ -186,7 +190,7 @@
                                                         <li>
                                                             <p class="margin-top-15">
                                                                 <strong>Total Estimate Revenue:</strong>
-                                                                {{currentProjectActive.totalRevenue}}
+                                                                {{currentProjectActive.totalRevenue}} $
                                                             </p>
                                                         </li>
                                                         <li>

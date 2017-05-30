@@ -1,5 +1,5 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="CurrentUserProjects">
+<section id="page-title" ng-controller="ExploreSubprojectCtrl">
     <div class="row">
         <div class="col-sm-8">
             <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
@@ -12,7 +12,7 @@
 <!-- start: YOUR CONTENT HERE -->
 <!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white"  ng-controller="CurrentUserProjects">
+<div class="container-fluid container-fullw bg-white"  ng-controller="ExploreSubprojectCtrl">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -166,12 +166,13 @@
                                                         <li>
                                                             <p>
                                                                 <strong>Total Cost:</strong>
-                                                                {{currentProjectActive.totalCost}}
+                                                                {{currentProjectActive.totalCost}} $
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p>
-                                                                <strong>My Invested Capital:</strong>
+                                                                <strong>Invested Capital:</strong>
+                                                                {{investmentCapitalProject}} $
                                                             </p>
                                                         </li>
                                                         <li>
@@ -186,13 +187,13 @@
                                                         <li>
                                                             <p class="margin-top-15">
                                                                 <strong>Total Estimate Revenue:</strong>
-                                                                {{currentProjectActive.totalRevenue}}
+                                                                {{currentProjectActive.totalRevenue}} $
                                                             </p>
                                                         </li>
                                                         <li>
                                                             <p class="margin-top-15">
-                                                                <strong>My Estimate Revenue:</strong>
-                                                                {{currentProjectActive.revenueOwner}}
+                                                                <strong>Total of investors:</strong>
+                                                                {{invertions.length}}
                                                             </p>
                                                         </li>
                                                         <li>
@@ -208,8 +209,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" ng-controller="TaskCtrl">
+                        <div class="row" ng-controller="TaskCtrl" ng-hide="nullTasksFiltre">
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" >
                                 <div class="panel panel-transparent">
                                     <div class="panel-heading no-padding">
                                         <div class="panel-title">
@@ -217,8 +218,8 @@
                                         </div>
                                     </div>
                                     <div class="panel-body no-padding">
-                                        <ul class="list-group" ng-hide="nullTasksFiltre">
-                                            <li class="list-group-item" ng-repeat="task in tasksFiltre">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" ng-repeat="task in tasksFiltre">a
                                                 <a ng-click="goToTask(task.id)">{{task.name}}</a>
                                             </li>
                                         </ul>
@@ -227,6 +228,39 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
+                                <div ng-controller="vAccordionCtrl">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-transparent">
+                                            <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
+                                            <div class="panel-heading no-padding">
+                                                <div class="panel-title">
+                                                    Risks
+                                                </div>
+                                            </div>
+                                            <!--<hr class="no-padding">-->
+                                            <div class="panel-body no-padding">
+                                                <v-accordion class="vAccordion--default"
+                                                             control="firstAccordionControl">
+                                                    <v-pane ng-repeat="pane in panes" expanded="$first">
+                                                        <v-pane-header>
+                                                            <h5>{{ pane.header }}</h5>
+                                                        </v-pane-header>
+                                                        <v-pane-content>
+                                                            <p>
+                                                                {{ pane.content }}
+                                                            </p>
+                                                        </v-pane-content>
+                                                    </v-pane>
+                                                </v-accordion>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-controller="TaskCtrl" ng-show="nullTasksFiltre">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                 <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
                                 <div ng-controller="vAccordionCtrl">
                                     <div class="col-md-12">

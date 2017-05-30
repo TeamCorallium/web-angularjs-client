@@ -25,4 +25,21 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
             localStorageService.set('currentProjectId',projectId);
             $state.go('app.forum.base');
         };
+
+        //Array for all proposal of one project
+        $scope.proposalsProject = [];
+
+        $scope.getProposalByProjectId= function(){
+            RestService.fetchProposalByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.proposalsProject =  data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getProposalByProjectId();
     }]);

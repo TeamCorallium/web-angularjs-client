@@ -86,22 +86,37 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             $scope.simpleProject.outcomes = $scope.outcomesSelection;
             $scope.simpleProject.retributions = $scope.retributionsSelection;
 
-            RestService.createSimpleProject($scope.simpleProject)
-                .then(
-                    function(data) {
-                        if(data == -1) {
-                            toaster.pop('error', 'Error', 'Invalid project info.');
-                        } else {
-                            $scope.simpleProject.id = data;
-                            $scope.addtasktoServer($scope.simpleProject.id);
-                            toaster.pop('success', 'Good!!!', 'Project created correctly.');
-                            $state.go('app.project.user_project');
+            var problems = '';
+
+            if(parseInt($scope.simpleProject.minimalCost) > parseInt($scope.simpleProject.totalCost)) {
+                toaster.pop('warning', 'Error', 'Total cost must be greater than minimal cost.');
+            } else if(parseInt($scope.simpleProject.minCapInves) > parseInt($scope.simpleProject.totalCost)) {
+                toaster.pop('warning', 'Error', 'Total cost must be greater than minimal capital investment.');
+            } else if($scope.simpleProject.outcomes.length == 0) {
+                toaster.pop('warning', 'Error', 'The project must have at least one outcome.');
+            } else if($scope.simpleProject.retributions.length == 0) {
+                toaster.pop('warning', 'Error', 'The project must have at least one retribution way.');
+            } else if($scope.tasks.length == 0) {
+                toaster.pop('warning', 'Error', 'The project must have at least one task.');
+            }
+            else {
+                RestService.createSimpleProject($scope.simpleProject)
+                    .then(
+                        function(data) {
+                            if(data == -1) {
+                                toaster.pop('error', 'Error', 'Invalid project info.');
+                            } else {
+                                $scope.simpleProject.id = data;
+                                $scope.addtasktoServer($scope.simpleProject.id);
+                                toaster.pop('success', 'Good!!!', 'Project created correctly.');
+                                $state.go('app.project.user_project');
+                            }
+                        },
+                        function(errResponse) {
+                            toaster.pop('error', 'Error', 'Database connection error.');
                         }
-                    },
-                    function(errResponse) {
-                        toaster.pop('error', 'Error', 'Database connection error.');
-                    }
-                );
+                    );
+            }
         };
 
         $scope.addtasktoServer = function(projectId) {
@@ -322,13 +337,13 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         //             {id:6, text:"Task #2.3", start_date:"05-04-2013", duration:4, 
         //             progress: 0.2, open: true, parent:3}
         //         ],
-        //         links:[
-        //             {id:1, source:1, target:2, type:"1"},
-        //             {id:2, source:1, target:3, type:"1"},
-        //             {id:3, source:3, target:4, type:"1"},
-        //             {id:4, source:4, target:5, type:"0"},
-        //             {id:5, source:5, target:6, type:"0"}
-        //         ]
+        //         // links:[
+        //         //     {id:1, source:1, target:2, type:"1"},
+        //         //     {id:2, source:1, target:3, type:"1"},
+        //         //     {id:3, source:3, target:4, type:"1"},
+        //         //     {id:4, source:4, target:5, type:"0"},
+        //         //     {id:5, source:5, target:6, type:"0"}
+        //         // ]
         //     };
         //     gantt.config.columns =  [
         //         {name:"text",       label:"Task name", tree:true },

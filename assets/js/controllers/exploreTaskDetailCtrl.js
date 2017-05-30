@@ -2,10 +2,12 @@
 /**
  * controller for User Projects
  */
-app.controller('OpportunitiesTaskDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
+app.controller('ExploreTaskDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
 
+        $scope.currentTaskActive = '';
         $scope.currentProjectActive = '';
+        $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
         $scope.getProjectById = function () {
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -20,9 +22,6 @@ app.controller('OpportunitiesTaskDetailCtrl', ["$scope", "localStorageService", 
         };
 
         $scope.getProjectById();
-
-        $scope.currentTaskActive = '';
-        $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
         $scope.getTaskById = function(){
             RestService.fetchTaskByTaskId(localStorageService.get('currentTaskId'))

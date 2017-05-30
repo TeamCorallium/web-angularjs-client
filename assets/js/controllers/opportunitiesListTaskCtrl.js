@@ -24,4 +24,12 @@ app.controller('OpportunitiesListTaskCtrl', ["$scope", "localStorageService", "R
             $state.go('app.project.opportunities_task_detail');
         };
 
+        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        $scope.getCreationProject = function (date) {
+            var dateTemp = new Date(date);
+            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
+        };
+
+
     }]);

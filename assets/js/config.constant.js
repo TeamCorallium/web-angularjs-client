@@ -68,6 +68,14 @@ app.constant('JS_REQUIRES', {
         'opportunitiesDetailCtrl': 'assets/js/controllers/opportunitiesDetailCtrl.js',
         'opportunitiesListTaskCtrl': 'assets/js/controllers/opportunitiesListTaskCtrl.js',
         'opportunitiesTaskDetailCtrl': 'assets/js/controllers/opportunitiesTaskDetailCtrl.js',
+        'subprojectCtrl': 'assets/js/controllers/subprojectCtrl.js',
+        'subprojectListTaskCtrl': 'assets/js/controllers/subprojectListTaskCtrl.js',
+        'subprojectTaskDetailCtrl': 'assets/js/controllers/subprojectTaskDetailCtrl.js',
+        'exploreSubprojectCtrl': 'assets/js/controllers/exploreSubprojectCtrl.js',
+        'exploreSubprojectListTaskCtrl': 'assets/js/controllers/exploreSubprojectListTaskCtrl.js',
+        'exploreTaskDetailCtrl': 'assets/js/controllers/exploreTaskDetailCtrl.js',
+        'exploreCtrl': 'assets/js/controllers/exploreCtrl.js',
+        'projectUserCtrl': 'assets/js/controllers/projectUserCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

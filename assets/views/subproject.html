@@ -1,5 +1,5 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="CurrentUserProjects">
+<section id="page-title" ng-controller="SubprojectCtrl">
     <div class="row">
         <div class="col-sm-8">
             <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
@@ -12,7 +12,7 @@
 <!-- start: YOUR CONTENT HERE -->
 <!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white"  ng-controller="CurrentUserProjects">
+<div class="container-fluid container-fullw bg-white"  ng-controller="SubprojectCtrl">
     <!-- start: APP CONTENT -->
     <div class="app-content">
         <div class="main-content" id="subproject">
@@ -166,12 +166,16 @@
                                                         <li>
                                                             <p>
                                                                 <strong>Total Cost:</strong>
-                                                                {{currentProjectActive.totalCost}}
+                                                                {{currentProjectActive.totalCost}} $
                                                             </p>
                                                         </li>
                                                         <li>
-                                                            <p>
-                                                                <strong>Owner Invested Capital:</strong>
+                                                            <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                <strong>My Invested Capital:</strong>
+                                                                {{amount}} $
+                                                            </p>
+                                                            <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                <strong>My Invested Capital:</strong>
                                                             </p>
                                                         </li>
                                                         <li>
@@ -186,13 +190,17 @@
                                                         <li>
                                                             <p class="margin-top-15">
                                                                 <strong>Total Estimate Revenue:</strong>
-                                                                {{currentProjectActive.totalRevenue}}
+                                                                {{currentProjectActive.totalRevenue}} $
                                                             </p>
                                                         </li>
                                                         <li>
-                                                            <p class="margin-top-15">
+                                                            <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
                                                                 <strong>My Estimate Revenue:</strong>
-                                                                {{currentProjectActive.revenueOwner}}
+                                                                {{currentProjectActive.revenueOwner}} $
+                                                            </p>
+                                                            <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                <strong>My Estimate Revenue:</strong>
+                                                                {{estimateRevenueF}} $
                                                             </p>
                                                         </li>
                                                         <li>

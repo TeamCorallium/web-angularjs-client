@@ -1,8 +1,6 @@
-<!-- start: PAGE TITLE -->
 <section id="page-title">
 	<div class="row">
 		<div class="col-sm-8">
-			<!-- <h1 class="mainTitle" translate="sidebar.nav.utilities.SEARCHRESULT">SEARCH RESULTS</h1> -->
 			<h1 class="mainTitle">Projects showcases</h1>
 			<span class="mainDescription">Browse popular projects based on the topic that interests you most.</span>
 		</div>
@@ -85,7 +83,7 @@
 							<span class="notification-author">{{user.fullName}}</span>
 							<span class="notification-preview">{{user.email}}</span>
 							<div data-title="Actions" data-title-override="Actions" class="margin-top-10">
-								<button type="button" class="btn btn-primary btn-xs" ui-sref="app.pages.user">
+								<button type="button" class="btn btn-primary btn-xs" ng-click="viewProfile(user.id)">
 									<span class="glyphicon glyphicon-upload"></span> View Profile
 								</button>
 							</div>

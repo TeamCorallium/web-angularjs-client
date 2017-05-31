@@ -72,7 +72,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Finance',
             ncyBreadcrumb: {
                 label: 'Finance'
-            }
+            },
+            resolve: loadSequence('financeCtrl')
         }).state('app.allfinance', {
             url: '/allfinance',
             templateUrl: "assets/views/allMyFinanciersProjects.html",
@@ -497,6 +498,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'User Profile'
             },
             resolve: loadSequence('flow', 'userCtrl')
+        }).state('app.pages.exploreuser', {
+            url: '/exploreuser',
+            templateUrl: "assets/views/exploreUserProfileView.html",
+            title: 'Explore User Profile',
+            ncyBreadcrumb: {
+                label: 'Explore User Profile'
+            },
+            resolve: loadSequence('flow', 'exploreUserProfileViewCtrl')
         }).state('app.pages.invoice', {
             url: '/invoice',
             templateUrl: "assets/views/pages_invoice.html",

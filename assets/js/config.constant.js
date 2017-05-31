@@ -74,6 +74,8 @@ app.constant('JS_REQUIRES', {
         'exploreSubprojectCtrl': 'assets/js/controllers/exploreSubprojectCtrl.js',
         'exploreSubprojectListTaskCtrl': 'assets/js/controllers/exploreSubprojectListTaskCtrl.js',
         'exploreTaskDetailCtrl': 'assets/js/controllers/exploreTaskDetailCtrl.js',
+        'exploreUserProfileViewCtrl': 'assets/js/controllers/exploreUserProfileViewCtrl.js',
+        'financeCtrl': 'assets/js/controllers/financeCtrl.js',
         'exploreCtrl': 'assets/js/controllers/exploreCtrl.js',
         'projectUserCtrl': 'assets/js/controllers/projectUserCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',

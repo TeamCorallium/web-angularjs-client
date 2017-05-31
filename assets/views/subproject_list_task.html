@@ -1,185 +1,187 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="SubprojectListTaskCtrl">
-    <div class="row">
-        <div class="col-sm-8">
-            <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
-            <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+<div ng-controller="SubprojectListTaskCtrl">
+    <section id="page-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
+                <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+            </div>
+            <div ncy-breadcrumb></div>
         </div>
-        <div ncy-breadcrumb></div>
-    </div>
-</section>
-<!-- end: PAGE TITLE -->
-<!-- start: YOUR CONTENT HERE -->
-<!-- end: YOUR CONTENT HERE -->
-<!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white"  ng-controller="SubprojectListTaskCtrl">
-    <!-- start: APP CONTENT -->
-    <div class="app-content">
-        <div class="main-content" id="subproject">
-            <section class="container-fluid container-fullw bg-white" id="section_subproject">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <ul class="list-unstyled">
-                                <li class="margin-bottom-15" ng-repeat="task in tasksFiltreInPreparation">
-                                    <hr class="tall">
-                                    <div class="clearfix">
-                                        <div class="thread-content col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-top-10">
-                                            <span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
-                                        </div>
-                                        <div class="thread-content col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3 margin-top-10">
-                                            <span class="label label-inverse state-list-tasks">{{ stateArray[task.state]}}</span>
-                                            <span class="notification-time"> {{ getCreationProject(task.startDate)}}</span>
-                                        </div>
-                                        <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
-                                            <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
-                                        </div>
-                                        <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
-                                                <button type="button" class="btn btn-success btn-xs">
-                                                    <span class="fa fa-edit"></span> Update
-                                                </button>
-                                                <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
-                                                    <span class="fa fa-arrow-right"></span> View
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-xs">
-                                                    <span class="glyphicon glyphicon-trash"></span> Remove
-                                                </button>
+    </section>
+    <!-- end: PAGE TITLE -->
+    <!-- start: YOUR CONTENT HERE -->
+    <!-- end: YOUR CONTENT HERE -->
+    <!-- start: FEATURED BOX LINKS -->
+    <div class="container-fluid container-fullw bg-white">
+        <!-- start: APP CONTENT -->
+        <div class="app-content">
+            <div class="main-content" id="subproject">
+                <section class="container-fluid container-fullw bg-white" id="section_subproject">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <ul class="list-unstyled">
+                                    <li class="margin-bottom-15" ng-repeat="task in tasksFiltreInPreparation">
+                                        <hr class="tall">
+                                        <div class="clearfix">
+                                            <div class="thread-content col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-top-10">
+                                                <span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
                                             </div>
-                                        </div>`
-                                    </div>
-                                </li>
-                            </ul>
+                                            <div class="thread-content col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3 margin-top-10">
+                                                <span class="label label-inverse state-list-tasks">{{ stateArray[task.state]}}</span>
+                                                <span class="notification-time"> {{ getCreationProject(task.startDate)}}</span>
+                                            </div>
+                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
+                                                <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
+                                            </div>
+                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
+                                                    <button type="button" class="btn btn-success btn-xs">
+                                                        <span class="fa fa-edit"></span> Update
+                                                    </button>
+                                                    <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
+                                                        <span class="fa fa-arrow-right"></span> View
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs">
+                                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                                    </button>
+                                                </div>
+                                            </div>`
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr class="tall">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-6">
+                                <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments-o">
+                                    <span>Go to forum</span>
+                                </button>
+                            </div>
+                            <div class="col-md-2 col-md-offset-8 col-sm-2 col-sm-offset-8 col-lg-2 col-lg-offset-8 col-xs-6">
+                                <button ui-sref="app.project.subproject_detail" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
+                                    <span> Back </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <hr class="tall">
-                    <div class="row">
-                        <div class="col-md-2 col-sm-2 col-lg-2 col-xs-6">
-                            <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments-o">
-                                <span>Go to forum</span>
-                            </button>
-                        </div>
-                        <div class="col-md-2 col-md-offset-8 col-sm-2 col-sm-offset-8 col-lg-2 col-lg-offset-8 col-xs-6">
-                            <button ui-sref="app.project.subproject_detail" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
-                                <span> Back </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
+
+    <script>
+        jQuery(document).ready(function () {
+            var swiperDefault = $('.horizontal-slider');
+            if (swiperDefault.length) {
+                swiperDefault.each(function () {
+                    var _this = $(this);
+                    var swiper = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination'),
+                        paginationClickable: _this.find('.swiper-pagination'),
+                        loop: true,
+                        autoplay: 3000,
+                        nextButton: _this.find('.swiper-button-next'),
+                        prevButton: _this.find('.swiper-button-prev')
+
+                    });
+                });
+            }
+
+            var swiperVertical = $('.vertical-slider');
+            if (swiperVertical.length) {
+                swiperVertical.each(function () {
+                    var _this = $(this);
+                    var swiper = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination'),
+                        paginationClickable: _this.find('.swiper-pagination'),
+                        loop: true,
+                        autoplay: 3000,
+                        direction: 'vertical'
+
+                    });
+                });
+            }
+
+            var swiperNestedHorizontal = $('.swiper-container-h');
+            if (swiperNestedHorizontal.length) {
+                swiperNestedHorizontal.each(function () {
+                    var _this = $(this);
+                    var swiperH = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination-h'),
+                        paginationClickable: true,
+                        spaceBetween: 50
+                    });
+                });
+            }
+            var swiperNestedVertical = $('.swiper-container-v');
+            if (swiperNestedVertical.length) {
+                swiperNestedVertical.each(function () {
+                    var _this = $(this);
+                    var swiperV = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination-v'),
+                        paginationClickable: true,
+                        direction: 'vertical',
+                        spaceBetween: 50
+                    });
+                });
+            }
+            var swiperFade = $('.fade-slider');
+            if (swiperFade.length) {
+                swiperFade.each(function () {
+                    var _this = $(this);
+                    var swiper = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination'),
+                        paginationClickable: _this.find('.swiper-pagination'),
+                        loop: true,
+                        autoplay: 3000,
+                        nextButton: _this.find('.swiper-button-next'),
+                        prevButton: _this.find('.swiper-button-prev'),
+                        effect: 'fade'
+
+                    });
+                });
+            }
+
+            var swiperParallax = $('.parallax-slider');
+            if (swiperParallax.length) {
+                swiperParallax.each(function () {
+                    var _this = $(this);
+                    var swiper = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination'),
+                        paginationClickable: true,
+                        nextButton: _this.find('.swiper-button-next'),
+                        prevButton: _this.find('.swiper-button-prev'),
+                        parallax: true,
+                        speed: 600,
+                    });
+                });
+            }
+
+            var swiperThumbs = $('.gallery-top');
+            if (swiperThumbs.length) {
+                swiperThumbs.each(function () {
+                    var _this = $(this);
+                    var _thumbs = _this.next('.gallery-thumbs');
+                    var galleryTop = new Swiper(_this, {
+                        nextButton: _this.find('.swiper-button-next'),
+                        prevButton: _this.find('.swiper-button-prev'),
+                        spaceBetween: 10,
+                    });
+                    var galleryThumbs = new Swiper(_thumbs, {
+                        spaceBetween: 10,
+                        centeredSlides: true,
+                        slidesPerView: 'auto',
+                        touchRatio: 0.2,
+                        slideToClickedSlide: true
+                    });
+                    galleryTop.params.control = galleryThumbs;
+                    galleryThumbs.params.control = galleryTop;
+                });
+            }
+        });
+    </script>
+    <!-- end: FEATURED BOX LINKS -->
 </div>
-
-<script>
-    jQuery(document).ready(function () {
-        var swiperDefault = $('.horizontal-slider');
-        if (swiperDefault.length) {
-            swiperDefault.each(function () {
-                var _this = $(this);
-                var swiper = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination'),
-                    paginationClickable: _this.find('.swiper-pagination'),
-                    loop: true,
-                    autoplay: 3000,
-                    nextButton: _this.find('.swiper-button-next'),
-                    prevButton: _this.find('.swiper-button-prev')
-
-                });
-            });
-        }
-
-        var swiperVertical = $('.vertical-slider');
-        if (swiperVertical.length) {
-            swiperVertical.each(function () {
-                var _this = $(this);
-                var swiper = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination'),
-                    paginationClickable: _this.find('.swiper-pagination'),
-                    loop: true,
-                    autoplay: 3000,
-                    direction: 'vertical'
-
-                });
-            });
-        }
-
-        var swiperNestedHorizontal = $('.swiper-container-h');
-        if (swiperNestedHorizontal.length) {
-            swiperNestedHorizontal.each(function () {
-                var _this = $(this);
-                var swiperH = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination-h'),
-                    paginationClickable: true,
-                    spaceBetween: 50
-                });
-            });
-        }
-        var swiperNestedVertical = $('.swiper-container-v');
-        if (swiperNestedVertical.length) {
-            swiperNestedVertical.each(function () {
-                var _this = $(this);
-                var swiperV = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination-v'),
-                    paginationClickable: true,
-                    direction: 'vertical',
-                    spaceBetween: 50
-                });
-            });
-        }
-        var swiperFade = $('.fade-slider');
-        if (swiperFade.length) {
-            swiperFade.each(function () {
-                var _this = $(this);
-                var swiper = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination'),
-                    paginationClickable: _this.find('.swiper-pagination'),
-                    loop: true,
-                    autoplay: 3000,
-                    nextButton: _this.find('.swiper-button-next'),
-                    prevButton: _this.find('.swiper-button-prev'),
-                    effect: 'fade'
-
-                });
-            });
-        }
-
-        var swiperParallax = $('.parallax-slider');
-        if (swiperParallax.length) {
-            swiperParallax.each(function () {
-                var _this = $(this);
-                var swiper = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination'),
-                    paginationClickable: true,
-                    nextButton: _this.find('.swiper-button-next'),
-                    prevButton: _this.find('.swiper-button-prev'),
-                    parallax: true,
-                    speed: 600,
-                });
-            });
-        }
-
-        var swiperThumbs = $('.gallery-top');
-        if (swiperThumbs.length) {
-            swiperThumbs.each(function () {
-                var _this = $(this);
-                var _thumbs = _this.next('.gallery-thumbs');
-                var galleryTop = new Swiper(_this, {
-                    nextButton: _this.find('.swiper-button-next'),
-                    prevButton: _this.find('.swiper-button-prev'),
-                    spaceBetween: 10,
-                });
-                var galleryThumbs = new Swiper(_thumbs, {
-                    spaceBetween: 10,
-                    centeredSlides: true,
-                    slidesPerView: 'auto',
-                    touchRatio: 0.2,
-                    slideToClickedSlide: true
-                });
-                galleryTop.params.control = galleryThumbs;
-                galleryThumbs.params.control = galleryTop;
-            });
-        }
-    });
-</script>
-<!-- end: FEATURED BOX LINKS -->

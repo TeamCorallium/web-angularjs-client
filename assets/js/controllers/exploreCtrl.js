@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert",
-    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert) {
+app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
+    function ($scope, localStorageService, RestService, $state, toaster) {
         $scope.allProjects = [];
         $scope.owner = '';
 
@@ -137,4 +137,9 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
         };
 
         $scope.getAllUsers(localStorageService.get('currentUserId'));
+
+        $scope.viewProfile = function (userId) {
+            localStorageService.set('viewUserProfileId',userId);
+            $state.go('app.pages.exploreuser');
+        }
     }]);

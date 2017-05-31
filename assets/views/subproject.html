@@ -1,462 +1,464 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="SubprojectCtrl">
-    <div class="row">
-        <div class="col-sm-8">
-            <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
-            <h1 class="mainTitle"></h1>
+<div ng-controller="SubprojectCtrl">
+    <section id="page-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
+                <h1 class="mainTitle"></h1>
+            </div>
+            <div ncy-breadcrumb>{{currentProjectActive.projectName}}</div>
         </div>
-        <div ncy-breadcrumb>{{currentProjectActive.projectName}}</div>
-    </div>
-</section>
-<!-- end: PAGE TITLE -->
-<!-- start: YOUR CONTENT HERE -->
-<!-- end: YOUR CONTENT HERE -->
-<!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white"  ng-controller="SubprojectCtrl">
-    <!-- start: APP CONTENT -->
-    <div class="app-content">
-        <div class="main-content" id="subproject">
-            <section class="container-fluid container-fullw bg-white" id="section_subproject">
-                <div class="container">
-                    <div class="portfolio-title">
-                        <div class="row">
-                            <div class="col-md-12 left no-padding">
-                                <h2 class="shorter">{{currentProjectActive.projectName}}</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="tall">
-                    <div class="row">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                <div class="swiper-container margin-bottom-10 gallery-top">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image08.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image07.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image06.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image05.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image04.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image03.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image02.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image01.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next swiper-button-white"></div>
-                                    <div class="swiper-button-prev swiper-button-white"></div>
-                                </div>
-                                <div class="swiper-container gallery-thumbs">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image08_th.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image07_th.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image06_th.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image05_th.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image04_th.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image03_th.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image02_th.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="assets/images/portfolio/image01_th.jpg" alt=""
-                                                 class="img-responsive"/>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                <div class="portfolio-info">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <ul class="pull-right">
-                                                <li>
-                                                    <i class="fa fa-calendar"></i> {{getCreationProject(currentProjectActive.creationDate)}}
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-tags"></i>
-                                                    <a href="#"> See reference list </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h4>Description</h4>
-                                <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
-                                <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
-                                    <li>
-                                        <p>
-                                            <strong>Categories:</strong>
-                                        </p>
-                                        <ul class="list list-skills icons list-unstyled list-inline">
-                                            <li>
-                                                <i class="fa fa-check text-primary"></i> Industry
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-check text-primary"></i> Agriculture
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-check text-primary"></i> Academic
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="panel panel-white" id="panel3">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title text-primary">Investment</h4>
-                                        <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
-                                                                                                           class="btn btn-transparent btn-sm"
-                                                                                                           panel-collapse=""
-                                                                                                           tooltip-placement="top"
-                                                                                                           uib-tooltip="Collapse"
-                                                                                                           ng-click="panel3 = !panel3"
-                                                                                                           ng-init="panel3=false">
-                                            <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel3"
-                                                                                          class="ti-minus ng-scope"
-                                                                                          style=""></i>
-                                            <!-- end ngIf: !panel1 --></a></ct-paneltool>
-                                    </div>
-                                    <div uib-collapse="panel3" ng-init="panel3=false"
-                                         class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
-                                         style="height: auto;">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
-                                                    <ul class="portfolio-details list-unstyled">
-                                                        <li>
-                                                            <p>
-                                                                <strong>Total Cost:</strong>
-                                                                {{currentProjectActive.totalCost}} $
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                                <strong>My Invested Capital:</strong>
-
-                                                            </p>
-                                                            <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                                <strong>My Invested Capital:</strong>
-                                                                {{amount}} $
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p>
-                                                                <strong>Execution Plan:</strong>
-                                                            </p>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
-                                                    <ul class="portfolio-details list-unstyled">
-                                                        <li>
-                                                            <p class="margin-top-15">
-                                                                <strong>Total Estimate Revenue:</strong>
-                                                                {{currentProjectActive.totalRevenue}} $
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                                <strong>My Estimate Revenue:</strong>
-                                                                {{currentProjectActive.revenueOwner}} $
-                                                            </p>
-                                                            <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                                <strong>My Estimate Revenue:</strong>
-                                                                {{estimateRevenueF}} $
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p>
-                                                                <strong>Real Execution:</strong>
-                                                            </p>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
-                                    <li>
-                                        <p>
-                                            <strong>Outcomes:</strong>
-                                        </p>
-                                        <ul class="list list-skills icons list-unstyled list-inline">
-                                            <li ng-repeat="outcome in currentProjectActive.outcomes">
-                                                <i class="fa fa-check text-primary"></i> {{outcome}}
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
-                                    <li>
-                                        <p>
-                                            <strong>Retributions ways:</strong>
-                                        </p>
-                                        <ul class="list list-skills icons list-unstyled list-inline">
-                                            <li ng-repeat="retribution in currentProjectActive.retributions">
-                                                <i class="fa fa-check text-primary"></i> {{retribution}}
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row" ng-controller="TaskCtrl" ng-hide="nullTasksFiltre">
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" >
-                                <div class="panel panel-transparent">
-                                    <div class="panel-heading no-padding">
-                                        <div class="panel-title">
-                                            Tasks
-                                        </div>
-                                    </div>
-                                    <div class="panel-body no-padding">
-                                        <ul class="list-group">
-                                            <li class="list-group-item" ng-repeat="task in tasksFiltre">a
-                                                <a ng-click="goToTask(task.id)">{{task.name}}</a>
-                                            </li>
-                                        </ul>
-                                        <span ng-show="nullTasksFiltre">Not exists active or finished tasks</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
-                                <div ng-controller="vAccordionCtrl">
-                                    <div class="col-md-12">
-                                        <div class="panel panel-transparent">
-                                            <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
-                                            <div class="panel-heading no-padding">
-                                                <div class="panel-title">
-                                                    Risks
-                                                </div>
-                                            </div>
-                                            <!--<hr class="no-padding">-->
-                                            <div class="panel-body no-padding">
-                                                <v-accordion class="vAccordion--default"
-                                                             control="firstAccordionControl">
-                                                    <v-pane ng-repeat="pane in panes" expanded="$first">
-                                                        <v-pane-header>
-                                                            <h5>{{ pane.header }}</h5>
-                                                        </v-pane-header>
-                                                        <v-pane-content>
-                                                            <p>
-                                                                {{ pane.content }}
-                                                            </p>
-                                                        </v-pane-content>
-                                                    </v-pane>
-                                                </v-accordion>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" ng-controller="TaskCtrl" ng-show="nullTasksFiltre">
-                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
-                                <div ng-controller="vAccordionCtrl">
-                                    <div class="col-md-12">
-                                        <div class="panel panel-transparent">
-                                            <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
-                                            <div class="panel-heading no-padding">
-                                                <div class="panel-title">
-                                                    Risks
-                                                </div>
-                                            </div>
-                                            <!--<hr class="no-padding">-->
-                                            <div class="panel-body no-padding">
-                                                <v-accordion class="vAccordion--default"
-                                                             control="firstAccordionControl">
-                                                    <v-pane ng-repeat="pane in panes" expanded="$first">
-                                                        <v-pane-header>
-                                                            <h5>{{ pane.header }}</h5>
-                                                        </v-pane-header>
-                                                        <v-pane-content>
-                                                            <p>
-                                                                {{ pane.content }}
-                                                            </p>
-                                                        </v-pane-content>
-                                                    </v-pane>
-                                                </v-accordion>
-                                            </div>
-                                        </div>
-                                    </div>
+    </section>
+    <!-- end: PAGE TITLE -->
+    <!-- start: YOUR CONTENT HERE -->
+    <!-- end: YOUR CONTENT HERE -->
+    <!-- start: FEATURED BOX LINKS -->
+    <div class="container-fluid container-fullw bg-white">
+        <!-- start: APP CONTENT -->
+        <div class="app-content">
+            <div class="main-content" id="subproject">
+                <section class="container-fluid container-fullw bg-white" id="section_subproject">
+                    <div class="container">
+                        <div class="portfolio-title">
+                            <div class="row">
+                                <div class="col-md-12 left no-padding">
+                                    <h2 class="shorter">{{currentProjectActive.projectName}}</h2>
                                 </div>
                             </div>
                         </div>
                         <hr class="tall">
                         <div class="row">
-                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments-o">
-                                    <span>Go to forum</span>
-                                </button>
-                                <button ui-sref="app.project.subproject_list_task" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right">
-                                    <span>Future Task</span>
-                                </button>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                    <div class="swiper-container margin-bottom-10 gallery-top">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image08.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image07.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image06.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image05.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image04.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image03.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image02.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image01.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next swiper-button-white"></div>
+                                        <div class="swiper-button-prev swiper-button-white"></div>
+                                    </div>
+                                    <div class="swiper-container gallery-thumbs">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image08_th.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image07_th.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image06_th.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image05_th.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image04_th.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image03_th.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image02_th.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="assets/images/portfolio/image01_th.jpg" alt=""
+                                                     class="img-responsive"/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                    <div class="portfolio-info">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul class="pull-right">
+                                                    <li>
+                                                        <i class="fa fa-calendar"></i> {{getCreationProject(currentProjectActive.creationDate)}}
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-tags"></i>
+                                                        <a href="#"> See reference list </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h4>Description</h4>
+                                    <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
+                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
+                                        <li>
+                                            <p>
+                                                <strong>Categories:</strong>
+                                            </p>
+                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                                <li>
+                                                    <i class="fa fa-check text-primary"></i> Industry
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-check text-primary"></i> Agriculture
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-check text-primary"></i> Academic
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <div class="panel panel-white" id="panel3">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">Investment</h4>
+                                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
+                                                                                                               class="btn btn-transparent btn-sm"
+                                                                                                               panel-collapse=""
+                                                                                                               tooltip-placement="top"
+                                                                                                               uib-tooltip="Collapse"
+                                                                                                               ng-click="panel3 = !panel3"
+                                                                                                               ng-init="panel3=false">
+                                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel3"
+                                                                                              class="ti-minus ng-scope"
+                                                                                              style=""></i>
+                                                <!-- end ngIf: !panel1 --></a></ct-paneltool>
+                                        </div>
+                                        <div uib-collapse="panel3" ng-init="panel3=false"
+                                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                             style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
+                                                        <ul class="portfolio-details list-unstyled">
+                                                            <li>
+                                                                <p>
+                                                                    <strong>Total Cost:</strong>
+                                                                    {{currentProjectActive.totalCost}} $
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                    <strong>My Invested Capital:</strong>
+
+                                                                </p>
+                                                                <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                    <strong>My Invested Capital:</strong>
+                                                                    {{amount}} $
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>
+                                                                    <strong>Execution Plan:</strong>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
+                                                        <ul class="portfolio-details list-unstyled">
+                                                            <li>
+                                                                <p class="margin-top-15">
+                                                                    <strong>Total Estimate Revenue:</strong>
+                                                                    {{currentProjectActive.totalRevenue}} $
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                    <strong>My Estimate Revenue:</strong>
+                                                                    {{currentProjectActive.revenueOwner}} $
+                                                                </p>
+                                                                <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                                    <strong>My Estimate Revenue:</strong>
+                                                                    {{estimateRevenueF}} $
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>
+                                                                    <strong>Real Execution:</strong>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
+                                        <li>
+                                            <p>
+                                                <strong>Outcomes:</strong>
+                                            </p>
+                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                                <li ng-repeat="outcome in currentProjectActive.outcomes">
+                                                    <i class="fa fa-check text-primary"></i> {{outcome}}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
+                                        <li>
+                                            <p>
+                                                <strong>Retributions ways:</strong>
+                                            </p>
+                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                                <li ng-repeat="retribution in currentProjectActive.retributions">
+                                                    <i class="fa fa-check text-primary"></i> {{retribution}}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row" ng-controller="TaskCtrl" ng-hide="nullTasksFiltre">
+                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" >
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-heading no-padding">
+                                            <div class="panel-title">
+                                                Tasks
+                                            </div>
+                                        </div>
+                                        <div class="panel-body no-padding">
+                                            <ul class="list-group">
+                                                <li class="list-group-item" ng-repeat="task in tasksFiltre">a
+                                                    <a ng-click="goToTask(task.id)">{{task.name}}</a>
+                                                </li>
+                                            </ul>
+                                            <span ng-show="nullTasksFiltre">Not exists active or finished tasks</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                    <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
+                                    <div ng-controller="vAccordionCtrl">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-transparent">
+                                                <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
+                                                <div class="panel-heading no-padding">
+                                                    <div class="panel-title">
+                                                        Risks
+                                                    </div>
+                                                </div>
+                                                <!--<hr class="no-padding">-->
+                                                <div class="panel-body no-padding">
+                                                    <v-accordion class="vAccordion--default"
+                                                                 control="firstAccordionControl">
+                                                        <v-pane ng-repeat="pane in panes" expanded="$first">
+                                                            <v-pane-header>
+                                                                <h5>{{ pane.header }}</h5>
+                                                            </v-pane-header>
+                                                            <v-pane-content>
+                                                                <p>
+                                                                    {{ pane.content }}
+                                                                </p>
+                                                            </v-pane-content>
+                                                        </v-pane>
+                                                    </v-accordion>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-controller="TaskCtrl" ng-show="nullTasksFiltre">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
+                                    <div ng-controller="vAccordionCtrl">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-transparent">
+                                                <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
+                                                <div class="panel-heading no-padding">
+                                                    <div class="panel-title">
+                                                        Risks
+                                                    </div>
+                                                </div>
+                                                <!--<hr class="no-padding">-->
+                                                <div class="panel-body no-padding">
+                                                    <v-accordion class="vAccordion--default"
+                                                                 control="firstAccordionControl">
+                                                        <v-pane ng-repeat="pane in panes" expanded="$first">
+                                                            <v-pane-header>
+                                                                <h5>{{ pane.header }}</h5>
+                                                            </v-pane-header>
+                                                            <v-pane-content>
+                                                                <p>
+                                                                    {{ pane.content }}
+                                                                </p>
+                                                            </v-pane-content>
+                                                        </v-pane>
+                                                    </v-accordion>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="tall">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments-o">
+                                        <span>Go to forum</span>
+                                    </button>
+                                    <button ui-sref="app.project.subproject_list_task" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right">
+                                        <span>Future Task</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
+
+    <script>
+        jQuery(document).ready(function () {
+            var swiperDefault = $('.horizontal-slider');
+            if (swiperDefault.length) {
+                swiperDefault.each(function () {
+                    var _this = $(this);
+                    var swiper = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination'),
+                        paginationClickable: _this.find('.swiper-pagination'),
+                        loop: true,
+                        autoplay: 3000,
+                        nextButton: _this.find('.swiper-button-next'),
+                        prevButton: _this.find('.swiper-button-prev')
+
+                    });
+                });
+            }
+
+            var swiperVertical = $('.vertical-slider');
+            if (swiperVertical.length) {
+                swiperVertical.each(function () {
+                    var _this = $(this);
+                    var swiper = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination'),
+                        paginationClickable: _this.find('.swiper-pagination'),
+                        loop: true,
+                        autoplay: 3000,
+                        direction: 'vertical'
+
+                    });
+                });
+            }
+
+            var swiperNestedHorizontal = $('.swiper-container-h');
+            if (swiperNestedHorizontal.length) {
+                swiperNestedHorizontal.each(function () {
+                    var _this = $(this);
+                    var swiperH = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination-h'),
+                        paginationClickable: true,
+                        spaceBetween: 50
+                    });
+                });
+            }
+            var swiperNestedVertical = $('.swiper-container-v');
+            if (swiperNestedVertical.length) {
+                swiperNestedVertical.each(function () {
+                    var _this = $(this);
+                    var swiperV = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination-v'),
+                        paginationClickable: true,
+                        direction: 'vertical',
+                        spaceBetween: 50
+                    });
+                });
+            }
+            var swiperFade = $('.fade-slider');
+            if (swiperFade.length) {
+                swiperFade.each(function () {
+                    var _this = $(this);
+                    var swiper = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination'),
+                        paginationClickable: _this.find('.swiper-pagination'),
+                        loop: true,
+                        autoplay: 3000,
+                        nextButton: _this.find('.swiper-button-next'),
+                        prevButton: _this.find('.swiper-button-prev'),
+                        effect: 'fade'
+
+                    });
+                });
+            }
+
+            var swiperParallax = $('.parallax-slider');
+            if (swiperParallax.length) {
+                swiperParallax.each(function () {
+                    var _this = $(this);
+                    var swiper = new Swiper(_this, {
+                        pagination: _this.find('.swiper-pagination'),
+                        paginationClickable: true,
+                        nextButton: _this.find('.swiper-button-next'),
+                        prevButton: _this.find('.swiper-button-prev'),
+                        parallax: true,
+                        speed: 600,
+                    });
+                });
+            }
+
+            var swiperThumbs = $('.gallery-top');
+            if (swiperThumbs.length) {
+                swiperThumbs.each(function () {
+                    var _this = $(this);
+                    var _thumbs = _this.next('.gallery-thumbs');
+                    var galleryTop = new Swiper(_this, {
+                        nextButton: _this.find('.swiper-button-next'),
+                        prevButton: _this.find('.swiper-button-prev'),
+                        spaceBetween: 10,
+                    });
+                    var galleryThumbs = new Swiper(_thumbs, {
+                        spaceBetween: 10,
+                        centeredSlides: true,
+                        slidesPerView: 'auto',
+                        touchRatio: 0.2,
+                        slideToClickedSlide: true
+                    });
+                    galleryTop.params.control = galleryThumbs;
+                    galleryThumbs.params.control = galleryTop;
+                });
+            }
+        });
+    </script>
+    <!-- end: FEATURED BOX LINKS -->
 </div>
-
-<script>
-    jQuery(document).ready(function () {
-        var swiperDefault = $('.horizontal-slider');
-        if (swiperDefault.length) {
-            swiperDefault.each(function () {
-                var _this = $(this);
-                var swiper = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination'),
-                    paginationClickable: _this.find('.swiper-pagination'),
-                    loop: true,
-                    autoplay: 3000,
-                    nextButton: _this.find('.swiper-button-next'),
-                    prevButton: _this.find('.swiper-button-prev')
-
-                });
-            });
-        }
-
-        var swiperVertical = $('.vertical-slider');
-        if (swiperVertical.length) {
-            swiperVertical.each(function () {
-                var _this = $(this);
-                var swiper = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination'),
-                    paginationClickable: _this.find('.swiper-pagination'),
-                    loop: true,
-                    autoplay: 3000,
-                    direction: 'vertical'
-
-                });
-            });
-        }
-
-        var swiperNestedHorizontal = $('.swiper-container-h');
-        if (swiperNestedHorizontal.length) {
-            swiperNestedHorizontal.each(function () {
-                var _this = $(this);
-                var swiperH = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination-h'),
-                    paginationClickable: true,
-                    spaceBetween: 50
-                });
-            });
-        }
-        var swiperNestedVertical = $('.swiper-container-v');
-        if (swiperNestedVertical.length) {
-            swiperNestedVertical.each(function () {
-                var _this = $(this);
-                var swiperV = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination-v'),
-                    paginationClickable: true,
-                    direction: 'vertical',
-                    spaceBetween: 50
-                });
-            });
-        }
-        var swiperFade = $('.fade-slider');
-        if (swiperFade.length) {
-            swiperFade.each(function () {
-                var _this = $(this);
-                var swiper = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination'),
-                    paginationClickable: _this.find('.swiper-pagination'),
-                    loop: true,
-                    autoplay: 3000,
-                    nextButton: _this.find('.swiper-button-next'),
-                    prevButton: _this.find('.swiper-button-prev'),
-                    effect: 'fade'
-
-                });
-            });
-        }
-
-        var swiperParallax = $('.parallax-slider');
-        if (swiperParallax.length) {
-            swiperParallax.each(function () {
-                var _this = $(this);
-                var swiper = new Swiper(_this, {
-                    pagination: _this.find('.swiper-pagination'),
-                    paginationClickable: true,
-                    nextButton: _this.find('.swiper-button-next'),
-                    prevButton: _this.find('.swiper-button-prev'),
-                    parallax: true,
-                    speed: 600,
-                });
-            });
-        }
-
-        var swiperThumbs = $('.gallery-top');
-        if (swiperThumbs.length) {
-            swiperThumbs.each(function () {
-                var _this = $(this);
-                var _thumbs = _this.next('.gallery-thumbs');
-                var galleryTop = new Swiper(_this, {
-                    nextButton: _this.find('.swiper-button-next'),
-                    prevButton: _this.find('.swiper-button-prev'),
-                    spaceBetween: 10,
-                });
-                var galleryThumbs = new Swiper(_thumbs, {
-                    spaceBetween: 10,
-                    centeredSlides: true,
-                    slidesPerView: 'auto',
-                    touchRatio: 0.2,
-                    slideToClickedSlide: true
-                });
-                galleryTop.params.control = galleryThumbs;
-                galleryThumbs.params.control = galleryTop;
-            });
-        }
-    });
-</script>
-<!-- end: FEATURED BOX LINKS -->

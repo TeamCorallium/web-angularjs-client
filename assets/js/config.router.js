@@ -72,7 +72,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Finance',
             ncyBreadcrumb: {
                 label: 'Finance'
-            }
+            },
+            resolve: loadSequence('financeCtrl')
         }).state('app.allfinance', {
             url: '/allfinance',
             templateUrl: "assets/views/allMyFinanciersProjects.html",

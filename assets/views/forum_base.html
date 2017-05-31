@@ -53,19 +53,23 @@
 			<uib-tab heading="Comments" active="editActive">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="post-media post-comments margin-top-30">
-							<div class="media">
-								<a href="#" class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
-								<div class="media-body">
-									<h5 class="media-heading">Media heading </h5>
-									<p>
-										Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-									</p>
-									<span class="date">January 12, 2014 at 1:38 pm</span>
-									<hr>
+						<ul class="list-unstyled">
+							<li ng-repeat="comment in comments">
+								<div class="post-media post-comments margin-top-30">
+									<div class="media">
+										<a class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
+										<div class="media-body">
+											<h5 class="media-heading">Media heading </h5>
+											<p>
+												Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+											</p>
+											<span class="date">January 12, 2014 at 1:38 pm</span>
+											<hr>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
+							</li>
+						</ul>
 					</div>
 					<div class="col-md-12">
 						<div class="post-block post-leave-comment">

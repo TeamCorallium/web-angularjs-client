@@ -49,4 +49,20 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
             localStorageService.set('currentProposalId', proposalId);
             $state.go('app.forum.proposalview');
         };
+
+        $scope.comments = [];
+
+        $scope.getAllComments = function () {
+            RestService.fetchAllCommentsById(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.comments =  data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getAllComments();
     }]);

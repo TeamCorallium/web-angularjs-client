@@ -2,16 +2,21 @@
 /**
  * controller for User Projects
  */
-app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService", "$rootScope",
-    function ($scope, $state, toaster, WebSocketService, localStorageService, RestService, $rootScope) {
+app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
+    function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {
 
         $scope.allMyForums = [];
+        $scope.allProposalsProject = [];
 
         $scope.getAllMyForums = function () {
             RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
                 .then(
                     function(data) {
                         $scope.allMyForums =  data;
+
+                        for (var i=0; i<$scope.allMyForums.length; i++) {
+                            $scope.getProposalCount($scope.allMyForums[i].id);
+                        }
                     },
                     function(errResponse){
                         console.log(errResponse);
@@ -25,4 +30,16 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
             localStorageService.set('currentProjectId',projectId);
             $state.go('app.forum.base');
         };
+
+        $scope.getProposalCount = function (projectId) {
+            RestService.fetchProposalByProjectId(projectId)
+                .then(
+                    function(data) {
+                        $scope.allProposalsProject.push(data.length);
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        }
     }]);

@@ -2,113 +2,93 @@
 <section id="page-title" ng-controller="ForumBaseCtrl">
 	<div class="row">
 		<div class="col-sm-8">
-			<!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
 			<h1 class="mainTitle">{{currentForumActive.projectName}} FORUM</h1>
-			<!-- <span class="mainDescription">Use this page to start from scratch and put your custom content</span> -->
 		</div>
 		<div ncy-breadcrumb></div>
 	</div>
 </section>
-<!-- end: PAGE TITLE -->
-<!-- start: YOUR CONTENT HERE -->
-<!-- end: YOUR CONTENT HERE -->
-<!-- start: FEATURED BOX LINKS -->
 <div class="container-fluid container-fullw bg-white" ng-controller="ForumBaseCtrl">
-	<div class="row">
-		<div class="col-md-12">
-			<h3 class="center">Proposals</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<ul class="list-unstyled">
-				<li ng-repeat="proposal in proposalsProject">
-					<div class="post-media post-comments margin-top-30">
-						<div class="media">
-							<a class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
-							<div class="media-body">
-								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-									<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>
-									<span class="notification-time"> January 12, 2014 at 1:38 pm</span>
+	<div class="container">
+		<uib-tabset class="tabbable">
+			<uib-tab heading="Proposal">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<ul class="list-unstyled">
+							<li ng-repeat="proposal in proposalsProject">
+								<div class="post-media post-comments margin-top-30">
+									<div class="media">
+										<a class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
+										<div class="media-body">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>
+												<span class="notification-time"> January 12, 2014 at 1:38 pm</span>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<p>
+													{{proposal.proposalContent}}
+												</p>
+												<p>
+													{{proposal.itemSubject}}
+												</p>
+											</div>
+											<button ng-click="goToProposalById(proposal.id)" type="button" class="btn btn-primary btn-xs pull-right">
+												<span class="fa fa-arrow-right"></span> View Proposal
+											</button>
+										</div>
+										<hr class="tall">
+									</div>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-									<p>
-										{{proposal.proposalContent}}
-									</p>
-									<p>
-										{{proposal.itemSubject}}
-									</p>
-								</div>
-								<button ng-click="goToProposalById(proposal.id)" type="button" class="btn btn-primary btn-xs pull-right">
-									<span class="fa fa-arrow-right"></span> View Proposal
-								</button>
-							</div>
-							<hr class="tall">
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
-			<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-thumbs-o-up margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
-				<span>Create Proposal</span>
-			</a>
-		</div>
-	</div>
-</div>
-<div class="container-fluid container-fullw bg-white" ng-controller="ForumBaseCtrl">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="post-media post-comments margin-top-30">
-				<h3 class="center">Comments</h3>
-				<div class="media">
-					<a href="#" class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
-					<div class="media-body">
-						<h5 class="media-heading">Media heading </h5>
-						<!-- <span class="reply"> <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span> </span> -->
-						<p>
-							Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-						</p>
-						<span class="date">January 12, 2014 at 1:38 pm</span>
-						<hr>
+							</li>
+						</ul>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-md-12">
-			<div class="post-block post-leave-comment">
-				<h3>Leave a comment</h3>
-				<form action="" type="post">
-					<!-- 					<div class="row">
-                                            <div class="form-group">
-                                                <div class="col-md-6">
-                                                    <label> Your name * </label>
-                                                    <input type="text" value="" maxlength="100" class="form-control" name="name" id="name">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label> Your email address * </label>
-                                                    <input type="email" value="" maxlength="100" class="form-control" name="email" id="email">
-                                                </div>
-                                            </div>
-                                        </div> -->
-					<div class="row">
-						<div class="form-group">
-							<div class="col-md-12">
-								<label> Comment * </label>
-								<textarea maxlength="5000" rows="10" class="form-control" name="comment" id="comment" ng-model="newComment"></textarea>
+				<div class="row">
+					<div class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
+						<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-thumbs-o-up margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
+							<span>Create Proposal</span>
+						</a>
+					</div>
+				</div>
+			</uib-tab>
+			<uib-tab heading="Comments" active="editActive">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="post-media post-comments margin-top-30">
+							<div class="media">
+								<a href="#" class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
+								<div class="media-body">
+									<h5 class="media-heading">Media heading </h5>
+									<p>
+										Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+									</p>
+									<span class="date">January 12, 2014 at 1:38 pm</span>
+									<hr>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<a class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900" ng-click="sendMessageTest()"> <span>Post Comment</span> </a>
+					<div class="col-md-12">
+						<div class="post-block post-leave-comment">
+							<h3>Leave a comment</h3>
+							<form action="" type="post">
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-12">
+											<label> Comment * </label>
+											<textarea maxlength="5000" rows="10" class="form-control" name="comment" id="comment" ng-model="newComment"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<a class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900" ng-click="sendMessageTest()"> <span>Post Comment</span> </a>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
-				</form>
-			</div>
-		</div>
+				</div>
+			</uib-tab>
+		</uib-tabset>
 	</div>
 </div>
-<!-- end: FEATURED BOX LINKS -->

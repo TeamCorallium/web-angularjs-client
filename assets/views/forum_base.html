@@ -1,98 +1,102 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="ForumBaseCtrl">
-	<div class="row">
-		<div class="col-sm-8">
-			<h1 class="mainTitle">{{currentForumActive.projectName}} FORUM</h1>
+<div ng-controller="ForumBaseCtrl">
+	<section id="page-title">
+		<div class="row">
+			<div class="col-sm-8">
+				<h1 class="mainTitle">{{currentForumActive.projectName}} FORUM</h1>
+			</div>
+			<div ncy-breadcrumb></div>
 		</div>
-		<div ncy-breadcrumb></div>
-	</div>
-</section>
-<div class="container-fluid container-fullw bg-white" ng-controller="ForumBaseCtrl">
-	<div class="container">
-		<uib-tabset class="tabbable">
-			<uib-tab heading="Proposal">
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<ul class="list-unstyled">
-							<li ng-repeat="proposal in proposalsProject">
-								<div class="post-media post-comments margin-top-30">
-									<div class="media">
-										<a class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
-										<div class="media-body">
-											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-												<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>
-												<span class="notification-time"> January 12, 2014 at 1:38 pm</span>
+	</section>
+	<div class="container-fluid container-fullw bg-white">
+		<div class="container">
+			<uib-tabset class="tabbable">
+				<uib-tab heading="Proposal">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<ul class="list-unstyled">
+								<li ng-repeat="proposal in proposalsProject">
+									<div class="post-media post-comments margin-top-30">
+										<div class="media">
+											<a class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
+											<div class="media-body">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>
+													<span class="notification-time"> January 12, 2014 at 1:38 pm</span>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<p>
+														{{proposal.proposalContent}}
+													</p>
+													<p>
+														{{proposal.itemSubject}}
+													</p>
+												</div>
+												<button ng-click="goToProposalById(proposal.id)" type="button" class="btn btn-primary btn-xs pull-right">
+													<span class="fa fa-arrow-right"></span> View Proposal
+												</button>
 											</div>
-											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-												<p>
-													{{proposal.proposalContent}}
-												</p>
-												<p>
-													{{proposal.itemSubject}}
-												</p>
-											</div>
-											<button ng-click="goToProposalById(proposal.id)" type="button" class="btn btn-primary btn-xs pull-right">
-												<span class="fa fa-arrow-right"></span> View Proposal
-											</button>
-										</div>
-										<hr class="tall">
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
-						<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-thumbs-o-up margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
-							<span>Create Proposal</span>
-						</a>
-					</div>
-				</div>
-			</uib-tab>
-			<uib-tab heading="Comments" active="editActive">
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="list-unstyled">
-							<li ng-repeat="comment in comments">
-								<div class="post-media post-comments margin-top-30">
-									<div class="media">
-										<a class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
-										<div class="media-body">
-											<h5 class="media-heading">Media heading </h5>
-											<p>
-												Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-											</p>
-											<span class="date">January 12, 2014 at 1:38 pm</span>
-											<hr>
+											<hr class="tall">
 										</div>
 									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-12">
-						<div class="post-block post-leave-comment">
-							<h3>Leave a comment</h3>
-							<form action="" type="post">
-								<div class="row">
-									<div class="form-group">
-										<div class="col-md-12">
-											<label> Comment * </label>
-											<textarea maxlength="5000" rows="10" class="form-control" name="comment" id="comment" ng-model="newComment"></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<a class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900" ng-click="sendMessageTest()"> <span>Post Comment</span> </a>
-									</div>
-								</div>
-							</form>
+								</li>
+							</ul>
 						</div>
 					</div>
-				</div>
-			</uib-tab>
-		</uib-tabset>
+					<div class="row">
+						<div class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
+							<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-thumbs-o-up margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
+								<span>Create Proposal</span>
+							</a>
+						</div>
+					</div>
+				</uib-tab>
+				<uib-tab heading="Comments" active="editActive">
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="list-unstyled">
+								<li ng-repeat="comment in comments">
+									<div class="post-media post-comments margin-top-30">
+										<div class="media">
+											<a class="pull-left"> <img src="assets/images/team-4.jpg" alt="" class="media-object img-circle"> </a>
+											<div class="media-body">
+												<h5 class="media-heading">{{listUserOwners[$index]}} </h5>
+												<p>
+													{{comment.value}}
+												</p>
+												<span class="date">{{getProjectDate(comment.creationDate)}}</span>
+												<hr>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-12">
+							<div class="post-block post-leave-comment">
+								<h3>Leave a comment</h3>
+								<form action="" type="post">
+									<div class="row">
+										<div class="form-group">
+											<div class="col-md-12">
+												<label> Comment * </label>
+												<textarea ng-model="comment.value" maxlength="5000" rows="10" class="form-control"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<a ng-click="createComment()" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
+												<span>Post Comment</span>
+											</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</uib-tab>
+			</uib-tabset>
+		</div>
 	</div>
 </div>

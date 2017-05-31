@@ -269,5 +269,18 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     }
                 );
         },
+
+        fetchAllCommentsById: function(projectId) {
+            return $http.get(serverUrl + 'commentsByProjectId/' + projectId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching comments by projects id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
     };
 }]);

@@ -138,7 +138,8 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         $scope.addTask = function() {
             $scope.tasks.push({ 'name':$scope.task.name, 'description': $scope.task.description,
                 'cost':$scope.task.cost, 'outcome':$scope.task.outcome, 'startDate':$scope.start,
-                'duration':$scope.task.duration, 'state': '1' });
+                'duration':$scope.task.duration, 'state': '1', 
+                'text':$scope.task.name, 'start_date':$scope.start, 'progress': 0});
             $scope.task.name = '';
             $scope.task.description = '';
             $scope.task.cost = '';
@@ -146,6 +147,9 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             $scope.start = '';
             $scope.task.duration = '';
             $scope.task.state = '1';
+
+            var tasks = {data: $scope.tasks};
+            gantt.parse (tasks);
         };
 
         $scope.removeTask = function(name){
@@ -321,40 +325,211 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             $scope.simpleProject.deathLine = null;
         };
 
-        // $scope.ganttStart = function () {
-        //     var tasks = {
-        //         data:[
-        //             {id:1, text:"Project #1",start_date:"01-04-2013", duration:100,
-        //             progress: 0.6, open: true},
-        //             {id:2, text:"Task #1",   start_date:"03-04-2013", duration:5, 
-        //             progress: 1,   open: true, parent:1},
-        //             {id:3, text:"Task #2",   start_date:"02-04-2013", duration:7, 
-        //             progress: 0.5, open: true, parent:1},
-        //             {id:4, text:"Task #2.1", start_date:"03-04-2013", duration:2, 
-        //             progress: 1,   open: true, parent:3},
-        //             {id:5, text:"Task #2.2", start_date:"04-04-2013", duration:3, 
-        //             progress: 0.8, open: true, parent:3},
-        //             {id:6, text:"Task #2.3", start_date:"05-04-2013", duration:4, 
-        //             progress: 0.2, open: true, parent:3}
-        //         ],
-        //         // links:[
-        //         //     {id:1, source:1, target:2, type:"1"},
-        //         //     {id:2, source:1, target:3, type:"1"},
-        //         //     {id:3, source:3, target:4, type:"1"},
-        //         //     {id:4, source:4, target:5, type:"0"},
-        //         //     {id:5, source:5, target:6, type:"0"}
-        //         // ]
-        //     };
-        //     gantt.config.columns =  [
-        //         {name:"text",       label:"Task name", tree:true },
-        //         {name:"duration",   label:"Duration"},
-        //         {name:"add",        label:""}
-        //     ];
+        $scope.ganttStart = function () {
+            var tasks = {
+                data:[
+                    {id:11, text:"Project #1",start_date:"01-04-2013", duration:10,
+                    progress: 0.6, open: false},
+                    {id:12, text:"Task #1",   start_date:"03-04-2013", duration:5, 
+                    progress: 1,   open: false},
+                    {id:13, text:"Task #2",   start_date:"02-04-2013", duration:7, 
+                    progress: 0.5, open: false},
+                    {id:14, text:"Task #2.1", start_date:"03-04-2013", duration:2, 
+                    progress: 1,   open: false},
+                    {id:15, text:"Task #2.2", start_date:"04-04-2013", duration:3, 
+                    progress: 0.8, open: false},
+                    {id:16, text:"Task #2.3", start_date:"05-04-2013", duration:4, 
+                    progress: 0.2, open: false}
+                ],
+                // links:[
+                //     {id:1, source:1, target:2, type:"1"},
+                //     {id:2, source:1, target:3, type:"1"},
+                //     {id:3, source:3, target:4, type:"1"},
+                //     {id:4, source:4, target:5, type:"0"},
+                //     {id:5, source:5, target:6, type:"0"}
+                // ]
+            };
+            gantt.config.columns =  [
+                // {name:"text",       label:"Task name", tree:true },
+                // {name:"duration",   label:"Duration"},
+                // {name:"add",        label:""}
+            ];
 
-        //     gantt.config.keyboard_navigation_cells = true;
-        //     gantt.config.touch = true;
-        //     gantt.init("gantt_here"); 
-        //     gantt.parse (tasks);
-        // }
-        // $scope.ganttStart();
-    }]);
+            gantt.config.drag_move = false;
+            gantt.config.drag_links = false;
+            gantt.config.drag_resize = false;
+            gantt.config.drag_progress = false;
+            gantt.config.autosize = "y";
+            gantt.config.keyboard_navigation_cells = true;
+            gantt.config.touch = true;
+            gantt.init("gantt_here"); 
+
+            tasks.data = $scope.tasks;
+            gantt.parse (tasks);
+            // gantt.parse($scope.tasks);
+
+            // gantt.attachEvent("onTaskClick", function(id, e) {
+            //     // alert("You've just clicked an item with id="+id);
+            //     return false;
+            // });
+            gantt.attachEvent("onTaskDblClick", function(id, e) {
+                // alert("You've just double clicked an item with id="+id);
+                return false;
+            });
+
+        }
+        $scope.ganttStart();
+
+    $scope.toggleMode = function(toggle) {
+        toggle.enabled = !toggle.enabled;
+        if (toggle.enabled) {
+            toggle.innerHTML = "Set default Scale";
+            //Saving previous scale state for future restore
+            saveConfig();
+            zoomToFit();
+        } else {
+
+            toggle.innerHTML = "Zoom to Fit";
+            //Restore previous scale state
+            restoreConfig();
+            gantt.render();
+        }
+    }
+
+    var cachedSettings = {};
+    function saveConfig() {
+        var config = gantt.config;
+        cachedSettings = {};
+        cachedSettings.scale_unit = config.scale_unit;
+        cachedSettings.date_scale = config.date_scale;
+        cachedSettings.step = config.step;
+        cachedSettings.subscales = config.subscales;
+        cachedSettings.template = gantt.templates.date_scale;
+        cachedSettings.start_date = config.start_date;
+        cachedSettings.end_date = config.end_date;
+    }
+    function restoreConfig() {
+        applyConfig(cachedSettings);
+    }
+
+    function applyConfig(config, dates) {
+        gantt.config.scale_unit = config.scale_unit;
+        if (config.date_scale) {
+            gantt.config.date_scale = config.date_scale;
+            gantt.templates.date_scale = null;
+        }
+        else {
+            gantt.templates.date_scale = config.template;
+        }
+
+        gantt.config.step = config.step;
+        gantt.config.subscales = config.subscales;
+
+        if (dates) {
+            gantt.config.start_date = gantt.date.add(dates.start_date, -1, config.unit);
+            gantt.config.end_date = gantt.date.add(gantt.date[config.unit + "_start"](dates.end_date), 2, config.unit);
+        } else {
+            gantt.config.start_date = gantt.config.end_date = null;
+        }
+    }
+
+
+
+    function zoomToFit() {
+        var project = gantt.getSubtaskDates(),
+                areaWidth = gantt.$task.offsetWidth;
+
+        for (var i = 0; i < scaleConfigs.length; i++) {
+            var columnCount = getUnitsBetween(project.start_date, project.end_date, scaleConfigs[i].unit, scaleConfigs[i].step);
+            if ((columnCount + 2) * gantt.config.min_column_width <= areaWidth) {
+                break;
+            }
+        }
+
+        if (i == scaleConfigs.length) {
+            i--;
+        }
+
+        applyConfig(scaleConfigs[i], project);
+        gantt.render();
+    }
+
+    // get number of columns in timeline
+    function getUnitsBetween(from, to, unit, step) {
+        var start = new Date(from),
+                end = new Date(to);
+        var units = 0;
+        while (start.valueOf() < end.valueOf()) {
+            units++;
+            start = gantt.date.add(start, step, unit);
+        }
+        return units;
+    }
+
+    //Setting available scales
+    var scaleConfigs = [
+        // minutes
+        { unit: "minute", step: 1, scale_unit: "hour", date_scale: "%H", subscales: [
+            {unit: "minute", step: 1, date: "%H:%i"}
+        ]
+        },
+        // hours
+        { unit: "hour", step: 1, scale_unit: "day", date_scale: "%j %M",
+            subscales: [
+                {unit: "hour", step: 1, date: "%H:%i"}
+            ]
+        },
+        // days
+        { unit: "day", step: 1, scale_unit: "month", date_scale: "%F",
+            subscales: [
+                {unit: "day", step: 1, date: "%j"}
+            ]
+        },
+        // weeks
+        {unit: "week", step: 1, scale_unit: "month", date_scale: "%F",
+            subscales: [
+                {unit: "week", step: 1, template: function (date) {
+                    var dateToStr = gantt.date.date_to_str("%d %M");
+                    var endDate = gantt.date.add(gantt.date.add(date, 1, "week"), -1, "day");
+                    return dateToStr(date) + " - " + dateToStr(endDate);
+                }}
+            ]},
+        // months
+        { unit: "month", step: 1, scale_unit: "year", date_scale: "%Y",
+            subscales: [
+                {unit: "month", step: 1, date: "%M"}
+            ]},
+        // quarters
+        { unit: "month", step: 3, scale_unit: "year", date_scale: "%Y",
+            subscales: [
+                {unit: "month", step: 3, template: function (date) {
+                    var dateToStr = gantt.date.date_to_str("%M");
+                    var endDate = gantt.date.add(gantt.date.add(date, 3, "month"), -1, "day");
+                    return dateToStr(date) + " - " + dateToStr(endDate);
+                }}
+            ]},
+        // years
+        {unit: "year", step: 1, scale_unit: "year", date_scale: "%Y",
+            subscales: [
+                {unit: "year", step: 5, template: function (date) {
+                    var dateToStr = gantt.date.date_to_str("%Y");
+                    var endDate = gantt.date.add(gantt.date.add(date, 5, "year"), -1, "day");
+                    return dateToStr(date) + " - " + dateToStr(endDate);
+                }}
+            ]},
+        // decades
+        {unit: "year", step: 10, scale_unit: "year", template: function (date) {
+            var dateToStr = gantt.date.date_to_str("%Y");
+            var endDate = gantt.date.add(gantt.date.add(date, 10, "year"), -1, "day");
+            return dateToStr(date) + " - " + dateToStr(endDate);
+        },
+            subscales: [
+                {unit: "year", step: 100, template: function (date) {
+                    var dateToStr = gantt.date.date_to_str("%Y");
+                    var endDate = gantt.date.add(gantt.date.add(date, 100, "year"), -1, "day");
+                    return dateToStr(date) + " - " + dateToStr(endDate);
+                }}
+            ]}
+    ];
+
+}]);

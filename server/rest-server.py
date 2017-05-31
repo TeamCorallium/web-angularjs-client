@@ -17,6 +17,7 @@ from handlers.notifies import *
 from handlers.chat import *
 from handlers.upload import *
 from handlers.invertion import *
+from handlers.comment import *
 
 from databases.coralliumTiny import *
 from localutils.client import * 
@@ -53,6 +54,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 
                 print(self.json_args['type'])
                 print(self.json_args['value'])
+
                 if self.json_args['type'] == 'PROPOSAL':
                     id = table_proposal.insert(self.json_args['value'])
                     table_proposal.update({'id': id}, eids=[id])
@@ -65,8 +67,12 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 if self.json_args['type'] == 'CHAT':
                     table_chat.insert(self.json_args['value'])
 
+                if self.json_args['type'] == 'COMMENT':
+                    table_comment.insert(self.json_args['value'])
+
             if self.json_args['type'] == 'PROPOSAL':
                 client.connection.write_message("NOTIFICATION")
+
             if self.json_args['type'] == 'CHAT':
                 client.connection.write_message("NEW-CHAT-MESSAGE")
 
@@ -109,6 +115,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/invertion/(.*)", InvertionHandler),    
     (r"/CoralliumRestAPI/taskByProjectId/(.*)", TaskByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalByProjectId/(.*)", ProposalByProjectIdHandler),
+    (r"/CoralliumRestAPI/commentsByProjectId/(.*)", CommentByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalById/(.*)", ProposalByIdHandler),
     (r"/CoralliumRestAPI/notifiesByUserId/(.*)", NotifiesByUserIdHandler),
     (r"/CoralliumRestAPI/ws(.*)", WebSocketHandler)

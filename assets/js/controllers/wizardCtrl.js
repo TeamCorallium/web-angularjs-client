@@ -42,6 +42,15 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             //     state: ''
             // }
         ];
+        $scope.task = {
+            name: '',
+            description: '',
+            cost: '',
+            outcome: '',
+            startDate: '',
+            duration: '',
+            state: ''
+        };
 
         // outcomes
         $scope.outcomes = ['Producction', 'Income', 'New business'];
@@ -86,37 +95,22 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             $scope.simpleProject.outcomes = $scope.outcomesSelection;
             $scope.simpleProject.retributions = $scope.retributionsSelection;
 
-            var problems = '';
-
-            if(parseInt($scope.simpleProject.minimalCost) > parseInt($scope.simpleProject.totalCost)) {
-                toaster.pop('warning', 'Error', 'Total cost must be greater than minimal cost.');
-            } else if(parseInt($scope.simpleProject.minCapInves) > parseInt($scope.simpleProject.totalCost)) {
-                toaster.pop('warning', 'Error', 'Total cost must be greater than minimal capital investment.');
-            } else if($scope.simpleProject.outcomes.length == 0) {
-                toaster.pop('warning', 'Error', 'The project must have at least one outcome.');
-            } else if($scope.simpleProject.retributions.length == 0) {
-                toaster.pop('warning', 'Error', 'The project must have at least one retribution way.');
-            } else if($scope.tasks.length == 0) {
-                toaster.pop('warning', 'Error', 'The project must have at least one task.');
-            }
-            else {
-                RestService.createSimpleProject($scope.simpleProject)
-                    .then(
-                        function(data) {
-                            if(data == -1) {
-                                toaster.pop('error', 'Error', 'Invalid project info.');
-                            } else {
-                                $scope.simpleProject.id = data;
-                                $scope.addtasktoServer($scope.simpleProject.id);
-                                toaster.pop('success', 'Good!!!', 'Project created correctly.');
-                                $state.go('app.project.user_project');
-                            }
-                        },
-                        function(errResponse) {
-                            toaster.pop('error', 'Error', 'Database connection error.');
+            RestService.createSimpleProject($scope.simpleProject)
+                .then(
+                    function(data) {
+                        if(data == -1) {
+                            toaster.pop('error', 'Error', 'Invalid project info.');
+                        } else {
+                            $scope.simpleProject.id = data;
+                            $scope.addtasktoServer($scope.simpleProject.id);
+                            toaster.pop('success', 'Good!!!', 'Project created correctly.');
+                            $state.go('app.project.user_project');
                         }
-                    );
-            }
+                    },
+                    function(errResponse) {
+                        toaster.pop('error', 'Error', 'Database connection error.');
+                    }
+                );
         };
 
         $scope.addtasktoServer = function(projectId) {
@@ -136,6 +130,32 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
         };
 
         $scope.addTask = function() {
+
+            if ($scope.task.name == '') {
+                toaster.pop('warning', 'Error', 'Please, define a task name.');
+                return false;
+            } 
+            if ($scope.task.cost == '') {
+                toaster.pop('warning', 'Error', 'Please, define a task cost.');
+                return false;
+            } 
+            if ($scope.task.description == '') {
+                toaster.pop('warning', 'Error', 'Please, define a task description.');
+                return false;
+            } 
+            if ($scope.task.duration == '') {
+                toaster.pop('warning', 'Error', 'Please, define a task duration.');
+                return false;
+            }
+            if ($scope.task.start == '') {
+                toaster.pop('warning', 'Error', 'Please, define a task start date.');
+                return false;
+            }                
+            if ($scope.task.outcome == '') {
+                toaster.pop('warning', 'Error', 'Please, define a task outcome.');
+                return false;
+            }  
+
             $scope.tasks.push({ 'name':$scope.task.name, 'description': $scope.task.description,
                 'cost':$scope.task.cost, 'outcome':$scope.task.outcome, 'startDate':$scope.start,
                 'duration':$scope.task.duration, 'state': '1', 
@@ -165,6 +185,13 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                 alert( "Something gone wrong" );
             }
             $scope.tasks.splice( index, 1 );
+
+            var tasks = {data: $scope.tasks};
+            gantt.clearAll();
+            gantt.parse (tasks);
+            // gantt.refreshData();    
+            // gantt.render();  
+            console.log('render...gantt');   
         };
 
         // Initial Value
@@ -173,6 +200,10 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             next: function (form) {
 
                 $scope.toTheTop();
+
+                if (validateSteps($scope.currentStep, 'next') == false) {
+                    return;
+                }
 
                 if (form.$valid) {
                     form.$setPristine();
@@ -200,6 +231,11 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
                 prevStep();
             },
             goTo: function (form, i) {
+                
+                if (validateSteps(i, 'goto') == false) {
+                    return;
+                }
+
                 if (parseInt($scope.currentStep) > parseInt(i)) {
                     $scope.toTheTop();
                     goToStep(i);
@@ -234,12 +270,47 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             toaster.pop('error', 'Error', 'Please complete the form in this step before proceeding');
         };
 
+        var validateSteps = function (step, op) {
+            if (step == '1') {
+                if (parseInt($scope.simpleProject.minimalCost) > parseInt($scope.simpleProject.totalCost)) {
+                    toaster.pop('warning', 'Error', 'Total cost must be greater than minimal cost.');
+                    return false;
+                } 
+                if (parseInt($scope.simpleProject.minCapInves) > parseInt($scope.simpleProject.totalCost)) {
+                    toaster.pop('warning', 'Error', 'Total cost must be greater than minimal capital investment.');
+                    return false;
+                } 
+                if ($scope.outcomesSelection.length == 0) {
+                    toaster.pop('warning', 'Error', 'The project must have at least one outcome.');
+                    return false;
+                } 
+                if ($scope.retributionsSelection.length == 0) {
+                    toaster.pop('warning', 'Error', 'The project must have at least one retribution way.');
+                    return false;
+                }                                    
+            }
+
+            console.log(parseInt(step));
+            var s = parseInt(step);
+            if (op == 'next') {
+                s += 1;
+            }
+            if (s > 3) {
+                if($scope.tasks.length == 0) {
+                    toaster.pop('warning', 'Error', 'The project must have at least one task.');
+                    return false;
+                }        
+            }
+            return true;
+        };
+
         //Date picker
         $scope.today = function() {
             $scope.simpleProject.deathLine = new Date();
         };
         $scope.today();
-        $scope.start = $scope.minDate;
+        // $scope.start = $scope.minDate;
+        $scope.start = $scope.simpleProject.deathLine;
         $scope.end = $scope.maxDate;
         $scope.clear = function() {
             $scope.dt = null;

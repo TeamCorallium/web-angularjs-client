@@ -2,8 +2,8 @@
 /**
  * controller for Wizard Form example
  */
-app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestService", "$state",
-    function ($scope, toaster, localStorageService, RestService, $state) {
+app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageService", "RestService", "$state",
+    function ($scope, $rootScope, toaster, localStorageService, RestService, $state) {
         $scope.currentStep = 1;
         $scope.simpleProject = {
             creationDate: '',
@@ -21,7 +21,8 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             maxNumInves: '',
             minCapInves: '',
             outcomes: '',
-            retributions: ''
+            retributions: '',
+            mainLayout: 'assets/images/portfolio/image06.jpg'
         };
 
         $scope.risks = [
@@ -88,6 +89,11 @@ app.controller('WizardCtrl', ["$scope", "toaster", "localStorageService", "RestS
             }
             console.log($scope.retributionsSelection);
         };
+
+        $rootScope.$on('mainLayoutChanged', function(event, opt) {
+            console.log('mainLayoutChanged '+ opt.layout);
+            $scope.simpleProject.mainLayout = RestService.uploads + opt.layout;
+        });        
 
         $scope.createSimpleProject = function () {
             $scope.simpleProject.creationDate = new Date();

@@ -2,10 +2,10 @@
 /** 
   * controllers for Angular File Upload
 */
-app.controller('UploadCtrl', ['$scope', 'FileUploader',
-function ($scope, FileUploader) {
+app.controller('UploadCtrl', ['$scope', '$rootScope', 'FileUploader', 'RestService',
+function ($scope, $rootScope, FileUploader, RestService) {
     var uploaderImages = $scope.uploaderImages = new FileUploader({
-        url: 'upload.php'
+        url: RestService.url + 'upload/'
     });
 
     // FILTERS
@@ -49,6 +49,7 @@ function ($scope, FileUploader) {
     };
     uploaderImages.onCompleteItem = function (fileItem, response, status, headers) {
         console.info('onCompleteItem', fileItem, response, status, headers);
+        $rootScope.$broadcast('mainLayoutChanged', { layout: response });
     };
     uploaderImages.onCompleteAll = function () {
         console.info('onCompleteAll');

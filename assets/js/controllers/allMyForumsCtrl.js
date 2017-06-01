@@ -7,6 +7,7 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
 
         $scope.allMyForums = [];
         $scope.allProposalsProject = [];
+        $scope.allCommentsProject = [];
 
         $scope.getAllMyForums = function () {
             RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
@@ -16,6 +17,7 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
 
                         for (var i=0; i<$scope.allMyForums.length; i++) {
                             $scope.getProposalCount($scope.allMyForums[i].id);
+                            $scope.getCommentsCount($scope.allMyForums[i].id);
                         }
                     },
                     function(errResponse){
@@ -41,5 +43,17 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
                         console.log(errResponse);
                     }
                 );
-        }
+        };
+
+        $scope.getCommentsCount = function (projectId) {
+            RestService.fetchAllCommentsById(projectId)
+                .then(
+                    function(data) {
+                        $scope.allCommentsProject.push(data.length);
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
     }]);

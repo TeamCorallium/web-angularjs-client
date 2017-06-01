@@ -6,7 +6,21 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
     function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {
 
         $scope.currentForumActive = '';
-        $scope.listUserOwners = [];
+        $scope.userNameCommentActive = '';
+
+        $scope.getUserName = function () {
+            RestService.fetchUser(localStorageService.get('currentUserId'))
+                .then(
+                    function(data) {
+                        $scope.userNameCommentActive = data[0].fullName;
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getUserName();
 
         $scope.getProjectById = function(){
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -66,6 +80,7 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
 
         $scope.comment = {
             userId: '',
+            fullName: '',
             projectId: '',
             value: '',
             creationDate: ''
@@ -73,8 +88,8 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
 
         $scope.createComment = function () {
             $scope.comment.userId = localStorageService.get('currentUserId');
+            $scope.comment.fullName = $scope.userNameCommentActive;
             $scope.comment.projectId = localStorageService.get('currentProjectId');
-            console.log($scope.comment.value + " value");
             $scope.comment.creationDate = new Date();
 
             var obj = {
@@ -87,18 +102,6 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
             $scope.comment.value = '';
 
             $scope.getAllComments();
-        };
-
-        $scope.getUserName = function (userId) {
-            RestService.fetchUser(userId)
-                .then(
-                    function(data) {
-                        $scope.listUserOwners.push(data[0].fullName);
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
-                    }
-                );
         };
 
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];

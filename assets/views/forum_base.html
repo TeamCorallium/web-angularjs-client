@@ -22,7 +22,7 @@
 											<div class="media-body">
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 													<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>
-													<span class="notification-time"> January 12, 2014 at 1:38 pm</span>
+													<span class="notification-time">{{getProjectDate(proposal.deathLine)}}</span>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 													<p>
@@ -44,11 +44,9 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
-							<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-thumbs-o-up margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
-								<span>Create Proposal</span>
-							</a>
-						</div>
+						<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-thumbs-o-up margin-top-15 margin-right-10 pull-right col-xs-3 col-sm-2 col-sm-offset-10 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10" data-caption-class="fadeIn" data-caption-delay="900">
+							<span>Create Proposal</span>
+						</a>
 					</div>
 				</uib-tab>
 				<uib-tab heading="Comments" active="editActive">

@@ -5,7 +5,8 @@
 app.controller('UploadCtrl', ['$scope', '$rootScope', 'FileUploader', 'RestService',
 function ($scope, $rootScope, FileUploader, RestService) {
     var uploaderImages = $scope.uploaderImages = new FileUploader({
-        url: RestService.url + 'upload/'
+        url: RestService.url + 'upload/',
+        queueLimit: 1
     });
 
     // FILTERS

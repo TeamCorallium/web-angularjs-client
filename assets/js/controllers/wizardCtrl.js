@@ -170,7 +170,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $scope.task.description = '';
             $scope.task.cost = '';
             $scope.task.outcome = '';
-            $scope.start = '';
+            // $scope.start = '';
             $scope.task.duration = '';
             $scope.task.state = '1';
 
@@ -441,6 +441,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             gantt.config.touch = true;
             gantt.init("gantt_here"); 
 
+            gantt.clearAll();
             tasks.data = $scope.tasks;
             gantt.parse (tasks);
             // gantt.parse($scope.tasks);
@@ -453,7 +454,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 // alert("You've just double clicked an item with id="+id);
                 return false;
             });
-
         }
         $scope.ganttStart();
 

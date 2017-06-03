@@ -115,6 +115,9 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         print('WebSocketHandler:check_origin')
         return True        
 
+def test():
+    print('ok ok ok ok')
+
 application = tornado.web.Application([
     (r"/CoralliumRestAPI/user/?", UserHandler),
     (r"/CoralliumRestAPI/user/(.*)", UserHandler),
@@ -142,4 +145,8 @@ application = tornado.web.Application([
 if __name__ == "__main__":
     print('Corallium Server---host:localhost---port:9090')
     application.listen(9090)
-    tornado.ioloop.IOLoop.instance().start()
+    main_loop = tornado.ioloop.IOLoop.instance()
+
+    main_loop.add_timeout(datetime.timedelta(seconds=5), test)
+
+    main_loop.start()

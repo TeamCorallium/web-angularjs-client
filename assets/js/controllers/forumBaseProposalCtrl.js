@@ -5,6 +5,9 @@
 app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
     function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {
 
+        $scope.tasks = [];
+        $scope.selectedTask = '';
+
         $scope.getProjectById = function(){
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))
                 .then(
@@ -38,15 +41,32 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             deathLine: ''
         };
 
+        $scope.getTaskByProjectsId = function(){
+            RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.tasks =  data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
         $scope.createProposal = function () {
             $scope.currentProposal.name = $scope.proposalTitle;
             $scope.currentProposal.proposalContent = $scope.proposalContent;
-            $scope.currentProposal.itemSubject = $scope.itemSubject;
             $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
             $scope.currentProposal.proposalOwnerId = localStorageService.get('currentUserId');
             $scope.currentProposal.state = 'publish';
             $scope.currentProposal.type = $scope.proposalType;
             $scope.currentProposal.deathLine = $scope.deathLine;
+
+            if ($scope.currentProposal.type == 'Modified Task') {
+                $scope.currentProposal.itemSubject = $scope.selectedTask.id;
+            } else {
+                $scope.currentProposal.itemSubject = '';
+            }
 
             var obj = {
                 type: 'PROPOSAL',
@@ -137,20 +157,4 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.visibleModifiedTask = false;
             }
         };
-
-        $scope.tasks = [];
-        $scope.modifiedTaskSelected = '';
-
-        $scope.getTaskByProjectsId = function(){
-            RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
-                .then(
-                    function(data) {
-                        $scope.tasks =  data;
-                    },
-                    function(errResponse){
-                        console.log(errResponse);
-                    }
-                );
-        };
-
     }]);

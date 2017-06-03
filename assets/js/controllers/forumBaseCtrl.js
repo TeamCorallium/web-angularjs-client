@@ -124,6 +124,7 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
         $scope.getDateMinutes = function (date) {
             var dateTemp = new Date(date);
             var dateTime = '';
+
             if(dateTemp.getMinutes()<10) {
                 dateTime = "0"+dateTemp.getMinutes();
             } else {
@@ -133,15 +134,32 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
             return dateTime;
         };
 
+        $scope.getDateHours = function (date) {
+            var dateTemp = new Date(date);
+            var dateTime = '';
+
+            if(dateTemp.getHours()<10) {
+                dateTime = "0"+dateTemp.getHours();
+            } else if (dateTemp.getHours() > 12){
+                dateTime = "0"+dateTemp.getHours() - 12;
+            } else {
+                dateTime = dateTemp.getHours();
+            }
+
+            return dateTime;
+        };
+
         $scope.getDateTime = function (date) {
             var dateTemp = new Date(date);
             var dateTime = '';
-            if(dateTemp.getHours() < 12) {
-                dateTime = "0"+dateTemp.getHours()+":"+$scope.getDateMinutes(date)+" am";
+            if(dateTemp.getHours() == 0) {
+                dateTime = "12:"+$scope.getDateMinutes(date)+" am";
+            } else if(dateTemp.getHours() < 12) {
+                dateTime = $scope.getDateHours(date)+":"+$scope.getDateMinutes(date)+" am";
             } else if (dateTemp.getHours() == 12){
                 dateTime = "12:"+$scope.getDateMinutes(date)+" pm";
             } else {
-                dateTime = "0"+(dateTemp.getHours()-12)+":"+$scope.getDateMinutes(date)+" pm";
+                dateTime = $scope.getDateHours((date))+":"+$scope.getDateMinutes(date)+" pm";
             }
 
             return dateTime;

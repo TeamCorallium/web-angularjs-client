@@ -28,7 +28,7 @@
 							<hr class="tall">
 							<div class="clearfix">
 								<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
-									<img  ng-src="assets/images/portfolio/image06.jpg" alt=""
+									<img  ng-src="{{project.mainLayout}}"
 										  class="img-responsive img-rounded notification-image">
 								</div>
 								<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
@@ -78,7 +78,7 @@
 				<ul class="list-unstyled list-inline">
 					<li class="margin-bottom-15 center width-240" ng-repeat="user in listAllUser">
 						<div class="clearfix">
-							<img  ng-src="assets/images/default-user.png" alt=""
+							<img  ng-src="assets/images/default-user.png"
 								  class="img-responsive img-rounded explore-user-image">
 							<span class="notification-author">{{user.fullName}}</span>
 							<span class="notification-preview">{{user.email}}</span>

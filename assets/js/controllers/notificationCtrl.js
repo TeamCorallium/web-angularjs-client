@@ -9,6 +9,7 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
 
         $rootScope.$on('new-notification', function() {
             $scope.scopeVariable++;
+            $scope.getNotificationsByUserId();
         });
 
         $scope.notifications = [];

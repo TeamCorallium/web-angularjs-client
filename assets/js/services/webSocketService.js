@@ -1,9 +1,25 @@
 'use strict';
 
-app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScope",
-    function($websocket, localStorageService, $rootScope) {
+app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScope", "$timeout",
+    function($websocket, localStorageService, $rootScope, $timeout) {
 
         console.log('WebSocketService....');
+        
+        var intervalFunction = function() {
+            $timeout(function() {
+                if (localStorageService.get('isLogged')) {
+                    var userId = localStorageService.get('currentUserId');
+                    
+                    if (angular.isObject(ws)) {
+                        if (ws.readyState > 2) {
+                            wsBinding();
+                        }
+                    }
+                }
+                intervalFunction();
+            }, 20000)
+        };
+        intervalFunction();
 
         var ws = '';
         var wsBinding = function() {
@@ -34,6 +50,10 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
 
             ws.onClose(function() {
                 console.log('WebSocketService:onClose');
+            });
+
+            ws.onError(function() {
+                console.log('WebSocketService:onError');
             });
         }
 

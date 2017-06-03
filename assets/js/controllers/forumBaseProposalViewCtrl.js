@@ -8,7 +8,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
         $scope.currentForumActive = '';
         $scope.currentTaskProposalView = '';
         $scope.viewVoteResults = false;
-        $scope.viewPercent = false;
         $scope.userVote = false;
         $scope.allVotes = [];
 
@@ -111,53 +110,9 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
 
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-        $scope.getDateMinutes = function (date) {
-            var dateTemp = new Date(date);
-            var dateTime = '';
-
-            if(dateTemp.getMinutes()<10) {
-                dateTime = "0"+dateTemp.getMinutes();
-            } else {
-                dateTime = dateTemp.getMinutes();
-            }
-
-            return dateTime;
-        };
-
-        $scope.getDateHours = function (date) {
-            var dateTemp = new Date(date);
-            var dateTime = '';
-
-            if(dateTemp.getHours()<10) {
-                dateTime = "0"+dateTemp.getHours();
-            } else if (dateTemp.getHours() > 12){
-                dateTime = "0"+dateTemp.getHours() - 12;
-            } else {
-                dateTime = dateTemp.getHours();
-            }
-
-            return dateTime;
-        };
-
-        $scope.getDateTime = function (date) {
-            var dateTemp = new Date(date);
-            var dateTime = '';
-            if(dateTemp.getHours() == 0) {
-                dateTime = "12:"+$scope.getDateMinutes(date)+" am";
-            } else if(dateTemp.getHours() < 12) {
-                dateTime = $scope.getDateHours(date)+":"+$scope.getDateMinutes(date)+" am";
-            } else if (dateTemp.getHours() == 12){
-                dateTime = "12:"+$scope.getDateMinutes(date)+" pm";
-            } else {
-                dateTime = $scope.getDateHours((date))+":"+$scope.getDateMinutes(date)+" pm";
-            }
-
-            return dateTime;
-        };
-
         $scope.getProjectDate = function (date) {
             var dateTemp = new Date(date);
-            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear()+" at "+$scope.getDateTime(date);
+            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
         };
 
         $scope.showVotesResult = function () {
@@ -169,14 +124,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             }
         };
 
-        $scope.changeViewVotesState = function () {
-            if ($scope.viewPercent) {
-                $scope.viewPercent = false;
-            } else {
-                $scope.viewPercent = true;
-            }
-        };
-
         $scope.currentVote = {
             userId: '',
             projectId: '',
@@ -184,8 +131,8 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             value: ''
         };
 
-        $scope.voteUserA = '';
-        $scope.voteUser = '';
+        $scope.voteUserA = 'yes';
+        $scope.voteUser = 'yes';
 
         $scope.setVote = function () {
             $scope.currentVote.userId = localStorageService.get('currentUserId');
@@ -204,7 +151,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             };
             WebSocketService.send(obj);
 
-            $scope.calculateVotes();
-            $state.go('app.forum.proposalview');
+            $state.go('app.forum.base');
         };
     }]);

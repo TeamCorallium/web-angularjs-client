@@ -56,14 +56,32 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 print(self.json_args['value'])
 
                 if self.json_args['type'] == 'PROPOSAL':
-                    id = table_proposal.insert(self.json_args['value'])
-                    table_proposal.update({'id': id}, eids=[id])
+
+                    proposalId = table_proposal.insert(self.json_args['value'])
+                    table_proposal.update({'id': proposalId}, eids=[proposalId])
+
+                    projectId = self.json_args['value']['projectId']
+                    projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+                    project = projects[0]
 
                     users = table_user.search(where('id') == int(self.id))
+                    fromName = users[0]['fullName']
 
-                    table_notification.insert({'userId': self.id, 'from': users[0]['fullName'], 'read': False, 'type': "0", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                               'subject': "Creation", 'content': "New proposal was created"})
-                
+                    interestedUserIds = []
+                    interestedUserIds.append(project['userId'])
+
+                    invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+                    for invertion in invertions:
+                        interestedUserIds.append(invertion['userId'])
+
+                    proposalType = self.json_args['value']['type']
+                    for userId in interestedUserIds:
+                        if proposalType == 'Modified Task':
+                            table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': proposalType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                                    'subject': "Creation", 'content': "New proposal was created"})
+                    
+                    print(interestedUserIds)
+
                 if self.json_args['type'] == 'CHAT':
                     table_chat.insert(self.json_args['value'])
 

@@ -27,12 +27,11 @@ class NotifiesByUserIdHandler(tornado.web.RequestHandler):
 
         print('userId: ' + userId)
 
-        # notifies = table_notification.search((where('userId') == int(userId)) | (where('userId') == userId))
+        notifies = table_notification.search((where('userId') == int(userId)) | (where('userId') == userId))
 
-        notifies = table_notification.all()
-        
+        # notifies = table_notification.all()
+
         self.write(json.dumps(notifies))
-
         print(notifies)
 
 class NotifiesByIdHandler(tornado.web.RequestHandler):

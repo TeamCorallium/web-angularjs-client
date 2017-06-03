@@ -166,6 +166,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 'cost':$scope.task.cost, 'outcome':$scope.task.outcome, 'startDate':$scope.start,
                 'duration':$scope.task.duration, 'state': '1', 
                 'text':$scope.task.name, 'start_date':$scope.start, 'progress': 0});
+
             $scope.task.name = '';
             $scope.task.description = '';
             $scope.task.cost = '';
@@ -175,10 +176,18 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $scope.task.state = '1';
 
             var tasks = {data: $scope.tasks};
+            gantt.clearAll();
             gantt.parse (tasks);
+            gantt.refreshData();
+            gantt.render();
         };
 
-        $scope.removeTask = function(name){
+        $scope.getDate = function(date) {
+            var monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            return monthArray[date.getMonth()] + " " + date.getDate() + ", "+ date.getFullYear();
+        }
+
+        $scope.removeTask = function(name) {
             var index = -1;
             var comArr = eval( $scope.tasks );
             for( var i = 0; i < comArr.length; i++ ) {
@@ -193,11 +202,11 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $scope.tasks.splice( index, 1 );
 
             var tasks = {data: $scope.tasks};
+
+            gantt.init("gantt_here");
             gantt.clearAll();
             gantt.parse (tasks);
-            // gantt.refreshData();    
-            // gantt.render();  
-            console.log('render...gantt');   
+            gantt.render(); 
         };
 
         // Initial Value
@@ -446,10 +455,10 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             gantt.parse (tasks);
             // gantt.parse($scope.tasks);
 
-            // gantt.attachEvent("onTaskClick", function(id, e) {
-            //     // alert("You've just clicked an item with id="+id);
-            //     return false;
-            // });
+            gantt.attachEvent("onTaskClick", function(id, e) {
+                // alert("You've just clicked an item with id="+id);
+                return false;
+            });
             gantt.attachEvent("onTaskDblClick", function(id, e) {
                 // alert("You've just double clicked an item with id="+id);
                 return false;
@@ -465,7 +474,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             saveConfig();
             zoomToFit();
         } else {
-
             toggle.innerHTML = "Zoom to Fit";
             //Restore previous scale state
             restoreConfig();

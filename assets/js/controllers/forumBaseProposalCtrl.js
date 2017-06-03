@@ -10,7 +10,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 .then(
                     function(data) {
                         $scope.currentForumActive =  data[0];
-                        console.log($scope.currentForumActive.projectName + " currentForumActive");
                     },
                     function(errResponse){
                         console.log(errResponse);
@@ -126,4 +125,32 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
         $scope.hstep = 1;
         $scope.mstep = 15;
+
+        $scope.visibleModifiedTask = false;
+
+        $scope.changeVisibilityItems = function () {
+
+            if ($scope.proposalType == 'Modified Task') {
+                $scope.getTaskByProjectsId();
+                $scope.visibleModifiedTask = true;
+            } else {
+                $scope.visibleModifiedTask = false;
+            }
+        };
+
+        $scope.tasks = [];
+        $scope.modifiedTaskSelected = '';
+
+        $scope.getTaskByProjectsId = function(){
+            RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.tasks =  data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
     }]);

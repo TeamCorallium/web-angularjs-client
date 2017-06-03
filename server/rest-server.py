@@ -18,6 +18,7 @@ from handlers.chat import *
 from handlers.upload import *
 from handlers.invertion import *
 from handlers.comment import *
+from handlers.vote import *
 
 from databases.coralliumTiny import *
 from localutils.client import * 
@@ -82,6 +83,27 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                     
                     print(interestedUserIds)
 
+                if self.json_args['type'] == 'VOTE':
+                    vote = self.json_args['value']
+                    table_vote.insert(vote)
+
+                    projectId = vote['projectId']
+                    projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+                    project = projects[0]
+
+                    interestedUserIds = []
+                    interestedUserIds.append(project['userId'])
+
+                    invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+                    for invertion in invertions:
+                        interestedUserIds.append(invertion['userId'])
+
+                    votes = table_vote.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))                                                
+
+                    print(votes)
+                    # if len(votes) == len(interestedUserIds):
+                        
+
                 if self.json_args['type'] == 'CHAT':
                     table_chat.insert(self.json_args['value'])
 
@@ -139,6 +161,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/commentsByProjectId/(.*)", CommentByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalById/(.*)", ProposalByIdHandler),
     (r"/CoralliumRestAPI/notifiesByUserId/(.*)", NotifiesByUserIdHandler),
+    (r"/CoralliumRestAPI/voteByProposalId/(.*)", VoteByProposalIdHandler),
     (r"/CoralliumRestAPI/ws(.*)", WebSocketHandler)
 ])
 

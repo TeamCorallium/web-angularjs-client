@@ -16,6 +16,7 @@ table_notification = db.table('table_notification')
 table_chat = db.table('table_chat')
 table_invertion = db.table('table_invertion')
 table_comment = db.table('table_comment')
+table_vote = db.table('table_vote')
 
 # table_user.purge()
 # table_profile.purge()

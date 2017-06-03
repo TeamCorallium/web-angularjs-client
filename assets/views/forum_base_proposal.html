@@ -10,37 +10,68 @@
 	</section>
 	<div class="container-fluid container-fullw bg-white">
 		<div class="row">
-			<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div class="form-group">
 					<label>Title</label>
 					<input ng-model="proposalTitle" class="form-control ng-pristine ng-valid ng-empty ng-touched" style="" type="text">
 				</div>
 			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+				<div class="form-group">
+					<label>Type</label>
+					<select ng-model="proposalType" ng-change="changeVisibilityItems()" class="cs-select cs-skin-elastic">
+						<option disabled selected>Select Type</option>
+						<option value="Started Project">Started Project</option>
+						<option value="Finish Task">Finish Task</option>
+						<option value="Modified Task">Modified Task</option>
+						<option value="Close Projecs">Close Project</option>
+					</select>
+				</div>
+			</div>
 			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
 				<div class="form-group">
-					<label>
-						Death Line
-					</label>
-					<div class="form-group">
-						<input class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
+					<label>Death Line</label>
+					<div class="input-group">
+						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="deathLine" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-primary" ng-click="open()">
+								<i class="fa fa-calendar"></i>
+							</button>
+						</span>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" ng-show="visibleModifiedTask && tasks.length != 0">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div class="form-group">
-					<label>Proposal Content</label>
-					<textarea ng-model="proposalContent" placeholder="Enter proposal Content" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+					<label>Item Subject</label>
+					<select ng-model="selectedTask" ng-options="t.name for t in tasks" class="cs-select cs-skin-slide">
+						<option disabled value="">Select Task</option>
+					</select>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div class="form-group">
 					<label>Item subject of the Proposal</label>
-					<textarea ng-model="itemSubject" placeholder="Enter item subject of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+					<textarea ng-model="proposalContent" placeholder="Enter item subject of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
 				</div>
 			</div>
 		</div>
+		<!--<div class="row" ng-show="false">-->
+			<!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">-->
+				<!--<div class="form-group">-->
+					<!--<label>Proposal Content</label>-->
+					<!--<textarea ng-model="proposalContent" placeholder="Enter proposal Content" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">-->
+				<!--<div class="form-group">-->
+					<!--<label>Item subject of the Proposal</label>-->
+					<!--<textarea ng-model="itemSubject" placeholder="Enter item subject of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
 		<div class="row">
 			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 margin-top-10">
 				<button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-comments-o">

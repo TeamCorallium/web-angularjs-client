@@ -8,60 +8,125 @@
 		</div>
 	</section>
 	<div class="container-fluid container-fullw bg-white">
-		<div class="row">
-			<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-				<p><strong>Title: </strong> {{currentProposalView.name}} </p>
-			</div>
-			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-				<p><strong>Deathline: </strong> </p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="form-group">
-					<p><strong>Proposal Content</strong></p>
-					<p>{{currentProposalView.proposalContent}}</p>
+		<div ng-show="currentProposalView.type == 'Modified Task'">
+			<div class="row">
+				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+					<p><strong>Title: </strong> {{currentProposalView.name}} </p>
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<p><strong>Deathline: </strong> {{getProjectDate(currentProposalView.deathLine)}} </p>
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="form-group">
-					<p><strong>Item subject of the Proposal</strong></p>
-					<p>{{currentProposalView.itemSubject}}</p>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<p><strong>Task Name: </strong> {{currentTaskProposalView.name}} </p>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class=" well col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-				<div class="center margin-top-10 margin-bottom-10">
-					<label>Votation</label>
-				</div>
-				<div class="panel-body center margin-bottom-10">
-					<div class="radio clip-radio radio-primary inline">
-						<input ng-model="popoverType" name="popoverType" id="yes" value="yes" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
-						<label for="yes">Yes</label>
+			<hr class="tall">
+			<div ng-hide="userVote">
+				<div class="row" ng-hide="viewVoteResults">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<fieldset>
+							<legend>Votation</legend>
+							<h5><strong>Proposal Content: </strong> {{currentProposalView.proposalContent}}</h5>
+							<div class="panel-body margin-top-15">
+								<div class="radio clip-radio radio-primary margin-bottom-11">
+									<input ng-model="voteUser" name="popoverType" id="yes" value="yes" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio" checked="checked">
+									<label for="yes">Yes</label>
+								</div>
+								<div class="radio clip-radio radio-primary margin-bottom-11">
+									<input ng-model="voteUser" name="popoverType" id="no" value="no" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio">
+									<label for="no">No</label>
+								</div>
+								<div class="radio clip-radio radio-primary margin-bottom-11">
+									<input ng-model="voteUser" name="popoverType" id="abs" value="abs" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio">
+									<label for="abs">Abs</label>
+								</div>
+							</div>
+						</fieldset>
+						<button ng-click="setVote()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check">
+							<span>Vote</span>
+						</button>
+						<button ng-click="showVotesResult()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
+							<span>View Votes</span>
+						</button>
 					</div>
-					<div class="radio clip-radio radio-primary inline">
-						<input ng-model="popoverType" name="popoverType" id="no" value="no" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
-						<label for="no">No</label>
+				</div>
+				<div class="row" ng-show="viewVoteResults">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<fieldset>
+							<legend>Votation</legend>
+							<h5><strong>Proposal Content: </strong> {{currentProposalView.proposalContent}}</h5>
+							<div class="panel-body margin-top-15">
+								<div class="radio clip-radio radio-primary margin-bottom-11">
+									<input ng-model="voteUserA" name="popoverType" id="yesA" value="yes" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio" checked="checked">
+									<label for="yesA">Yes</label>
+								</div>
+								<div class="radio clip-radio radio-primary margin-bottom-11">
+									<input ng-model="voteUserA" name="popoverType" id="noA" value="no" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio">
+									<label for="noA">No</label>
+								</div>
+								<div class="radio clip-radio radio-primary margin-bottom-11">
+									<input ng-model="voteUserA" name="popoverType" id="absA" value="abs" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio">
+									<label for="absA">Abs</label>
+								</div>
+							</div>
+						</fieldset>
+						<button ng-click="setVote()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check">
+							<span>Vote</span>
+						</button>
+						<button ng-click="showVotesResult()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
+							<span>Hide Votes</span>
+						</button>
 					</div>
-					<div class="radio clip-radio radio-primary inline">
-						<input ng-model="popoverType" name="popoverType" id="abs" value="abs" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
-						<label for="abs">Abs</label>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<fieldset>
+							<legend>View Results</legend>
+							<h5> Text Here .... </h5>
+							<div class="panel-body margin-top-15">
+								<div class="row">
+									<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>YES</strong></h5>
+									<uib-progressbar value="countVotes.yes" max="allVotes.length" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="success">{{countVotes.yes}}/{{allVotes.length}}</uib-progressbar>
+								</div>
+								<div class="row">
+									<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>NO</strong></h5>
+									<uib-progressbar value="countVotes.no" max="allVotes.length" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="danger">{{countVotes.no}}/{{allVotes.length}}</uib-progressbar>
+								</div>
+								<div class="row">
+									<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>ABS</strong></h5>
+									<uib-progressbar value="countVotes.abs" max="allVotes.length" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="info">{{countVotes.abs}}/{{allVotes.length}}</uib-progressbar>
+								</div>
+							</div>
+						</fieldset>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
-				<button  type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check">
-					<span>Done</span>
-				</button>
+			<div ng-show="userVote">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+					<fieldset>
+						<legend>View Results</legend>
+						<h5> Text Here .... </h5>
+						<div class="panel-body margin-top-15">
+							<div class="row">
+								<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>YES</strong></h5>
+								<uib-progressbar value="countVotes.yes" max="allVotes.length" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="success">{{countVotes.yes}}/{{allVotes.length}}</uib-progressbar>
+							</div>
+							<div class="row">
+								<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>NO</strong></h5>
+								<uib-progressbar value="countVotes.no" max="allVotes.length" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="danger">{{countVotes.no}}/{{allVotes.length}}</uib-progressbar>
+							</div>
+							<div class="row">
+								<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>ABS</strong></h5>
+								<uib-progressbar value="countVotes.abs" max="allVotes.length" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="info">{{countVotes.abs}}/{{allVotes.length}}</uib-progressbar>
+							</div>
+						</div>
+					</fieldset>
+				</div>
 			</div>
-			<div class="col-xs-6 col-sm-2 col-sm-offset-8 col-md-2 col-md-offset-8 col-lg-2 col-lg-offset-8 margin-top-10">
-				<button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-comments-o">
-					<span>Go to forum</span>
-				</button>
-			</div>
+			<hr class="tall">
+			<button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-comments-o">
+				<span>Go to forum</span>
+			</button>
 		</div>
 	</div>
 </div>

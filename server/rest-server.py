@@ -18,6 +18,7 @@ from handlers.chat import *
 from handlers.upload import *
 from handlers.invertion import *
 from handlers.comment import *
+from handlers.vote import *
 
 from databases.coralliumTiny import *
 from localutils.client import * 
@@ -56,14 +57,53 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 print(self.json_args['value'])
 
                 if self.json_args['type'] == 'PROPOSAL':
-                    id = table_proposal.insert(self.json_args['value'])
-                    table_proposal.update({'id': id}, eids=[id])
+
+                    proposalId = table_proposal.insert(self.json_args['value'])
+                    table_proposal.update({'id': proposalId}, eids=[proposalId])
+
+                    projectId = self.json_args['value']['projectId']
+                    projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+                    project = projects[0]
 
                     users = table_user.search(where('id') == int(self.id))
+                    fromName = users[0]['fullName']
 
-                    table_notification.insert({'userId': self.id, 'from': users[0]['fullName'], 'read': False, 'type': "0", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                               'subject': "Creation", 'content': "New proposal was created"})
-                
+                    interestedUserIds = []
+                    interestedUserIds.append(project['userId'])
+
+                    invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+                    for invertion in invertions:
+                        interestedUserIds.append(invertion['userId'])
+
+                    proposalType = self.json_args['value']['type']
+                    for userId in interestedUserIds:
+                        if proposalType == 'Modified Task':
+                            table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': proposalType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                                    'subject': "Creation", 'content': "New proposal was created"})
+                    
+                    print(interestedUserIds)
+
+                if self.json_args['type'] == 'VOTE':
+                    vote = self.json_args['value']
+                    table_vote.insert(vote)
+
+                    projectId = vote['projectId']
+                    projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+                    project = projects[0]
+
+                    interestedUserIds = []
+                    interestedUserIds.append(project['userId'])
+
+                    invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+                    for invertion in invertions:
+                        interestedUserIds.append(invertion['userId'])
+
+                    votes = table_vote.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))                                                
+
+                    print(votes)
+                    # if len(votes) == len(interestedUserIds):
+                        
+
                 if self.json_args['type'] == 'CHAT':
                     table_chat.insert(self.json_args['value'])
 
@@ -97,6 +137,9 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         print('WebSocketHandler:check_origin')
         return True        
 
+def test():
+    print('ok ok ok ok')
+
 application = tornado.web.Application([
     (r"/CoralliumRestAPI/user/?", UserHandler),
     (r"/CoralliumRestAPI/user/(.*)", UserHandler),
@@ -118,10 +161,15 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/commentsByProjectId/(.*)", CommentByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalById/(.*)", ProposalByIdHandler),
     (r"/CoralliumRestAPI/notifiesByUserId/(.*)", NotifiesByUserIdHandler),
+    (r"/CoralliumRestAPI/voteByProposalId/(.*)", VoteByProposalIdHandler),
     (r"/CoralliumRestAPI/ws(.*)", WebSocketHandler)
 ])
 
 if __name__ == "__main__":
     print('Corallium Server---host:localhost---port:9090')
     application.listen(9090)
-    tornado.ioloop.IOLoop.instance().start()
+    main_loop = tornado.ioloop.IOLoop.instance()
+
+    main_loop.add_timeout(datetime.timedelta(seconds=5), test)
+
+    main_loop.start()

@@ -297,7 +297,7 @@
 																Total Estimate Revenue <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="10000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.totalRevenue.$dirty && Form.totalRevenue.$invalid">Total Estimate Revenueis required</span>
 															<span class="success text-small" ng-if="Form.totalRevenue.$valid">Thank You!</span>
@@ -589,7 +589,7 @@
 													<tr ng-repeat="task in tasks">
 														<td>{{task.name}} </td>
 														<td>{{task.cost}} </td>
-														<td>{{task.startDate}} </td>
+														<td>{{getDate(task.startDate)}} </td>
 														<td>{{task.duration}} </td>
 														<td>
 															<button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task.name)">
@@ -602,11 +602,13 @@
 											</div>
 										</div>
 										<div class="row" ng-show="tasks.length != 0">
-										<div style="text-align: center;height: 40px;line-height: 40px;">
-	<button style="height: 34px;line-height: 30px;margin:3px auto" ng-click="toggleMode(this)">Zoom to Fit</button>
-</div>
-										<div class="col-md-12" id="gantt_here"></div>
+											<div class="col-md-12">
+											<button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
+
+											<div id="gantt_here"></div>
+											</div>
 										</div>
+										
 									</fieldset>
 									<div class="form-group">
 										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">

@@ -1,146 +1,142 @@
-<!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="CurrentUserProjects">
-    <div class="row">
-        <div class="col-sm-8">
-            <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
-            <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
-        </div>
-        <div ncy-breadcrumb></div>
-    </div>
-</section>
-<!-- end: PAGE TITLE -->
-<!-- start: YOUR CONTENT HERE -->
-<!-- end: YOUR CONTENT HERE -->
-<!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white" ng-controller="CurrentUserProjects">
-    <div class="container">
+<div  ng-controller="CurrentUserProjects">
+    <section id="page-title">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="panel panel-white" id="panel1">
-                    <div class="panel-heading">
-                        <!--<h4 class="panel-title text-primary">Investment</h4>-->
-                        <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
-                                                                                           class="btn btn-transparent btn-sm"
-                                                                                           panel-collapse=""
-                                                                                           tooltip-placement="top"
-                                                                                           uib-tooltip="Collapse"
-                                                                                           ng-click="panel1 = !panel1"
-                                                                                           ng-init="panel1=false">
-                            <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel1"
-                                                                          class="ti-minus ng-scope"
-                                                                          style=""></i>
-                            <!-- end ngIf: !panel1 --></a></ct-paneltool>
-                    </div>
-                    <div uib-collapse="panel1" ng-init="panel1=false"
-                         class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
-                         style="height: auto;">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
-                                    <ul class="portfolio-details list-unstyled">
-                                        <li>
-                                            <p>
-                                                <strong>Owner Raiting:</strong>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p>
-                                                <strong>Estimate Duration:</strong>
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
-                                    <ul class="portfolio-details list-unstyled">
-                                        <li>
-                                            <p class="margin-top-15">
-                                                <strong>Proyect Evaluation:</strong>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p class="margin-top-15">
-                                                <strong>Actual Duration:</strong>
-                                            </p>
-                                        </li>
-                                    </ul>
+            <div class="col-sm-8">
+                <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+            </div>
+            <div ncy-breadcrumb></div>
+        </div>
+    </section>
+    <div class="container-fluid container-fullw bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-white" id="panel1">
+                        <div class="panel-heading">
+                            <!--<h4 class="panel-title text-primary">Investment</h4>-->
+                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
+                                                                                               class="btn btn-transparent btn-sm"
+                                                                                               panel-collapse=""
+                                                                                               tooltip-placement="top"
+                                                                                               uib-tooltip="Collapse"
+                                                                                               ng-click="panel1 = !panel1"
+                                                                                               ng-init="panel1=false">
+                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel1"
+                                                                              class="ti-minus ng-scope"
+                                                                              style=""></i>
+                                <!-- end ngIf: !panel1 --></a></ct-paneltool>
+                        </div>
+                        <div uib-collapse="panel1" ng-init="panel1=false"
+                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                             style="height: auto;">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
+                                        <ul class="portfolio-details list-unstyled">
+                                            <li>
+                                                <p>
+                                                    <strong>Owner Raiting:</strong>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <strong>Estimate Duration:</strong>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
+                                        <ul class="portfolio-details list-unstyled">
+                                            <li>
+                                                <p class="margin-top-15">
+                                                    <strong>Proyect Evaluation:</strong>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="margin-top-15">
+                                                    <strong>Actual Duration:</strong>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="panel panel-white" id="panel2">
-                    <div class="panel-heading">
-                        <!--<h4 class="panel-title text-primary">Investment</h4>-->
-                        <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
-                                                                                           class="btn btn-transparent btn-sm"
-                                                                                           panel-collapse=""
-                                                                                           tooltip-placement="top"
-                                                                                           uib-tooltip="Collapse"
-                                                                                           ng-click="panel2 = !panel2"
-                                                                                           ng-init="panel2 = false">
-                            <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel2"
-                                                                          class="ti-minus ng-scope"
-                                                                          style=""></i>
-                            <!-- end ngIf: !panel1 --></a></ct-paneltool>
-                    </div>
-                    <div uib-collapse="panel2" ng-init="panel2=false"
-                         class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
-                         style="height: auto;">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
-                                    <ul class="portfolio-details list-unstyled">
-                                        <li>
-                                            <p>
-                                                <strong>Investment Capital:</strong>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p>
-                                                <strong>Estimate Revenue:</strong>
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
-                                    <ul class="portfolio-details list-unstyled">
-                                        <li>
-                                            <p class="margin-top-15">
-                                                <strong>Total of Investors:</strong>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p class="margin-top-15">
-                                                <strong>Actual Revenue:</strong>
-                                            </p>
-                                        </li>
-                                    </ul>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-white" id="panel2">
+                        <div class="panel-heading">
+                            <!--<h4 class="panel-title text-primary">Investment</h4>-->
+                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
+                                                                                               class="btn btn-transparent btn-sm"
+                                                                                               panel-collapse=""
+                                                                                               tooltip-placement="top"
+                                                                                               uib-tooltip="Collapse"
+                                                                                               ng-click="panel2 = !panel2"
+                                                                                               ng-init="panel2 = false">
+                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel2"
+                                                                              class="ti-minus ng-scope"
+                                                                              style=""></i>
+                                <!-- end ngIf: !panel1 --></a></ct-paneltool>
+                        </div>
+                        <div uib-collapse="panel2" ng-init="panel2=false"
+                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                             style="height: auto;">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
+                                        <ul class="portfolio-details list-unstyled">
+                                            <li>
+                                                <p>
+                                                    <strong>Investment Capital:</strong>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <strong>Estimate Revenue:</strong>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
+                                        <ul class="portfolio-details list-unstyled">
+                                            <li>
+                                                <p class="margin-top-15">
+                                                    <strong>Total of Investors:</strong>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="margin-top-15">
+                                                    <strong>Actual Revenue:</strong>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h4>List of Users and Evaluation</h4>
-                <ul class="list-unstyled margin-top-10">
-                    <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                        <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2 no-padding">
-                            <img  ng-src="assets/images/team-3.jpg" alt=""
-                                  class="img-responsive img-rounded proposal-image">
-                        </div>
-                        <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8 margin-top-30 no-padding">
-                            <h4>Yoenia Lapido</h4>
-                        </div>
-                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 margin-top-30 no-padding">
-                            <h4>Evaluation:</h4>
-                        </div>
-                    </li>
-                </ul>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h4>List of Users and Evaluation</h4>
+                    <ul class="list-unstyled margin-top-10">
+                        <li class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                            <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2 no-padding">
+                                <img  ng-src="assets/images/team-3.jpg" alt=""
+                                      class="img-responsive img-rounded proposal-image">
+                            </div>
+                            <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8 margin-top-30 no-padding">
+                                <h4>Yoenia Lapido</h4>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 margin-top-30 no-padding">
+                                <h4>Evaluation:</h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+    <!-- end: FEATURED BOX LINKS -->
 </div>
-<!-- end: FEATURED BOX LINKS -->

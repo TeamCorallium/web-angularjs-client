@@ -1,6 +1,90 @@
 /* ---------------------------------------------------------------------- */
 /*  Basic Elements & Classes
 /* ---------------------------------------------------------------------- */
+
+
+@font-face{
+    font-family: 'Lato Black';
+    src: url('../fonts/Lato-Black.ttf');
+}
+
+@font-face{
+    font-family: 'Lato-Black Italic';
+    src: url('../fonts/Lato-BlackItalic.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Bold';
+    src: url('../fonts/Lato-Bold.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Bold Italic';
+    src: url('../fonts/Lato-BoldItalic.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Heavy';
+    src: url('../fonts/Lato-Heavy.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Heavy Italic';
+    src: url('../fonts/Lato-HeavyItalic.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Italic';
+    src: url('../fonts/Lato-Italic.ttf');
+}
+
+
+@font-face{
+    font-family: 'Lato Light';
+    src: url('../fonts/Lato-Light.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Light Italic';
+    src: url('../fonts/Lato-LightItalic.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Medium';
+    src: url('../fonts/Lato-Medium.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Medium Italic';
+    src: url('../fonts/Lato-MediumItalic.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Regular';
+    src: url('../fonts/Lato-Regular.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Semibold';
+    src: url('../fonts/Lato-Semibold.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Semibold Italic';
+    src: url('../fonts/Lato-SemiboldItalic.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Thin';
+    src: url('../fonts/Lato-Thin.ttf');
+}
+
+@font-face{
+    font-family: 'Lato Thin Italic';
+    src: url('../fonts/Lato-ThinItalic.ttf');
+}
+
+
 html, body {
     height: 100%;
     width: 100%;

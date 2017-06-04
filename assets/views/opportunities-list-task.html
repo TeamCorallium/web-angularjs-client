@@ -1,72 +1,51 @@
 <!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="CurrentUserProjects">
-	<div class="row">
-		<div class="col-sm-8">
-			<!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
-			<h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
-			<!--<span class="mainDescription">Use this page to start from scratch and put your custom content</span>-->
-		</div>
-		<div ncy-breadcrumb></div>
-	</div>
-</section>
-<!-- end: PAGE TITLE -->
-<!-- start: YOUR CONTENT HERE -->
-<!-- end: YOUR CONTENT HERE -->
-<!-- start: FEATURED BOX LINKS -->
-<section class="container-fluid container-fullw bg-white" ng-controller="TaskCtrl">
-	<div class="container">
+<div ng-controller="OpportunitiesListTaskCtrl">
+	<section id="page-title">
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<ul class="list-unstyled">
-					<li class="margin-bottom-15" ng-repeat="task in tasksProject">
-						<hr class="tall">
-						<div class="clearfix">
-							<div class="thread-content col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-top-10">
-								<span class="notification-author"><a ng-click="goToOpportunitiesTask(task.id)">{{task.name}}</a></span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3 margin-top-10">
-								<span class="label label-inverse state-list-tasks">{{ stateArray[task.state]}}</span>
-								<span class="notification-time"> {{ task.startDate | date: "MM/dd/yyyy" }}</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
-								<span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
-									<button type="button" class="btn btn-success btn-xs">
-										<span class="fa fa-edit"></span> Update
-									</button>
-									<button ng-click="goToOpportunitiesTask(task.id)" type="button" class="btn btn-warning btn-xs">
-										<span class="fa fa-arrow-right"></span> View
-									</button>
-									<button type="button" class="btn btn-danger btn-xs">
-										<span class="glyphicon glyphicon-trash"></span> Remove
-									</button>
+			<div class="col-sm-8">
+				<h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+			</div>
+			<div ncy-breadcrumb></div>
+		</div>
+	</section>
+	<section class="container-fluid container-fullw bg-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<ul class="list-unstyled">
+						<li class="margin-bottom-15" ng-repeat="task in tasksProject">
+							<hr class="tall">
+							<div class="clearfix">
+								<div class="thread-content col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-top-10">
+									<span class="notification-author"><a ng-click="goToOpportunitiesTask(task.id)">{{task.name}}</a></span>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3 margin-top-10">
+									<span class="label label-inverse state-list-tasks">{{ stateArray[task.state]}}</span>
+									<span class="notification-time"> {{getCreationProject(task.startDate)}}</span>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
+									<span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
+										<button ng-click="goToOpportunitiesTask(task.id)" type="button" class="btn btn-warning btn-xs">
+											<span class="fa fa-arrow-right"></span> View
+										</button>
+									</div>
 								</div>
 							</div>
-						</div>
-					</li>
-				</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<hr class="tall">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
+					<button ui-sref="app.project.opportunities_detail" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
+						<span> Back </span>
+					</button>
+				</div>
 			</div>
 		</div>
-		<hr class="tall">
-		<div class="row">
-			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
-				<button ui-sref="app.inversion" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-eye">
-					<span> Invest </span>
-				</button>
-			</div>
-			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
-				<button type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-link">
-					<span> Follow </span>
-				</button>
-			</div>
-			<div class="col-xs-12 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6 col-lg-2 col-lg-offset-6 margin-top-10">
-				<button ui-sref="app.project.opportunities_detail" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
-					<span> Back </span>
-				</button>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- end: FEATURED BOX LINKS -->
+	</section>
+</div>

@@ -8,8 +8,6 @@
 		<div ncy-breadcrumb></div>
 	</div>
 </section>
-<!-- end: PAGE TITLE -->
-<!-- start: FEATURED BOX LINKS -->
 <section class="container-fluid container-fullw bg-white" ng-controller="NotificationCtrl">
 	<div class="container">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
@@ -25,37 +23,84 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<ul class="list-unstyled">
-					<li class="margin-bottom-15" ng-repeat="notification in notifications">
-						<hr>
-						<div class="clearfix">
-							<div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
-								<img  ng-src="assets/images/default-user.png" alt=""
-									  class="img-responsive img-rounded notification-image">
-							</div>
-							<div class="thread-content col-xs-7 col-sm-10 col-md-10 col-lg-10">
-								<span class="notification-author">{{notification.from}}</span>
-								<span class="notification-time"> {{ notification.date | date: "MM/dd/yyyy 'at' h:mma" }}</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">
-								<span class="notification-preview">{{ notification.content | htmlToPlaintext | words:40 :true }}</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">
-								<div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
-									<button type="button" class="btn btn-success btn-xs">
-										<span class="glyphicon glyphicon-upload"></span> Upload
-									</button>
-									<button type="button" class="btn btn-warning btn-xs">
-										<span class="glyphicon glyphicon-ban-circle"></span> Cancel
-									</button>
-									<button type="button" class="btn btn-danger btn-xs">
-										<span class="glyphicon glyphicon-trash"></span> Remove
-									</button>
-								</div>
-							</div>
-						</div>
-					</li>
-				</ul>
+				<!--<ul class="list-unstyled">-->
+					<!--<li class="margin-bottom-15" ng-repeat="notification in notifications">-->
+						<!--<hr>-->
+						<!--<div class="clearfix">-->
+							<!--<div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">-->
+								<!--<img  ng-src="assets/images/default-user.png" alt=""-->
+									  <!--class="img-responsive img-rounded notification-image">-->
+							<!--</div>-->
+							<!--<div class="thread-content col-xs-7 col-sm-10 col-md-10 col-lg-10">-->
+								<!--<span class="notification-author">{{notification.from}}</span>-->
+								<!--<span class="notification-time"> {{ notification.date | date: "MM/dd/yyyy 'at' h:mma" }}</span>-->
+							<!--</div>-->
+							<!--<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">-->
+								<!--<span class="notification-preview">{{ notification.content | htmlToPlaintext | words:40 :true }}</span>-->
+							<!--</div>-->
+							<!--<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10">-->
+								<!--<div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">-->
+									<!--<button type="button" class="btn btn-danger btn-xs">-->
+										<!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+									<!--</button>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</li>-->
+				<!--</ul>-->
+				<div class="alert alert-block alert-success fade in">
+					<button data-ct-dismiss="alert" class="close fa fa-times" type="button">
+
+					</button>
+					<h4 class="alert-heading margin-bottom-10"><i class="ti-check"></i> Success!</h4>
+					<p class="margin-bottom-10">
+						Duis mollis, est non commodo luctus,
+						nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+					</p>
+					<p>
+						<a href="#" class="btn btn-success"> Take this action </a>
+						<a href="#" class="btn btn-o btn-success"> Or do this </a>
+					</p>
+				</div>
+				<div class="alert alert-block alert-danger fade in">
+					<button data-ct-dismiss="alert" class="close fa fa-times" type="button">
+					</button>
+					<h4 class="alert-heading margin-bottom-10"><i class="ti-close"></i> Error!</h4>
+					<p class="margin-bottom-10">
+						Duis mollis, est non commodo luctus,
+						nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+					</p>
+					<p>
+						<a href="#" class="btn btn-danger"> Take this action </a>
+						<a href="#" class="btn btn-o btn-danger"> Or do this </a>
+					</p>
+				</div>
+				<div class="alert alert-block alert-info fade in">
+					<button data-ct-dismiss="alert" class="close fa fa-times" type="button">
+					</button>
+					<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> Info!</h4>
+					<p class="margin-bottom-10">
+						Duis mollis, est non commodo luctus,
+						nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+					</p>
+					<p>
+						<a href="#" class="btn btn-info"> Take this action </a>
+						<a href="#" class="btn btn-o btn-info"> Or do this </a>
+					</p>
+				</div>
+				<div class="alert alert-block alert-warning fade in">
+					<button data-ct-dismiss="alert" class="close fa fa-times" type="button">
+					</button>
+					<h4 class="alert-heading margin-bottom-10"><i class="ti-alert"></i> Warning!</h4>
+					<p class="margin-bottom-10">
+						Duis mollis, est non commodo luctus,
+						nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+					</p>
+					<p>
+						<a href="#" class="btn btn-warning"> Take this action </a>
+						<a href="#" class="btn btn-o btn-warning"> Or do this </a>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>

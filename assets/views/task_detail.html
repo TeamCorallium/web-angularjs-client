@@ -1,186 +1,177 @@
-<!-- start: PAGE TITLE -->
-<section id="page-title" ng-controller="CurrentUserProjects">
-    <div class="row">
-        <div class="col-sm-8">
-            <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+<div ng-controller="SubprojectTaskDetailCtrl">
+    <section id="page-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+            </div>
+            <div ncy-breadcrumb></div>
         </div>
-        <div ncy-breadcrumb></div>
-    </div>
-</section>
-<!-- end: PAGE TITLE -->
-
-<!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white" ng-controller="TaskCtrl">
-    <!-- start: APP CONTENT -->
-    <div class="app-content">
-        <div class="main-content" id="subproject">
-            <section class="container-fluid container-fullw bg-white" id="section_subproject">
-                <div class="container">
-                    <div class="row">
-                        <div class="portfolio-title">
+    </section>
+    <div class="container-fluid container-fullw bg-white">
+        <div class="app-content">
+            <div class="main-content" id="subproject">
+                <section class="container-fluid container-fullw bg-white" id="section_subproject">
+                    <div class="container">
+                        <div class="row">
+                            <div class="portfolio-title">
+                                <div class="row">
+                                    <div class="col-md-12 left">
+                                        <h2 class="shorter">{{currentTaskActive.name}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="tall">
                             <div class="row">
-                                <div class="col-md-12 left">
-                                    <h2 class="shorter">{{currentTaskActive.name}}</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="tall">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 pull-right">
-                                <div class="portfolio-info">
-                                    <div class="row">
-                                        <ul class="pull-right text-right">
-                                            <li>
-                                                <i class="fa fa-calendar"></i> <strong>Starting Date:</strong> {{ currentTaskActive.startDate | date: "MM/dd/yyyy" }}
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-calendar"></i> <strong>Proposed Finishing:</strong> 21 April 2017
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-calendar"></i> <strong>Date:</strong> 21 April 2017
-                                            </li>
-                                        </ul>
+                                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 pull-right">
+                                    <div class="portfolio-info">
+                                        <div class="row">
+                                            <ul class="pull-right text-right">
+                                                <li>
+                                                    <i class="fa fa-calendar"></i> <strong>Starting Date:</strong> {{getProjectDate(currentTaskActive.startDate)}}
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-calendar"></i> <strong>Proposed Finishing:</strong> 21 April 2017
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-calendar"></i> <strong>Date:</strong> {{getTodayDate()}}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- The color of the progres bar depend of the task stage -->
-                            <div class="col-md-7 col-sm-7 col-lg-7 col-xs-12 margin-top-15">
-                                <div class="progress progress-striped ng-isolate-scope" value="dynamic" type="success">
-                                    <div class="progress-bar progress-bar-info"
-                                         ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar"
-                                         aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"
-                                         ng-style="{width: (percent &lt; 100 ? percent : 100) + '%'}"
-                                         aria-valuetext="24%" aria-labelledby="progressbar" ng-transclude=""
-                                         style="width: 24%;">
-                                        <!--<span class="ng-binding ng-scope">Active </span>-->
+                                <div class="col-md-7 col-sm-7 col-lg-7 col-xs-12 margin-top-15">
+                                    <div class="progress progress-striped ng-isolate-scope" value="dynamic" type="success">
+                                        <div class="progress-bar progress-bar-info"
+                                             ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar"
+                                             aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"
+                                             ng-style="{width: (percent &lt; 100 ? percent : 100) + '%'}"
+                                             aria-valuetext="24%" aria-labelledby="progressbar" ng-transclude=""
+                                             style="width: 24%;">
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 margin-top-15">
+                                    <span class="label label-info pull-right">{{stateArray[currentTaskActive.state]}}</span>
+                                </div>
                             </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 margin-top-15">
-                                <span class="label label-info pull-right">{{stateArray[currentTaskActive.state]}}</span>
+                            <hr class="tall">
+                            <div class="row">
+                                <div class="col-md-10 col-sm-10 col-lg-10 col-xs-12">
+                                    <h4>Description</h4>
+                                    <p class="taller margin-bottom-25"> {{currentTaskActive.description}}</p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12">
+                                    <address>
+                                        <strong class="text-dark">Financial Execution:</strong>
+                                        <br>
+                                        <br>
+                                    </address>
+                                    <address>
+                                        <strong class="text-dark">Phisical Execution:</strong>
+                                        <br>
+                                        <br>
+                                    </address>
+                                </div>
                             </div>
-                        </div>
-                        <hr class="tall">
-                        <div class="row">
-                            <div class="col-md-10 col-sm-10 col-lg-10 col-xs-12">
-                                <h4>Description</h4>
-                                <p class="taller margin-bottom-25"> {{currentTaskActive.description}}</p>
-                            </div>
-                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12">
-                                <address>
-                                    <strong class="text-dark">Financial Execution:</strong>
-                                    <br>
-                                    <br>
-                                </address>
-                                <address>
-                                    <strong class="text-dark">Phisical Execution:</strong>
-                                    <br>
-                                    <br>
-                                </address>
-                            </div>
-                        </div>
-                        <hr class="tall">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                <div class="panel panel-white" id="panel1">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title text-primary">Costs and duration</h4>
-                                        <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
-                                                                                                           class="btn btn-transparent btn-sm"
-                                                                                                           panel-collapse=""
-                                                                                                           tooltip-placement="top"
-                                                                                                           uib-tooltip="Collapse"
-                                                                                                           ng-click="panel1 = !panel1"
-                                                                                                           ng-init="panel1=false">
-                                            <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel1"
-                                                                                          class="ti-minus ng-scope"
-                                                                                          style=""></i>
-                                            <!-- end ngIf: !panel1 --></a>
-                                        </ct-paneltool>
+                            <hr class="tall">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                    <div class="panel panel-white" id="panel1">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">Costs and duration</h4>
+                                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a href="#"
+                                                                                                               class="btn btn-transparent btn-sm"
+                                                                                                               panel-collapse=""
+                                                                                                               tooltip-placement="top"
+                                                                                                               uib-tooltip="Collapse"
+                                                                                                               ng-click="panel1 = !panel1"
+                                                                                                               ng-init="panel1=false">
+                                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel1"
+                                                                                              class="ti-minus ng-scope"
+                                                                                              style=""></i>
+                                                <!-- end ngIf: !panel1 --></a>
+                                            </ct-paneltool>
+                                        </div>
+                                        <div uib-collapse="panel1" ng-init="panel1=false"
+                                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                             style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
+                                                        <ul class="portfolio-details list-unstyled">
+                                                            <li>
+                                                                <p>
+                                                                    <strong>Estimate Cost:</strong> {{currentTaskActive.cost}} $
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="margin-top-15">
+                                                                    <strong>Estimate Duration:</strong> {{currentTaskActive.duration}}
+                                                                    <strong>weeks</strong>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                                                        <ul class="portfolio-details list-unstyled margin-top-minus-15">
+                                                            <li>
+                                                                <p class="margin-top-15">
+                                                                    <strong>Outcomes:</strong>
+                                                                </p>
+                                                                {{currentTaskActive.outcome}}
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div uib-collapse="panel1" ng-init="panel1=false"
-                                         class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
-                                         style="height: auto;">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
-                                                    <ul class="portfolio-details list-unstyled">
-                                                        <li>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                    <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
+                                    <div ng-controller="vAccordionCtrl">
+                                        <div class="panel panel-transparent">
+                                            <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
+                                            <div class="panel-heading no-padding">
+                                                <div class="panel-title">
+                                                    Risks
+                                                </div>
+                                            </div>
+                                            <!--<hr class="no-padding">-->
+                                            <div class="panel-body no-padding">
+                                                <v-accordion class="vAccordion--default"
+                                                             control="firstAccordionControl">
+                                                    <v-pane ng-repeat="pane in panes" expanded="$first">
+                                                        <v-pane-header>
+                                                            <h5>{{ pane.header }}</h5>
+                                                        </v-pane-header>
+                                                        <v-pane-content>
                                                             <p>
-                                                                <strong>Estimate Cost:</strong> {{currentTaskActive.cost}} $
+                                                                {{ pane.content }}
                                                             </p>
-                                                        </li>
-                                                        <li>
-                                                            <p class="margin-top-15">
-                                                                <strong>Estimate Duration:</strong> {{currentTaskActive.duration}}
-                                                                <strong>weeks</strong>
-                                                            </p>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
-                                                    <ul class="portfolio-details list-unstyled margin-top-minus-15">
-                                                        <li>
-                                                            <p class="margin-top-15">
-                                                                <strong>Outcomes:</strong>
-                                                            </p>
-                                                            <ul class="portfolio-details list-margin-25">
-                                                                <li>Production</li>
-                                                                <li>Income</li>
-                                                                <li>New Business</li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                        </v-pane-content>
+                                                    </v-pane>
+                                                </v-accordion>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
-                                <div ng-controller="vAccordionCtrl">
-                                    <div class="panel panel-transparent">
-                                        <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
-                                        <div class="panel-heading no-padding">
-                                            <div class="panel-title">
-                                                Risks
-                                            </div>
-                                        </div>
-                                        <!--<hr class="no-padding">-->
-                                        <div class="panel-body no-padding">
-                                            <v-accordion class="vAccordion--default"
-                                                         control="firstAccordionControl">
-                                                <v-pane ng-repeat="pane in panes" expanded="$first">
-                                                    <v-pane-header>
-                                                        <h5>{{ pane.header }}</h5>
-                                                    </v-pane-header>
-                                                    <v-pane-content>
-                                                        <p>
-                                                            {{ pane.content }}
-                                                        </p>
-                                                    </v-pane-content>
-                                                </v-pane>
-                                            </v-accordion>
-                                        </div>
-                                    </div>
+                            <hr class="tall">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+                                        <span>Go to forum</span>
+                                    </button>
+                                    <button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
+                                        <span>Back to my project</span>
+                                    </button>
                                 </div>
-                            </div>
-                        </div>
-                        <hr class="tall">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
-                                    <span>Go to forum</span>
-                                </button>
-                                <button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-shopping-cart">
-                                    <span>Back to my project</span>
-                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
 </div>

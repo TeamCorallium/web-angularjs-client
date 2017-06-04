@@ -82,6 +82,21 @@ function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
 
 }]);
+
+// app.config(['flowFactoryProvider', 
+// function (flowFactoryProvider) {
+//     flowFactoryProvider.defaults = {
+//         target: 'http://localhost:9090/CoralliumRestAPI/upload',
+//         permanentErrors:[404, 500, 501]
+//     };
+//     // You can also set default events:
+//     flowFactoryProvider.on('catchAll', function (event) {
+//       	console.log('flowFactoryProvider');
+//     });
+//     // Can be used with different implementations of Flow.js
+//     // flowFactoryProvider.factory = fustyFlowFactory;
+// }]);
+
 //Custom UI Bootstrap Calendar Popup Template
 app.run(["$templateCache", "$http", function ($templateCache, $http) {
 

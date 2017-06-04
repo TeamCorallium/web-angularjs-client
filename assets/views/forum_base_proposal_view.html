@@ -1,73 +1,67 @@
-<!-- start: PAGE TITLE -->
-<section id="page-title">
-	<div class="row">
-		<div class="col-sm-8">
-			<!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
-			<h1 class="mainTitle">PROJECT FORUM</h1>
-			<!-- <span class="mainDescription">Use this page to start from scratch and put your custom content</span> -->
+<div  ng-controller="ForumBaseProposalViewCtrl">
+	<section id="page-title">
+		<div class="row">
+			<div class="col-sm-8">
+				<h1 class="mainTitle">{{currentForumActive.projectName}} FORUM</h1>
+			</div>
+			<div ncy-breadcrumb></div>
 		</div>
-		<div ncy-breadcrumb></div>
-	</div>
-</section>
-<!-- end: PAGE TITLE -->
-<!-- start: YOUR CONTENT HERE -->
-<!-- end: YOUR CONTENT HERE -->
-<!-- start: FEATURED BOX LINKS -->
-<div class="container-fluid container-fullw bg-white" ng-controller="ForumCtrl">
-	<div class="row">
-		<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-			<p><strong>Title: </strong> {{currentProposalView.name}} </p>
-		</div>
-		<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-			<p><strong>Deathline: </strong> </p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-			<div class="form-group">
-				<p><strong>Proposal Content</strong></p>
-				<p>{{currentProposalView.proposalContent}}</p>
+	</section>
+	<div class="container-fluid container-fullw bg-white">
+		<div class="row">
+			<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+				<p><strong>Title: </strong> {{currentProposalView.name}} </p>
+			</div>
+			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+				<p><strong>Deathline: </strong> </p>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-			<div class="form-group">
-				<p><strong>Item subject of the Proposal</strong></p>
-				<p>{{currentProposalView.itemSubject}}</p>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class=" well col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-			<div class="center margin-top-10 margin-bottom-10">
-				<label>Votation</label>
-			</div>
-			<div class="panel-body center margin-bottom-10">
-				<div class="radio clip-radio radio-primary inline">
-					<input ng-model="popoverType" name="popoverType" id="yes" value="yes" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
-					<label for="yes">Yes</label>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<div class="form-group">
+					<p><strong>Proposal Content</strong></p>
+					<p>{{currentProposalView.proposalContent}}</p>
 				</div>
-				<div class="radio clip-radio radio-primary inline">
-					<input ng-model="popoverType" name="popoverType" id="no" value="no" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
-					<label for="no">No</label>
-				</div>
-				<div class="radio clip-radio radio-primary inline">
-					<input ng-model="popoverType" name="popoverType" id="abs" value="abs" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
-					<label for="abs">Abs</label>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<div class="form-group">
+					<p><strong>Item subject of the Proposal</strong></p>
+					<p>{{currentProposalView.itemSubject}}</p>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
-			<button  type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check">
-				<span>Done</span>
-			</button>
+		<div class="row">
+			<div class=" well col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+				<div class="center margin-top-10 margin-bottom-10">
+					<label>Votation</label>
+				</div>
+				<div class="panel-body center margin-bottom-10">
+					<div class="radio clip-radio radio-primary inline">
+						<input ng-model="popoverType" name="popoverType" id="yes" value="yes" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
+						<label for="yes">Yes</label>
+					</div>
+					<div class="radio clip-radio radio-primary inline">
+						<input ng-model="popoverType" name="popoverType" id="no" value="no" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
+						<label for="no">No</label>
+					</div>
+					<div class="radio clip-radio radio-primary inline">
+						<input ng-model="popoverType" name="popoverType" id="abs" value="abs" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="" type="radio">
+						<label for="abs">Abs</label>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-xs-6 col-sm-2 col-sm-offset-8 col-md-2 col-md-offset-8 col-lg-2 col-lg-offset-8 margin-top-10">
-			<button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-comments-o">
-				<span>Go to forum</span>
-			</button>
+		<div class="row">
+			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
+				<button  type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check">
+					<span>Done</span>
+				</button>
+			</div>
+			<div class="col-xs-6 col-sm-2 col-sm-offset-8 col-md-2 col-md-offset-8 col-lg-2 col-lg-offset-8 margin-top-10">
+				<button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-comments-o">
+					<span>Go to forum</span>
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
-<!-- end: FEATURED BOX LINKS -->

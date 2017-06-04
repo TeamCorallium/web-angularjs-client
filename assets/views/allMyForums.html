@@ -13,7 +13,7 @@
 <!-- start: YOUR CONTENT HERE -->
 <!-- end: YOUR CONTENT HERE -->
 <!-- start: FEATURED BOX LINKS -->
-<section class="container-fluid container-fullw bg-white" ng-controller="ForumCtrl">
+<section class="container-fluid container-fullw bg-white" ng-controller="AllMyForumsCtrl">
 	<div class="container">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
 			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right no-padding">
@@ -30,12 +30,18 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="forum in allMyForums">
-						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-bottom-10">
 							<hr class="tall">
 							<span class="notification-author"><a ng-click="goToForum(forum.id)"> {{forum.projectName}} </a></span>
 							<span class="notification-preview"><strong>Description:</strong> {{forum.description | htmlToPlaintext | words:40 :true}} </span>
 						</div>
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="thread-content col-xs-12 col-sm-12col-md-12 col-lg-12">
+							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
+								<span><i class="fa fa-users"></i><strong> Comments:</strong> {{allCommentsProject[$index]}} </span>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
+								<span><i class="ti-layers-alt"></i><strong> Proposals:</strong> {{allProposalsProject[$index]}} </span>
+							</div>
 							<button type="button" class="btn btn-primary btn-xs pull-right"
 									ng-click="goToForum(project.id)">
 								<span class="fa fa-arrow-right"></span> Read more

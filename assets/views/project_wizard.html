@@ -31,7 +31,7 @@
 									<div class="stepNumber">
 										1
 									</div>
-									<span class="stepDesc text-small"> General Information </span>
+									<span class="stepDesc text-small"> General information </span>
 								</a>
 							</li>
 							<li ng-click="form.goTo(Form, 2)">
@@ -39,7 +39,7 @@
 									<div class="stepNumber">
 										2
 									</div>
-									<span class="stepDesc text-small"> References and Risks </span>
+									<span class="stepDesc text-small"> References and risks </span>
 								</a>
 							</li>
 							<li ng-click="form.goTo(Form, 3)">
@@ -62,13 +62,44 @@
 						<!-- end: WIZARD SEPS -->
 						<!-- start: WIZARD STEP 1 -->
 						<div id="step-1" ng-show="currentStep == 1">
+							<div class="row" ng-controller="UploadCtrl" nv-file-drop="" uploader="uploaderImages">
+								<div class="col-md-12">
+									<fieldset>
+									<legend>
+										Main Layout
+									</legend>
+									<div class="col-md-6">
+										<span class="btn btn-primary btn-o btn-file"> Select an image file
+										<input type="file" nv-file-select="" uploader="uploaderImages" multiple  />
+										</span>
+									</div>
+									<div class="col-md-6 file-upload" style="margin-bottom: 40px">
+
+										<div ng-repeat="item in uploaderImages.queue">
+											<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+											
+											<div nowrap>
+											<button type="button" class="btn btn-primary btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+												<span class="glyphicon glyphicon-upload"></span> Upload
+											</button>
+											<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+												<span class="glyphicon glyphicon-trash"></span> Remove
+											</button>
+
+											<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+											</div>											
+										</div>
+									</div>									
+									</fieldset>
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="row">
 										<div class="col-md-6">
 											<fieldset>
 												<legend>
-													General Information
+													General information
 												</legend>
 												<div class="row">
 													<div class="col-md-6">
@@ -99,7 +130,7 @@
 										<div class="col-md-6">
 											<fieldset>
 												<legend>
-													Costs, duration and state
+													Costs, duration and death line
 												</legend>
 												<div class="row">
 													<div class="col-md-6">
@@ -143,7 +174,19 @@
 
 													</div>
 													<div class="col-md-6">
-														<div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
+														<div class="form-group">
+															<label>
+																Death Line
+															</label>
+															<div class="input-group">
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="simpleProject.deathLine" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline" ng-required="currentStep == 1">
+																<span class="input-group-btn">
+																<button type="button" class="btn btn-primary" ng-click="open()">
+																	<i class="fa fa-calendar"></i>
+																</button> </span>
+															</div>
+														</div>													
+<!-- 														<div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
 															<label>
 																Project state <span class="symbol required"></span>
 															</label>
@@ -156,7 +199,7 @@
 																<option value="4">Active: Delayed</option>
 																<option value="5">Finished</option>
 															</select>
-														</div>
+														</div> -->
 													</div>
 												</div>
 											</fieldset>
@@ -174,8 +217,13 @@
 															<label>
 																Outcome
 															</label>
-
-															<div class="checkbox clip-check check-primary">
+														      <div ng-repeat="outcome in outcomes" class="checkbox clip-check check-primary">
+														        <input type="checkbox" id="{{outcome}}" value="{{outcome}}" ng-checked="outomesSelection.indexOf(outcome) > -1" ng-click="toggleOutcomeSelection(outcome)"> 					
+														        <label for="{{outcome}}">
+																	{{outcome}}
+																</label>
+														      </div>	
+<!-- 															<div class="checkbox clip-check check-primary">
 																<input type="checkbox" id="checkbox6" value="1">
 																<label for="checkbox6">
 																	Production
@@ -192,7 +240,7 @@
 																<label for="checkbox8">
 																	New business
 																</label>
-															</div>
+															</div> -->
 														</div>
 
 													</div>
@@ -201,8 +249,13 @@
 															<label>
 																Retribution Ways
 															</label>
-
-															<div class="checkbox clip-check check-primary">
+														      <div ng-repeat="retribution in retributions" class="checkbox clip-check check-primary">
+														        <input type="checkbox" id="{{retribution}}" value="{{retribution}}" ng-checked="retributionsSelection.indexOf(retribution) > -1" ng-click="toggleRetributionSelection(retribution)"> 					
+														        <label for="{{retribution}}">
+																	{{retribution}}
+																</label>
+														      </div>
+<!-- 															<div class="checkbox clip-check check-primary">
 																<input type="checkbox" id="checkbox9" value="1">
 																<label for="checkbox9">
 																	Pay Back, shared profits
@@ -225,7 +278,7 @@
 																<label for="checkbox12">
 																	Stocks in the New Business
 																</label>
-															</div>
+															</div> -->
 														</div>
 
 													</div>
@@ -239,7 +292,17 @@
 												</legend>
 												<div class="row">
 													<div class="col-md-6">
-														<div class="form-group">
+														<div class="form-group" ng-class="{'has-error':Form.totalRevenue.$dirty && Form.totalRevenue.$invalid, 'has-success':Form.totalRevenue.$valid}">
+															<label>
+																Total Estimate Revenue <span class="symbol required"></span>
+															</label>
+
+															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue" ng-required="currentStep == 1">
+
+															<span class="error text-small block" ng-if="Form.totalRevenue.$dirty && Form.totalRevenue.$invalid">Total Estimate Revenueis required</span>
+															<span class="success text-small" ng-if="Form.totalRevenue.$valid">Thank You!</span>
+														</div>													
+<!-- 														<div class="form-group">
 															<label>
 																Death Line
 															</label>
@@ -251,18 +314,18 @@
 																	<i class="fa fa-calendar"></i>
 																</button> </span>
 															</div>
-														</div>
+														</div> -->
 
 													</div>
 													<div class="col-md-6">
 														<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
 															<label>
-																Revenue Share for the Owner <span class="symbol required"></span>
+																My estimate revenue <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-prefix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
 
-															<span class="error text-small block" ng-if="Form.revenueOwner.$dirty && Form.revenueOwner.$invalid">Revenue Share for the Owner is required</span>
+															<span class="error text-small block" ng-if="Form.revenueOwner.$dirty && Form.revenueOwner.$invalid">My Estimate Revenue is required</span>
 															<span class="success text-small" ng-if="Form.revenueOwner.$valid">Thank You!</span>
 														</div>
 													</div>
@@ -271,12 +334,12 @@
 													<div class="col-md-6">
 														<div class="form-group" ng-class="{'has-error':Form.maxNumInves.$dirty && Form.maxNumInves.$invalid, 'has-success':Form.maxNumInves.$valid}">
 															<label>
-																Maximum Number of Investors <span class="symbol required"></span>
+																Max Number of Investors <span class="symbol required"></span>
 															</label>
 
 															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="simpleProject.maxNumInves" name="maxNumInves" ng-required="currentStep == 1">
 
-															<span class="error text-small block" ng-if="Form.maxNumInves.$dirty && Form.maxNumInves.$invalid">Maximum Number of Investors is required</span>
+															<span class="error text-small block" ng-if="Form.maxNumInves.$dirty && Form.maxNumInves.$invalid">Max Number of Investors is required</span>
 															<span class="success text-small" ng-if="Form.maxNumInves.$valid">Thank You!</span>
 														</div>
 
@@ -284,10 +347,10 @@
 													<div class="col-md-6">
 														<div class="form-group" ng-class="{'has-error':Form.minCapInves.$dirty && Form.minCapInves.$invalid, 'has-success':Form.minCapInves.$valid}">
 															<label>
-																Minimun Financier Investment <span class="symbol required"></span>
+																Min Financier Investment <span class="symbol required"></span>
 															</label>
 
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-postfix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
 
 															<span class="error text-small block" ng-if="Form.minCapInves.$dirty && Form.minCapInves.$invalid">Min Financier Capital is required</span>
 															<span class="success text-small" ng-if="Form.minCapInves.$valid">Thank You!</span>
@@ -436,55 +499,27 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Description</label>
-													<textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="task.description"></textarea>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
 													<label>
 														Cost
 													</label>
 
 													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="task.cost">
 												</div>
-
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Description</label>
+													<textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="task.description"></textarea>
+												</div>											
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>
 														Outcome
 													</label>
-													<div class="row">
-														<div class="col-md-12">
-															<div class="col-md-4">
-																<div class="checkbox clip-check check-primary">
-																	<input type="checkbox" id="checkbox16" value="1">
-																	<label for="checkbox16">
-																		Production
-																	</label>
-																</div>
-															</div>
-															<div class="col-md-4">
-																<div class="checkbox clip-check check-primary">
-																	<input type="checkbox" id="checkbox17" value="1">
-																	<label for="checkbox17">
-																		Income
-																	</label>
-																</div>
-															</div>
-															<div class="col-md-4">
-																<div class="checkbox clip-check check-primary">
-																	<input type="checkbox" id="checkbox18" value="1">
-																	<label for="checkbox18">
-																		New business
-																	</label>
-																</div>
-															</div>
-														</div>
-													</div>
+													<textarea placeholder="Declare outcomes" class="form-control autosize msd-elastic: \n;" ng-model="task.outcome"></textarea>							
 												</div>
 											</div>
 										</div>
@@ -507,13 +542,13 @@
 														Estimate duration
 													</label>
 
-													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="weeks" ng-model="task.duration">
+													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="days" ng-model="task.duration">
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group">
+<!-- 												<div class="form-group">
 													<label>
 														State
 													</label>
@@ -526,7 +561,7 @@
 														<option value="4">Active: Delayed</option>
 														<option value="5">Finished</option>
 													</select>
-												</div>												
+												</div>	 -->
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
@@ -538,7 +573,7 @@
 											</div>																	
 										</div>
 										<hr>
-										<div class="row">
+										<div class="row" ng-show="tasks.length != 0">
 											<div class="col-md-12">
 												<table class="table table-striped" wt-responsive-table>
 													<thead>
@@ -547,7 +582,6 @@
 														<th>Cost </th>
 														<th>Start date </th>
 														<th>Duration </th>
-														<th>State </th>
 														<th>Actions </th>
 													</tr>
 													</thead>
@@ -557,7 +591,6 @@
 														<td>{{task.cost}} </td>
 														<td>{{task.startDate}} </td>
 														<td>{{task.duration}} </td>
-														<td>{{task.state}} </td>
 														<td>
 															<button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task.name)">
 																<span class="glyphicon glyphicon-trash"></span>Remove
@@ -567,6 +600,12 @@
 													</tbody>
 												</table>
 											</div>
+										</div>
+										<div class="row" ng-show="tasks.length != 0">
+										<div style="text-align: center;height: 40px;line-height: 40px;">
+	<button style="height: 34px;line-height: 30px;margin:3px auto" ng-click="toggleMode(this)">Zoom to Fit</button>
+</div>
+										<div class="col-md-12" id="gantt_here"></div>
 										</div>
 									</fieldset>
 									<div class="form-group">
@@ -579,9 +618,8 @@
 									</div>
 								</div>
 							</div>
-<!-- 							<div class="row" id="gantt_here" style='height:400px;'>
 								
-							</div> -->
+							</div>
 						</div>
 						<!-- end: WIZARD STEP 3 -->
 						<!-- start: WIZARD STEP 4 -->

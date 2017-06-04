@@ -76,7 +76,7 @@
 }
 
 .slider.slider-primary .slider-selection {
-  background: #007AFF;
+  background: #00BCC1;
 }
 
 .slider.slider-blue .slider-selection {
@@ -118,7 +118,7 @@
   color: #5b5b60;
 }
 .box-tree .nav > li > a i {
-  color: #007AFF;
+  color: #00BCC1;
 }
 .box-tree .nav > li.active > a, .box-tree .nav > li.active > a:hover, .box-tree .nav > li.active a:focus {
   color: #ffffff;
@@ -437,7 +437,7 @@ img-crop {
 .dd-item > button:before {
   content: "\e649" !important;
   font-family: "themify";
-  color: #007AFF;
+  color: #00BCC1;
 }
 
 .dd-item > button[data-action="collapse"]:before {
@@ -491,7 +491,7 @@ img-crop {
 }
 
 .event-job {
-  background-color: #007AFF !important;
+  background-color: #00BCC1 !important;
 }
 
 .event-home {
@@ -568,7 +568,7 @@ img-crop {
 .cal-month-box .cal-day-today span[data-cal-date] {
   font-size: 1.2em !important;
   color: #fff !important;
-  background: #007AFF !important;
+  background: #00BCC1 !important;
   opacity: 1 !important;
   padding: 2px 5px;
   border-radius: 50%;
@@ -813,8 +813,8 @@ canvas[tc-chartjs-line], canvas[tc-chartjs-bar], canvas[tc-chartjs-radar] {
   opacity: .65;
 }
 .sp-container .sp-button-container a.sp-choose, .sp-container .sp-button-container a.sp-palette-toggle, .sp-container .sp-button-container button.sp-choose, .sp-container .sp-button-container button.sp-palette-toggle, .sp-container .sp-palette-button-container a.sp-choose, .sp-container .sp-palette-button-container a.sp-palette-toggle, .sp-container .sp-palette-button-container button.sp-choose, .sp-container .sp-palette-button-container button.sp-palette-toggle {
-  background-color: #007AFF;
-  border-color: #007AFF;
+  background-color: #00BCC1;
+  border-color: #00BCC1;
   color: #ffffff;
 }
 .sp-container .sp-button-container a.sp-choose:hover, .sp-container .sp-button-container a.sp-palette-toggle:hover, .sp-container .sp-button-container button.sp-choose:hover, .sp-container .sp-button-container button.sp-palette-toggle:hover, .sp-container .sp-palette-button-container a.sp-choose:hover, .sp-container .sp-palette-button-container a.sp-palette-toggle:hover, .sp-container .sp-palette-button-container button.sp-choose:hover, .sp-container .sp-palette-button-container button.sp-palette-toggle:hover {
@@ -922,7 +922,7 @@ canvas[tc-chartjs-line], canvas[tc-chartjs-bar], canvas[tc-chartjs-radar] {
 
 .tp-bannertimer {
   height: 3px !important;
-  background: #007AFF !important;
+  background: #00BCC1 !important;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -1207,7 +1207,7 @@ canvas[tc-chartjs-line], canvas[tc-chartjs-bar], canvas[tc-chartjs-radar] {
   font-family: "themify";
   font-size: 30px;
   line-height: 1;
-  color: #007AFF;
+  color: #00BCC1;
   opacity: 0.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1316,7 +1316,7 @@ canvas[tc-chartjs-line], canvas[tc-chartjs-bar], canvas[tc-chartjs-radar] {
   -moz-osx-font-smoothing: grayscale;
 }
 .slick-dots li.slick-active button:before {
-  color: #007AFF;
+  color: #00BCC1;
   opacity: 0.75;
 }
 

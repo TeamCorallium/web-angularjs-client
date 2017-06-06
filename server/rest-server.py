@@ -170,6 +170,8 @@ if __name__ == "__main__":
     application.listen(9090)
     main_loop = tornado.ioloop.IOLoop.instance()
 
-    main_loop.add_timeout(datetime.timedelta(seconds=5), test)
+    # background update every x seconds
+    task = tornado.ioloop.PeriodicCallback(test, 5 * 1000)
+    task.start()
 
     main_loop.start()

@@ -204,6 +204,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" >
+                                <div class="panel panel-transparent">
+                                    <div class="panel-heading no-padding">
+                                        <div class="panel-title">
+                                            Tasks
+                                        </div>
+                                    </div>
+                                    <div class="panel-body no-padding">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" ng-repeat="task in tasksProject">
+                                                <a ng-click="goToOpportunitiesTask(task.id)">{{task.name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+                                <!--Gantt Here-->
+                            </div>
+                        </div>
                         <hr class="tall" ng-show="possibleInvestmentArray.length != 0">
                         <div class="row" ng-show="possibleInvestmentArray.length != 0">
                             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -227,14 +250,9 @@
                         </div>
                         <hr class="tall">
                         <div class="row">
-                            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                 <button ui-sref="app.project.opportunities" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
                                     <span> Back </span>
-                                </button>
-                            </div>
-                            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10 pull-right">
-                                <button ui-sref="app.opportunities-list-task" type="button" class=" btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-right pull-right">
-                                    <span> View Details </span>
                                 </button>
                             </div>
                         </div>

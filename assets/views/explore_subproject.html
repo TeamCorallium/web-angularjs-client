@@ -210,7 +210,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" ng-controller="TaskCtrl">
+                            <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" >
                                     <div class="panel panel-transparent">
                                         <div class="panel-heading no-padding">
@@ -221,7 +221,7 @@
                                         <div class="panel-body no-padding">
                                             <ul class="list-group">
                                                 <li class="list-group-item" ng-repeat="task in tasksProject">
-                                                    <a ng-click="goToTask(task.id)">{{task.name}}</a>
+                                                    <a ng-click="goToExploreTask(task.id)">{{task.name}}</a>
                                                 </li>
                                             </ul>
                                         </div>

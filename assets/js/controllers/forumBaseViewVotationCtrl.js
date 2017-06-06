@@ -2,7 +2,7 @@
 /**
  * controller for User Projects
  */
-app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
+app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
     function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {
 
         $scope.currentForumActive = '';
@@ -151,6 +151,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             };
             WebSocketService.send(obj);
 
-            $state.go('app.forum.viewvotation');
+            $state.go('app.forum.base');
         };
     }]);

@@ -43,17 +43,17 @@
 								<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-timer"></i>
-											<strong> Total Cost:</strong>  {{project.totalCost}}
+											<strong> Total Cost:</strong>  {{project.totalCost}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-layers-alt"></i>
-											<strong> Total Revenue:</strong>  {{project.totalRevenue}}
+											<strong> Total Revenue:</strong>  {{project.totalRevenue}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-layers-alt"></i>
-											<strong> Owner:</strong> {{listUserOwners[$index]}}
+											<strong> State:</strong>  {{stateArray[project.state]}}
 										</span>
 									</div>
 								</div>
@@ -65,10 +65,17 @@
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-layers-alt"></i>
-											<strong> State:</strong>  {{stateArray[project.state]}}
+											<strong> Owner:</strong> {{listUserOwners[$index]}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> Owner Raiting:</strong>
+										</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
 										<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
 												ng-click="goToExploreProject(project.id)">
 											<span class="fa fa-arrow-right"></span> Read more

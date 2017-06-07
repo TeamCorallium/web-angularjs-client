@@ -24,6 +24,22 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
         $scope.getProjectById();
 
+        $scope.tasksProject = [];
+
+        $scope.getTaskByProjectsId = function () {
+            RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.tasksProject = data;
+                    },
+                    function(errResponse){
+                        toaster.pop('error', 'Error', 'Problems occurred while getting the tasks.');
+                    }
+                );
+        };
+
+        $scope.getTaskByProjectsId();
+
         $scope.getOwnerData = function () {
             RestService.fetchUser(localStorageService.get('currentUserId'))
                 .then(
@@ -131,5 +147,10 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
         $scope.coveredCapital = function () {
             $scope.coveredCapitalPercent  = ($scope.investmentCapitalProject/parseFloat($scope.currentProjectActive.totalCost))*100;
+        };
+
+        $scope.goToOpportunitiesTask = function (taskId) {
+            localStorageService.set('currentTaskId',taskId);
+            $state.go('app.project.opportunities_task_detail');
         };
     }]);

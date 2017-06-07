@@ -31,6 +31,33 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
         };
 
+        $scope.tasksProject = [];
+        $scope.tasksFiltre = [];
+
+        $scope.getTaskByProjectsId = function () {
+            RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.tasksProject = data;
+                        $scope.getTaskByStateStartedOrFinished();
+                    },
+                    function(errResponse){
+                        toaster.pop('error', 'Error', 'Problems occurred while getting the tasks.');
+                    }
+                );
+        };
+
+        $scope.getTaskByProjectsId();
+
+        $scope.getTaskByStateStartedOrFinished = function () {
+            for (var i=0; i < $scope.tasksProject.length; i++) {
+                if ($scope.tasksProject[i].state == 2 || $scope.tasksProject[i].state == 3 ||
+                    $scope.tasksProject[i].state == 4 || $scope.tasksProject[i].state == 5) {
+                    $scope.tasksFiltre.push($scope.tasksProject[i]);
+                }
+            }
+        };
+
         $scope.projectRole = function (userId) {
             if (localStorageService.get('currentUserId') == userId) {
                 return 'Owner';

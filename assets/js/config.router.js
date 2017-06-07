@@ -659,6 +659,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Proposal View'
             },
             resolve: loadSequence('forumBaseProposalViewCtrl')
+        }).state('app.forum.viewvotation', {
+            url: '/viewvotation',
+            templateUrl: "assets/views/forum_base_view_votation.html",
+            title: 'View Votation',
+            ncyBreadcrumb: {
+                label: 'View Votation'
+            },
+            resolve: loadSequence('forumBaseViewVotationCtrl')
         }).state('app.inversion', {
             url: '/inversion',
             templateUrl: "assets/views/inversion.html",

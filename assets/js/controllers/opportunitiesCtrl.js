@@ -6,7 +6,6 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
     function ($scope, localStorageService, RestService, $state, toaster) {
         $scope.allProjects = [];
         $scope.listUserOwners = [];
-
         $scope.creationProjectDate = '';
         $scope.deathLineProject = '';
 

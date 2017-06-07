@@ -24,13 +24,6 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                         $scope.allVotes =  data;
 
                         $scope.calculateVotes();
-
-                        for (var  i=0; i<$scope.allVotes.length; i++) {
-                            if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {
-                                $scope.userVote = true;
-                                break;
-                            }
-                        }
                     },
                     function(errResponse){
                         console.log(errResponse);
@@ -122,35 +115,5 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
             } else {
                 $scope.viewVoteResults = true;
             }
-        };
-
-        $scope.currentVote = {
-            userId: '',
-            projectId: '',
-            proposalId: '',
-            value: ''
-        };
-
-        $scope.voteUserA = 'yes';
-        $scope.voteUser = 'yes';
-
-        $scope.setVote = function () {
-            $scope.currentVote.userId = localStorageService.get('currentUserId');
-            $scope.currentVote.projectId = localStorageService.get('currentProjectId');
-            $scope.currentVote.proposalId = localStorageService.get('currentProposalId');
-
-            if($scope.viewVoteResults) {
-                $scope.currentVote.value = $scope.voteUserA;
-            } else {
-                $scope.currentVote.value = $scope.voteUser;
-            }
-
-            var obj = {
-                type: 'VOTE',
-                value: $scope.currentVote
-            };
-            WebSocketService.send(obj);
-
-            $state.go('app.forum.base');
         };
     }]);

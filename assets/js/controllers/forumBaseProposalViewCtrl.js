@@ -8,22 +8,13 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
         $scope.currentForumActive = '';
         $scope.currentTaskProposalView = '';
         $scope.viewVoteResults = false;
-        $scope.userVote = false;
         $scope.allVotes = [];
-
-        $scope.countVotes = {
-            yes: 0,
-            no: 0,
-            abs: 0
-        };
 
         $scope.getVoteByProposalId = function () {
             RestService.fetchAllVoteByProposalId(localStorageService.get('currentProposalId'))
                 .then(
                     function(data) {
                         $scope.allVotes =  data;
-
-                        $scope.calculateVotes();
 
                         for (var  i=0; i<$scope.allVotes.length; i++) {
                             if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {
@@ -38,18 +29,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
         };
 
         $scope.getVoteByProposalId();
-
-        $scope.calculateVotes = function () {
-            for (var i=0; i<$scope.allVotes.length; i++) {
-                if ($scope.allVotes[i].value == 'yes') {
-                    $scope.countVotes.yes += 1;
-                } else if ($scope.allVotes[i].value == 'no') {
-                    $scope.countVotes.no += 1;
-                } else {
-                    $scope.countVotes.abs += 1;
-                }
-            }
-        };
 
         $scope.getProjectById = function(){
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))

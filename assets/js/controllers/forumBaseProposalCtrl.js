@@ -38,7 +38,8 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             proposalOwnerId: '',
             state: '',
             type: '',
-            deathLine: ''
+            deathLine: '',
+            date: ''
         };
 
         $scope.getTaskByProjectsId = function(){
@@ -61,6 +62,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $scope.currentProposal.state = 'publish';
             $scope.currentProposal.type = $scope.proposalType;
             $scope.currentProposal.deathLine = $scope.deathLine;
+            $scope.currentProposal.date = new Date();
 
             if ($scope.currentProposal.type == 'Modified Task') {
                 $scope.currentProposal.itemSubject = $scope.selectedTask.id;

@@ -27,8 +27,7 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
 
                         for (var  i=0; i<$scope.allVotes.length; i++) {
                             if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {
-                                $scope.userVote = true;
-                                break;
+                                $state.go('app.forum.viewvotation');
                             }
                         }
                     },

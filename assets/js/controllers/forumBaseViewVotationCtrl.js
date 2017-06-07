@@ -10,6 +10,8 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
         $scope.viewVoteResults = false;
         $scope.userVote = false;
         $scope.allVotes = [];
+        $scope.allUserName = [];
+        $scope.allUserRol = [];
 
         $scope.countVotes = {
             yes: 0,
@@ -24,6 +26,10 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                         $scope.allVotes =  data;
 
                         $scope.calculateVotes();
+
+                        for (var i=0; i<$scope.allVotes.length; i++) {
+                            $scope.getUserName($scope.allVotes[i].userId);
+                        }
                     },
                     function(errResponse){
                         console.log(errResponse);
@@ -32,6 +38,25 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
         };
 
         $scope.getVoteByProposalId();
+
+        $scope.getUserName = function (userId) {
+            RestService.fetchUser(userId)
+                .then(
+                    function(data) {
+                        $scope.allUserName.push(data[0].fullName);
+                        if(userId == localStorageService.get('currentUserId')) {
+                            $scope.allUserRol.push('Owner');
+                        } else {
+                            $scope.allUserRol.push('Financer');
+                        }
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+
 
         $scope.calculateVotes = function () {
             for (var i=0; i<$scope.allVotes.length; i++) {
@@ -116,4 +141,16 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                 $scope.viewVoteResults = true;
             }
         };
+
+        $scope.showVoteValue = function (vote) {
+            var value = '';
+            if(vote == 'yes') {
+                value = 'YES';
+            } else if (vote == 'no') {
+                value = 'NO';
+            } else {
+                value = 'ABS';
+            }
+            return value;
+        }
     }]);

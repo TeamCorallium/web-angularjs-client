@@ -30,7 +30,7 @@ class ProposalByProjectIdHandler(tornado.web.RequestHandler):
         proposals = table_proposal.search((where('projectId') == int(projectId)) | (where('projectId') == projectId))
         self.write(json.dumps(proposals))
 
-        print(proposals)    
+        print(proposals)  
 
 class ProposalByIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

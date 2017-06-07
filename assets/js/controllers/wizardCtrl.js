@@ -22,7 +22,13 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             minCapInves: '',
             outcomes: '',
             retributions: '',
-            mainLayout: 'assets/images/portfolio/image06.jpg'
+            mainLayout: 'assets/images/portfolio/image06.jpg',
+            category: '',
+            sector: '',
+            theme: '',
+            background: '',
+            beneficiaries: '',
+            objetives: []
         };
 
         $scope.risks = [
@@ -54,12 +60,13 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
         };
 
         // outcomes
-        $scope.outcomes = ['Producction', 'Income', 'New business'];
+        $scope.outcomes = [{name:'Producction', description:''}, {name:'Income', description:''}, {name:'New business', description:''}];
         // selected outcomes
         $scope.outcomesSelection = [];
 
         // retributions
-        $scope.retributions = ['Pay Back, shared profits', 'Product Delivery', 'By Products', 'Stocks in the New Business'];
+        $scope.retributions = [{name:'Pay Back, shared profits', description:''}, {name:'Product Delivery', description:''}, 
+                               {name:'By Products', description:''}, {name:'Stocks in the New Business', description:''}];
         // selected retributions
         $scope.retributionsSelection = [];        
         
@@ -135,6 +142,30 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             }
         };
 
+        $scope.addObjetive = function() {
+            if ($scope.objetive == '') {
+                toaster.pop('warning', 'Error', 'Please, enter an objetive description.');
+                return false;
+            }
+            $scope.simpleProject.objetives.push($scope.objetive);
+            $scope.objetive = '';
+        };
+
+        $scope.removeObjetive = function(name) {
+            var index = -1;
+            var comArr = eval( $scope.simpleProject.objetives );
+            for( var i = 0; i < comArr.length; i++ ) {
+                if( comArr[i] === name ) {
+                    index = i;
+                    break;
+                }
+            }
+            if( index === -1 ) {
+                alert( "Something gone wrong" );
+            }
+            $scope.simpleProject.objetives.splice( index, 1 );
+        };
+
         $scope.addTask = function() {
 
             if ($scope.task.name == '') {
@@ -182,11 +213,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             gantt.render();
         };
 
-        $scope.getDate = function(date) {
-            var monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-            return monthArray[date.getMonth()] + " " + date.getDate() + ", "+ date.getFullYear();
-        }
-
         $scope.removeTask = function(name) {
             var index = -1;
             var comArr = eval( $scope.tasks );
@@ -208,6 +234,11 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             gantt.parse (tasks);
             gantt.render(); 
         };
+        
+        $scope.getDate = function(date) {
+            var monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            return monthArray[date.getMonth()] + " " + date.getDate() + ", "+ date.getFullYear();
+        }
 
         // Initial Value
         $scope.form = {

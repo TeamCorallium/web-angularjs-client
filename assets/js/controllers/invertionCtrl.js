@@ -5,8 +5,8 @@
 /**
  * controller for User Projects
  */
-app.controller('InvertionCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
-    function ($scope, localStorageService, RestService, $state, toaster) {
+app.controller('InvertionCtrl', ["$scope", "localStorageService", "RestService",
+    function ($scope, localStorageService, RestService) {
 
         $scope.invertion = {
             userId:'',

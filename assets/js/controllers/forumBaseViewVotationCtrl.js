@@ -61,11 +61,11 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
         $scope.calculateVotes = function () {
             for (var i=0; i<$scope.allVotes.length; i++) {
                 if ($scope.allVotes[i].value == 'yes') {
-                    $scope.countVotes.yes += 1;
+                    $scope.countVotes.yes += $scope.allVotes[i].percent;
                 } else if ($scope.allVotes[i].value == 'no') {
-                    $scope.countVotes.no += 1;
+                    $scope.countVotes.no += $scope.allVotes[i].percent;
                 } else {
-                    $scope.countVotes.abs += 1;
+                    $scope.countVotes.abs += $scope.allVotes[i].percent;
                 }
             }
         };

@@ -9,6 +9,8 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
         $scope.currentTaskProposalView = '';
         $scope.viewVoteResults = false;
         $scope.allVotes = [];
+        $scope.percent = 0;
+        $scope.investmentUserProject = 0;
 
         $scope.getVoteByProposalId = function () {
             RestService.fetchAllVoteByProposalId(localStorageService.get('currentProposalId'))
@@ -86,6 +88,28 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 );
         };
 
+        $scope.invertionByProjectId = function () {
+            RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.invertions = data;
+
+                        for (var i = 0; i<$scope.invertions.length; i++) {
+                            if($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
+                                $scope.investmentUserProject = parseFloat($scope.invertions[i].amount);
+                            }
+                        }
+
+                        $scope.percent = parseFloat($scope.investmentUserProject)/parseFloat($scope.currentForumActive.totalCost)*100.0;
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.invertionByProjectId();
+
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
         $scope.getProjectDate = function (date) {
@@ -106,7 +130,8 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             userId: '',
             projectId: '',
             proposalId: '',
-            value: ''
+            value: '',
+            percent: ''
         };
 
         $scope.voteUserA = 'yes';
@@ -116,6 +141,7 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             $scope.currentVote.userId = localStorageService.get('currentUserId');
             $scope.currentVote.projectId = localStorageService.get('currentProjectId');
             $scope.currentVote.proposalId = localStorageService.get('currentProposalId');
+            $scope.currentVote.percent = $scope.percent;
 
             if($scope.viewVoteResults) {
                 $scope.currentVote.value = $scope.voteUserA;

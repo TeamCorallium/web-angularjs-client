@@ -30,15 +30,15 @@
 					<div class="panel-body margin-top-15">
 						<div class="row">
 							<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>YES</strong></h5>
-							<uib-progressbar value="countVotes.yes" max="allVotes.length" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="success">{{countVotes.yes}}/{{allVotes.length}}</uib-progressbar>
+							<uib-progressbar value="countVotes.yes" max="100" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="success">{{countVotes.yes}} %</uib-progressbar>
 						</div>
 						<div class="row">
 							<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>NO</strong></h5>
-							<uib-progressbar value="countVotes.no" max="allVotes.length" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="danger">{{countVotes.no}}/{{allVotes.length}}</uib-progressbar>
+							<uib-progressbar value="countVotes.no" max="100" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="danger">{{countVotes.no}} %</uib-progressbar>
 						</div>
 						<div class="row">
 							<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>ABS</strong></h5>
-							<uib-progressbar value="countVotes.abs" max="allVotes.length" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="info">{{countVotes.abs}}/{{allVotes.length}}</uib-progressbar>
+							<uib-progressbar value="countVotes.abs" max="100" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="info">{{countVotes.abs}} %</uib-progressbar>
 						</div>
 					</div>
 				</fieldset>
@@ -51,6 +51,7 @@
 						<th> Name </th>
 						<th> Role </th>
 						<th class="text-right"> Vote </th>
+						<th class="text-right"> % </th>
 					</tr>
 					</thead>
 					<tbody>
@@ -58,6 +59,7 @@
 						<td> {{allUserName[$index]}} </td>
 						<td> {{allUserRol[$index]}} </td>
 						<td class="text-right"> {{showVoteValue(vote.value)}} </td>
+						<td class="text-right"> {{vote.percent}} </td>
 					</tr>
 					</tbody>
 				</table>

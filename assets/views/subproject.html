@@ -127,17 +127,11 @@
                                     <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
-                                                <strong>Categories:</strong>
+                                                <strong>Type:</strong>
                                             </p>
                                             <ul class="list list-skills icons list-unstyled list-inline">
                                                 <li>
-                                                    <i class="fa fa-check text-primary"></i> Industry
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-check text-primary"></i> Agriculture
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-check text-primary"></i> Academic
+                                                    <i class="fa fa-check text-primary"></i> {{categoryArray[currentProjectActive.category]}}
                                                 </li>
                                             </ul>
                                         </li>
@@ -227,7 +221,8 @@
                                             </p>
                                             <ul class="list list-skills icons list-unstyled list-inline">
                                                 <li ng-repeat="outcome in currentProjectActive.outcomes">
-                                                    <i class="fa fa-check text-primary"></i> {{outcome}}
+                                                    <i class="fa fa-check text-primary"></i> {{outcome.name}}
+                                                    <p>{{outcome.description}}</p>
                                                 </li>
                                             </ul>
                                         </li>
@@ -241,7 +236,8 @@
                                             </p>
                                             <ul class="list list-skills icons list-unstyled list-inline">
                                                 <li ng-repeat="retribution in currentProjectActive.retributions">
-                                                    <i class="fa fa-check text-primary"></i> {{retribution}}
+                                                    <i class="fa fa-check text-primary"></i> {{retribution.name}}
+                                                    <p>{{retribution.description}}</p>
                                                 </li>
                                             </ul>
                                         </li>

@@ -149,6 +149,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/connectedUsers/(.*)", ConnectedUserHandler),
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
     (r"/CoralliumRestAPI/simpleProject/(.*)", SimpleProjectHandler),
+    (r"/CoralliumRestAPI/simpleProjectOpportunities/(.*)", SimpleProjectOpportunitiesHandler),
     (r"/CoralliumRestAPI/simpleProjectById/(.*)", SimpleProjectByIdHandler),
     (r"/CoralliumRestAPI/allProjectsExceptId/(.*)", AllProjectsExceptIdHandler),
     (r"/CoralliumRestAPI/simpleProjectDelete/([0-9]+)", SimpleProjectDeleteHandler),

@@ -18,16 +18,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" ng-model="task.name" />
+                                <input type="text" class="form-control" ng-model="currentTaskActive.name" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>
-                                    Cost
-                                </label>
-
-                                <input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="task.cost">
+                                <label>Cost</label>
+                                <input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="currentTaskActive.cost">
                             </div>
                         </div>
                     </div>
@@ -35,15 +32,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="task.description"></textarea>
+                                <textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="currentTaskActive.description"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>
-                                    Outcome
-                                </label>
-                                <textarea placeholder="Declare outcomes" class="form-control autosize msd-elastic: \n;" ng-model="task.outcome"></textarea>
+                                <label>Outcome</label>
+                                <textarea placeholder="Declare outcomes" class="form-control autosize msd-elastic: \n;" ng-model="currentTaskActive.outcome"></textarea>
                             </div>
                         </div>
                     </div>
@@ -52,20 +47,19 @@
                             <div class="form-group">
                                 <label> Start date </label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="start" is-open="startOpened" datepicker-options="startOptions" close-text="Close">
+                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="currentTaskActive.startDate" is-open="startOpened" datepicker-options="startOptions" close-text="Close">
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-primary" ng-click="startOpen()">
                                             <i class="fa fa-calendar"></i>
-                                        </button> </span>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>
-                                    Estimate duration
-                                </label>
-                                <input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="days" ng-model="task.duration">
+                                <label>Estimate duration</label>
+                                <input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="days" ng-model="currentTaskActive.duration">
                             </div>
                         </div>
                     </div>

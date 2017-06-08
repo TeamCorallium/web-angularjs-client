@@ -22,7 +22,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
         };
 
         $scope.getAllProjects = function () {
-            RestService.fetchAllProject(localStorageService.get('currentUserId'))
+            RestService.fetchAllOpportunities(localStorageService.get('currentUserId'))
                 .then(
                     function(data) {
                         $scope.allProjects = data;

@@ -202,11 +202,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.project.task_detail', {
             url: '/task',
             templateUrl: "assets/views/task_detail.html",
-            title: 'Project',
+            title: 'Task',
             ncyBreadcrumb: {
                 label: 'Task'
             },
             resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'subprojectTaskDetailCtrl')
+        }).state('app.project.modified_task', {
+            url: '/modifiedtask',
+            templateUrl: "assets/views/modified_task.html",
+            title: 'Modified Task',
+            ncyBreadcrumb: {
+                label: 'Modified Task'
+            },
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'modifiedTaskCtrl')
         }).state('app.project.opportunities_task_detail', {
             url: '/opportunitytask',
             templateUrl: "assets/views/opportunities_task_detail.html",

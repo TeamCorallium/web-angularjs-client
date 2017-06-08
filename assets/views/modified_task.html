@@ -1,0 +1,83 @@
+<div ng-controller="ModifiedTaskCtrl">
+    <section id="page-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+            </div>
+            <div ncy-breadcrumb></div>
+        </div>
+    </section>
+    <div class="container-fluid container-fullw bg-white no-padding">
+        <section class="container-fluid container-fullw bg-white">
+            <div class="container">
+                <fieldset>
+                    <legend>
+                        Modified tasks
+                    </legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" ng-model="task.name" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    Cost
+                                </label>
+
+                                <input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="task.cost">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="task.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    Outcome
+                                </label>
+                                <textarea placeholder="Declare outcomes" class="form-control autosize msd-elastic: \n;" ng-model="task.outcome"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label> Start date </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="start" is-open="startOpened" datepicker-options="startOptions" close-text="Close">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" ng-click="startOpen()">
+                                            <i class="fa fa-calendar"></i>
+                                        </button> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    Estimate duration
+                                </label>
+                                <input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="days" ng-model="task.duration">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button class="btn btn-primary btn-o back-step btn-wide pull-right">
+                                <i class="fa fa-circle-arrow-left"></i> Update task
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </section>
+    </div>
+</div>

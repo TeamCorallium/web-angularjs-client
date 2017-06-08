@@ -76,6 +76,7 @@ app.constant('JS_REQUIRES', {
         'exploreTaskDetailCtrl': 'assets/js/controllers/exploreTaskDetailCtrl.js',
         'exploreUserProfileViewCtrl': 'assets/js/controllers/exploreUserProfileViewCtrl.js',
         'forumBaseViewVotationCtrl': 'assets/js/controllers/forumBaseViewVotationCtrl.js',
+        'modifiedTaskCtrl': 'assets/js/controllers/modifiedTaskCtrl.js',
         'financeCtrl': 'assets/js/controllers/financeCtrl.js',
         'exploreCtrl': 'assets/js/controllers/exploreCtrl.js',
         'projectUserCtrl': 'assets/js/controllers/projectUserCtrl.js',

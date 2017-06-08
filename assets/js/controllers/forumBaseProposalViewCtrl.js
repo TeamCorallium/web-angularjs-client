@@ -17,6 +17,10 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 .then(
                     function(data) {
                         $scope.currentForumActive =  data[0];
+
+                        if (localStorageService.get('currentUserId') == $scope.currentForumActive.userId){
+                            $state.go('app.forum.viewvotation');
+                        }
                     },
                     function(errResponse){
                         console.log(errResponse);
@@ -31,10 +35,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 .then(
                     function(data) {
                         $scope.allVotes =  data;
-
-                        if (localStorageService.get('currentUserId') == $scope.currentForumActive.userId){
-                            $state.go('app.forum.viewvotation');
-                        }
 
                         for (var  i=0; i<$scope.allVotes.length; i++) {
                             if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {

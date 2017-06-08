@@ -155,6 +155,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        fetchAllOpportunities: function(userId) {
+            return $http.get(serverUrl + 'simpleProjectOpportunities/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching All Projects');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         deleteProject: function(projectId) {
             return $http.get(serverUrl + 'simpleProjectDelete/' + projectId)
                 .then(

@@ -25,6 +25,7 @@ function ($scope, $rootScope, FileUploader, RestService) {
         console.info('onWhenAddingFileFailed', item, filter, options);
     };
     uploaderImages.onAfterAddingFile = function (fileItem) {
+        fileItem.upload();
         console.info('onAfterAddingFile', fileItem);
     };
     uploaderImages.onAfterAddingAll = function (addedFileItems) {
@@ -62,7 +63,8 @@ function ($scope, $rootScope, FileUploader, RestService) {
 app.controller('UploadCtrl2', ['$scope', 'FileUploader', 'RestService',
 function ($scope, FileUploader, RestService) {
     var uploader = $scope.uploader = new FileUploader({
-        url: RestService.url + 'upload/'
+        url: RestService.url + 'upload/',
+        queueLimit: 1
     });
 
     // FILTERS
@@ -79,6 +81,7 @@ function ($scope, FileUploader, RestService) {
         console.info('onWhenAddingFileFailed', item, filter, options);
     };
     uploader.onAfterAddingFile = function (fileItem) {
+        fileItem.upload();
         console.info('onAfterAddingFile', fileItem);
     };
     uploader.onAfterAddingAll = function (addedFileItems) {

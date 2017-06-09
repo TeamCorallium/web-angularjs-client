@@ -13,11 +13,12 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             description: '',
             totalCost: '',
             minimalCost: '',
-            estimateDuration: '',
+            estimateDuration: '', //calculable from tasks
             state: '', //1->In Preparation 2->On time 3->Best than Expected 4-Delayed 5->Finished
             deathLine: '',
             totalRevenue: '',
             revenueOwner: '',
+            minNumInves: '',
             maxNumInves: '',
             minCapInves: '',
             outcomes: '',
@@ -28,7 +29,8 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             theme: '',
             background: '',
             beneficiaries: '',
-            objetives: []
+            objetives: [],
+            ownerInvestedCapital: 0
         };
 
         $scope.risks = [

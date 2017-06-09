@@ -48,4 +48,8 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             localStorageService.set('currentProposalId',proposalId);
             $state.go('app.forum.proposalview');
         };
+        
+        $scope.updateTask = function () {
+            
+        }
     }]);

@@ -19,6 +19,20 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
             abs: 0
         };
 
+        $scope.getProjectById = function(){
+            RestService.fetchProjectById(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.currentForumActive =  data[0];
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getProjectById();
+
         $scope.getVoteByProposalId = function () {
             RestService.fetchAllVoteByProposalId(localStorageService.get('currentProposalId'))
                 .then(
@@ -44,7 +58,7 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                 .then(
                     function(data) {
                         $scope.allUserName.push(data[0].fullName);
-                        if(userId == localStorageService.get('currentUserId')) {
+                        if(userId == $scope.currentForumActive.userId) {
                             $scope.allUserRol.push('Owner');
                         } else {
                             $scope.allUserRol.push('Financer');
@@ -69,20 +83,6 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                 }
             }
         };
-
-        $scope.getProjectById = function(){
-            RestService.fetchProjectById(localStorageService.get('currentProjectId'))
-                .then(
-                    function(data) {
-                        $scope.currentForumActive =  data[0];
-                    },
-                    function(errResponse){
-                        console.log(errResponse);
-                    }
-                );
-        };
-
-        $scope.getProjectById();
 
         //Actual proposal for proposal view
         $scope.currentProposalView = {

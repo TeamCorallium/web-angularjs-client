@@ -35,8 +35,16 @@ app.controller('ModifiedTaskCtrl', ["$scope", "localStorageService", "RestServic
                 .then(
                     function(data) {
                         $scope.currentTaskActive =  data[0];
+
+                        $scope.currentTaskActive.name = data[0].name;
+                        $scope.currentTaskActive.description = data[0].description;
+                        $scope.currentTaskActive.cost = data[0].cost;
+                        $scope.currentTaskActive.outcome = data[0].outcome;
+                        $scope.currentTaskActive.startDate = new Date(data[0].startDate);
+                        $scope.currentTaskActive.duration = data[0].duration;
+                        $scope.currentTaskActive.state = data[0].state;
                     },
-                    function(errResponse){
+                    function(errResponse) {
                         console.log(errResponse);
                     }
                 );
@@ -44,13 +52,13 @@ app.controller('ModifiedTaskCtrl', ["$scope", "localStorageService", "RestServic
 
         $scope.getTaskByTaskId();
 
-        //Date picker
-        $scope.today = function() {
-            $scope.start = new Date();
+        $scope.getValueIndex = function () {
+            return $scope.currentTaskActive.state;
         };
-        $scope.today();
-        $scope.start = $scope.currentTaskActive.startDate;
+
+        //Date Picker
         $scope.end = $scope.maxDate;
+
         $scope.clear = function() {
             $scope.dt = null;
         };
@@ -81,7 +89,7 @@ app.controller('ModifiedTaskCtrl', ["$scope", "localStorageService", "RestServic
             return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
         }
         $scope.setDate = function(year, month, day) {
-            $scope.simpleProject.deathLine = new Date(year, month, day);
+            $scope.currentTaskActive.startDate = new Date(year, month, day);
         };
         $scope.toggleMin = function() {
             $scope.datepickerOptions.minDate = $scope.datepickerOptions.minDate ? null : new Date();
@@ -93,7 +101,7 @@ app.controller('ModifiedTaskCtrl', ["$scope", "localStorageService", "RestServic
             $scope.opened = !$scope.opened;
         };
         $scope.endOpen = function() {
-            $scope.endOptions.minDate = $scope.start;
+            $scope.endOptions.minDate = $scope.currentTaskActive.startDate;
             $scope.startOpened = false;
             $scope.endOpened = !$scope.endOpened;
         };
@@ -111,5 +119,17 @@ app.controller('ModifiedTaskCtrl', ["$scope", "localStorageService", "RestServic
 
         $scope.hstep = 1;
         $scope.mstep = 15;
+
+        $scope.updateTask = function () {
+            RestService.updateTask($scope.currentTaskActive)
+                .then(
+                    function(data) {
+                        $state.go('app.project.task_detail');
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
 
     }]);

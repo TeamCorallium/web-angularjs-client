@@ -67,14 +67,14 @@
 
 									<div class="panel panel-white" id="panel5">
 										<div class="panel-heading">
-											<h4 class="panel-title text-primary">Main Layout</h4>
+											<h4 class="panel-title text-primary">Main layout</h4>
 											<ct-paneltool class="panel-tools" tool-collapse="tool-collapse"></ct-paneltool>
 										</div>
 										<div uib-collapse="panel5" ng-init="panel5=true" class="panel-wrapper">
 											<div class="panel-body">
 												<div class="col-md-6">
 													<span class="btn btn-primary btn-o btn-file"> Select an image file
-													<input type="file" nv-file-select="" uploader="uploaderImages" multiple  />
+													<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
 													</span>
 												</div>
 												<div class="col-md-6 file-upload" style="margin-bottom: 40px">
@@ -248,10 +248,27 @@
 										</div>
 									</div>
 									<div class="row">
+										<div class="col-md-12">
+											<div class="panel panel-white" id="panel60">
+												<div class="panel-heading">
+													<h4 class="panel-title text-primary">My invested capital</h4>
+													<ct-paneltool class="panel-tools" tool-collapse="tool-collapse"></ct-paneltool>
+												</div>
+												<div uib-collapse="panel60" ng-init="panel60=true" class="panel-wrapper">
+													<div class="panel-body">
+													{{simpleProject.ownerInvestedCapital}} $
+													<a class="btn btn-wide btn-primary pull-right" ng-click=""><i class="fa fa-plus"></i> Make a transaction</a>	
+
+													</div>
+												</div>
+											</div>										
+										</div>
+									</div>									
+									<div class="row">
 										<div class="col-md-6">
 											<div class="panel panel-white" id="panel10">
 												<div class="panel-heading">
-													<h4 class="panel-title text-primary">Costs, duration and death line</h4>
+													<h4 class="panel-title text-primary">Costs, death line and my revenue</h4>
 													<ct-paneltool class="panel-tools" tool-collapse="tool-collapse"></ct-paneltool>
 												</div>
 												<div uib-collapse="panel10" ng-init="panel10=false" class="panel-wrapper">
@@ -279,14 +296,13 @@
 														</div>
 														<div class="row">
 															<div class="col-md-6">
-																<div class="form-group" ng-class="{'has-error':Form.estimateDuration.$dirty && Form.estimateDuration.$invalid, 'has-success':Form.estimateDuration.$valid}">
+																<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
 																	<label>
-																		Estimate duration <span class="symbol required"></span>
+																		My estimate revenue <span class="symbol required"></span>
 																	</label>
 
-																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="1" data-maxboostedstep="10000000" data-postfix="weeks" data-ng-model="simpleProject.estimateDuration" name="estimateDuration" ng-required="currentStep == 1">
+																	<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
 																</div>
-
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
@@ -310,7 +326,7 @@
 										<div class="col-md-6">
 											<div class="panel panel-white" id="panel11">
 												<div class="panel-heading">
-													<h4 class="panel-title text-primary">Investment</h4>
+													<h4 class="panel-title text-primary">Revenue and number of investors</h4>
 													<ct-paneltool class="panel-tools" tool-collapse="tool-collapse"></ct-paneltool>
 												</div>
 												<div uib-collapse="panel11" ng-init="panel11=false" class="panel-wrapper">
@@ -326,12 +342,12 @@
 																</div>
 															</div>
 															<div class="col-md-6">
-																<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
+																<div class="form-group" ng-class="{'has-error':Form.minCapInves.$dirty && Form.minCapInves.$invalid, 'has-success':Form.minCapInves.$valid}">
 																	<label>
-																		My estimate revenue <span class="symbol required"></span>
+																		Min Financier Investment <span class="symbol required"></span>
 																	</label>
 
-																	<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
+																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
 																</div>
 															</div>
 														</div>
@@ -344,15 +360,14 @@
 
 																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="simpleProject.maxNumInves" name="maxNumInves" ng-required="currentStep == 1">
 																</div>
-
 															</div>
 															<div class="col-md-6">
-																<div class="form-group" ng-class="{'has-error':Form.minCapInves.$dirty && Form.minCapInves.$invalid, 'has-success':Form.minCapInves.$valid}">
+																<div class="form-group" ng-class="{'has-error':Form.minNumInves.$dirty && Form.minNumInves.$invalid, 'has-success':Form.minNumInves.$valid}">
 																	<label>
-																		Min Financier Investment <span class="symbol required"></span>
+																		Min Number of Investors <span class="symbol required"></span>
 																	</label>
 
-																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minCapInves" name="minCapInves" ng-required="currentStep == 1">
+																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="1" data-maxboostedstep="10000000" data-postfix="investors" data-ng-model="simpleProject.minNumInves" name="minNumInves" ng-required="currentStep == 1">
 																</div>
 															</div>
 														</div>
@@ -365,7 +380,7 @@
 										<div class="col-md-12">
 											<div class="panel panel-white" id="panel12">
 												<div class="panel-heading">
-													<h4 class="panel-title text-primary">Outcomes and Retribution Ways</h4>
+													<h4 class="panel-title text-primary">Outcomes and retribution ways</h4>
 													<ct-paneltool class="panel-tools" tool-collapse="tool-collapse"></ct-paneltool>
 												</div>
 												<div uib-collapse="panel12" ng-init="panel12=false" class="panel-wrapper">
@@ -427,41 +442,47 @@
 										<legend>
 											Add references
 										</legend>
-
 										<div class="row">
-											<div class="col-md-12">
-											<span class="btn btn-primary btn-o btn-file"> Select single file
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Name</label>
+													<input type="text" class="form-control" name="name" ng-model="referenceName" />
+												</div>
+												<hr>
+												<div ng-show="uploader.queue.length == 0">
+												<label>Upload a reference archive</label>
+												<span class="btn btn-primary btn-o btn-file pull-right"> Select a file
 												<input type="file" nv-file-select="" uploader="uploader" />
-											</span>
+												</span>
+												</div>		
+												<div ng-show="uploader.queue.length != 0" ng-repeat="item in uploader.queue">
+													<strong>File name: {{item.file.name}}</strong>
+													<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+													
+													<div nowrap>
+													<button type="button" class="btn btn-danger btn-xs pull-right" ng-click="item.remove()">
+														<span class="glyphicon glyphicon-trash"></span> Remove
+													</button>
+													</div>											
+												</div>
+												<hr>													
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Description</label>
+													<textarea placeholder="Enter reference description" class="form-control autosize msd-elastic: \n;" data-ng-model="referenceDescription"></textarea>
+												</div>										
 											</div>
 										</div>
-										<table class="table table-striped" wt-responsive-table>
-											<thead>
-											<tr>
-												<th width="50%">Name</th>
-												<th ng-show="uploader.isHTML5">Size</th>
-												<th>Status</th>
-												<th>Actions</th>
-											</tr>
-											</thead>
-											<tbody>
-											<tr ng-repeat="item in uploader.queue">
-												<td><strong>{{ item.file.name }}</strong></td>
-												<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-												<td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
-												<td nowrap>
-													<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-														<span class="glyphicon glyphicon-upload"></span> Upload
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="">
+														<i class="fa fa-circle-arrow-left"></i> Add reference
 													</button>
-													<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-														<span class="glyphicon glyphicon-ban-circle"></span> Cancel
-													</button>
-													<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-														<span class="glyphicon glyphicon-trash"></span> Remove
-													</button></td>
-											</tr>
-											</tbody>
-										</table>
+												</div>
+											</div>
+										</div>
 									</fieldset>
 								</div>
 							</div>

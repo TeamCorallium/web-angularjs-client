@@ -44,13 +44,17 @@ app.controller('ModifiedTaskCtrl', ["$scope", "localStorageService", "RestServic
                         $scope.currentTaskActive.duration = data[0].duration;
                         $scope.currentTaskActive.state = data[0].state;
                     },
-                    function(errResponse){
+                    function(errResponse) {
                         console.log(errResponse);
                     }
                 );
         };
 
         $scope.getTaskByTaskId();
+
+        $scope.getValueIndex = function () {
+            return $scope.currentTaskActive.state;
+        };
 
         //Date Picker
         $scope.end = $scope.maxDate;

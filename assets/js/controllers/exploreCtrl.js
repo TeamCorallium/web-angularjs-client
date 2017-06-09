@@ -6,6 +6,7 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
     function ($scope, localStorageService, RestService, $state, toaster) {
         $scope.allProjects = [];
         $scope.owner = '';
+        $scope.listCountProjectByUser = [];
 
         $scope.listUserOwners = [];
         $scope.listAllUser = [];
@@ -27,6 +28,19 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
         };
 
         $scope.getAllProjects();
+
+        $scope.getProjectByUserId = function (userId) {
+            RestService.fetchSimpleProjects(userId)
+                .then(
+                    function(data) {
+                        $scope.listCountProjectByUser.push(data.length);
+
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
 
         $scope.getOwnerData = function () {
             RestService.fetchUser(localStorageService.get('currentUserId'))
@@ -129,6 +143,10 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                 .then(
                     function(data) {
                         $scope.listAllUser = data;
+
+                        for (var i=0; i<$scope.listAllUser.length; i++) {
+                            $scope.getProjectByUserId($scope.listAllUser[i].id);
+                        }
                     },
                     function(errResponse) {
                         console.log(errResponse);

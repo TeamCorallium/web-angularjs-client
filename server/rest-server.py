@@ -111,7 +111,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                             percent += int(v['percent'])
 
                     if percent > 50:
-                        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                                     'subject': "Update permission", 'content': "Owner permissions"})
                         
                         for c in clients:
@@ -154,6 +154,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
 def test():
     # print('ok ok ok ok')
+    return True
 
 application = tornado.web.Application([
     (r"/CoralliumRestAPI/user/?", UserHandler),

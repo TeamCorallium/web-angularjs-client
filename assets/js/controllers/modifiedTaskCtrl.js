@@ -120,4 +120,16 @@ app.controller('ModifiedTaskCtrl', ["$scope", "localStorageService", "RestServic
         $scope.hstep = 1;
         $scope.mstep = 15;
 
+        $scope.updateTask = function () {
+            RestService.updateTask($scope.currentTaskActive)
+                .then(
+                    function(data) {
+                        $state.go('app.project.task_detail');
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
     }]);

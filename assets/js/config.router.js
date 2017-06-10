@@ -262,7 +262,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.login.signin', {
             url: '/signin',
             templateUrl: "assets/views/sing_in.html",
-            resolve: loadSequence('flow', 'userCtrl')
+            resolve: loadSequence('flow', 'signInCtrl')
         }).state('app.login.password_forgot', {
             url: '/forgot',
             templateUrl: "assets/views/password_forgot.html"
@@ -614,7 +614,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             }).state('login.signin', {
             url: '/signin',
             // templateUrl: "assets/views/login_login.html"
-            templateUrl: "assets/views/sing_in.html"
+            templateUrl: "assets/views/sing_in.html",
+            resolve: loadSequence('signInCtrl')
         }).state('login.forgot', {
             url: '/forgot',
             templateUrl: "assets/views/login_forgot.html"

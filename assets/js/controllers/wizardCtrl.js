@@ -29,28 +29,21 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             theme: '',
             background: '',
             beneficiaries: '',
-            objetives: [],
-            ownerInvestedCapital: 0
+            ownerInvestedCapital: 0,
+            objetives: [],            
+            references: [],
+            risks: []
         };
 
-        $scope.risks = [
-            // {
-            //     name: '',
-            //     description: ''
-            // }
-        ];
+        $scope.risk = {
+            name: '',
+            description: '',
+            probability: '',
+            mitigate: ''
+        };
 
-        $scope.tasks = [
-            // {
-            //     name: '',
-            //     description: '',
-            //     cost: '',
-            //     outcome: '',
-            //     startDate: '',
-            //     duration: '',
-            //     state: ''
-            // }
-        ];
+        $scope.tasks = [];
+
         $scope.task = {
             name: '',
             description: '',
@@ -59,6 +52,12 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             startDate: '',
             duration: '',
             state: ''
+        };
+
+        $scope.reference = {
+            name: '',
+            description: '',
+            file: ''
         };
 
         // outcomes
@@ -102,7 +101,12 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
         $rootScope.$on('mainLayoutChanged', function(event, opt) {
             console.log('mainLayoutChanged '+ opt.layout);
             $scope.simpleProject.mainLayout = RestService.uploads + opt.layout;
-        });        
+        });     
+
+        $rootScope.$on('referenceFileLoaded', function(event, opt) {
+            console.log('referenceFileLoaded '+ opt.reference);
+            $scope.reference.file = RestService.uploads + opt.reference;
+        }); 
 
         $scope.createSimpleProject = function () {
             $scope.simpleProject.creationDate = new Date();
@@ -168,6 +172,72 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $scope.simpleProject.objetives.splice( index, 1 );
         };
 
+        $scope.addReference = function() {
+            if ($scope.reference.name == '') {
+                toaster.pop('warning', 'Error', 'Please, enter an reference name.');
+                return false;
+            }
+            if ($scope.reference.description == '') {
+                toaster.pop('warning', 'Error', 'Please, enter an reference description.');
+                return false;
+            }            
+            $scope.simpleProject.references.push({'name':$scope.reference.name, 'description':$scope.reference.description,
+                                                  'file':$scope.reference.file});
+
+            $scope.reference.name = '';
+            $scope.reference.description = '';
+            $scope.reference.file = '';
+            $rootScope.$broadcast('referenceAdded');
+        };
+
+        $scope.removeReference = function(name) {
+            var index = -1;
+            var comArr = eval( $scope.simpleProject.references );
+            for( var i = 0; i < comArr.length; i++ ) {
+                if( comArr[i].name === name ) {
+                    index = i;
+                    break;
+                }
+            }
+            if( index === -1 ) {
+                alert( "Something gone wrong" );
+            }
+            $scope.simpleProject.references.splice( index, 1 );
+        };
+
+        $scope.addRisk = function() {
+            if ($scope.risk.name == '') {
+                toaster.pop('warning', 'Error', 'Please, enter a risk name.');
+                return false;
+            }
+            if ($scope.risk.description == '') {
+                toaster.pop('warning', 'Error', 'Please, enter a risk description.');
+                return false;
+            }            
+            $scope.simpleProject.risks.push({'name':$scope.risk.name, 'description':$scope.risk.description,
+                                             'probability':$scope.risk.probability, 'mitigate':$scope.risk.mitigate});
+
+            $scope.risk.name = '';
+            $scope.risk.description = '';
+            $scope.risk.probability = '';
+            $scope.risk.mitigate = '';
+        };
+
+        $scope.removeRisk = function(name) {
+            var index = -1;
+            var comArr = eval( $scope.simpleProject.risks );
+            for( var i = 0; i < comArr.length; i++ ) {
+                if( comArr[i].name === name ) {
+                    index = i;
+                    break;
+                }
+            }
+            if( index === -1 ) {
+                alert( "Something gone wrong" );
+            }
+            $scope.simpleProject.risks.splice( index, 1 );
+        };
+
         $scope.addTask = function() {
 
             if ($scope.task.name == '') {
@@ -209,6 +279,8 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $scope.task.state = '1';
 
             var tasks = {data: $scope.tasks};
+
+            $scope.ganttStart("gantt_here");
             gantt.clearAll();
             gantt.parse (tasks);
             gantt.refreshData();
@@ -231,7 +303,12 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
 
             var tasks = {data: $scope.tasks};
 
-            gantt.init("gantt_here");
+            if ($scope.tasks.length == 0) {
+                $scope.ganttStart("gantt_hide");
+            }
+            else {
+                $scope.ganttStart("gantt_here");
+            }    
             gantt.clearAll();
             gantt.parse (tasks);
             gantt.render(); 
@@ -444,7 +521,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $scope.simpleProject.deathLine = null;
         };
 
-        $scope.ganttStart = function () {
+        $scope.ganttStart = function (containerName) {
             var tasks = {
                 data:[
                     {id:11, text:"Project #1",start_date:"01-04-2013", duration:10,
@@ -481,7 +558,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             gantt.config.autosize = "y";
             gantt.config.keyboard_navigation_cells = true;
             gantt.config.touch = true;
-            gantt.init("gantt_here"); 
+            gantt.init(containerName); 
 
             gantt.clearAll();
             tasks.data = $scope.tasks;
@@ -497,7 +574,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 return false;
             });
         }
-        $scope.ganttStart();
+        // $scope.ganttStart();
 
     $scope.toggleMode = function(toggle) {
         toggle.enabled = !toggle.enabled;

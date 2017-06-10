@@ -80,6 +80,7 @@ app.constant('JS_REQUIRES', {
         'modifiedTaskCtrl': 'assets/js/controllers/modifiedTaskCtrl.js',
         'financeCtrl': 'assets/js/controllers/financeCtrl.js',
         'topNavBarCtrl': 'assets/js/controllers/topNavBarCtrl.js',
+        'signUpCtrl': 'assets/js/controllers/signUpCtrl.js',
         'exploreCtrl': 'assets/js/controllers/exploreCtrl.js',
         'projectUserCtrl': 'assets/js/controllers/projectUserCtrl.js',
         'invertionCtrl': 'assets/js/controllers/invertionCtrl.js',

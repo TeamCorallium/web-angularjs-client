@@ -2,10 +2,10 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
-    var uploadsUrl = 'http://localhost:8001/AngularJs-Admin/STANDARD/server/databases/uploads/';
+    var uploadsUrl = 'http://10.8.25.241:8001/AngularJs-Admin/STANDARD/server/databases/uploads/';
 
-    // var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
-    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
+    // var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
 
     return {
         url : serverUrl,
@@ -84,6 +84,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     },
                     function(errResponse){
                         console.error('Error while updating user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        updateTask: function(task) {
+            return $http.put(serverUrl + 'task/' , task)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while updating task');
                         return $q.reject(errResponse);
                     }
                 );

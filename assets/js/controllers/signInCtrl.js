@@ -14,9 +14,6 @@ app.controller('SignInCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             projectsFollow: [],
         };
 
-        $scope.password_again = '';
-        $scope.term_check = '';
-
         $scope.updateSessionInfo = function () {
             localStorageService.set('isLogged', $scope.user.id != '');
             localStorageService.set('currentUserId', $scope.user.id);

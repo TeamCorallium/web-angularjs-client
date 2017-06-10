@@ -272,7 +272,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.login.registration', {
             url: '/registration',
             templateUrl: "assets/views/sing_up.html",
-            resolve: loadSequence('flow', 'userCtrl')
+            resolve: loadSequence('flow', 'signUpCtrl')
         }).state('app.ui', {
             url: '/ui',
             template: '<div ui-view class="fade-in-up"></div>',

@@ -9,15 +9,14 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
         $scope.getProjects = function () {
-
             if(localStorageService.get('isLogged')) {
-
                 RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
                     .then(
                         function(data) {
                             $scope.simpleProjects = data;
                         },
                         function(errResponse) {
+                            toaster.pop('error', 'Error', 'Server not available.');
                             console.log(errResponse);
                         }
                     );
@@ -64,6 +63,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                                 });
                             },
                             function(errResponse) {
+                                toaster.pop('error', 'Error', 'Server not available.');
                                 console.log(errResponse);
                             }
                         );

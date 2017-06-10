@@ -14,6 +14,7 @@ app.controller('FinancierCtrl', ["$scope", "$state", "toaster", "WebSocketServic
                         $scope.currentFincancierProjectsActive =  data[0];
                     },
                     function(errResponse){
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

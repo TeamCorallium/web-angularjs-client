@@ -16,6 +16,7 @@ app.controller('ExploreTaskDetailCtrl', ["$scope", "localStorageService", "RestS
                         $scope.currentProjectActive =  data[0];
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

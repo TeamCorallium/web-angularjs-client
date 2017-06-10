@@ -22,6 +22,7 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                         }
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

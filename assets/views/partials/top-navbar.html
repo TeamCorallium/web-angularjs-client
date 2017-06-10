@@ -53,8 +53,8 @@
 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.calendar" translate="topbar.user.CALENDAR"> My Calendar </a>
 				</li>
-				<li ng-click="navbarCollapsed = true" ng-controller="UserCtrl">
-					<a ng-controller="UserCtrl" translate="topbar.user.LOGOUT" ng-click="logout()"> Log Out </a>
+				<li ng-click="navbarCollapsed = true" ng-controller="TopNavBarCtrl">
+					<a translate="topbar.user.LOGOUT" ng-click="logout()"> Log Out </a>
 				</li>
 			</ul>
 		</li>

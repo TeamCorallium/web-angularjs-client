@@ -35,7 +35,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             templateUrl: "assets/views/app.html",
             resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'toaster',
                 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl',
-                'truncate', 'htmlToPlaintext', 'angular-notification-icons','flow','userCtrl'),
+                'truncate', 'htmlToPlaintext', 'angular-notification-icons','flow','userCtrl', 'topNavBarCtrl'),
             abstract: true
         }).state('app.default', {
             url: '/default',

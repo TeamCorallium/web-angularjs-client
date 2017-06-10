@@ -12,7 +12,7 @@ app.controller('OpportunitiesListTaskCtrl', ["$scope", "localStorageService", "R
                         $scope.tasksProject = data;
                     },
                     function(errResponse){
-                        toaster.pop('error', 'Error', 'Problems occurred while getting the tasks.');
+                        toaster.pop('error', 'Error', 'Server not available.');
                     }
                 );
         };

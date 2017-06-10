@@ -21,6 +21,7 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
                         }
                     },
                     function(errResponse){
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

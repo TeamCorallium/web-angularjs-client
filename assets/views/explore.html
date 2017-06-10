@@ -96,17 +96,35 @@
 				</div>
 			</uib-tab>
 			<uib-tab heading="Users" active="editActive">
-				<ul class="list-unstyled list-inline">
-					<li class="margin-bottom-15 center width-240" ng-repeat="user in listAllUser">
+				<ul class="list-unstyled">
+					<li class="margin-bottom-15" ng-repeat="user in listAllUser">
+						<hr class="tall">
 						<div class="clearfix">
-							<img  ng-src="assets/images/default-user.png"
-								  class="img-responsive img-rounded explore-user-image">
-							<span class="notification-author">{{user.fullName}}</span>
-							<span class="notification-preview">{{user.email}}</span>
-							<div data-title="Actions" data-title-override="Actions" class="margin-top-10">
-								<button type="button" class="btn btn-primary btn-xs" ng-click="viewProfile(user.id)">
-									<span class="glyphicon glyphicon-upload"></span> View Profile
-								</button>
+							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
+								<img  ng-src="assets/images/default-user.png"
+									  class="img-responsive img-rounded notification-image">
+							</div>
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
+								<span class="notification-author"><a ng-click="viewProfile(user.id)"> {{user.fullName}} </a></span>
+							</div>
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
+								<label><strong>Email:</strong></label>
+								<span> {{user.email}} </span>
+							</div>
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
+								<label><strong>Raiting:</strong></label>
+								<span></span>
+							</div>
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
+								<label><strong>Projects:</strong></label>
+								<span>{{listCountProjectByUser[$index]}}</span>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
+									<button type="button" class="btn btn-primary btn-xs pull-right" ng-click="viewProfile(user.id)">
+										<span class="glyphicon glyphicon-upload"></span> View Profile
+									</button>
+								</div>
 							</div>
 						</div>
 					</li>

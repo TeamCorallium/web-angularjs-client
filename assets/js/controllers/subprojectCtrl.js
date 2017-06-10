@@ -15,6 +15,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         $scope.invertionByProjectId();
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );
@@ -44,7 +45,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         $scope.getTaskByStateStartedOrFinished();
                     },
                     function(errResponse){
-                        toaster.pop('error', 'Error', 'Problems occurred while getting the tasks.');
+                        console.log(errResponse);
                     }
                 );
         };
@@ -74,15 +75,12 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 .then(
                     function(data) {
                         $scope.invertions = data;
-
                         for (var i = 0; i<$scope.invertions.length; i++) {
                             if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
                                 $scope.amount = $scope.invertions[i].amount;
                             }
                         }
-
                         $scope.getFinancierEsimateRevenue();
-
                     },
                     function(errResponse) {
                         console.log(errResponse);

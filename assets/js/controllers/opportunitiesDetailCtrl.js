@@ -17,6 +17,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                         $scope.currentProjectActive =  data[0];
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );
@@ -33,7 +34,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                         $scope.tasksProject = data;
                     },
                     function(errResponse){
-                        toaster.pop('error', 'Error', 'Problems occurred while getting the tasks.');
+                        console.log(errResponse);
                     }
                 );
         };

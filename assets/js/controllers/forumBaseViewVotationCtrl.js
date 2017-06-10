@@ -26,6 +26,7 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                         $scope.currentForumActive =  data[0];
                     },
                     function(errResponse){
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

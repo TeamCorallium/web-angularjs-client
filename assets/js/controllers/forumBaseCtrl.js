@@ -29,6 +29,7 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
                         $scope.currentForumActive =  data[0];
                     },
                     function(errResponse){
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

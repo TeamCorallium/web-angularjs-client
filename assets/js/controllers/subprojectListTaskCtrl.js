@@ -13,6 +13,7 @@ app.controller('SubprojectListTaskCtrl', ["$scope", "localStorageService", "Rest
                         $scope.currentProjectActive =  data[0];
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );
@@ -38,7 +39,7 @@ app.controller('SubprojectListTaskCtrl', ["$scope", "localStorageService", "Rest
                         $scope.getTaskByStateInPreparation();
                     },
                     function(errResponse){
-                        toaster.pop('error', 'Error', 'Problems occurred while getting the tasks.');
+                        console.log(errResponse);
                     }
                 );
         };

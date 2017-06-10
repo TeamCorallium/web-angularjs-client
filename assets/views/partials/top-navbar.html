@@ -43,9 +43,9 @@
 		</li>
 		<!-- start: LANGUAGE SWITCHER -->
 		<!-- start: USER OPTIONS DROPDOWN -->
-		<li class="dropdown current-user" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged" ng-controller="TopNavBarCtrl">
+		<li class="dropdown current-user" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged" >
 			<a href class="dropdown-toggle" uib-dropdown-toggle> <img src="assets/images/avatar-1.jpg" alt="">
-				<span class="username"> {{userFirstName(email)}} <i class="ti-angle-down"></i></i></span> </a>
+				<span class="username"> {{user.name}} <i class="ti-angle-down"></i></i></span> </a>
 			<ul class="dropdown-menu dropdown-dark">
 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.user" translate="topbar.user.PROFILE"> My Profile </a>
@@ -53,7 +53,7 @@
 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.calendar" translate="topbar.user.CALENDAR"> My Calendar </a>
 				</li>
-				<li ng-click="navbarCollapsed = true">
+				<li ng-click="navbarCollapsed = true" ng-controller="TopNavBarCtrl">
 					<a translate="topbar.user.LOGOUT" ng-click="logout()"> Log Out </a>
 				</li>
 			</ul>

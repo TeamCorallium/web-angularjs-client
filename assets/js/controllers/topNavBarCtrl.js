@@ -7,22 +7,6 @@ app.controller('TopNavBarCtrl', ["$scope", "$state", "flowFactory", "RestService
 
         $scope.email = '';
 
-        $scope.getUserConected = function () {
-            RestService.fetchUser(localStorageService.get('currentUserId'))
-                .then(
-                    function(data) {
-                        $scope.email = data[0].email;
-                    },
-                    function(errResponse){
-                        console.log(errResponse);
-                    }
-                );
-        };
-
-        if(localStorageService.get('currentUserId')!=null) {
-            $scope.getUserConected();
-        }
-
         $scope.logout = function () {
             if(localStorageService.get('isLogged')) {
                 localStorageService.set('isLogged', false);
@@ -36,8 +20,4 @@ app.controller('TopNavBarCtrl', ["$scope", "$state", "flowFactory", "RestService
                 toaster.pop('error', 'Error', 'Not logged in.');
             }
         };
-
-        $scope.userFirstName = function (email) {
-            return  email.split("@")[0];
-        }
     }]);

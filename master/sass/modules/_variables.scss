@@ -16,11 +16,11 @@ $orange: #FF6600;
 $lightOrange: lighten($orange, 10%);
 $darkOrange: darken($orange, 10%);
 // Green
-$green: #1FBBA6;
+$green: #f45700;
 $lightGreen: lighten($green, 10%);
 $darkGreen: darken($green, 10%);
 // Blue
-$blue: #5F8295;
+$blue: #FF642C;
 $lightBlue: lighten($blue, 10%);
 $darkBlue: darken($blue, 10%);
 // Pink
@@ -59,7 +59,7 @@ $border-default: #c8c7cc !default;
 
 $gris:#F4F3EFF4F3EF;
 
-$text-color: #8e8e93 !default;
+$text-color: #636363 !default;
 $text-dark: darken($text-color, 20%) !default;
 $text-light: lighten($text-color, 20%) !default;
 $link-color: $primary !default;

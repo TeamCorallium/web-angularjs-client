@@ -3,17 +3,17 @@
 /* ---------------------------------------------------------------------- */
 @import "modules/variables";
 $app-background: #F0F3F4;
-$elements-color: #1FBBA6;
+$elements-color: #f45700;
 //NAV HEADER COLORS
 $header-color: #485058;
 $headerBorder-color: transparent;
 $headerText-color: $white;
-$headerElements-color: #1FBBA6;
+$headerElements-color: #f45700;
 //NAV COLLAPSE COLORS
 $collapse-color: #485058;
 $collapseBorder-color: $headerBorder-color;
 $collapseText-color: $white;
-$collapseElements-color: #1FBBA6;
+$collapseElements-color: #f45700;
 $collapseShadow: 0 0 4px rgba(0, 0, 0, 0.2);
 $menuMobile-color: darken($header-color, 5%);
 $menuMobileBorder-color: $black;
@@ -26,12 +26,12 @@ $sidebarBorder-width: 0;
 $offSidebar-color: #788290;
 $offSidebarBorder-color: #4D555E;
 $offSidebarText-color: $white;
-$offSidebarElements-color: #1FBBA6;
+$offSidebarElements-color: #f45700;
 //MAIN NAVIGATION COLORS
 $nav-color: #646E7A;
 $navBorder-color: #75808e;
 $navText-color: $white;
-$navActive-color: #1FBBA6;
+$navActive-color: #f45700;
 $navHover-color: darken($nav-color, 5%);
 $navElements-color: #B4B4B4;
 //SCROLLBAR COLORS

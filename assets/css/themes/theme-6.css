@@ -74,7 +74,7 @@ header .navbar-collapse .navbar-right .dot-badge {
 }
 @media (max-width: 991px) and (max-width: 767px) {
   header .navbar-collapse .navbar-right > li {
-    border-bottom: 1px solid #2C2F3B !important;
+    border-bottom: 1px solid #262626!important;
   }
 }
 @media (max-width: 991px) {
@@ -177,7 +177,7 @@ header .dropdown-off-sidebar {
   color: #ffffff !important;
 }
 #sidebar nav > ul > li.active > a .item-media .fa-stack .fa-square {
-  color: #00BCC1 !important;
+  color: #FF642C !important;
 }
 #sidebar nav > ul > li.active .sub-menu {
   background: #111b23;

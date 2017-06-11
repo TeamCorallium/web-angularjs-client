@@ -2,11 +2,11 @@
 /*  Theme 4
 /* ---------------------------------------------------------------------- */
 @import "modules/variables";
-$app-background: #F8F8F8;
-$elements-color: #1FBBA6;
+$app-background: #FAFAFA;
+$elements-color: #f45700;
 //NAV HEADER COLORS
-$header-color: #E7E7E7;
-$headerBorder-color: #E3E3E3;
+$header-color: #F1F1F1;
+$headerBorder-color: #EBEBEB;
 $headerText-color: #2c2f3b;
 $headerElements-color: #00BDCC;
 //NAV COLLAPSE COLORS
@@ -16,15 +16,15 @@ $collapseText-color: #2c2f3b;
 $collapseElements-color: #00BDCC;
 $collapseShadow: none;
 $menuMobile-color: darken($header-color, 5%);
-$menuMobileBorder-color: #E3E3E3;
+$menuMobileBorder-color: #EBEBEB;
 //SIDEBAR COLORS
-$sidebar-color: #E3E3E3;
+$sidebar-color: #EBEBEB;
 $sidebarText-color: #2c2f3b;
-$sidebarBorder-color: #E3E3E3;
+$sidebarBorder-color: #EBEBEB;
 $sidebarBorder-width: 1px;
 //OFF-SIDEBAR COLORS
 $offSidebar-color: #F6F6F6;
-$offSidebarBorder-color: #E3E3E3;
+$offSidebarBorder-color: #EBEBEB;
 $offSidebarText-color: #2c2f3b;
 $offSidebarElements-color: #00BDCC;
 //MAIN NAVIGATION COLORS

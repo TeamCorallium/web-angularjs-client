@@ -29,20 +29,20 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
         $scope.categoryArray = ['Commodities Production','Creating a New Business','Diversification','Property developments','Other'];
 
-        $scope.getCreationProject = function (date) {
+        $scope.getDateProject = function (date) {
             var dateTemp = new Date(date);
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
         };
 
         $scope.tasksProject = [];
-        $scope.tasksFiltre = [];
+        // $scope.tasksFiltre = [];
 
         $scope.getTaskByProjectsId = function () {
             RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
                 .then(
                     function(data) {
                         $scope.tasksProject = data;
-                        $scope.getTaskByStateStartedOrFinished();
+                        // $scope.getTaskByStateStartedOrFinished();
                     },
                     function(errResponse){
                         console.log(errResponse);
@@ -52,14 +52,14 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
         $scope.getTaskByProjectsId();
 
-        $scope.getTaskByStateStartedOrFinished = function () {
-            for (var i=0; i < $scope.tasksProject.length; i++) {
-                if ($scope.tasksProject[i].state == 2 || $scope.tasksProject[i].state == 3 ||
-                    $scope.tasksProject[i].state == 4 || $scope.tasksProject[i].state == 5) {
-                    $scope.tasksFiltre.push($scope.tasksProject[i]);
-                }
-            }
-        };
+        // $scope.getTaskByStateStartedOrFinished = function () {
+        //     for (var i=0; i < $scope.tasksProject.length; i++) {
+        //         if ($scope.tasksProject[i].state == 2 || $scope.tasksProject[i].state == 3 ||
+        //             $scope.tasksProject[i].state == 4 || $scope.tasksProject[i].state == 5) {
+        //             $scope.tasksFiltre.push($scope.tasksProject[i]);
+        //         }
+        //     }
+        // };
 
         $scope.projectRole = function (userId) {
             if (localStorageService.get('currentUserId') == userId) {
@@ -94,5 +94,10 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             var porcientoF= (parseFloat($scope.amount)/parseFloat($scope.currentProjectActive.totalCost)*100.0);
             var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner)/100.0)* parseFloat($scope.currentProjectActive.totalRevenue);
             $scope.estimateRevenueF = (porcientoF/100.0)* (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
-        }
+        };
+
+        $scope.goToTask = function (taskId) {
+            localStorageService.set('currentTaskId',taskId);
+            $state.go('app.project.task_detail');
+        };
     }]);

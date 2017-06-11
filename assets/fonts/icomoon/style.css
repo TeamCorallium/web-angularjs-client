@@ -1,17 +1,17 @@
 @font-face {
-  font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?8br13e');
-  src:  url('fonts/icomoon.eot?8br13e#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?8br13e') format('truetype'),
-    url('fonts/icomoon.woff?8br13e') format('woff'),
-    url('fonts/icomoon.svg?8br13e#icomoon') format('svg');
+  font-family: 'Corallium-iconos';
+  src:  url('fonts/Corallium-iconos.eot?i4vnsj');
+  src:  url('fonts/Corallium-iconos.eot?i4vnsj#iefix') format('embedded-opentype'),
+    url('fonts/Corallium-iconos.ttf?i4vnsj') format('truetype'),
+    url('fonts/Corallium-iconos.woff?i4vnsj') format('woff'),
+    url('fonts/Corallium-iconos.svg?i4vnsj#Corallium-iconos') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+i {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'Corallium-iconos';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -24,35 +24,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-estadistics:before {
+.corallium-estadistics:before {
   content: "\e900";
-  color: #fff;
 }
-.icon-explore:before {
+.corallium-explore:before {
   content: "\e901";
-  color: #fff;
 }
-.icon-finance:before {
+.corallium-finance:before {
   content: "\e902";
-  color: #fff;
 }
-.icon-forum:before {
+.corallium-forum:before {
   content: "\e903";
-  color: #fff;
 }
-.icon-home:before {
+.corallium-home:before {
   content: "\e904";
-  color: #fff;
 }
-.icon-my_proyect:before {
+.corallium-my_proyect:before {
   content: "\e905";
   color: #fff;
 }
-.icon-new_proyect:before {
+.corallium-new_proyect:before {
   content: "\e906";
   color: #fff;
 }
-.icon-opportunities:before {
+.corallium-opportunities:before {
   content: "\e907";
   color: #fff;
 }

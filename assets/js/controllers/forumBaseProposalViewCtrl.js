@@ -11,6 +11,7 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
         $scope.allVotes = [];
         $scope.percent = 0;
         $scope.investmentUserProject = 0;
+        $scope.investmentProject = 0;
 
         $scope.getProjectById = function(){
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -103,9 +104,10 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                             if($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
                                 $scope.investmentUserProject = parseFloat($scope.invertions[i].amount);
                             }
+                            $scope.investmentProject += parseFloat($scope.invertions[i].amount);
                         }
 
-                        $scope.percent = parseFloat($scope.investmentUserProject)/parseFloat($scope.currentForumActive.totalCost)*100.0;
+                        $scope.percent = parseFloat($scope.investmentUserProject)/parseFloat($scope.investmentProject)*100.0;
                     },
                     function(errResponse) {
                         console.log(errResponse);

@@ -89,6 +89,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        updateTask: function(task) {
+            return $http.put(serverUrl + 'task/' , task)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while updating task');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         deleteUser: function(id) {
             return $http.delete(serverUrl + 'user/' + id)
                 .then(
@@ -144,6 +157,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
         //Function for obtain all projects excepts the user's projects
         fetchAllProject: function(userId) {
             return $http.get(serverUrl + 'allProjectsExceptId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching All Projects');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        fetchAllOpportunities: function(userId) {
+            return $http.get(serverUrl + 'simpleProjectOpportunities/' + userId)
                 .then(
                     function(response){
                         return response.data;

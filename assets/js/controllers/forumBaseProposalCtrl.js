@@ -150,13 +150,18 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
         $scope.mstep = 15;
 
         $scope.visibleModifiedTask = false;
+        $scope.visibleStartProject = false;
 
         $scope.changeVisibilityItems = function () {
-
             if ($scope.proposalType == 'Modified Task') {
                 $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTask = true;
+                $scope.visibleStartProject = false;
+            } else if ($scope.proposalType == 'Start Project') {
+                $scope.visibleStartProject = true;
+                $scope.visibleModifiedTask = false;
             } else {
+                $scope.visibleStartProject = false;
                 $scope.visibleModifiedTask = false;
             }
         };

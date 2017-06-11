@@ -57,4 +57,25 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             localStorageService.set('currentProjectId', projectId);
             $state.go('app.project.modified_task');
         }
+
+        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        $scope.getProjectDate = function (date) {
+            var dateTemp = new Date(date);
+            var today = new Date();
+
+            if(dateTemp.getMonth() == today.getMonth() && dateTemp.getDate() == today.getDate() && dateTemp.getFullYear() == today.getFullYear()){
+                if(today.getHours() == dateTemp.getHours()) {
+                    if(today.getMinutes() == dateTemp.getMinutes()) {
+                        return 'a few seconds ago';
+                    } else {
+                        return today.getMinutes()-dateTemp.getMinutes() + " minutes ago";
+                    }
+                } else {
+                    return today.getHours()-dateTemp.getHours() + " hours ago";
+                }
+            } else {
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
+            }
+        };
     }]);

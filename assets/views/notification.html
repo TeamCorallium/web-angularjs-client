@@ -26,6 +26,7 @@
 					<li class="margin-bottom-15" ng-repeat="notification in notifications">
 						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'Modified Task'">
 							<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>
+							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
 							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> New proposal created by {{notification.from}}</h4>
 							<h5 class="margin-bottom-10">
 								{{notification.content}}
@@ -36,6 +37,7 @@
 						</div>
 						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'Update Task'">
 							<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>
+							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
 							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> {{notification.content}} </h4>
 							<p>
 								<a ng-click="updateTask(notification.proposalSubject, notification.projectId)" class="btn btn-info"> Update task </a>

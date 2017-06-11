@@ -14,6 +14,7 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
                         $scope.currentExploreUserId = data[0];
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

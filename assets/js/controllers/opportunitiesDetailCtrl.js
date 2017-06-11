@@ -17,12 +17,29 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                         $scope.currentProjectActive =  data[0];
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );
         };
 
         $scope.getProjectById();
+
+        $scope.tasksProject = [];
+
+        $scope.getTaskByProjectsId = function () {
+            RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.tasksProject = data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getTaskByProjectsId();
 
         $scope.getOwnerData = function () {
             RestService.fetchUser(localStorageService.get('currentUserId'))
@@ -53,6 +70,8 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        $scope.categoryArray = ['Commodities Production','Creating a New Business','Diversification','Property developments','Other'];
 
         $scope.getProjectDate = function (date) {
             var dateTemp = new Date(date);
@@ -131,5 +150,10 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
         $scope.coveredCapital = function () {
             $scope.coveredCapitalPercent  = ($scope.investmentCapitalProject/parseFloat($scope.currentProjectActive.totalCost))*100;
+        };
+
+        $scope.goToOpportunitiesTask = function (taskId) {
+            localStorageService.set('currentTaskId',taskId);
+            $state.go('app.project.opportunities_task_detail');
         };
     }]);

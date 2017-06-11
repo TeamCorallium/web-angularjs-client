@@ -85,25 +85,40 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
                 if self.json_args['type'] == 'VOTE':
                     vote = self.json_args['value']
+                    proposalId = vote['proposalId']
                     table_vote.insert(vote)
 
                     projectId = vote['projectId']
                     projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
                     project = projects[0]
 
-                    interestedUserIds = []
-                    interestedUserIds.append(project['userId'])
+                    users = table_user.search(where('id') == int(self.id))
+                    fromName = users[0]['fullName']
 
-                    invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
-                    for invertion in invertions:
-                        interestedUserIds.append(invertion['userId'])
+                    ownerId = project['userId']           
+                    votes = table_vote.search((where('proposalId') == proposalId) | (where('proposalId') == int(proposalId)))                                                
+                    
+                    proposals = table_proposal.search((where('id') == proposalId) | (where('id') == int(proposalId)))
+                    proposal = proposals[0]
 
-                    votes = table_vote.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))                                                
+                    notifieType = ''
+                    if proposal['type'] == 'Modified Task':
+                        notifieType = 'Update Task'
 
-                    print(votes)
-                    # if len(votes) == len(interestedUserIds):
+                    percent = 0
+                    for v in votes:
+                        if v['value'] == 'yes':
+                            percent += int(v['percent'])
+
+                    if percent > 50:
+                        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                                    'subject': "Update permission", 'content': "Owner permissions"})
                         
-
+                        for c in clients:
+                            if int(c.id) == int(ownerId):
+                                c.connection.write_message("NOTIFICATION")
+                                break
+                        
                 if self.json_args['type'] == 'CHAT':
                     table_chat.insert(self.json_args['value'])
 
@@ -138,7 +153,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         return True        
 
 def test():
-    print('ok ok ok ok')
+    # print('ok ok ok ok')
+    return True
 
 application = tornado.web.Application([
     (r"/CoralliumRestAPI/user/?", UserHandler),
@@ -149,6 +165,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/connectedUsers/(.*)", ConnectedUserHandler),
     (r"/CoralliumRestAPI/simpleProject/?", SimpleProjectHandler),
     (r"/CoralliumRestAPI/simpleProject/(.*)", SimpleProjectHandler),
+    (r"/CoralliumRestAPI/simpleProjectOpportunities/(.*)", SimpleProjectOpportunitiesHandler),
     (r"/CoralliumRestAPI/simpleProjectById/(.*)", SimpleProjectByIdHandler),
     (r"/CoralliumRestAPI/allProjectsExceptId/(.*)", AllProjectsExceptIdHandler),
     (r"/CoralliumRestAPI/simpleProjectDelete/([0-9]+)", SimpleProjectDeleteHandler),
@@ -170,6 +187,8 @@ if __name__ == "__main__":
     application.listen(9090)
     main_loop = tornado.ioloop.IOLoop.instance()
 
-    main_loop.add_timeout(datetime.timedelta(seconds=5), test)
+    # background update every x seconds
+    task = tornado.ioloop.PeriodicCallback(test, 5 * 1000)
+    task.start()
 
     main_loop.start()

@@ -1,0 +1,92 @@
+<div ng-controller="ModifiedTaskCtrl">
+    <section id="page-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
+            </div>
+            <div ncy-breadcrumb></div>
+        </div>
+    </section>
+    <div class="container-fluid container-fullw bg-white no-padding">
+        <section class="container-fluid container-fullw bg-white">
+            <div class="container">
+                <fieldset>
+                    <legend>
+                        Modified tasks
+                    </legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>State:</label>
+                                <select class="cs-select cs-skin-slide" ng-model="currentTaskActive.state" name="state">
+                                    <option ng-selected="getValueIndex() == 0" value="0" disabled selected>Select an state</option>
+                                    <option ng-selected="getValueIndex() == 1" value="1">In Preparation</option>
+                                    <option ng-selected="getValueIndex() == 2" value="2">Active: On time</option>
+                                    <option ng-selected="getValueIndex() == 3" value="3">Active: Best than Expected</option>
+                                    <option ng-selected="getValueIndex() == 4" value="4">Active: Delayed</option>
+                                    <option ng-selected="getValueIndex() == 5" value="5">Finished</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" ng-model="currentTaskActive.name" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Cost</label>
+                                <input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="currentTaskActive.cost">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="currentTaskActive.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Outcome</label>
+                                <textarea placeholder="Declare outcomes" class="form-control autosize msd-elastic: \n;" ng-model="currentTaskActive.outcome"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label> Start date </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="currentTaskActive.startDate" is-open="startOpened" datepicker-options="startOptions" close-text="Close">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" ng-click="startOpen()">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Estimate duration</label>
+                                <input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-stepinterval="50" data-maxboostedstep="10000000" data-postfix="days" ng-model="currentTaskActive.duration">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button ng-click="updateTask()" class="btn btn-primary btn-o back-step btn-wide pull-right">
+                                <i class="fa fa-circle-arrow-left"></i> Update task
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </section>
+    </div>
+</div>

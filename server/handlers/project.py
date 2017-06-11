@@ -129,4 +129,47 @@ class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
         self.write(json.dumps(projects))
 
         print(projects)        
-                
+
+class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, userId):
+        print('SimpleProjectOpportunitiesHandler:GET!!!')
+
+        print('userId: ' + userId)
+
+        projects = []
+        if userId != 'null':
+            projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
+        else:
+            projects = table_simple_project.all()
+
+        opportunities = []
+
+        for project in projects:
+            if project['state'] != 1:
+                continue
+
+            projectId = project['id']
+            totalCost = project['totalCost']
+
+            invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+            
+            amount = 0;
+            for invertion in invertions:
+                amount += int(invertion['amount'])
+
+            if amount < int(totalCost):
+                opportunities.append(project)             
+
+        self.write(json.dumps(opportunities))
+        print(opportunities) 

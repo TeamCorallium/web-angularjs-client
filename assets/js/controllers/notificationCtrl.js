@@ -2,8 +2,8 @@
  * Created by Ale on 5/17/2017.
  */
 
-app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService", "RestService", "$state",
-    function($scope, $rootScope, localStorageService, RestService, $state) {
+app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService", "RestService", "$state", "toaster",
+    function($scope, $rootScope, localStorageService, RestService, $state, toaster) {
 
         $scope.scopeVariable = 0;
 
@@ -25,15 +25,18 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
         };
 
         $scope.getNotificationsByUserId = function () {
-            RestService.fetchAllNotifications(localStorageService.get('currentUserId'))
-                .then(
-                    function(data) {
-                        $scope.notifications = data;
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
-                    }
-                );
+            if(localStorageService.get('currentUserId')!=null) {
+                RestService.fetchAllNotifications(localStorageService.get('currentUserId'))
+                    .then(
+                        function(data) {
+                            $scope.notifications = data;
+                        },
+                        function(errResponse) {
+                            toaster.pop('error', 'Error', 'Server not available.');
+                            console.log(errResponse);
+                        }
+                    );
+            }
         };
 
         $scope.getNotificationsByUserId();
@@ -47,5 +50,32 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             localStorageService.set('currentProjectId',projectId);
             localStorageService.set('currentProposalId',proposalId);
             $state.go('app.forum.proposalview');
+        };
+
+        $scope.updateTask = function (taskId, projectId) {
+            localStorageService.set('currentTaskId', taskId);
+            localStorageService.set('currentProjectId', projectId);
+            $state.go('app.project.modified_task');
+        }
+
+        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        $scope.getProjectDate = function (date) {
+            var dateTemp = new Date(date);
+            var today = new Date();
+
+            if(dateTemp.getMonth() == today.getMonth() && dateTemp.getDate() == today.getDate() && dateTemp.getFullYear() == today.getFullYear()){
+                if(today.getHours() == dateTemp.getHours()) {
+                    if(today.getMinutes() == dateTemp.getMinutes()) {
+                        return 'a few seconds ago';
+                    } else {
+                        return today.getMinutes()-dateTemp.getMinutes() + " minutes ago";
+                    }
+                } else {
+                    return today.getHours()-dateTemp.getHours() + " hours ago";
+                }
+            } else {
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
+            }
         };
     }]);

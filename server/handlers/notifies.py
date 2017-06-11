@@ -31,8 +31,14 @@ class NotifiesByUserIdHandler(tornado.web.RequestHandler):
 
         # notifies = table_notification.all()
 
-        self.write(json.dumps(notifies))
-        print(notifies)
+        # self.write(json.dumps(notifies))
+        # print(notifies)
+
+        sortedNotifies = sorted(notifies, key=lambda notifie: notifie['date'], reverse=True)  
+        
+        self.write(json.dumps(sortedNotifies))
+
+        print(sortedNotifies)
 
 class NotifiesByIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

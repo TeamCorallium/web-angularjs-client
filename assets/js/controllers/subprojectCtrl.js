@@ -15,6 +15,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         $scope.invertionByProjectId();
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );
@@ -26,9 +27,38 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
+        $scope.categoryArray = ['Commodities Production','Creating a New Business','Diversification','Property developments','Other'];
+
         $scope.getCreationProject = function (date) {
             var dateTemp = new Date(date);
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
+        };
+
+        $scope.tasksProject = [];
+        $scope.tasksFiltre = [];
+
+        $scope.getTaskByProjectsId = function () {
+            RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function(data) {
+                        $scope.tasksProject = data;
+                        $scope.getTaskByStateStartedOrFinished();
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getTaskByProjectsId();
+
+        $scope.getTaskByStateStartedOrFinished = function () {
+            for (var i=0; i < $scope.tasksProject.length; i++) {
+                if ($scope.tasksProject[i].state == 2 || $scope.tasksProject[i].state == 3 ||
+                    $scope.tasksProject[i].state == 4 || $scope.tasksProject[i].state == 5) {
+                    $scope.tasksFiltre.push($scope.tasksProject[i]);
+                }
+            }
         };
 
         $scope.projectRole = function (userId) {
@@ -45,15 +75,12 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 .then(
                     function(data) {
                         $scope.invertions = data;
-
                         for (var i = 0; i<$scope.invertions.length; i++) {
                             if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
                                 $scope.amount = $scope.invertions[i].amount;
                             }
                         }
-
                         $scope.getFinancierEsimateRevenue();
-
                     },
                     function(errResponse) {
                         console.log(errResponse);

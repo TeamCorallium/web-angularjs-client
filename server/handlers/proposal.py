@@ -28,9 +28,13 @@ class ProposalByProjectIdHandler(tornado.web.RequestHandler):
         print('projectId: ' + projectId)
 
         proposals = table_proposal.search((where('projectId') == int(projectId)) | (where('projectId') == projectId))
-        self.write(json.dumps(proposals))
+        # self.write(json.dumps(proposals))
 
-        print(proposals)    
+        # print(proposals)
+
+        sortedProposals = sorted(proposals, key=lambda proposal: proposal['date'], reverse=True)
+        self.write(json.dumps(sortedProposals))
+        print(sortedProposals)
 
 class ProposalByIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

@@ -67,6 +67,7 @@ app.controller('ForumCtrl', ["$scope", "$state", "toaster", "WebSocketService", 
                         $scope.proposalsProject =  data;
                     },
                     function(errResponse){
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

@@ -21,7 +21,7 @@
 					<label>Type</label>
 					<select ng-model="proposalType" ng-change="changeVisibilityItems()" class="cs-select cs-skin-elastic">
 						<option disabled selected>Select Type</option>
-						<option value="Started Project">Started Project</option>
+						<option value="Start Project">Start Project</option>
 						<option value="Finish Task">Finish Task</option>
 						<option value="Modified Task">Modified Task</option>
 						<option value="Close Projecs">Close Project</option>
@@ -58,19 +58,27 @@
 				</div>
 			</div>
 		</div>
+		<div class="row" ng-show="visibleStartProject">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group">
+					<label>Proposal Content</label>
+					<textarea ng-model="proposalContent" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+				</div>
+			</div>
+		</div>
 		<!--<div class="row" ng-show="false">-->
-			<!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">-->
-				<!--<div class="form-group">-->
-					<!--<label>Proposal Content</label>-->
-					<!--<textarea ng-model="proposalContent" placeholder="Enter proposal Content" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">-->
-				<!--<div class="form-group">-->
-					<!--<label>Item subject of the Proposal</label>-->
-					<!--<textarea ng-model="itemSubject" placeholder="Enter item subject of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>-->
-				<!--</div>-->
-			<!--</div>-->
+		<!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">-->
+		<!--<div class="form-group">-->
+		<!--<label>Proposal Content</label>-->
+		<!--<textarea ng-model="proposalContent" placeholder="Enter proposal Content" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">-->
+		<!--<div class="form-group">-->
+		<!--<label>Item subject of the Proposal</label>-->
+		<!--<textarea ng-model="itemSubject" placeholder="Enter item subject of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>-->
+		<!--</div>-->
+		<!--</div>-->
 		<!--</div>-->
 		<div class="row">
 			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 margin-top-10">

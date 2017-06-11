@@ -35,7 +35,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             templateUrl: "assets/views/app.html",
             resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'toaster',
                 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl',
-                'truncate', 'htmlToPlaintext', 'angular-notification-icons','flow','userCtrl'),
+                'truncate', 'htmlToPlaintext', 'angular-notification-icons','flow','userCtrl', 'topNavBarCtrl'),
             abstract: true
         }).state('app.default', {
             url: '/default',
@@ -202,11 +202,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.project.task_detail', {
             url: '/task',
             templateUrl: "assets/views/task_detail.html",
-            title: 'Project',
+            title: 'Task',
             ncyBreadcrumb: {
                 label: 'Task'
             },
             resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'subprojectTaskDetailCtrl')
+        }).state('app.project.modified_task', {
+            url: '/modifiedtask',
+            templateUrl: "assets/views/modified_task.html",
+            title: 'Modified Task',
+            ncyBreadcrumb: {
+                label: 'Modified Task'
+            },
+            resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'modifiedTaskCtrl')
         }).state('app.project.opportunities_task_detail', {
             url: '/opportunitytask',
             templateUrl: "assets/views/opportunities_task_detail.html",
@@ -246,7 +254,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Wizard'
             },
-            resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl')
+            resolve: loadSequence('wizardCtrl', 'xeditable', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl')
         }).state('app.login', {
             url: '/login',
             template: '<div ui-view class="fade-in-right-big smooth"></div>',
@@ -254,7 +262,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.login.signin', {
             url: '/signin',
             templateUrl: "assets/views/sing_in.html",
-            resolve: loadSequence('flow', 'userCtrl')
+            resolve: loadSequence('flow', 'signInCtrl')
         }).state('app.login.password_forgot', {
             url: '/forgot',
             templateUrl: "assets/views/password_forgot.html"
@@ -264,7 +272,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.login.registration', {
             url: '/registration',
             templateUrl: "assets/views/sing_up.html",
-            resolve: loadSequence('flow', 'userCtrl')
+            resolve: loadSequence('flow', 'signUpCtrl')
         }).state('app.ui', {
             url: '/ui',
             template: '<div ui-view class="fade-in-up"></div>',
@@ -606,7 +614,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             }).state('login.signin', {
             url: '/signin',
             // templateUrl: "assets/views/login_login.html"
-            templateUrl: "assets/views/sing_in.html"
+            templateUrl: "assets/views/sing_in.html",
+            resolve: loadSequence('signInCtrl')
         }).state('login.forgot', {
             url: '/forgot',
             templateUrl: "assets/views/login_forgot.html"
@@ -659,6 +668,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Proposal View'
             },
             resolve: loadSequence('forumBaseProposalViewCtrl')
+        }).state('app.forum.viewvotation', {
+            url: '/viewvotation',
+            templateUrl: "assets/views/forum_base_view_votation.html",
+            title: 'View Votation',
+            ncyBreadcrumb: {
+                label: 'View Votation'
+            },
+            resolve: loadSequence('forumBaseViewVotationCtrl')
         }).state('app.inversion', {
             url: '/inversion',
             templateUrl: "assets/views/inversion.html",

@@ -15,6 +15,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         $scope.currentForumActive =  data[0];
                     },
                     function(errResponse){
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );
@@ -38,7 +39,8 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             proposalOwnerId: '',
             state: '',
             type: '',
-            deathLine: ''
+            deathLine: '',
+            date: ''
         };
 
         $scope.getTaskByProjectsId = function(){
@@ -61,6 +63,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $scope.currentProposal.state = 'publish';
             $scope.currentProposal.type = $scope.proposalType;
             $scope.currentProposal.deathLine = $scope.deathLine;
+            $scope.currentProposal.date = new Date();
 
             if ($scope.currentProposal.type == 'Modified Task') {
                 $scope.currentProposal.itemSubject = $scope.selectedTask.id;
@@ -147,13 +150,18 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
         $scope.mstep = 15;
 
         $scope.visibleModifiedTask = false;
+        $scope.visibleStartProject = false;
 
         $scope.changeVisibilityItems = function () {
-
             if ($scope.proposalType == 'Modified Task') {
                 $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTask = true;
+                $scope.visibleStartProject = false;
+            } else if ($scope.proposalType == 'Start Project') {
+                $scope.visibleStartProject = true;
+                $scope.visibleModifiedTask = false;
             } else {
+                $scope.visibleStartProject = false;
                 $scope.visibleModifiedTask = false;
             }
         };

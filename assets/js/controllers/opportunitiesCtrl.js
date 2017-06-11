@@ -6,7 +6,6 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
     function ($scope, localStorageService, RestService, $state, toaster) {
         $scope.allProjects = [];
         $scope.listUserOwners = [];
-
         $scope.creationProjectDate = '';
         $scope.deathLineProject = '';
 
@@ -23,7 +22,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
         };
 
         $scope.getAllProjects = function () {
-            RestService.fetchAllProject(localStorageService.get('currentUserId'))
+            RestService.fetchAllOpportunities(localStorageService.get('currentUserId'))
                 .then(
                     function(data) {
                         $scope.allProjects = data;
@@ -33,6 +32,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                         }
                     },
                     function(errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
                 );

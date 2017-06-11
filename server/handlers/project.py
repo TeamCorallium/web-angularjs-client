@@ -153,10 +153,11 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
         else:
             projects = table_simple_project.all()
 
+        print(projects)
         opportunities = []
 
         for project in projects:
-            if project['state'] != 1:
+            if project['state'] != '1':
                 continue
 
             projectId = project['id']
@@ -164,6 +165,8 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
 
             invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
             
+            print(invertions)
+
             amount = 0;
             for invertion in invertions:
                 amount += int(invertion['amount'])

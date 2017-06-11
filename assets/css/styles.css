@@ -11924,3 +11924,20 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 .icons-coral .finance{
 	background-image:url("../images/finanzas.png")
 }
+
+
+fieldset {
+  border: none !important;
+}
+
+fieldset legend {
+  background: none !important;
+}
+
+#sidebar > div nav > ul li a i {
+  margin-right: 5px !important;
+  display: inline-block !important;;
+  font-size: 17px !important;;
+  position: relative !important;;
+  top: 2px !important;;
+}

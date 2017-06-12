@@ -57,7 +57,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
         $scope.createProposal = function () {
             $scope.currentProposal.name = $scope.proposalTitle;
-            $scope.currentProposal.proposalContent = $scope.proposalContent;
             $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
             $scope.currentProposal.proposalOwnerId = localStorageService.get('currentUserId');
             $scope.currentProposal.state = 'publish';
@@ -67,8 +66,10 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
             if ($scope.currentProposal.type == 'Modified Task') {
                 $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-            } else {
-                $scope.currentProposal.itemSubject = '';
+                $scope.currentProposal.proposalContent = $scope.proposalContent;
+            } else if ($scope.currentProposal.type == 'Start Project'){
+                $scope.currentProposal.proposalContent = $scope.proposalContent;
+                $scope.currentProposal.itemSubject = ''
             }
 
             var obj = {

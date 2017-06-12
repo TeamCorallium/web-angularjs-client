@@ -28,6 +28,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
         $scope.itemSubject = '';
         $scope.currentForumActive = '';
         $scope.proposalType = '';
+        $scope.currentTaskActive = '';
 
         //Actual proposal of the current project
         $scope.currentProposal = {
@@ -64,7 +65,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $scope.currentProposal.deathLine = $scope.deathLine;
             $scope.currentProposal.date = new Date();
 
-            if ($scope.currentProposal.type == 'Modified Task') {
+            if ($scope.currentProposal.type == 'Modified Task State') {
                 $scope.currentProposal.itemSubject = $scope.selectedTask.id;
                 $scope.currentProposal.proposalContent = $scope.proposalContent;
             } else if ($scope.currentProposal.type == 'Start Project'){
@@ -150,20 +151,48 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
         $scope.hstep = 1;
         $scope.mstep = 15;
 
-        $scope.visibleModifiedTask = false;
+        $scope.visibleModifiedTaskState = false;
         $scope.visibleStartProject = false;
 
         $scope.changeVisibilityItems = function () {
-            if ($scope.proposalType == 'Modified Task') {
+            if ($scope.proposalType == 'Modified Task State') {
                 $scope.getTaskByProjectsId();
-                $scope.visibleModifiedTask = true;
+                $scope.visibleModifiedTaskState = true;
                 $scope.visibleStartProject = false;
             } else if ($scope.proposalType == 'Start Project') {
                 $scope.visibleStartProject = true;
-                $scope.visibleModifiedTask = false;
+                $scope.visibleModifiedTaskState = false;
             } else {
                 $scope.visibleStartProject = false;
-                $scope.visibleModifiedTask = false;
+                $scope.visibleModifiedTaskState = false;
             }
         };
+
+        $scope.taskChange =  function () {
+            if($scope.selectedTask != '') {
+                RestService.fetchTaskByTaskId($scope.selectedTask.id)
+                    .then(
+                        function(data) {
+                            $scope.currentTaskActive =  data[0];
+
+                            $scope.currentTaskActive.name = data[0].name;
+                            $scope.currentTaskActive.description = data[0].description;
+                            $scope.currentTaskActive.cost = data[0].cost;
+                            $scope.currentTaskActive.outcome = data[0].outcome;
+                            $scope.currentTaskActive.startDate = new Date(data[0].startDate);
+                            $scope.currentTaskActive.duration = data[0].duration;
+                            $scope.currentTaskActive.state = data[0].state;
+                            $scope.taskState = data[0].state;
+                        },
+                        function(errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            }
+        };
+
+        $scope.getValueIndex = function () {
+            return $scope.currentTaskActive.state;
+        };
+
     }]);

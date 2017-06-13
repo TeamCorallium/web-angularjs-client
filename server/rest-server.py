@@ -81,7 +81,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                                                     'subject': "Creation", 'content': "New proposal was created"})
                         
                         for c in clients:
-                            int(c.id) == int(userId):
+                            if int(c.id) == int(userId):
                                 c.connection.write_message("NOTIFICATION")
 
                     print(interestedUserIds)
@@ -125,7 +125,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                             table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                                     'subject': "Update permission", 'content': "Owner permissions"})
                             for c in clients:
-                                int(c.id) == int(userId):
+                                if int(c.id) == int(userId):
                                     c.connection.write_message("NOTIFICATION")
                         
                 if self.json_args['type'] == 'CHAT':

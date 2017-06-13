@@ -278,7 +278,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $scope.task.duration = '';
             $scope.task.state = '1';
 
-            var tasks = {data: $scope.tasks};
+            var tasks = {data: $scope.tasks.slice()};
 
             $scope.ganttStart("gantt_here");
             gantt.clearAll();
@@ -301,7 +301,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             }
             $scope.tasks.splice( index, 1 );
 
-            var tasks = {data: $scope.tasks};
+            var tasks = {data: $scope.tasks.slice()};
 
             if ($scope.tasks.length == 0) {
                 $scope.ganttStart("gantt_hide");
@@ -524,18 +524,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
         $scope.ganttStart = function (containerName) {
             var tasks = {
                 data:[
-                    {id:11, text:"Project #1",start_date:"01-04-2013", duration:10,
-                    progress: 0.6, open: false},
-                    {id:12, text:"Task #1",   start_date:"03-04-2013", duration:5, 
-                    progress: 1,   open: false},
-                    {id:13, text:"Task #2",   start_date:"02-04-2013", duration:7, 
-                    progress: 0.5, open: false},
-                    {id:14, text:"Task #2.1", start_date:"03-04-2013", duration:2, 
-                    progress: 1,   open: false},
-                    {id:15, text:"Task #2.2", start_date:"04-04-2013", duration:3, 
-                    progress: 0.8, open: false},
-                    {id:16, text:"Task #2.3", start_date:"05-04-2013", duration:4, 
-                    progress: 0.2, open: false}
                 ],
                 // links:[
                 //     {id:1, source:1, target:2, type:"1"},
@@ -561,7 +549,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             gantt.init(containerName); 
 
             gantt.clearAll();
-            tasks.data = $scope.tasks;
+            tasks.data = $scope.tasks.slice();
             gantt.parse (tasks);
             // gantt.parse($scope.tasks);
 
@@ -590,7 +578,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             gantt.render();
         }
     }
-
     var cachedSettings = {};
     function saveConfig() {
         var config = gantt.config;
@@ -606,7 +593,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
     function restoreConfig() {
         applyConfig(cachedSettings);
     }
-
     function applyConfig(config, dates) {
         gantt.config.scale_unit = config.scale_unit;
         if (config.date_scale) {
@@ -627,9 +613,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             gantt.config.start_date = gantt.config.end_date = null;
         }
     }
-
-
-
     function zoomToFit() {
         var project = gantt.getSubtaskDates(),
                 areaWidth = gantt.$task.offsetWidth;
@@ -648,7 +631,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
         applyConfig(scaleConfigs[i], project);
         gantt.render();
     }
-
     // get number of columns in timeline
     function getUnitsBetween(from, to, unit, step) {
         var start = new Date(from),
@@ -660,7 +642,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
         }
         return units;
     }
-
     //Setting available scales
     var scaleConfigs = [
         // minutes

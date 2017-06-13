@@ -74,9 +74,4 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
         };
 
         $scope.invertionByProjectId();
-
-        $scope.goToExploreTask = function (taskId) {
-            localStorageService.set('currentTaskId',taskId);
-            $state.go('app.project.explore_task_detail');
-        };
     }]);

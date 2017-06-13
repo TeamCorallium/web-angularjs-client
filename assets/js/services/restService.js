@@ -155,8 +155,8 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
         },
 
         //Function for obtain all projects excepts the user's projects
-        fetchAllProject: function(userId) {
-            return $http.get(serverUrl + 'allProjectsExceptId/' + userId)
+        fetchAllProject: function(userId, filter) {
+            return $http.get(serverUrl + 'allProjectsExceptId/' + userId + '?filter=' + filter)
                 .then(
                     function(response){
                         return response.data;
@@ -168,8 +168,8 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
-        fetchAllOpportunities: function(userId) {
-            return $http.get(serverUrl + 'simpleProjectOpportunities/' + userId)
+        fetchAllOpportunities: function(userId, filter) {
+            return $http.get(serverUrl + 'simpleProjectOpportunities/' + userId + '?filter=' + filter)
                 .then(
                     function(response){
                         return response.data;

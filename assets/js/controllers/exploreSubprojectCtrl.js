@@ -24,11 +24,11 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
 
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
-        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
         $scope.categoryArray = ['Commodities Production','Creating a New Business','Diversification','Property developments','Other'];
 
-        $scope.getProjectDate = function (date) {
+        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        $scope.getDateProject = function (date) {
             var dateTemp = new Date(date);
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
         };
@@ -74,9 +74,4 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
         };
 
         $scope.invertionByProjectId();
-
-        $scope.goToExploreTask = function (taskId) {
-            localStorageService.set('currentTaskId',taskId);
-            $state.go('app.project.explore_task_detail');
-        };
     }]);

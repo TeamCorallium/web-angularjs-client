@@ -126,9 +126,22 @@ class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
         else:
             projects = table_simple_project.all()
 
-        self.write(json.dumps(projects))
+        filter = self.get_argument("filter")
+        print(filter)
 
-        print(projects)        
+        if filter != '':
+            if filter == 'deathLine':
+                sortedProjects = sorted(projects, key=lambda project: project[filter])
+            else:
+                sortedProjects = sorted(projects, key=lambda project: int(project[filter]), reverse=True) 
+
+            self.write(json.dumps(sortedProjects))
+            print('sorted....')
+            print(sortedProjects)   
+        else:
+            self.write(json.dumps(projects))
+            print(projects)
+
 
 class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -146,6 +159,8 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
         print('SimpleProjectOpportunitiesHandler:GET!!!')
 
         print('userId: ' + userId)
+
+        # print(self.get_argument("filter"))
 
         projects = []
         if userId != 'null':
@@ -172,7 +187,20 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
                 amount += int(invertion['amount'])
 
             if amount < int(totalCost):
-                opportunities.append(project)             
+                opportunities.append(project)
 
-        self.write(json.dumps(opportunities))
-        print(opportunities) 
+        filter = self.get_argument("filter")
+        print(filter)
+
+        if filter != '':
+            if filter == 'deathLine':
+                sortedOpportunities = sorted(opportunities, key=lambda opportinity: opportinity[filter])
+            else:
+                sortedOpportunities = sorted(opportunities, key=lambda opportinity: int(opportinity[filter]), reverse=True) 
+
+            self.write(json.dumps(sortedOpportunities))
+            print('sorted....')
+            print(sortedOpportunities)   
+        else:
+            self.write(json.dumps(opportunities))
+            print(opportunities)        

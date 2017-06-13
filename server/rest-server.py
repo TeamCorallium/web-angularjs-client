@@ -77,10 +77,13 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
                     proposalType = self.json_args['value']['type']
                     for userId in interestedUserIds:
-                        if proposalType == 'Modified Task':
-                            table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': proposalType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                        table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': proposalType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                                     'subject': "Creation", 'content': "New proposal was created"})
-                    
+                        
+                        for c in clients:
+                            int(c.id) == int(userId):
+                                c.connection.write_message("NOTIFICATION")
+
                     print(interestedUserIds)
 
                 if self.json_args['type'] == 'VOTE':
@@ -101,6 +104,13 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                     proposals = table_proposal.search((where('id') == proposalId) | (where('id') == int(proposalId)))
                     proposal = proposals[0]
 
+                    interestedUserIds = []
+                    interestedUserIds.append(project['userId'])
+
+                    invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+                    for invertion in invertions:
+                        interestedUserIds.append(invertion['userId'])
+
                     notifieType = ''
                     if proposal['type'] == 'Modified Task':
                         notifieType = 'Update Task'
@@ -111,13 +121,12 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                             percent += int(v['percent'])
 
                     if percent > 50:
-                        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                        for userId in interestedUserIds:
+                            table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                                     'subject': "Update permission", 'content': "Owner permissions"})
-                        
-                        for c in clients:
-                            if int(c.id) == int(ownerId):
-                                c.connection.write_message("NOTIFICATION")
-                                break
+                            for c in clients:
+                                int(c.id) == int(userId):
+                                    c.connection.write_message("NOTIFICATION")
                         
                 if self.json_args['type'] == 'CHAT':
                     table_chat.insert(self.json_args['value'])
@@ -125,8 +134,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 if self.json_args['type'] == 'COMMENT':
                     table_comment.insert(self.json_args['value'])
 
-            if self.json_args['type'] == 'PROPOSAL':
-                client.connection.write_message("NOTIFICATION")
+            # if self.json_args['type'] == 'PROPOSAL':
+            #     client.connection.write_message("NOTIFICATION")
 
             if self.json_args['type'] == 'CHAT':
                 client.connection.write_message("NEW-CHAT-MESSAGE")

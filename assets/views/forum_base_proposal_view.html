@@ -10,14 +10,14 @@
 	<div class="container-fluid container-fullw bg-white">
 		<div ng-show="currentProposalView.type == 'Modified Task'">
 			<div class="row">
-				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 					<p><strong>Title: </strong> {{currentProposalView.name}} </p>
 				</div>
-				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-					<p><strong>Deathline: </strong> {{getProjectDate(currentProposalView.deathLine)}} </p>
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+					<p class="pull-right"><strong>Deathline: </strong> {{getProjectDate(currentProposalView.deathLine)}} </p>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" ng-show="currentProposalView.type == 'Modified Task'">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<p><strong>Task Name: </strong> {{currentTaskProposalView.name}} </p>
 				</div>
@@ -84,16 +84,16 @@
 						<h5> Text Here .... </h5>
 						<div class="panel-body margin-top-15">
 							<div class="row">
-								<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>YES</strong></h5>
-								<uib-progressbar value="countVotes.yes" max="100" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="success">{{countVotes.yes}} %</uib-progressbar>
+								<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>YES</strong></h5>
+								<uib-progressbar value="countVotes.yes" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="success">{{countVotes.yes}} %</uib-progressbar>
 							</div>
 							<div class="row">
-								<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>NO</strong></h5>
-								<uib-progressbar value="countVotes.no" max="100" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="danger">{{countVotes.no}} %</uib-progressbar>
+								<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>NO</strong></h5>
+								<uib-progressbar value="countVotes.no" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="danger">{{countVotes.no}} %</uib-progressbar>
 							</div>
 							<div class="row">
-								<h5 class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>ABS</strong></h5>
-								<uib-progressbar value="countVotes.abs" max="100" class="progress-md col-xs-11 col-sm-11 col-md-11 col-lg-11 no-padding" type="info">{{countVotes.abs}} %</uib-progressbar>
+								<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>ABS</strong></h5>
+								<uib-progressbar value="countVotes.abs" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="info">{{countVotes.abs}} %</uib-progressbar>
 							</div>
 						</div>
 					</fieldset>

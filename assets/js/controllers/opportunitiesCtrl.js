@@ -8,6 +8,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
         $scope.listUserOwners = [];
         $scope.creationProjectDate = '';
         $scope.deathLineProject = '';
+        $scope.filter = '';
 
         $scope.getUserName = function (userId) {
             RestService.fetchUser(userId)
@@ -21,8 +22,9 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                 );
         };
 
-        $scope.getAllProjects = function () {
-            RestService.fetchAllOpportunities(localStorageService.get('currentUserId'))
+        $scope.getAllOpportunities = function () {
+            console.log($scope.filter + " filter");
+            RestService.fetchAllOpportunities(localStorageService.get('currentUserId'),$scope.filter)
                 .then(
                     function(data) {
                         $scope.allProjects = data;
@@ -38,7 +40,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                 );
         };
 
-        $scope.getAllProjects();
+        $scope.getAllOpportunities();
 
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 

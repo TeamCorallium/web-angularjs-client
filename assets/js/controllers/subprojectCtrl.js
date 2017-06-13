@@ -25,9 +25,9 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
         $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
 
-        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
         $scope.categoryArray = ['Commodities Production','Creating a New Business','Diversification','Property developments','Other'];
+
+        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
         $scope.getDateProject = function (date) {
             var dateTemp = new Date(date);

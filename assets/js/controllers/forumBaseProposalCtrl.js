@@ -78,7 +78,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.currentProposal.itemSubject = $scope.selectedTask.id;
                 $scope.currentProposal.proposalContent = $scope.proposalState;
             } else if ($scope.currentProposal.type == 'Start Project') {
-                $scope.currentProposal.itemSubject = ''
+                $scope.currentProposal.itemSubject = '';
                 $scope.currentProposal.proposalContent = $scope.proposalContent;
             } else if($scope.currentProposal.type == 'Modified Task Name') {
                 $scope.currentProposal.itemSubject = $scope.selectedTask.id;
@@ -183,12 +183,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $scope.startOpened = false;
             $scope.endOpened = !$scope.endOpened;
         };
-
-        // $scope.startOpen = function() {
-        //     $scope.startOptions.maxDate = $scope.end;
-        //     $scope.endOpened = false;
-        //     $scope.startOpened = !$scope.startOpened;
-        // };
 
         $scope.dateOptions = {
             formatYear : 'yy',

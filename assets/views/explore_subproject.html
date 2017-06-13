@@ -213,10 +213,50 @@
                                             </div>
                                         </div>
                                         <div class="panel-body no-padding">
-                                            <ul class="list-group">
-                                                <li class="list-group-item" ng-repeat="task in tasksProject">
-                                                    <a ng-click="goToExploreTask(task.id)">{{task.name}}</a>
+                                            <ul class="list-unstyled">
+                                                <li class="margin-bottom-15" ng-repeat="task in tasksProject">
+                                                    <hr class="tall">
+                                                    <div class="clearfix">
+                                                        <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                                                            <span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
+                                                            <span class="label label-default state-list-tasks pull-right">{{ stateArray[task.state]}}</span>
+                                                        </div>
+                                                        <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                            <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
+                                                        </div>
+                                                        <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
+                                                                <span><i class="ti-timer"></i>
+                                                                    <strong> Cost:</strong>  {{task.cost}} $
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
+                                                                <span><i class="ti-layers-alt"></i>
+                                                                    <strong> Start Date:</strong>  {{getDateProject(task.startDate)}}
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
+                                                                <span><i class="ti-layers-alt"></i>
+                                                                    <strong> Duration:</strong>  {{task.duration}} <strong> Days</strong>
+                                                                </span>
+                                                            </div>
+                                                            <!--<div class="thread-content col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding">-->
+                                                            <!--<div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">-->
+                                                            <!--<button type="button" class="btn btn-success btn-xs">-->
+                                                            <!--<span class="fa fa-edit"></span> Update-->
+                                                            <!--</button>-->
+                                                            <!--<button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">-->
+                                                            <!--<span class="fa fa-arrow-right"></span> View-->
+                                                            <!--</button>-->
+                                                            <!--<button type="button" class="btn btn-danger btn-xs">-->
+                                                            <!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+                                                            <!--</button>-->
+                                                            <!--</div>-->
+                                                            <!--</div>-->
+                                                        </div>
+                                                    </div>
                                                 </li>
+                                                <hr class="tall">
                                             </ul>
                                         </div>
                                     </div>

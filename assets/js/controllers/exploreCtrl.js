@@ -10,6 +10,7 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
         $scope.listAllUser = [];
         $scope.owner = '';
         $scope.filter = '';
+        $scope.selectedTabProjects = true;
 
         $scope.getAllProjects = function () {
             RestService.fetchAllProject(localStorageService.get('currentUserId'),$scope.filter)
@@ -162,5 +163,11 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
             $state.go('app.pages.exploreuser');
         };
 
+        $scope.tabSelectedUser = function () {
+            $scope.selectedTabProjects = false;
+        };
 
+        $scope.tabSelectedProjects = function () {
+            $scope.selectedTabProjects = true;
+        };
     }]);

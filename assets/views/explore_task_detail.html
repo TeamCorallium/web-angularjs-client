@@ -47,18 +47,17 @@
                                 <!-- The color of the progres bar depend of the task stage -->
                                 <div class="col-md-7 col-sm-7 col-lg-7 col-xs-12 margin-top-15">
                                     <div class="progress progress-striped ng-isolate-scope" value="dynamic" type="success">
-                                        <div class="progress-bar progress-bar-info"
+                                        <div class="progress-bar progress-bar-success"
                                              ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar"
                                              aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"
                                              ng-style="{width: (percent &lt; 100 ? percent : 100) + '%'}"
                                              aria-valuetext="24%" aria-labelledby="progressbar" ng-transclude=""
                                              style="width: 24%;">
-                                            <!--<span class="ng-binding ng-scope">Active </span>-->
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 margin-top-15">
-                                    <span class="label label-info pull-right">{{stateArray[currentTaskActive.state]}}</span>
+                                    <span class="label label-success pull-right">{{stateArray[currentTaskActive.state]}}</span>
                                 </div>
                             </div>
                             <hr class="tall">
@@ -114,7 +113,7 @@
                                                             <li>
                                                                 <p class="margin-top-15">
                                                                     <strong>Estimate Duration:</strong> {{currentTaskActive.duration}}
-                                                                    <strong>weeks</strong>
+                                                                    <strong>days</strong>
                                                                 </p>
                                                             </li>
                                                         </ul>

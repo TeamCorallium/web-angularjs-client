@@ -126,9 +126,22 @@ class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
         else:
             projects = table_simple_project.all()
 
-        self.write(json.dumps(projects))
+        filter = self.get_argument("filter")
+        print(filter)
 
-        print(projects)        
+        if filter != '':
+            if filter == 'deathLine':
+                sortedProjects = sorted(projects, key=lambda project: project[filter])
+            else:
+                sortedProjects = sorted(projects, key=lambda project: int(project[filter]), reverse=True) 
+
+            self.write(json.dumps(sortedProjects))
+            print('sorted....')
+            print(sortedProjects)   
+        else:
+            self.write(json.dumps(projects))
+            print(projects)
+
 
 class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -147,16 +160,19 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
 
         print('userId: ' + userId)
 
+        # print(self.get_argument("filter"))
+
         projects = []
         if userId != 'null':
             projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
         else:
             projects = table_simple_project.all()
 
+        print(projects)
         opportunities = []
 
         for project in projects:
-            if project['state'] != 1:
+            if project['state'] != '1':
                 continue
 
             projectId = project['id']
@@ -164,12 +180,27 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
 
             invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
             
+            print(invertions)
+
             amount = 0;
             for invertion in invertions:
                 amount += int(invertion['amount'])
 
             if amount < int(totalCost):
-                opportunities.append(project)             
+                opportunities.append(project)
 
-        self.write(json.dumps(opportunities))
-        print(opportunities) 
+        filter = self.get_argument("filter")
+        print(filter)
+
+        if filter != '':
+            if filter == 'deathLine':
+                sortedOpportunities = sorted(opportunities, key=lambda opportinity: opportinity[filter])
+            else:
+                sortedOpportunities = sorted(opportunities, key=lambda opportinity: int(opportinity[filter]), reverse=True) 
+
+            self.write(json.dumps(sortedOpportunities))
+            print('sorted....')
+            print(sortedOpportunities)   
+        else:
+            self.write(json.dumps(opportunities))
+            print(opportunities)        

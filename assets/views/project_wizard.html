@@ -83,9 +83,9 @@
 														<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
 														
 														<div nowrap>
-														<button type="button" class="btn btn-primary btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+<!-- 														<button type="button" class="btn btn-primary btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
 															<span class="glyphicon glyphicon-upload"></span> Upload
-														</button>
+														</button> -->
 														<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
 															<span class="glyphicon glyphicon-trash"></span> Remove
 														</button>
@@ -435,7 +435,7 @@
 						</div>
 						<!-- end: WIZARD STEP 1 -->
 						<!-- start: WIZARD STEP 2 -->
-						<div id="step-2" ng-show="currentStep == 2"  ng-controller="UploadCtrl2" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+						<div id="step-2" ng-show="currentStep == 2">
 							<div class="row">
 								<div class="col-md-12">
 									<fieldset>
@@ -446,41 +446,70 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Name</label>
-													<input type="text" class="form-control" name="name" ng-model="referenceName" />
+													<input type="text" class="form-control" name="name" ng-model="reference.name" />
 												</div>
 												<hr>
-												<div ng-show="uploader.queue.length == 0">
-												<label>Upload a reference archive</label>
-												<span class="btn btn-primary btn-o btn-file pull-right"> Select a file
-												<input type="file" nv-file-select="" uploader="uploader" />
-												</span>
-												</div>		
-												<div ng-show="uploader.queue.length != 0" ng-repeat="item in uploader.queue">
-													<strong>File name: {{item.file.name}}</strong>
-													<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-													
-													<div nowrap>
-													<button type="button" class="btn btn-danger btn-xs pull-right" ng-click="item.remove()">
-														<span class="glyphicon glyphicon-trash"></span> Remove
-													</button>
-													</div>											
+												<div ng-controller="UploadCtrl2" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+													<div ng-show="uploader.queue.length == 0">
+													<label>Upload a reference archive</label>
+													<span class="btn btn-primary btn-o btn-file pull-right"> Select a file
+													<input type="file" nv-file-select="" uploader="uploader" />
+													</span>
+													</div>		
+													<div ng-show="uploader.queue.length != 0" ng-repeat="item in uploader.queue">
+														<strong>File name: {{item.file.name}}</strong>
+														<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+														
+														<div nowrap>
+														<button type="button" class="btn btn-danger btn-xs pull-right" ng-click="item.remove()">
+															<span class="glyphicon glyphicon-trash"></span> Remove
+														</button>
+														</div>											
+													</div>
 												</div>
 												<hr>													
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Description</label>
-													<textarea placeholder="Enter reference description" class="form-control autosize msd-elastic: \n;" data-ng-model="referenceDescription"></textarea>
+													<textarea placeholder="Enter reference description" class="form-control autosize msd-elastic: \n;" data-ng-model="reference.description"></textarea>
 												</div>										
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
-													<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="">
+													<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="addReference()">
 														<i class="fa fa-circle-arrow-left"></i> Add reference
 													</button>
 												</div>
+											</div>
+										</div>
+										<hr>
+										<div class="row" ng-show="simpleProject.references.length != 0">
+											<div class="col-md-12">
+												<table class="table table-striped" wt-responsive-table>
+													<thead>
+													<tr>
+														<th>Name </th>
+														<th>Description </th>
+														<!-- <th>File </th> -->
+														<th>Actions </th>
+													</tr>
+													</thead>
+													<tbody>
+													<tr ng-repeat="ref in simpleProject.references">
+														<td>{{ref.name}} </td>
+														<td>{{ref.description}} </td>
+														<!-- <td>{{ref.file}} </td> -->
+														<td>
+															<button type="button" class="btn btn-danger btn-xs" ng-click="removeReference(ref.name)">
+																<span class="glyphicon glyphicon-trash"></span>Remove
+															</button>
+														</td>
+													</tr>
+													</tbody>
+												</table>
 											</div>
 										</div>
 									</fieldset>
@@ -496,26 +525,39 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Name</label>
-													<input type="text" class="form-control" name="name" ng-model="name" />
+													<input type="text" class="form-control" ng-model="risk.name" />
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
+													<label>Probability</label>
+													<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="risk.probability" >	
+												</div>											
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
 													<label>Description</label>
-													<textarea placeholder="Enter risk description" class="form-control autosize msd-elastic: \n;" data-ng-model="rdescription" name="rdescription"></textarea>
+													<textarea placeholder="Enter risk description" class="form-control autosize msd-elastic: \n;" data-ng-model="risk.description"></textarea>
 												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Actions to mitigate risk</label>
+													<textarea placeholder="Actions to mitigate risk" class="form-control autosize msd-elastic: \n;" data-ng-model="risk.mitigate"></textarea>
+												</div>												
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-12">
-												<div class="form-group">
-													<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="addRow()">
+													<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="addRisk()">
 														<i class="fa fa-circle-arrow-left"></i> Add
-													</button>
-												</div>
+													</button>												
 											</div>
 										</div>
-										<div class="row">
+										<hr>
+										<div class="row" ng-show="simpleProject.risks.length != 0">
 											<div class="col-md-12">
 												<table class="table table-striped" wt-responsive-table>
 													<thead>
@@ -526,11 +568,11 @@
 													</tr>
 													</thead>
 													<tbody>
-													<tr ng-repeat="company in companies">
-														<td>{{company.name}} </td>
-														<td>{{company.rdescription}} </td>
+													<tr ng-repeat="r in simpleProject.risks">
+														<td>{{r.name}} </td>
+														<td>{{r.description}} </td>
 														<td>
-															<button type="button" class="btn btn-danger btn-xs" ng-click="removeRow(company.name)">
+															<button type="button" class="btn btn-danger btn-xs" ng-click="removeRisk(r.name)">
 																<span class="glyphicon glyphicon-trash"></span>Remove
 															</button>
 														</td>
@@ -659,15 +701,19 @@
 												</table>
 											</div>
 										</div>
-										<div class="row" ng-show="tasks.length != 0">
+										<div class="row">
 											<div class="col-md-12">
+											<div ng-show="tasks.length != 0">
 											<button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
-
+											</div>
 											<div id="gantt_here"></div>
+											<div ng-show="tasks.length == -1" id="gantt_hide"></div>
 											</div>
 										</div>
 										
+										
 									</fieldset>
+
 									<div class="form-group">
 										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">
 											<i class="fa fa-circle-arrow-left"></i> Back

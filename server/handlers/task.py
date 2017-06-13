@@ -46,6 +46,16 @@ class TaskHandler(tornado.web.RequestHandler):
         else:
             self.write('-1')
             print('ProjectId not found') 
+
+    def put(self):
+        print("Task:PUT!!!")
+
+        self.json_args = json.loads(self.request.body)
+
+        print(self.json_args)
+
+        table_user.update({'projectsFollow': self.json_args['projectsFollow']}, eids=[self.json_args['id']])
+
             
 class TaskByProjectIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

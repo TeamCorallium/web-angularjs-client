@@ -49,96 +49,119 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         print('WebSocketHandler:on_message: ' + message) 
         
         self.json_args = json.loads(message)
-
-        for client in clients:
-            if client.id == self.id:
                 
-                print(self.json_args['type'])
-                print(self.json_args['value'])
+        print(self.json_args['type'])
+        print(self.json_args['value'])
 
-                if self.json_args['type'] == 'PROPOSAL':
+        if self.json_args['type'] == 'PROPOSAL':
 
-                    proposalId = table_proposal.insert(self.json_args['value'])
-                    table_proposal.update({'id': proposalId}, eids=[proposalId])
+            proposalId = table_proposal.insert(self.json_args['value'])
+            table_proposal.update({'id': proposalId}, eids=[proposalId])
 
-                    projectId = self.json_args['value']['projectId']
-                    projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
-                    project = projects[0]
+            projectId = self.json_args['value']['projectId']
+            projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+            project = projects[0]
 
-                    users = table_user.search(where('id') == int(self.id))
-                    fromName = users[0]['fullName']
+            users = table_user.search(where('id') == int(self.id))
+            fromName = users[0]['fullName']
 
-                    interestedUserIds = []
-                    interestedUserIds.append(project['userId'])
+            interestedUserIds = []
+            interestedUserIds.append(project['userId'])
 
-                    invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
-                    for invertion in invertions:
-                        interestedUserIds.append(invertion['userId'])
+            invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+            for invertion in invertions:
+                interestedUserIds.append(invertion['userId'])
 
-                    proposalType = self.json_args['value']['type']
-                    for userId in interestedUserIds:
-                        table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': proposalType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                                    'subject': "Creation", 'content': "New proposal was created"})
-                        
-                        for c in clients:
-                            if int(c.id) == int(userId):
-                                c.connection.write_message("NOTIFICATION")
+            proposalType = self.json_args['value']['type']
+            for userId in interestedUserIds:
+                table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': proposalType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                            'subject': "Creation", 'content': "New proposal was created"})
+                for c in clients:
+                    if int(c.id) == int(userId):
+                        c.connection.write_message("NOTIFICATION")
 
-                    print(interestedUserIds)
+            print(interestedUserIds)
 
-                if self.json_args['type'] == 'VOTE':
-                    vote = self.json_args['value']
-                    proposalId = vote['proposalId']
-                    table_vote.insert(vote)
+        if self.json_args['type'] == 'VOTE':
+            vote = self.json_args['value']
+            proposalId = vote['proposalId']
+            table_vote.insert(vote)
 
-                    projectId = vote['projectId']
-                    projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
-                    project = projects[0]
+            projectId = vote['projectId']
+            projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+            project = projects[0]
 
-                    users = table_user.search(where('id') == int(self.id))
-                    fromName = users[0]['fullName']
+            users = table_user.search(where('id') == int(self.id))
+            fromName = users[0]['fullName']
 
-                    ownerId = project['userId']           
-                    votes = table_vote.search((where('proposalId') == proposalId) | (where('proposalId') == int(proposalId)))                                                
-                    
-                    proposals = table_proposal.search((where('id') == proposalId) | (where('id') == int(proposalId)))
-                    proposal = proposals[0]
+            ownerId = project['userId']           
+            votes = table_vote.search((where('proposalId') == proposalId) | (where('proposalId') == int(proposalId)))                                                
+            
+            proposals = table_proposal.search((where('id') == proposalId) | (where('id') == int(proposalId)))
+            proposal = proposals[0]
 
-                    interestedUserIds = []
-                    interestedUserIds.append(project['userId'])
+            interestedUserIds = []
+            interestedUserIds.append(project['userId'])
 
-                    invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
-                    for invertion in invertions:
-                        interestedUserIds.append(invertion['userId'])
+            invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+            for invertion in invertions:
+                interestedUserIds.append(invertion['userId'])
 
-                    notifieType = ''
-                    if proposal['type'] == 'Modified Task':
-                        notifieType = 'Update Task'
+            notifieType = proposal['type'] + ' Approved'
+            proposalContent = proposal['proposalContent']              
 
-                    percent = 0
-                    for v in votes:
-                        if v['value'] == 'yes':
-                            percent += int(v['percent'])
+            percent = 0
+            for v in votes:
+                if v['value'] == 'yes':
+                    percent += int(v['percent'])
 
-                    if percent > 50:
-                        for userId in interestedUserIds:
-                            table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                                    'subject': "Update permission", 'content': "Owner permissions"})
-                            for c in clients:
-                                if int(c.id) == int(userId):
-                                    c.connection.write_message("NOTIFICATION")
-                        
-                if self.json_args['type'] == 'CHAT':
-                    table_chat.insert(self.json_args['value'])
+            if percent > 50:
+                for userId in interestedUserIds:
+                    content = ''
+                    taskField = ''
+                    if proposal['type'] == 'Start Project':
+                        table_simple_project.update({'state': '2'}, eids=[project['id']])
+                        content = 'Project ' + project['projectName'] + ' Started'
+                    else:
+                        if proposal['type'] == 'Modified Task State':
+                            content = 'A task state was modified'
+                            taskField = 'state'
+                        if proposal['type'] == 'Modified Task Name': 
+                            content = 'A task name was modified'
+                            taskField = 'name'                               
+                        if proposal['type'] == 'Modified Task Description':
+                            content = 'A task description was modified'
+                            taskField = 'description'                                
+                        if proposal['type'] == 'Modified Task Cost':
+                            content = 'A task cost was modified'
+                            taskField = 'cost'                                
+                        if proposal['type'] == 'Modified Task Outcome':
+                            content = 'A task outcome was modified'
+                            taskField = 'outcome'                                
+                        if proposal['type'] == 'Modified Task Start Date':
+                            content = 'A task start date was modified'
+                            taskField = 'startDate'                                
+                        if proposal['type'] == 'Modified Task Duration':   
+                            content = 'A task duration was modified'
+                            taskField = 'duration'  
 
-                if self.json_args['type'] == 'COMMENT':
-                    table_comment.insert(self.json_args['value'])
+                        table_task.update({taskField: proposalContent}, eids=[proposal['itemSubject']])                              
 
-            # if self.json_args['type'] == 'PROPOSAL':
-            #     client.connection.write_message("NOTIFICATION")
+                    table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                            'subject': proposal['itemSubject'], 'content': content})
+                    for c in clients:
+                        if int(c.id) == int(userId):
+                            c.connection.write_message("NOTIFICATION")
+                
+        if self.json_args['type'] == 'CHAT':
+            table_chat.insert(self.json_args['value'])
 
-            if self.json_args['type'] == 'CHAT':
-                client.connection.write_message("NEW-CHAT-MESSAGE")
+        if self.json_args['type'] == 'COMMENT':
+            table_comment.insert(self.json_args['value'])
+
+        if self.json_args['type'] == 'CHAT':
+            for c in clients:
+                c.connection.write_message("NEW-CHAT-MESSAGE")    
 
     def on_close(self):
         print('WebSocketHandler:on_close')

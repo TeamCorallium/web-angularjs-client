@@ -78,7 +78,10 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                     function(data) {
                         $scope.currentProposalView =  data[0];
 
-                        if($scope.currentProposalView.type == 'Modified Task') {
+                        if($scope.currentProposalView.type == 'Modified Task State' || $scope.currentProposalView.type == 'Modified Task Duration' ||
+                            $scope.currentProposalView.type == 'Modified Task Name' || $scope.currentProposalView.type == 'Modified Task Description' ||
+                            $scope.currentProposalView.type == 'Modified Task Outcome' || $scope.currentProposalView.type == 'Modified Task Start Date' ||
+                            $scope.currentProposalView.type == 'Modified Task Cost') {
                             $scope.getTaskByTaskId($scope.currentProposalView.itemSubject);
                         }
                     },

@@ -8,7 +8,7 @@
 		</div>
 	</section>
 	<div class="container-fluid container-fullw bg-white">
-		<div ng-show="currentProposalView.type == 'Modified Task'">
+		<div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 					<p><strong>Title: </strong> {{currentProposalView.name}} </p>
@@ -17,7 +17,10 @@
 					<p class="pull-right"><strong>Deathline: </strong> {{getProjectDate(currentProposalView.deathLine)}} </p>
 				</div>
 			</div>
-			<div class="row" ng-show="currentProposalView.type == 'Modified Task'">
+			<div class="row" ng-show="currentProposalView.type == 'Modified Task State' ||
+									 currentProposalView.type == 'Modified Task Name' || currentProposalView.type == 'Modified Task Description' ||
+									 currentProposalView.type == 'Modified Task Outcome' || currentProposalView.type == 'Modified Task Start Date' ||
+									 currentProposalView.type == 'Modified Task Cost">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<p><strong>Task Name: </strong> {{currentTaskProposalView.name}} </p>
 				</div>

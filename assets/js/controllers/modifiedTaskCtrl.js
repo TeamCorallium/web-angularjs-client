@@ -125,6 +125,7 @@ app.controller('ModifiedTaskCtrl', ["$scope", "localStorageService", "RestServic
             RestService.updateTask($scope.currentTaskActive)
                 .then(
                     function(data) {
+                        toaster.pop('success', 'Good!!!', 'Task was updated correctly.');
                         $state.go('app.project.task_detail');
                     },
                     function(errResponse) {

@@ -52,11 +52,16 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             $state.go('app.forum.proposalview');
         };
 
-        $scope.updateTask = function (taskId, projectId) {
-            localStorageService.set('currentTaskId', taskId);
+        $scope.goToProject = function (projectId) {
             localStorageService.set('currentProjectId', projectId);
-            $state.go('app.project.modified_task');
-        }
+            $state.go('app.project.subproject_detail');
+        };
+
+        $scope.goToTask = function (projectId, taskId) {
+            localStorageService.set('currentProjectId', projectId);
+            localStorageService.set('currentTaskId', taskId);
+            $state.go('app.project.task_detail');
+        };
 
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 

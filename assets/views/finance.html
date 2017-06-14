@@ -19,13 +19,15 @@
 									<thead>
 									<tr>
 										<th> Name </th>
+										<th> Type </th>
 										<th class="text-right"> Total </th>
 										<th class="text-right"> Balance </th>
 									</tr>
 									</thead>
 									<tbody>
 									<tr ng-repeat="invertion in invertions">
-										<td> {{listAllUser[$index].fullName}} </td>
+										<td> {{getUserName(invertion.userId)}} </td>
+										<td> Income </td>
 										<td class="text-right"> {{invertion.amount}} $</td>
 										<td class="text-right"> {{balance[$index]}} $</td>
 									</tr>

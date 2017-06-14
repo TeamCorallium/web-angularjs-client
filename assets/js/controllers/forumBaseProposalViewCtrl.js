@@ -1,6 +1,6 @@
 'use strict';
 /**
- * controller for User Projects
+ * created by Ale
  */
 app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
     function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {

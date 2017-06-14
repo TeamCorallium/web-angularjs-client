@@ -17,7 +17,7 @@
 					<p class="pull-right"><strong>Deathline: </strong> {{getProjectDate(currentProposalView.deathLine)}} </p>
 				</div>
 			</div>
-			<div class="row" ng-show="currentProposalView.type == 'Modified Task State' ||
+			<div class="row" ng-show="currentProposalView.type == 'Modified Task State' || currentProposalView.type == 'Modified Task Duration' ||
 									 currentProposalView.type == 'Modified Task Name' || currentProposalView.type == 'Modified Task Description' ||
 									 currentProposalView.type == 'Modified Task Outcome' || currentProposalView.type == 'Modified Task Start Date' ||
 									 currentProposalView.type == 'Modified Task Cost'">
@@ -30,7 +30,13 @@
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<fieldset>
 						<legend>Votation</legend>
-						<h5><strong>Proposal Content: </strong> {{currentProposalView.proposalContent}}</h5>
+						<h5 ng-show="currentProposalView.type == 'Modified Task State'"><strong>Proposal state: </strong> {{currentProposalView.proposalContent}}</h5>
+						<h5 ng-show="currentProposalView.type == 'Modified Task Duration'"><strong>Proposal duration: </strong> {{currentProposalView.proposalContent}} days</h5>
+						<h5 ng-show="currentProposalView.type == 'Modified Task Name'"><strong>Proposal name: </strong> {{currentProposalView.proposalContent}}</h5>
+						<h5 ng-show="currentProposalView.type == 'Modified Task Description'"><strong>Proposal description: </strong> {{currentProposalView.proposalContent}}</h5>
+						<h5 ng-show="currentProposalView.type == 'Modified Task Outcome'"><strong>Proposal outcomes: </strong> {{currentProposalView.proposalContent}}</h5>
+						<h5 ng-show="currentProposalView.type == 'Modified Task Cost'"><strong>Proposal total cost: </strong> {{currentProposalView.proposalContent}} $</h5>
+						<h5 ng-show="currentProposalView.type == 'Modified Task Start Date'"><strong>Proposal Start Date: </strong> {{getProjectDate(currentProposalView.proposalContent)}}</h5>
 						<div class="panel-body margin-top-15">
 							<div class="radio clip-radio radio-primary margin-bottom-11">
 								<input ng-model="voteUser" name="popoverType" id="yes" value="yes" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio" checked="checked">

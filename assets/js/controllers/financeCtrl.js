@@ -53,4 +53,12 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService",
             var dateTemp = new Date(DateProject);
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
         };
+
+        $scope.getUserName = function(userId) {
+            for (var i=0 ; i<$scope.listAllUser.length; i++) {
+                if ($scope.listAllUser[i].id == userId) {
+                    return $scope.listAllUser[i].fullName;
+                }
+            }
+        };
     }]);

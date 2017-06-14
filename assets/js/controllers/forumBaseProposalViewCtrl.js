@@ -13,6 +13,12 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
         $scope.investmentUserProject = 0;
         $scope.investmentProject = 0;
 
+        $scope.countVotes = {
+            yes: 0,
+            no: 0,
+            abs: 0
+        };
+
         $scope.getProjectById = function(){
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))
                 .then(
@@ -37,6 +43,8 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 .then(
                     function(data) {
                         $scope.allVotes =  data;
+
+                        $scope.calculateVotes();
 
                         for (var  i=0; i<$scope.allVotes.length; i++) {
                             if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {
@@ -163,5 +171,17 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             WebSocketService.send(obj);
 
             $state.go('app.forum.viewvotation');
+        };
+
+        $scope.calculateVotes = function () {
+            for (var i=0; i<$scope.allVotes.length; i++) {
+                if ($scope.allVotes[i].value == 'yes') {
+                    $scope.countVotes.yes += $scope.allVotes[i].percent;
+                } else if ($scope.allVotes[i].value == 'no') {
+                    $scope.countVotes.no += $scope.allVotes[i].percent;
+                } else {
+                    $scope.countVotes.abs += $scope.allVotes[i].percent;
+                }
+            }
         };
     }]);

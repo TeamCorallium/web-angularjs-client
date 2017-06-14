@@ -53,13 +53,4 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService",
             var dateTemp = new Date(DateProject);
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
         };
-
-        $scope.projectRole = function (userId) {
-            if (localStorageService.get('currentUserId') == userId) {
-                return 'Owner';
-            }
-            else {
-                return 'Financier';
-            }
-        };
     }]);

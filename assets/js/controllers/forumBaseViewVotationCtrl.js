@@ -11,7 +11,6 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
         $scope.userVote = false;
         $scope.allVotes = [];
         $scope.allUserName = [];
-        $scope.allUserRol = [];
 
         $scope.countVotes = {
             yes: 0,
@@ -59,11 +58,6 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                 .then(
                     function(data) {
                         $scope.allUserName.push(data[0].fullName);
-                        if(userId == $scope.currentForumActive.userId) {
-                            $scope.allUserRol.push('Owner');
-                        } else {
-                            $scope.allUserRol.push('Financer');
-                        }
                     },
                     function(errResponse) {
                         console.log(errResponse);

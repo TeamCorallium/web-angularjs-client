@@ -76,7 +76,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
             if ($scope.currentProposal.type == 'Modified Task State') {
                 $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-                $scope.currentProposal.proposalContent = $scope.proposalState;
+                $scope.currentProposal.proposalContent = $scope.taskState;
             } else if ($scope.currentProposal.type == 'Start Project') {
                 $scope.currentProposal.itemSubject = '';
                 $scope.currentProposal.proposalContent = $scope.proposalContent;
@@ -296,7 +296,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             $scope.currentTaskActive.duration = data[0].duration;
                             $scope.currentTaskActive.state = data[0].state;
 
-                            $scope.taskState = data[0].state;
                             $scope.taskName = data[0].name;
                             $scope.taskDescription = data[0].description;
                             $scope.taskCost = data[0].cost;

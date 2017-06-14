@@ -120,6 +120,8 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
             $scope.getAllComments();
         };
 
+        $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
+
         $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
         $scope.getDateMinutes = function (date) {
@@ -169,6 +171,11 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
         $scope.getProjectDate = function (date) {
             var dateTemp = new Date(date);
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear()+" at "+$scope.getDateTime(date);
+        };
+
+        $scope.getDeathLine = function (date) {
+            var dateTemp = new Date(date);
+            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
         };
 
         $scope.getProposalTaskName = function (taskId) {

@@ -59,7 +59,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
                 <div class="form-group">
                     <label>State</label>
-                    <select class="cs-select cs-skin-slide" ng-model="taskState" name="state">
+                    <select class="cs-select cs-skin-slide" ng-model="$parent.taskState" name="state">
                         <option ng-selected="getValueIndex() == 0" value="0" disabled selected>Select an state</option>
                         <option ng-selected="getValueIndex() == 1" value="1">In Preparation</option>
                         <option ng-selected="getValueIndex() == 2" value="2">Active: On time</option>
@@ -82,7 +82,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
                 <div class="form-group">
                     <label>Name</label>
-                    <input ng-model="taskName" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
+                    <input ng-model="$parent.taskName" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
                 <div class="form-group">
                     <label>Name</label>
-                    <textarea ng-model="taskDescription" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+                    <textarea ng-model="$parent.taskDescription" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
                 <div class="form-group">
                     <label>Total Cost</label>
-                    <input ng-model="taskCost" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
+                    <input ng-model="$parent.taskCost" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
                 </div>
             </div>
         </div>
@@ -130,7 +130,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
                 <div class="form-group">
                     <label>Outcomes</label>
-                    <textarea ng-model="outcome" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+                    <textarea ng-model="$parent.outcome" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
                 </div>
             </div>
         </div>
@@ -146,7 +146,7 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
                 <div class="form-group">
                     <label>Duration</label>
-                    <input ng-model="duration" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
+                    <input ng-model="$parent.duration" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@
                 <div class="form-group">
                     <label>Start Date</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="startDate" is-open="openDatePickers[1]" datepicker-options="startOptions" close-text="Close">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.startDate" is-open="openDatePickers[1]" datepicker-options="startOptions" close-text="Close">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary" ng-click="openTest($event,1)">
                                 <i class="fa fa-calendar"></i>

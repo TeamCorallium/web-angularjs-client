@@ -49,5 +49,11 @@ app.controller('SubprojectTaskDetailCtrl', ["$scope", "localStorageService", "Re
         $scope.getTodayDate = function () {
             var dateTemp = new Date();
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
-        }
+        };
+
+        $scope.proposedFinished = function (date, duration) {
+            var dat = new Date(date);
+            dat.setDate(dat.getDate() + duration);
+            return $scope.getProjectDate(dat);
+        };
     }]);

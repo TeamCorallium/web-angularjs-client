@@ -80,7 +80,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
                     if ($scope.currentProposal.type == 'Start Project') {
 
-                        if ($scope.proposalContent != '' && $scope.proposalContent != null) {
+                        if ($scope.proposalContent != '') {
                             $scope.currentProposal.itemSubject = '';
                             $scope.currentProposal.proposalContent = $scope.proposalContent;
 
@@ -92,7 +92,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
                             $state.go('app.forum.base');
                         } else {
-                            toaster.pop('error', 'Error', 'Please introdeuce the content of the task to create the proposal.');
+                            toaster.pop('error', 'Error', 'Please introduce the content of the task to create the proposal.');
                         }
 
                     } else {

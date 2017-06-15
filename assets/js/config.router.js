@@ -528,7 +528,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Timeline'
             },
-            resolve: loadSequence('ngMap')
+            resolve: loadSequence('ngMap','pagesTimelineCtrl')
         }).state('app.pages.calendar', {
             url: '/calendar',
             templateUrl: "assets/views/pages_calendar.html",

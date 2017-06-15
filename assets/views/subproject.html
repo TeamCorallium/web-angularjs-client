@@ -286,7 +286,7 @@
                                                             <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
                                                                 <span class="fa fa-arrow-right"></span> View
                                                             </button>
-                                                            <button ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) != 'Financier'" type="button" class="btn btn-danger btn-xs">
+                                                            <button ng-click="deleteTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) != 'Financier'" type="button" class="btn btn-danger btn-xs">
                                                                 <span class="glyphicon glyphicon-trash"></span> Remove
                                                             </button>
                                                         </div>

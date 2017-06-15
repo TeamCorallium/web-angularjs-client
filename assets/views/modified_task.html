@@ -17,21 +17,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>State:</label>
-                                <select class="cs-select cs-skin-slide" ng-model="currentTaskActive.state" name="state">
-                                    <option ng-selected="getValueIndex() == 0" value="0" disabled selected>Select an state</option>
-                                    <option ng-selected="getValueIndex() == 1" value="1">In Preparation</option>
-                                    <option ng-selected="getValueIndex() == 2" value="2">Active: On time</option>
-                                    <option ng-selected="getValueIndex() == 3" value="3">Active: Best than Expected</option>
-                                    <option ng-selected="getValueIndex() == 4" value="4">Active: Delayed</option>
-                                    <option ng-selected="getValueIndex() == 5" value="5">Finished</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" class="form-control" ng-model="currentTaskActive.name" />
                             </div>

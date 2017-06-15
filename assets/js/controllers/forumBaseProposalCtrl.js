@@ -80,7 +80,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
                     if ($scope.currentProposal.type == 'Start Project') {
 
-                        if ($scope.currentProposal.proposalContent != '' && $scope.currentProposal.proposalContent != null) {
+                        if ($scope.proposalContent != '' && $scope.proposalContent != null) {
                             $scope.currentProposal.itemSubject = '';
                             $scope.currentProposal.proposalContent = $scope.proposalContent;
 

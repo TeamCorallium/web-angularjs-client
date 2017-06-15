@@ -54,8 +54,8 @@ class TaskHandler(tornado.web.RequestHandler):
 
         print(newTask)
 
-        table_task.update({'name': newTask['name'], 'cost': newTask['cost'],
-                           'description': newTask['description'], 'outcome': newTask['outcome']
+        table_task.update({'name': newTask['name'], 'cost': newTask['cost'], 'startDate': newTask['startDate'],
+                           'description': newTask['description'], 'outcome': newTask['outcome'], 
                            'duration': newTask['duration'], 'state': newTask['state']}, eids=[newTask['id']])
 
             

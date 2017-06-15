@@ -45,16 +45,18 @@ class TaskHandler(tornado.web.RequestHandler):
             print(id)
         else:
             self.write('-1')
-            print('ProjectId not found') 
+            print('ProjectId not found')
 
     def put(self):
         print("Task:PUT!!!")
 
-        self.json_args = json.loads(self.request.body)
+        newTask = json.loads(self.request.body)
 
-        print(self.json_args)
+        print(newTask)
 
-        table_user.update({'projectsFollow': self.json_args['projectsFollow']}, eids=[self.json_args['id']])
+        table_task.update({'name': newTask['name'], 'cost': newTask['cost'],
+                           'description': newTask['description'], 'outcome': newTask['outcome']
+                           'duration': newTask['duration'], 'state': newTask['state']}, eids=[newTask['id']])
 
             
 class TaskByProjectIdHandler(tornado.web.RequestHandler):

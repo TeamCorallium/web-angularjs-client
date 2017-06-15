@@ -26,12 +26,12 @@
 				</div>
 			</div>
 			<hr class="tall">
-			<div class="row" ng-hide="viewVoteResults">
+			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<fieldset>
+					<fieldset class="padding-right-15 padding-bottom-0">
 						<legend>Votation</legend>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<p ng-show="currentProposalView.type == 'Modified Task State'"><strong>Task State: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task State'"><strong>Task State: </strong> {{stateArray[currentProposalView.proposalContent]}} </p>
 							<p ng-show="currentProposalView.type == 'Modified Task Duration'"><strong>Task Duration: </strong> {{currentProposalView.proposalContent}} </p>
 							<p ng-show="currentProposalView.type == 'Modified Task Name'"><strong>Task Name: </strong> {{currentProposalView.proposalContent}} </p>
 							<p ng-show="currentProposalView.type == 'Modified Task Description'"><strong>Task Description: </strong> {{currentProposalView.proposalContent}} </p>
@@ -64,35 +64,19 @@
 				</div>
 			</div>
 			<div class="row" ng-show="viewVoteResults">
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<fieldset>
-						<legend>Votation</legend>
-						<h5><strong>Proposal Content: </strong> {{currentProposalView.proposalContent}}</h5>
-						<div class="panel-body margin-top-15">
-							<div class="radio clip-radio radio-primary margin-bottom-11">
-								<input ng-model="voteUserA" name="popoverType" id="yesA" value="yes" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio" checked="checked">
-								<label for="yesA">Yes</label>
-							</div>
-							<div class="radio clip-radio radio-primary margin-bottom-11">
-								<input ng-model="voteUserA" name="popoverType" id="noA" value="no" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio">
-								<label for="noA">No</label>
-							</div>
-							<div class="radio clip-radio radio-primary margin-bottom-11">
-								<input ng-model="voteUserA" name="popoverType" id="absA" value="abs" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio">
-								<label for="absA">Abs</label>
-							</div>
-						</div>
-					</fieldset>
-					<button ng-click="setVote()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check">
-						<span>Vote</span>
-					</button>
-					<button ng-click="showVotesResult()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
-						<span>Hide Votes</span>
-					</button>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<fieldset>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<fieldset class="padding-right-15 padding-bottom-0">
 						<legend>View Results</legend>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<p ng-show="currentProposalView.type == 'Modified Task State'"><strong>Task State: </strong> {{stateArray[currentProposalView.proposalContent]}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Duration'"><strong>Task Duration: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Name'"><strong>Task Name: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Description'"><strong>Task Description: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Outcome'"><strong>Task Outcome: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Start Date'"><strong>Task Start Date: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Cost'"><strong>Task Total Cost: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Start Project'"><strong>Description: </strong> {{currentProposalView.proposalContent}} </p>
+						</div>
 						<div class="panel-body margin-top-15">
 							<div class="row">
 								<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>YES</strong></h5>

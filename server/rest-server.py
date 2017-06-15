@@ -19,6 +19,7 @@ from handlers.upload import *
 from handlers.invertion import *
 from handlers.comment import *
 from handlers.vote import *
+from handlers.activity import *
 
 from databases.coralliumTiny import *
 from localutils.client import * 
@@ -80,6 +81,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                     if int(c.id) == int(userId):
                         c.connection.write_message("NOTIFICATION")
 
+            table_activity.insert({'userId': self.id, 'title': 'Proposal', 'content': "Create a proposal", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+
             print(interestedUserIds)
 
         if self.json_args['type'] == 'VOTE':
@@ -109,6 +112,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
             notifieType = proposal['type'] + ' Approved'
             proposalContent = proposal['proposalContent']              
+
+            table_activity.insert({'userId': self.id, 'title': 'Vote', 'content': "Vote:" + vote['value'] + ' for ' + proposalContent, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
             percent = 0
             for v in votes:
@@ -158,6 +163,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
         if self.json_args['type'] == 'COMMENT':
             table_comment.insert(self.json_args['value'])
+            table_activity.insert({'userId': self.id, 'title': 'Comment', 'content': "New comment", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
         if self.json_args['type'] == 'CHAT':
             for c in clients:
@@ -203,6 +209,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/simpleProjectDelete/([0-9]+)", SimpleProjectDeleteHandler),
     (r"/CoralliumRestAPI/task/?", TaskHandler),
     (r"/CoralliumRestAPI/task/(.*)", TaskHandler),
+    (r"/CoralliumRestAPI/taskDelete/([0-9]+)", TaskDeleteHandler),
     (r"/CoralliumRestAPI/invertion/?", InvertionHandler),
     (r"/CoralliumRestAPI/invertion/(.*)", InvertionHandler),    
     (r"/CoralliumRestAPI/taskByProjectId/(.*)", TaskByProjectIdHandler),
@@ -211,6 +218,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/proposalById/(.*)", ProposalByIdHandler),
     (r"/CoralliumRestAPI/notifiesByUserId/(.*)", NotifiesByUserIdHandler),
     (r"/CoralliumRestAPI/voteByProposalId/(.*)", VoteByProposalIdHandler),
+    (r"/CoralliumRestAPI/activitiesByUserId/(.*)", ActivitiesByUserIdHandler),
     (r"/CoralliumRestAPI/ws(.*)", WebSocketHandler)
 ])
 

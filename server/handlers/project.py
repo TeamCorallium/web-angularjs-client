@@ -62,6 +62,8 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
             self.write(str(id))
             print(id)
 
+        table_activity.insert({'userId': self.json_args['userId'], 'title': 'Project', 'content': "You created a new project", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+
 class SimpleProjectByIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         print("setting headers!!!")

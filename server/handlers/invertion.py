@@ -52,6 +52,8 @@ class InvertionHandler(tornado.web.RequestHandler):
             self.write(str(id))
             print(id)
 
+        table_activity.insert({'userId': userId, 'title': 'Invertion', 'content': "You make an invertion", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+
 # class SimpleProjectByIdHandler(tornado.web.RequestHandler):
 #     def set_default_headers(self):
 #         print("setting headers!!!")

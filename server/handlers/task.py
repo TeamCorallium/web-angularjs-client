@@ -80,3 +80,21 @@ class TaskByProjectIdHandler(tornado.web.RequestHandler):
         self.write(json.dumps(tasks))
 
         print(tasks) 
+
+class TaskDeleteHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, taskId):
+        print('TaskDeleteHandler:DELETE!!! ' + taskId)
+
+        table_task.remove(eids=[int(taskId)])
+        self.write(str(taskId))

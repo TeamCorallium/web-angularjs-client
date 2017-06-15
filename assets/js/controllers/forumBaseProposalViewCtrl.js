@@ -19,6 +19,8 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             abs: 0
         };
 
+        $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
+
         $scope.getProjectById = function(){
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))
                 .then(
@@ -152,7 +154,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             percent: ''
         };
 
-        $scope.voteUserA = 'yes';
         $scope.voteUser = 'yes';
 
         $scope.setVote = function () {
@@ -161,11 +162,7 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             $scope.currentVote.proposalId = localStorageService.get('currentProposalId');
             $scope.currentVote.percent = $scope.percent;
 
-            if($scope.viewVoteResults) {
-                $scope.currentVote.value = $scope.voteUserA;
-            } else {
-                $scope.currentVote.value = $scope.voteUser;
-            }
+            $scope.currentVote.value = $scope.voteUser;
 
             var obj = {
                 type: 'VOTE',

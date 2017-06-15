@@ -30,14 +30,14 @@
 				<fieldset>
 					<legend>View Results</legend>
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<p ng-show="currentProposalView.type == 'Modified Task State'"><strong>Task State: </strong> {{currentProposalView.proposalContent}} </p>
+						<p ng-show="currentProposalView.type == 'Modified Task State'"><strong>Task State: </strong> {{stateArray[currentProposalView.proposalContent]}} </p>
 						<p ng-show="currentProposalView.type == 'Modified Task Duration'"><strong>Task Duration: </strong> {{currentProposalView.proposalContent}} </p>
 						<p ng-show="currentProposalView.type == 'Modified Task Name'"><strong>Task Name: </strong> {{currentProposalView.proposalContent}} </p>
 						<p ng-show="currentProposalView.type == 'Modified Task Description'"><strong>Task Description: </strong> {{currentProposalView.proposalContent}} </p>
 						<p ng-show="currentProposalView.type == 'Modified Task Outcome'"><strong>Task Outcome: </strong> {{currentProposalView.proposalContent}} </p>
 						<p ng-show="currentProposalView.type == 'Modified Task Start Date'"><strong>Task Start Date: </strong> {{currentProposalView.proposalContent}} </p>
 						<p ng-show="currentProposalView.type == 'Modified Task Cost'"><strong>Task Total Cost: </strong> {{currentProposalView.proposalContent}} </p>
-						<p ng-show="currentProposalView.type == 'Start Project'"><strong>Project State: </strong> {{currentProposalView.proposalContent}} </p>
+						<p ng-show="currentProposalView.type == 'Start Project'"><strong>Description: </strong> {{currentProposalView.proposalContent}} </p>
 					</div>
 					<div class="panel-body margin-top-15">
 						<div class="row">

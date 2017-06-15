@@ -18,6 +18,8 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
             abs: 0
         };
 
+        $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
+
         $scope.getProjectById = function(){
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))
                 .then(

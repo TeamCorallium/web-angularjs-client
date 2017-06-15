@@ -13,6 +13,8 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 .then(
                     function(data) {
                         $scope.currentForumActive =  data[0];
+
+                        $scope.getTaskByProjectsId();
                     },
                     function(errResponse){
                         toaster.pop('error', 'Error', 'Server not available.');
@@ -63,8 +65,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 );
         };
 
-
-
         $scope.createProposal = function () {
             $scope.currentProposal.name = $scope.proposalTitle;
             $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
@@ -74,39 +74,121 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $scope.currentProposal.deathLine = $scope.deathLine;
             $scope.currentProposal.date = new Date();
 
-            if ($scope.currentProposal.type == 'Modified Task State') {
-                $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-                $scope.currentProposal.proposalContent = $scope.taskState;
-            } else if ($scope.currentProposal.type == 'Start Project') {
-                $scope.currentProposal.itemSubject = '';
-                $scope.currentProposal.proposalContent = $scope.proposalContent;
-            } else if($scope.currentProposal.type == 'Modified Task Name') {
-                $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-                $scope.currentProposal.proposalContent = $scope.taskName;
-            } else if($scope.currentProposal.type == 'Modified Task Description') {
-                $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-                $scope.currentProposal.proposalContent = $scope.taskDescription;
-            } else if($scope.currentProposal.type == 'Modified Task Cost') {
-                $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-                $scope.currentProposal.proposalContent = $scope.taskCost;
-            } else if($scope.currentProposal.type == 'Modified Task Outcome') {
-                $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-                $scope.currentProposal.proposalContent = $scope.outcome;
-            } else if($scope.currentProposal.type == 'Modified Task Start Date') {
-                $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-                $scope.currentProposal.proposalContent = $scope.startDate;
-            } else if($scope.currentProposal.type == 'Modified Task Duration') {
-                $scope.currentProposal.itemSubject = $scope.selectedTask.id;
-                $scope.currentProposal.proposalContent = $scope.duration;
+            if($scope.proposalTitle != '' && $scope.proposalTitle != null){
+
+                if ($scope.currentProposal.type != '') {
+
+                    if ($scope.currentProposal.type == 'Start Project') {
+
+                        if ($scope.currentProposal.proposalContent != '' && $scope.currentProposal.proposalContent != null) {
+                            $scope.currentProposal.itemSubject = '';
+                            $scope.currentProposal.proposalContent = $scope.proposalContent;
+
+                            var obj = {
+                                type: 'PROPOSAL',
+                                value: $scope.currentProposal
+                            };
+                            WebSocketService.send(obj);
+
+                            $state.go('app.forum.base');
+                        } else {
+                            toaster.pop('error', 'Error', 'Please introdeuce the content of the task to create the proposal.');
+                        }
+
+                    } else {
+                        if ($scope.selectedTask != '' && $scope.selectedTask != null) {
+
+                            var flag = true;
+                            var flagState =  true;
+
+                            if ($scope.currentProposal.type == 'Modified Task State') {
+                                if ($scope.taskState != $scope.taskStateOld && $scope.taskState != '') {
+                                    $scope.currentProposal.itemSubject = $scope.selectedTask.id;
+                                    $scope.currentProposal.proposalContent = $scope.taskState;
+                                    flag = true;
+                                } else {
+                                    flag = false;
+                                    flagState = false;
+                                }
+                            } else if ($scope.currentProposal.type == 'Modified Task Name') {
+                                if ($scope.taskState != $scope.taskStateOld) {
+                                    $scope.currentProposal.itemSubject = $scope.selectedTask.id;
+                                    $scope.currentProposal.proposalContent = $scope.taskName;
+                                    flag = true;
+                                } else {
+                                    flag = false;
+                                }
+                            } else if ($scope.currentProposal.type == 'Modified Task Description') {
+                                if ($scope.taskDescription != $scope.taskDescriptionOld) {
+                                    $scope.currentProposal.itemSubject = $scope.selectedTask.id;
+                                    $scope.currentProposal.proposalContent = $scope.taskDescription;
+                                    flag = true;
+                                } else {
+                                    flag = false;
+                                }
+                            } else if ($scope.currentProposal.type == 'Modified Task Cost') {
+                                if ($scope.taskCost != $scope.taskCostOld) {
+                                    $scope.currentProposal.itemSubject = $scope.selectedTask.id;
+                                    $scope.currentProposal.proposalContent = $scope.taskCost;
+                                    flag = true;
+                                } else {
+                                    flag = false;
+                                }
+                            } else if ($scope.currentProposal.type == 'Modified Task Outcome') {
+                                if ($scope.tasks.outcome != $scope.task.outcomeOld) {
+                                    $scope.currentProposal.itemSubject = $scope.selectedTask.id;
+                                    $scope.currentProposal.proposalContent = $scope.outcome;
+                                    flag = true;
+                                } else {
+                                    flag = false;
+                                }
+                            } else if ($scope.currentProposal.type == 'Modified Task Start Date') {
+                                var date = new Date($scope.startDate);
+                                var dateold = new Date($scope.startDateOld);
+
+                                if (date != dateold) {
+                                    $scope.currentProposal.itemSubject = $scope.selectedTask.id;
+                                    $scope.currentProposal.proposalContent = $scope.startDate;
+                                    flag = true;
+                                } else {
+                                    flag = false;
+                                }
+                            } else if ($scope.currentProposal.type == 'Modified Task Duration') {
+                                if ($scope.task.duration != $scope.task.durationOld) {
+                                    $scope.currentProposal.itemSubject = $scope.selectedTask.id;
+                                    $scope.currentProposal.proposalContent = $scope.duration;
+                                    flag = true;
+                                } else {
+                                    flag = false;
+                                }
+                            }
+
+                            if (flag){
+                                if (flagState){
+                                    var obj = {
+                                        type: 'PROPOSAL',
+                                        value: $scope.currentProposal
+                                    };
+                                    WebSocketService.send(obj);
+
+                                    $state.go('app.forum.base');
+                                } else {
+                                    toaster.pop('error', 'Error', 'Please change the status of the task to create the proposal.');
+                                }
+                            } else {
+                                toaster.pop('error', 'Error', 'Please change the content of the task to create the proposal.');
+                            }
+
+                        } else {
+                            toaster.pop('error', 'Error', 'Please select any task.');
+                        }
+                    }
+                } else {
+                    toaster.pop('error', 'Error', 'Please select proposal type.');
+                }
+            } else {
+                toaster.pop('error', 'Error', 'Please introduce proposal title.');
             }
-
-            var obj = {
-                type: 'PROPOSAL',
-                value: $scope.currentProposal
-            };
-            WebSocketService.send(obj);
-
-            $state.go('app.forum.base');
         };
 
         //Date picker
@@ -146,7 +228,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             minDate: $scope.minDate,
             maxDate: $scope.maxDate
         };
-        // Disable weekend selection
+// Disable weekend selection
         function disabled(data) {
             var date = data.date, mode = data.mode;
             return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
@@ -199,8 +281,9 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
         $scope.visibleModifiedTaskName = false;
 
         $scope.changeVisibilityItems = function () {
+
             if ($scope.proposalType == 'Modified Task State') {
-                $scope.getTaskByProjectsId();
+                // $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTaskState = true;
                 $scope.visibleModifiedTaskOutcome = false;
                 $scope.visibleStartProject = false;
@@ -219,7 +302,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.visibleModifiedTaskDuration = false;
                 $scope.visibleModifiedTaskStartDate = false;
             } else if ($scope.proposalType == 'Modified Task Name'){
-                $scope.getTaskByProjectsId();
+                // $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTaskName = true;
                 $scope.visibleModifiedTaskOutcome = false;
                 $scope.visibleModifiedTaskCost = false;
@@ -229,7 +312,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.visibleModifiedTaskDuration = false;
                 $scope.visibleModifiedTaskStartDate = false;
             } else if ($scope.proposalType == 'Modified Task Description') {
-                $scope.getTaskByProjectsId();
+                // $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTaskDescription = true;
                 $scope.visibleModifiedTaskOutcome = false;
                 $scope.visibleModifiedTaskCost = false;
@@ -239,7 +322,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.visibleModifiedTaskDuration = false;
                 $scope.visibleModifiedTaskStartDate = false;
             } else if ($scope.proposalType == 'Modified Task Cost') {
-                $scope.getTaskByProjectsId();
+                // $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTaskCost = true;
                 $scope.visibleModifiedTaskOutcome = false;
                 $scope.visibleModifiedTaskDescription = false;
@@ -249,7 +332,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.visibleModifiedTaskDuration = false;
                 $scope.visibleModifiedTaskStartDate = false;
             } else if ($scope.proposalType == 'Modified Task Outcome') {
-                $scope.getTaskByProjectsId();
+                // $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTaskOutcome = true;
                 $scope.visibleModifiedTaskCost = false;
                 $scope.visibleModifiedTaskDescription = false;
@@ -259,7 +342,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.visibleModifiedTaskDuration = false;
                 $scope.visibleModifiedTaskStartDate = false;
             } else if ($scope.proposalType == 'Modified Task Duration') {
-                $scope.getTaskByProjectsId();
+                // $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTaskDuration = true;
                 $scope.visibleModifiedTaskOutcome = false;
                 $scope.visibleModifiedTaskCost = false;
@@ -269,7 +352,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.visibleModifiedTaskState = false;
                 $scope.visibleModifiedTaskStartDate = false;
             } else if ($scope.proposalType == 'Modified Task Start Date') {
-                $scope.getTaskByProjectsId();
+                // $scope.getTaskByProjectsId();
                 $scope.visibleModifiedTaskStartDate = true;
                 $scope.visibleModifiedTaskDuration = false;
                 $scope.visibleModifiedTaskOutcome = false;
@@ -282,6 +365,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
         };
 
         $scope.taskChange =  function () {
+
             if($scope.selectedTask != '' && $scope.selectedTask!= null) {
                 RestService.fetchTaskByTaskId($scope.selectedTask.id)
                     .then(
@@ -302,6 +386,14 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             $scope.outcome = data[0].outcome;
                             $scope.duration = data[0].duration;
                             $scope.startDate = new Date(data[0].startDate);
+
+                            $scope.taskNameOld = data[0].name;
+                            $scope.taskStateOld = data[0].state;
+                            $scope.taskDescriptionOld = data[0].description;
+                            $scope.taskCostOld = data[0].cost;
+                            $scope.outcomeOld = data[0].outcome;
+                            $scope.durationOld = data[0].duration;
+                            $scope.startDateOld = new Date(data[0].startDate);
                         },
                         function(errResponse) {
                             console.log(errResponse);

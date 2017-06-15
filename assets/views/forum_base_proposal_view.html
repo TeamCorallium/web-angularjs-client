@@ -30,13 +30,16 @@
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<fieldset>
 						<legend>Votation</legend>
-						<h5 ng-show="currentProposalView.type == 'Modified Task State'"><strong>Proposal state: </strong> {{currentProposalView.proposalContent}}</h5>
-						<h5 ng-show="currentProposalView.type == 'Modified Task Duration'"><strong>Proposal duration: </strong> {{currentProposalView.proposalContent}} days</h5>
-						<h5 ng-show="currentProposalView.type == 'Modified Task Name'"><strong>Proposal name: </strong> {{currentProposalView.proposalContent}}</h5>
-						<h5 ng-show="currentProposalView.type == 'Modified Task Description'"><strong>Proposal description: </strong> {{currentProposalView.proposalContent}}</h5>
-						<h5 ng-show="currentProposalView.type == 'Modified Task Outcome'"><strong>Proposal outcomes: </strong> {{currentProposalView.proposalContent}}</h5>
-						<h5 ng-show="currentProposalView.type == 'Modified Task Cost'"><strong>Proposal total cost: </strong> {{currentProposalView.proposalContent}} $</h5>
-						<h5 ng-show="currentProposalView.type == 'Modified Task Start Date'"><strong>Proposal Start Date: </strong> {{getProjectDate(currentProposalView.proposalContent)}}</h5>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<p ng-show="currentProposalView.type == 'Modified Task State'"><strong>Task State: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Duration'"><strong>Task Duration: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Name'"><strong>Task Name: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Description'"><strong>Task Description: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Outcome'"><strong>Task Outcome: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Start Date'"><strong>Task Start Date: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Modified Task Cost'"><strong>Task Total Cost: </strong> {{currentProposalView.proposalContent}} </p>
+							<p ng-show="currentProposalView.type == 'Start Project'"><strong>Project State: </strong> {{currentProposalView.proposalContent}} </p>
+						</div>
 						<div class="panel-body margin-top-15">
 							<div class="radio clip-radio radio-primary margin-bottom-11">
 								<input ng-model="voteUser" name="popoverType" id="yes" value="yes" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" type="radio" checked="checked">

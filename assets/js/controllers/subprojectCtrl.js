@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
-    function ($scope, localStorageService, RestService, $state, toaster) {
+app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert",
+    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert) {
 
         $scope.currentProjectActive = [];
 
@@ -42,7 +42,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 .then(
                     function(data) {
                         $scope.tasksProject = data;
-                        // $scope.getTaskByStateStartedOrFinished();
 
                         var tasks = {data: $scope.tasksProject.slice()};
 
@@ -54,8 +53,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                             console.log(tasks.data[i].start_date);
                             console.log(tasks.data[i].end_date);
                         }
-
-                        console.log($scope.tasksProject);
 
                         $scope.ganttStart("gantt_here");
                         gantt.clearAll();
@@ -307,4 +304,44 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
         ];
 
 //end Gantt
+
+        $scope.deleteTask = function (taskId) {
+            SweetAlert.swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this task!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    RestService.deleteTask(taskId)
+                        .then(
+                            function(data) {
+                                $scope.getTaskByProjectsId();
+                                SweetAlert.swal({
+                                    title: "Deleted!",
+                                    text: "Your task has been deleted.",
+                                    type: "success",
+                                    confirmButtonColor: "#007AFF"
+                                });
+                            },
+                            function(errResponse) {
+                                toaster.pop('error', 'Error', 'Server not available.');
+                                console.log(errResponse);
+                            }
+                        );
+                } else {
+                    SweetAlert.swal({
+                        title: "Cancelled",
+                        text: "Your task is safe :)",
+                        type: "error",
+                        confirmButtonColor: "#007AFF"
+                    });
+                }
+            });
+        };
     }]);

@@ -49,7 +49,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         //begin gantt
                         for (var i = 0; i< $scope.tasksProject.length; i++) {
                             tasks.data[i].start_date = new Date(tasks.data[i].start_date);
-                            tasks.data[i].end_date = new Date(tasks.data[i].end_date);
+                            tasks.data[i].end_date = '';
                             console.log(tasks.data[i].start_date);
                             console.log(tasks.data[i].end_date);
                         }

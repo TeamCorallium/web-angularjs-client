@@ -111,6 +111,11 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             $state.go('app.project.task_detail');
         };
 
+        $scope.goToUpdateTask = function (taskId) {
+            localStorageService.set('currentTaskId',taskId);
+            $state.go('app.project.modified_task');
+        };
+
 //begin Gantt
 
         $scope.ganttStart = function (containerName) {

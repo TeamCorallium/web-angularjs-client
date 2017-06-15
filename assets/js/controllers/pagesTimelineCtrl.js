@@ -4,47 +4,45 @@
  */
 app.controller('PagesTimelineCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
-        if (!localStorageService.get('isLogged')) {
-            $state.go('app.login.signin');
-        } else {
-            $scope.allActivities = '';
 
-            $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            $scope.dayArray = ['Sunday', 'Monday', 'Tuesday', 'Wenesday', 'Thuesday', 'Friday', 'Saturday'];
+        $scope.allActivities = '';
 
-            $scope.getAllActivities = function () {
-                RestService.fetchAllActivities(localStorageService.get('currentUserId'))
-                    .then(
-                        function (data) {
-                            $scope.allActivities = data;
-                        },
-                        function (errResponse) {
-                            toaster.pop('error', 'Error', 'Server not available.');
-                            console.log(errResponse);
-                        }
-                    );
-            };
+        $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $scope.dayArray = ['Sunday', 'Monday', 'Tuesday', 'Wenesday', 'Thuesday', 'Friday', 'Saturday'];
 
-            $scope.getAllActivities();
+        $scope.getAllActivities = function () {
+            RestService.fetchAllActivities(localStorageService.get('currentUserId'))
+                .then(
+                    function (data) {
+                        $scope.allActivities = data;
+                    },
+                    function (errResponse) {
+                        toaster.pop('error', 'Error', 'Server not available.');
+                        console.log(errResponse);
+                    }
+                );
+        };
 
-            $scope.getActivityDay = function (activityDate) {
-                var date = new Date(activityDate);
-                return date.getDate();
-            };
+        $scope.getAllActivities();
 
-            $scope.getActivityWeekDay = function (activityDate) {
-                var date = new Date(activityDate);
-                return date.getDay();
-            };
+        $scope.getActivityDay = function (activityDate) {
+            var date = new Date(activityDate);
+            return date.getDate();
+        };
 
-            $scope.getMonth = function (activityDate) {
-                var date = new Date(activityDate);
-                return $scope.monthArray[date.getMonth()];
-            };
+        $scope.getActivityWeekDay = function (activityDate) {
+            var date = new Date(activityDate);
+            return date.getDay();
+        };
 
-            $scope.getYear = function (activityDate) {
-                var date = new Date(activityDate);
-                return date.getFullYear();
-            };
-        }
+        $scope.getMonth = function (activityDate) {
+            var date = new Date(activityDate);
+            return $scope.monthArray[date.getMonth()];
+        };
+
+        $scope.getYear = function (activityDate) {
+            var date = new Date(activityDate);
+            return date.getFullYear();
+        };
+
     }]);

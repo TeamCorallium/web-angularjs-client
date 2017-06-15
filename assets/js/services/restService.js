@@ -2,10 +2,10 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
-    var uploadsUrl = 'http://localhost:8001/AngularJs-Admin/STANDARD/server/databases/uploads/';
+    var uploadsUrl = 'http://10.58.20.230:8001/AngularJs-Admin/STANDARD/server/databases/uploads/';
 
-    // var serverUrl = 'http://10.8.25.241:9090/CoralliumRestAPI/';
-    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://10.58.20.230:9090/CoralliumRestAPI/';
+    // var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
 
     return {
         url : serverUrl,
@@ -194,6 +194,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        deleteTask: function(taskId) {
+            return $http.get(serverUrl + 'taskDelete/' + taskId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while deleting task');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         createTask: function(task) {
             return $http.post(serverUrl +'task/', task)
                 .then(
@@ -268,6 +281,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     },
                     function(errResponse){
                         console.error('Error while fetching notifies By User Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        fetchAllActivities: function(userId) {
+            return $http.get(serverUrl + 'activitiesByUserId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching activities By User Id');
                         return $q.reject(errResponse);
                     }
                 );

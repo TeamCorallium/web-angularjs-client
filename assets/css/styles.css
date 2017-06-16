@@ -148,7 +148,7 @@ body {
   direction: ltr;
   overflow-x: hidden;
   height: 100%;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Lato Regular", sans-serif;
   font-size: 13px;
   padding: 0;
   margin: 0;
@@ -205,7 +205,7 @@ h1, h2 {
 }
 
 h3, h4, h5 {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Lato Regular", Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5 {
@@ -2776,7 +2776,7 @@ a.text-light:hover {
 }
 
 .bg-white {
-  background: #F8F8F8 !important;
+  background: #FAFAFA !important;
 }
 
 .bg-black {
@@ -6039,8 +6039,8 @@ input[type="radio"], input[type="checkbox"] {
   color: #ffffff;
 }
 .open .btn-primary.dropdown-toggle {
-  background-color: #4da2ff;
-  border-color: #4da2ff;
+  background-color: #DD5B12;
+  border-color: #DD5B12;
 }
 .btn-primary:hover {
   background-color: #DD5B12!important;

@@ -505,7 +505,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'User Profile'
             },
-            resolve: loadSequence('flow', 'userCtrl')
+            resolve: loadSequence('flow', 'userCtrl', 'angularFileUpload', 'uploadCtrl')
         }).state('app.pages.exploreuser', {
             url: '/exploreuser',
             templateUrl: "assets/views/exploreUserProfileView.html",

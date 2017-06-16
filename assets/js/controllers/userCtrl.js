@@ -11,7 +11,14 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
 
             $scope.removeImage = function () {
                 $scope.noImage = true;
+                $rootScope.$broadcast('imageRemoved');
+                console.log("removeImage");
             };
+
+            $rootScope.$on('profilePictureChanged', function (event, opt) {
+                console.log('profilePictureChanged ' + opt.layout);
+                $scope.userInfo.avatar = RestService.uploads + opt.layout;
+            });
 
             $scope.obj = new Flow();
 
@@ -81,17 +88,17 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                         function(data) {
                             $scope.userInfo.fullName = data[0].fullName;
                             $scope.userInfo.email = data[0].email;
-                            // $scope.userInfo.phone = data[0].phone;
+                            $scope.userInfo.phone = data[0].phone;
                             $scope.userInfo.gender = data[0].gender;
-                            // $scope.userInfo.zipCode = data[0].zipCode;
-                            // $scope.userInfo.city = data[0].city;
-                            // $scope.userInfo.avatar = data[0].avatar;
-                            // $scope.userInfo.twitter = data[0].twitter;
-                            // $scope.userInfo.github = data[0].github;
-                            // $scope.userInfo.facebook = data[0].facebook;
-                            // $scope.userInfo.linkedin = data[0].linkedin;
-                            // $scope.userInfo.google = data[0].google;
-                            // $scope.userInfo.skype = data[0].skype;
+                            $scope.userInfo.zipCode = data[0].zipCode;
+                            $scope.userInfo.city = data[0].city;
+                            $scope.userInfo.avatar = data[0].avatar;
+                            $scope.userInfo.twitter = data[0].twitter;
+                            $scope.userInfo.github = data[0].github;
+                            $scope.userInfo.facebook = data[0].facebook;
+                            $scope.userInfo.linkedin = data[0].linkedin;
+                            $scope.userInfo.google = data[0].google;
+                            $scope.userInfo.skype = data[0].skype;
                             $scope.userInfo.password = data[0].password;
                             $scope.userInfo.projectsFollow = data[0].projectsFollow;
                             $scope.userInfo.id = data[0].id;
@@ -122,8 +129,6 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             if ($scope.userInfo.avatar == '') {
                 $scope.noImage = true;
             }
-
-
 
             $scope.saveUserAcount = function () {
                 RestService.updateUser($scope.userInfo)

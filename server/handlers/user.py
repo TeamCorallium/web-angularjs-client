@@ -61,24 +61,18 @@ class UserHandler(tornado.web.RequestHandler):
     def put(self):
         print("User:PUT!!!")
 
-        self.json_args = json.loads(self.request.body)
+        user = json.loads(self.request.body)
 
-        print(self.json_args)
+        print(user)
 
-        table_user.update({'projectsFollow': self.json_args['projectsFollow']}, eids=[self.json_args['id']])
-
-        # users = table_user.search(where('id') == self.json_args['id'])
-        # print(users[0]['projectsFollow'][0])
-
-        # print(len(table_user.search(where('email') == self.json_args['email'])))
-
-        # if len(table_user.search(where('email') == self.json_args['email'])) != 0:
-        #     self.write('-1')
-        # else:
-        #     id = table_user.insert(self.json_args)
-        #     table_user.update({'id': id}, eids=[id])
-        #     self.write(str(id))
-        #     print(id)            
+        table_user.update({'projectsFollow': user['projectsFollow'], 'fullName': user['fullName'],
+                            'email': user['email'], 'avatar': user['avatar'], 
+                            'phone': user['phone'], 'zipCode': user['zipCode'],
+                            'gender': user['gender'], 'city': user['city'], 
+                            'twitter': user['twitter'], 'github': user['github'], 
+                            'facebook': user['facebook'], 'linkedin': user['linkedin'],
+                            'google': user['google'], 'skype': user['skype']},
+                             eids=[user['id']])       
 
 class AllUsersExceptIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

@@ -1,0 +1,90 @@
+<div ng-controller="ExploreUserProjectsCtrl">
+	<section id="page-title">
+		<div class="row">
+			<div class="col-sm-8">
+				<h1 class="mainTitle">{{owner.fullName}}'s Projects</h1>
+				<span class="mainDescription">Browse popular projects based on the topic that interests you most.</span>
+			</div>
+			<div ncy-breadcrumb></div>
+		</div>
+	</section>
+	<section class="container-fluid container-fullw bg-white">
+		<!--<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right no-padding">-->
+			<!--<select ng-change="getAllProjects()" ng-model="filter" class="cs-select cs-skin-elastic border-combo-projects">-->
+				<!--<option value="" disabled selected>Order By</option>-->
+				<!--<option value="totalCost">Total Cost</option>-->
+				<!--<option value="totalRevenue">Total Revenue</option>-->
+				<!--<option value="deathLine">Deathline</option>-->
+			<!--</select>-->
+		<!--</div>-->
+		<div class="container no-padding">
+			<div class="blog-posts">
+				<ul class="list-unstyled">
+					<li class="margin-bottom-15" ng-repeat="project in allProjects">
+						<hr class="tall">
+						<div class="clearfix">
+							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
+								<img  ng-src="{{project.mainLayout}}"
+									  class="img-responsive img-rounded notification-image">
+							</div>
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
+								<span class="notification-author"><a ng-click="goToExploreProject(project.id)"> {{project.projectName}} </a></span>
+								<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
+							</div>
+							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding margin-top-10">
+									<span class="notification-preview">
+										<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
+									</span>
+							</div>
+							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-timer"></i>
+											<strong> Total Cost:</strong>  {{project.totalCost}} $
+										</span>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> Total Revenue:</strong>  {{project.totalRevenue}} $
+										</span>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> State:</strong>  {{stateArray[project.state]}}
+										</span>
+								</div>
+							</div>
+							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-timer"></i>
+											<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
+										</span>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> Owner Raiting:</strong>
+										</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
+									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
+											ng-click="goToExploreProject(project.id)">
+										<span class="fa fa-arrow-right"></span> Read more
+									</button>
+									<button ng-click="follow(project.id)" ng-hide="isFollowProject(project.id)"
+											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
+										<span class="fa fa-share"></span> Follow
+									</button>
+									<button ng-click="unfollow(project.id)" ng-show="isFollowProject(project.id)"
+											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
+										<span class="fa fa-thumb-tack"></span> Following
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</div>

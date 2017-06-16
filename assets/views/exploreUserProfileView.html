@@ -1,158 +1,152 @@
-<!-- start: PAGE TITLE -->
-<section id="page-title">
-	<div class="row">
-		<div class="col-sm-8">
-			<h1 class="mainTitle" translate="sidebar.nav.pages.USERPROFILE">USER PROFILE</h1>
+<div ng-controller="ExploreUserProfileViewCtrl">
+	<section id="page-title">
+		<div class="row">
+			<div class="col-sm-8">
+				<h1 class="mainTitle" translate="sidebar.nav.pages.USERPROFILE">{{userInfo.fullName}} PROFILE</h1>
+			</div>
+			<div ncy-breadcrumb></div>
 		</div>
-		<div ncy-breadcrumb></div>
-	</div>
-</section>
-<!-- end: PAGE TITLE -->
-<!-- start: USER PROFILE -->
-<div class="container-fluid container-fullw bg-white">
-	<div class="row">
-		<div class="col-md-12">
-			<!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
-			<div ng-controller="ExploreUserProfileViewCtrl">
-				<!-- start: USER TABSET -->
-				<uib-tabset class="tabbable">
-					<!-- start: TAB OVERVIEW -->
-					<uib-tab heading="Overview">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="user-left">
-									<div class="center">
-										<h4>{{userInfo.fullName}}</h4>
-										<div class="user-image">
-											<div class="thumbnail">
-												<img src="assets/images/default-user.png" alt="" ng-if="noImage">
-												<img ng-src="{{userInfo.avatar}}" alt="" ng-if="!noImage">
+	</section>
+	<!-- end: PAGE TITLE -->
+	<!-- start: USER PROFILE -->
+	<div class="container-fluid container-fullw bg-white">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
+				<div>
+					<!-- start: USER TABSET -->
+					<uib-tabset class="tabbable">
+						<!-- start: TAB OVERVIEW -->
+						<uib-tab heading="Overview">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="user-left">
+										<div class="center">
+											<h4>{{userInfo.fullName}}</h4>
+											<div class="user-image">
+												<div class="thumbnail">
+													<img src="assets/images/default-user.png" alt="" ng-if="noImage">
+													<img ng-src="{{userInfo.avatar}}" alt="" ng-if="!noImage">
+												</div>
+											</div>
+											<hr>
+											<div class="social-icons block">
+												<ul>
+													<li ng-show="userInfo.twitter != ''" data-placement="top" data-original-title="Twitter" class="social-twitter tooltips">
+														<a href="userInfo.twitter" target="_blank">
+															Twitter
+														</a>
+													</li>
+													<li ng-show="userInfo.facebook != ''"  data-placement="top" data-original-title="Facebook" class="social-facebook tooltips">
+														<a href="userInfo.facebook" target="_blank">
+															Facebook
+														</a>
+													</li>
+													<li ng-show="userInfo.google != ''"  data-placement="top" data-original-title="Google" class="social-google tooltips">
+														<a href="userInfo.google" target="_blank">
+															Google+
+														</a>
+													</li>
+													<li ng-show="userInfo.linkedin != ''" data-placement="top" data-original-title="LinkedIn" class="social-linkedin tooltips">
+														<a href="userInfo.linkedin" target="_blank">
+															LinkedIn
+														</a>
+													</li>
+													<li ng-show="userInfo.github != ''" data-placement="top" data-original-title="Github" class="social-github tooltips">
+														<a href="userInfo.github" target="_blank">
+															Github
+														</a>
+													</li>
+												</ul>
+											</div>
+											<hr>
+										</div>
+										<table class="table table-condensed">
+											<thead>
+											<tr>
+												<th colspan="3">Contact Information</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<td>email:</td>
+												<td><a href>{{userInfo.email}}</a></td>
+											</tr>
+											<tr>
+												<td>phone:</td>
+												<td>{{userInfo.phone}}</td>
+											</tr>
+											<tr>
+												<td>gender:</td>
+												<td>{{userInfo.gender}}</td>
+											</tr>
+											<tr>
+												<td>city:</td>
+												<td>{{userInfo.city}}</td>
+											</tr>
+											<tr>
+												<td>zip code:</td>
+												<td>{{userInfo.zipCode}}</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<div class="row space20">
+										<div class="col-sm-3">
+											<button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block" ui-sref="app.explore_user_projects">
+												<i class="ti-layers-alt block text-primary text-extra-large margin-bottom-10"></i>
+												Projects
+											</button>
+										</div>
+									</div>
+									<div class="panel panel-white" id="activities">
+										<div class="panel-heading border-light">
+											<h4 class="panel-title text-primary">Recent Activities</h4>
+											<paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
+										</div>
+										<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+											<div class="panel-body">
+												<ul class="timeline-xs">
+													<li ng-repeat="activity in allActivities" class="timeline-item success">
+														<div class="margin-left-15">
+															<div class="text-muted text-small">
+																{{getProjectDate(activity.date)}}
+															</div>
+															<p>
+																<a class="text-info">
+																	{{activity.title}}
+																</a>
+																{{activity.content}}
+															</p>
+														</div>
+													</li>
+												</ul>
 											</div>
 										</div>
-										<hr>
-										<div class="social-icons block">
-											<ul>
-												<li ng-show="userInfo.twitter != ''" data-placement="top" data-original-title="Twitter" class="social-twitter tooltips">
-													<a href="userInfo.twitter" target="_blank">
-														Twitter
-													</a>
-												</li>
-												<li ng-show="userInfo.facebook != ''"  data-placement="top" data-original-title="Facebook" class="social-facebook tooltips">
-													<a href="userInfo.facebook" target="_blank">
-														Facebook
-													</a>
-												</li>
-												<li ng-show="userInfo.google != ''"  data-placement="top" data-original-title="Google" class="social-google tooltips">
-													<a href="userInfo.google" target="_blank">
-														Google+
-													</a>
-												</li>
-												<li ng-show="userInfo.linkedin != ''" data-placement="top" data-original-title="LinkedIn" class="social-linkedin tooltips">
-													<a href="userInfo.linkedin" target="_blank">
-														LinkedIn
-													</a>
-												</li>
-												<li ng-show="userInfo.github != ''" data-placement="top" data-original-title="Github" class="social-github tooltips">
-													<a href="userInfo.github" target="_blank">
-														Github
-													</a>
-												</li>
-											</ul>
+									</div>
+									<div class="panel panel-white space20">
+										<div class="panel-heading">
+											<h4 class="panel-title">Recent Comments</h4>
 										</div>
-										<hr>
-									</div>
-									<table class="table table-condensed">
-										<thead>
-										<tr>
-											<th colspan="3">Contact Information</th>
-										</tr>
-										</thead>
-										<tbody>
-										<tr>
-											<td>email:</td>
-											<td><a href>{{userInfo.email}}</a></td>
-										</tr>
-										<tr>
-											<td>phone:</td>
-											<td>{{userInfo.phone}}</td>
-										</tr>
-										<tr>
-											<td>gender:</td>
-											<td>{{userInfo.gender}}</td>
-										</tr>
-										<tr>
-											<td>city:</td>
-											<td>{{userInfo.city}}</td>
-										</tr>
-										<tr>
-											<td>zip code:</td>
-											<td>{{userInfo.zipCode}}</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="row space20">
-									<div class="col-sm-3">
-										<button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block" ui-sref="app.project.user_project">
-											<i class="ti-layers-alt block text-primary text-extra-large margin-bottom-10"></i>
-											Projects
-										</button>
-									</div>
-									<div class="col-sm-3">
-										<button ui-sref="app.notification" class="btn btn-icon margin-bottom-5 btn-block">
-											<i class="ti-flag block text-primary text-extra-large margin-bottom-10"></i>
-											Notifications
-										</button>
-									</div>
-								</div>
-								<div class="panel panel-white" id="activities">
-									<div class="panel-heading border-light">
-										<h4 class="panel-title text-primary">Recent Activities</h4>
-										<paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
-									</div>
-									<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
 										<div class="panel-body">
-											<ul class="timeline-xs">
-												<li ng-repeat="activity in allActivities" class="timeline-item success">
-													<div class="margin-left-15">
-														<div class="text-muted text-small">
-															{{getProjectDate(activity.date)}}
-														</div>
-														<p>
-															<a class="text-info">
-																{{activity.title}}
-															</a>
-															{{activity.content}}
-														</p>
-													</div>
+											<ul class="ltwt">
+												<li class="ltwt_tweet" ng-repeat="comment in commments">
+													<p class="ltwt_tweet_text">
+														{{comment.value}}
+													</p>
+													<span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> {{getProjectDate(comment.creationDate)}}</span>
 												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<div class="panel panel-white space20">
-									<div class="panel-heading">
-										<h4 class="panel-title">Recent Comments</h4>
-									</div>
-									<div class="panel-body">
-										<ul class="ltwt">
-											<li class="ltwt_tweet" ng-repeat="comment in commments">
-												<p class="ltwt_tweet_text">
-													{{comment.value}}
-												</p>
-												<span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> {{getProjectDate(comment.creationDate)}}</span>
-											</li>
-										</ul>
-									</div>
-								</div>
 							</div>
-						</div>
-					</uib-tab>
-				</uib-tabset>
-				<!-- end: USER TABSET -->
+						</uib-tab>
+					</uib-tabset>
+					<!-- end: USER TABSET -->
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- end: USER PROFILE -->

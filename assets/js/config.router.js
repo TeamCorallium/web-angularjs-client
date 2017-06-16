@@ -66,6 +66,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Explore'
             },
             resolve: loadSequence('exploreCtrl')
+        }).state('app.explore_user_projects', {
+            url: '/exploreuserprojects',
+            templateUrl: "assets/views/explore_user_projects.html",
+            title: 'Explore User Projects',
+            ncyBreadcrumb: {
+                label: 'Explore User Projects'
+            },
+            resolve: loadSequence('exploreUserProjectsCtrl')
         }).state('app.finance', {
             url: '/finance',
             templateUrl: "assets/views/finance.html",

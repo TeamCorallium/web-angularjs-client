@@ -160,14 +160,12 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 
         if self.json_args['type'] == 'CHAT':
             table_chat.insert(self.json_args['value'])
+            for c in clients:
+                c.connection.write_message("NEW-CHAT-MESSAGE") 
 
         if self.json_args['type'] == 'COMMENT':
             table_comment.insert(self.json_args['value'])
             table_activity.insert({'userId': self.id, 'title': 'Comment', 'content': "New comment", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
-
-        if self.json_args['type'] == 'CHAT':
-            for c in clients:
-                c.connection.write_message("NEW-CHAT-MESSAGE")    
 
     def on_close(self):
         print('WebSocketHandler:on_close')
@@ -215,6 +213,7 @@ application = tornado.web.Application([
     (r"/CoralliumRestAPI/taskByProjectId/(.*)", TaskByProjectIdHandler),
     (r"/CoralliumRestAPI/proposalByProjectId/(.*)", ProposalByProjectIdHandler),
     (r"/CoralliumRestAPI/commentsByProjectId/(.*)", CommentByProjectIdHandler),
+    (r"/CoralliumRestAPI/commentsByUserId/(.*)", CommentByUserIdHandler),
     (r"/CoralliumRestAPI/proposalById/(.*)", ProposalByIdHandler),
     (r"/CoralliumRestAPI/notifiesByUserId/(.*)", NotifiesByUserIdHandler),
     (r"/CoralliumRestAPI/voteByProposalId/(.*)", VoteByProposalIdHandler),

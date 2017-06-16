@@ -219,12 +219,16 @@
                                                     <div class="clearfix">
                                                         <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                                                             <span class="notification-author"><a ng-click="goToExploreTask(task.id)">{{task.name}}</a></span>
-                                                            <span class="label label-success state-list-tasks pull-right">{{ stateArray[task.state]}}</span>
                                                         </div>
                                                         <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                             <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
                                                         </div>
                                                         <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
+                                                                <span><i class="ti-timer"></i>
+                                                                    <strong> State:</strong>  {{ stateArray[task.state]}}
+                                                                </span>
+                                                            </div>
                                                             <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
                                                                 <span><i class="ti-timer"></i>
                                                                     <strong> Cost:</strong>  {{task.cost}} $
@@ -240,7 +244,7 @@
                                                                     <strong> Duration:</strong>  {{task.duration}} <strong> Days</strong>
                                                                 </span>
                                                             </div>
-                                                            <div class="thread-content col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding">
+                                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                                                                 <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
                                                                     <button ng-click="goToExploreTask(task.id)" type="button" class="btn btn-primary btn-xs">
                                                                         <span class="fa fa-arrow-right"></span> View

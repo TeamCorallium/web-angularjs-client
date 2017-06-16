@@ -25,7 +25,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             $scope.obj = new Flow();
 
             $scope.allActivities = '';
-            $scope.comments = '';
+            $scope.comments = [];
 
             $scope.getAllActivities = function () {
                 RestService.fetchAllActivities(localStorageService.get('currentUserId'))
@@ -120,20 +120,19 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
 
             $scope.getUserData();
 
-            // Descomentar cuando este hecho en la BD
-            // $scope.getAllComments = function () {
-            //     RestService.fetchAllCommentsByUserId(localStorageService.get('currentUserId'))
-            //         .then(
-            //             function(data) {
-            //                 $scope.comments =  data;
-            //             },
-            //             function(errResponse){
-            //                 console.log(errResponse);
-            //             }
-            //         );
-            // };
+            $scope.getAllComments = function () {
+                RestService.fetchAllCommentsByUserId(localStorageService.get('currentUserId'))
+                    .then(
+                        function(data) {
+                            $scope.comments =  data;
+                        },
+                        function(errResponse){
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
-            // $scope.getAllComments();
+            $scope.getAllComments();
 
             if ($scope.userInfo.avatar == '') {
                 $scope.noImage = true;

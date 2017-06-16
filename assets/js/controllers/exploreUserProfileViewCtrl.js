@@ -110,18 +110,17 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
             }
         };
 
-        // Descomentar cuando este hecho en la BD
-        // $scope.getAllComments = function () {
-        //     RestService.fetchAllCommentsByUserId(localStorageService.get('viewUserProfileId'))
-        //         .then(
-        //             function(data) {
-        //                 $scope.comments =  data;
-        //             },
-        //             function(errResponse){
-        //                 console.log(errResponse);
-        //             }
-        //         );
-        // };
+        $scope.getAllComments = function () {
+            RestService.fetchAllCommentsByUserId(localStorageService.get('viewUserProfileId'))
+                .then(
+                    function(data) {
+                        $scope.comments =  data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
 
-        // $scope.getAllComments();
+        $scope.getAllComments();
     }]);

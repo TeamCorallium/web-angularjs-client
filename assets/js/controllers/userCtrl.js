@@ -8,6 +8,8 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
+            
+            $scope.noImage = false;
 
             $scope.removeImage = function () {
                 $scope.noImage = true;
@@ -18,6 +20,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             $rootScope.$on('profilePictureChanged', function (event, opt) {
                 console.log('profilePictureChanged ' + opt.layout);
                 $scope.userInfo.avatar = RestService.uploads + opt.layout;
+                $scope.noImage = false;
             });
 
             $scope.obj = new Flow();
@@ -102,6 +105,13 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                             $scope.userInfo.password = data[0].password;
                             $scope.userInfo.projectsFollow = data[0].projectsFollow;
                             $scope.userInfo.id = data[0].id;
+
+                            if ($scope.userInfo.avatar == '') {
+                                $scope.noImage = true;
+                            } 
+                            else {
+                                $scope.noImage = false;
+                            }                         
                         },
                         function(errResponse) {
                             console.log(errResponse);

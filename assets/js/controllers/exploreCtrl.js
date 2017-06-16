@@ -4,9 +4,7 @@
  */
 app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
-        if (!localStorageService.get('isLogged')) {
-            $state.go('app.login.signin');
-        } else {
+
             $scope.allProjects = [];
             $scope.listCountProjectByUser = [];
             $scope.listUserOwners = [];
@@ -173,5 +171,4 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
             $scope.tabSelectedProjects = function () {
                 $scope.selectedTabProjects = true;
             };
-        }
     }]);

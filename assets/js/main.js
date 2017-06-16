@@ -52,7 +52,7 @@ app.run(['$rootScope', '$state', '$stateParams', 'localStorageService', 'RestSer
                         $rootScope.user.name = data[0].email.split('@')[0];
                         $rootScope.user.avatar = data[0].avatar;
                         if (data[0].avatar == '') {
-                            $rootScope.user.avatar = '';
+                            $rootScope.user.avatar = 'assets/images/default-user.png';
                         }
                     },
                     function(errResponse){

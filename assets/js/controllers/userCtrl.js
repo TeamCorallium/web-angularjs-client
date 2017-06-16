@@ -18,7 +18,6 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             };
 
             $rootScope.$on('profilePictureChanged', function (event, opt) {
-                console.log('profilePictureChanged ' + opt.layout);
                 $scope.userInfo.avatar = RestService.uploads + opt.layout;
                 $scope.noImage = false;
             });

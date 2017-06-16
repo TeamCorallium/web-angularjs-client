@@ -11,7 +11,7 @@ app.controller('SignInCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             email: '',
             password: '',
             id: '',
-            projectsFollow: [],
+            projectsFollow: []
         };
 
         $scope.updateSessionInfo = function () {
@@ -21,20 +21,24 @@ app.controller('SignInCtrl', ["$scope", "$state", "flowFactory", "RestService", 
         };
 
         $scope.signin = function () {
-            if($scope.user.email != '' || $scope.user.password != '') {
+            if($scope.user.email != '' && $scope.user.password != '') {
                 RestService.fetchUser($scope.user.email)
                     .then(
                         function(data) {
-                            if(data[0].password == $scope.user.password) {
-                                $scope.user.id = data[0].id;
-                                $scope.userFirstName(data[0].email);
-                                $scope.updateSessionInfo();
-                                $state.go('app.default');
+                            if(data.length > 0){
+                                if(data[0].password == $scope.user.password) {
+                                    $scope.user.id = data[0].id;
+                                    $scope.updateSessionInfo();
+                                    $scope.userFirstName(data[0].email);
+                                    $state.go('app.default');
 
-                                //open websocket
-                                WebSocketService.open();
+                                    //open websocket
+                                    WebSocketService.open();
+                                } else {
+                                    toaster.pop('error', 'Error', 'Wrong password.');
+                                }
                             } else {
-                                toaster.pop('error', 'Error', 'Wrong password.');
+                                toaster.pop('error', 'Error', 'User not exist.');
                             }
                         },
                         function(errResponse){

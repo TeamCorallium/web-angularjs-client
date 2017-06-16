@@ -13,6 +13,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             $scope.creationProjectDate = '';
             $scope.deathLineProject = '';
             $scope.currentProjectActive = '';
+            $scope.amount = '';
 
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -85,7 +86,12 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             $scope.possibleInvestmentArray = [];
 
             $scope.setInvestmentValue = function () {
-                localStorageService.set('currentAmountInvestment', $scope.amount);
+                if ($scope.amount !=  '' && $scope.amount != null) {
+                    localStorageService.set('currentAmountInvestment', $scope.amount);
+                    $state.go('app.inversion');
+                } else {
+                    toaster.pop('error', 'Error', 'Please select the amount to invest.');
+                }
             };
 
             $scope.projectRole = function (userId) {

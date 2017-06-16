@@ -160,7 +160,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             },
             resolve: loadSequence('currentUserProjects','xeditable', 'checklist-model', 'xeditableCtrl')
         }).state('app.project.subproject_detail', {
-            url: '/subpoject',
+            url: '/subproject',
             templateUrl: "assets/views/subproject.html",
             title: 'Project',
             ncyBreadcrumb: {
@@ -168,7 +168,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             },
             resolve: loadSequence('wizardCtrl', 'ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl', 'spectrum-plugin', 'angularSpectrumColorpicker', 'angularFileUpload', 'uploadCtrl', 'dynamicTableCtrl','vAccordionCtrl', 'subprojectCtrl', 'taskCtrl')
         }).state('app.project.explore_subproject', {
-            url: '/exploresubpoject',
+            url: '/exploresubproject',
             templateUrl: "assets/views/explore_subproject.html",
             title: 'Explore Project',
             ncyBreadcrumb: {
@@ -505,7 +505,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'User Profile'
             },
-            resolve: loadSequence('flow', 'userCtrl')
+            resolve: loadSequence('flow', 'userCtrl', 'angularFileUpload', 'uploadCtrl')
         }).state('app.pages.exploreuser', {
             url: '/exploreuser',
             templateUrl: "assets/views/exploreUserProfileView.html",
@@ -528,7 +528,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Timeline'
             },
-            resolve: loadSequence('ngMap')
+            resolve: loadSequence('ngMap','pagesTimelineCtrl')
         }).state('app.pages.calendar', {
             url: '/calendar',
             templateUrl: "assets/views/pages_calendar.html",

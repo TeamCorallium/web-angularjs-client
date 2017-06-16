@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -756,3 +757,6 @@
   </body>
 </html>
 
+=======
+{"_default": {}, "table_user": {"1": {"fullName": "Alejandro Ravelo Julian", "gender": "male", "email": "aravelojulian@gmail.com", "password": "ale", "id": 1, "projectsFollow": [], "zipCode": "", "city": "", "avatar": "", "twitter": "", "github": "", "facebook": "", "linkedin": "", "google": "", "skype": "", "phone": ""}}, "table_profile": {}, "table_simple_project": {}, "table_complex_project": {}, "table_risk": {}, "table_reference": {}, "table_task": {}, "table_proposal": {}, "table_notification": {}, "table_chat": {}, "table_invertion": {}, "table_comment": {}, "table_vote": {}, "table_actitity": {}}
+>>>>>>> d03e57b2c415d50e5dc5f31e98a9bba7cf527e2a

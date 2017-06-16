@@ -45,7 +45,19 @@ class TaskHandler(tornado.web.RequestHandler):
             print(id)
         else:
             self.write('-1')
-            print('ProjectId not found') 
+            print('ProjectId not found')
+
+    def put(self):
+        print("Task:PUT!!!")
+
+        newTask = json.loads(self.request.body)
+
+        print(newTask)
+
+        table_task.update({'name': newTask['name'], 'cost': newTask['cost'], 'startDate': newTask['startDate'],
+                           'description': newTask['description'], 'outcome': newTask['outcome'], 
+                           'duration': newTask['duration'], 'state': newTask['state']}, eids=[newTask['id']])
+
             
 class TaskByProjectIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -68,3 +80,21 @@ class TaskByProjectIdHandler(tornado.web.RequestHandler):
         self.write(json.dumps(tasks))
 
         print(tasks) 
+
+class TaskDeleteHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, taskId):
+        print('TaskDeleteHandler:DELETE!!! ' + taskId)
+
+        table_task.remove(eids=[int(taskId)])
+        self.write(str(taskId))

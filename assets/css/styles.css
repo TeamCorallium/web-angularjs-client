@@ -11847,9 +11847,9 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 /*--------------*/
 .notification-image{
   float: left;
-  height: 80px;
+  height: 100px;
   margin-right: 5%;
-  width: 80px;
+  width: 100px;
 }
 
 .explore-user-image{

@@ -1,101 +1,202 @@
 <!-- start: PAGE TITLE -->
 <div  ng-controller="ForumBaseProposalCtrl">
-	<section id="page-title">
-		<div class="row">
-			<div class="col-sm-8">
-				<h1 class="mainTitle">{{currentForumActive.projectName}} FORUM</h1>
-			</div>
-			<div ncy-breadcrumb></div>
-		</div>
-	</section>
-	<div class="container-fluid container-fullw bg-white">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="form-group">
-					<label>Title</label>
-					<input ng-model="proposalTitle" class="form-control ng-pristine ng-valid ng-empty ng-touched" style="" type="text">
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<div class="form-group">
-					<label>Type</label>
-					<select ng-model="proposalType" ng-change="changeVisibilityItems()" class="cs-select cs-skin-elastic">
-						<option disabled selected>Select Type</option>
-						<option value="Start Project">Start Project</option>
-						<option value="Finish Task">Finish Task</option>
-						<option value="Modified Task">Modified Task</option>
-						<option value="Close Projecs">Close Project</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-				<div class="form-group">
-					<label>Death Line</label>
-					<div class="input-group">
-						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="deathLine" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline">
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-primary" ng-click="open()">
+    <section id="page-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1 class="mainTitle">{{currentForumActive.projectName}} FORUM</h1>
+            </div>
+            <div ncy-breadcrumb></div>
+        </div>
+    </section>
+    <div class="container-fluid container-fullw bg-white">
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input ng-model="proposalTitle" class="form-control ng-pristine ng-valid ng-empty ng-touched" style="" type="text">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label>Type</label>
+                    <select ng-model="proposalType" ng-change="changeVisibilityItems()" class="cs-select cs-skin-slide">
+                        <option disabled selected>Select Type</option>
+                        <option value="Start Project">Start Project</option>
+                        <option value="Modified Task State">Modified Task State</option>
+                        <option value="Modified Task Name">Modified Task Name</option>
+                        <option value="Modified Task Description">Modified Task Description</option>
+                        <option value="Modified Task Cost">Modified Task Cost</option>
+                        <option value="Modified Task Outcome">Modified Task Outcome</option>
+                        <option value="Modified Task Start Date">Modified Task Start Date</option>
+                        <option value="Modified Task Duration">Modified Task Duration</option>
+                        <option value="Close Projecs">Close Project</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>Death Line</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="deathLine" is-open="openDatePickers[0]" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="deathline">
+                        <span class="input-group-btn">
+							<button type="button" class="btn btn-primary" ng-click="openTest($event,0)">
 								<i class="fa fa-calendar"></i>
 							</button>
 						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row" ng-show="visibleModifiedTask && tasks.length != 0">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="form-group">
-					<label>Item Subject</label>
-					<select ng-model="selectedTask" ng-options="t.name for t in tasks" class="cs-select cs-skin-slide">
-						<option disabled value="">Select Task</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="form-group">
-					<label>Proposal Content</label>
-					<textarea ng-model="proposalContent" placeholder="Enter item subject of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="row" ng-show="visibleStartProject">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="form-group">
-					<label>Proposal Content</label>
-					<textarea ng-model="proposalContent" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
-				</div>
-			</div>
-		</div>
-		<!--<div class="row" ng-show="false">-->
-		<!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">-->
-		<!--<div class="form-group">-->
-		<!--<label>Proposal Content</label>-->
-		<!--<textarea ng-model="proposalContent" placeholder="Enter proposal Content" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>-->
-		<!--</div>-->
-		<!--</div>-->
-		<!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">-->
-		<!--<div class="form-group">-->
-		<!--<label>Item subject of the Proposal</label>-->
-		<!--<textarea ng-model="itemSubject" placeholder="Enter item subject of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>-->
-		<!--</div>-->
-		<!--</div>-->
-		<!--</div>-->
-		<div class="row">
-			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 margin-top-10">
-				<button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-comments-o">
-					<span>Go to forum</span>
-				</button>
-			</div>
-			<div class="col-xs-6 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6 col-lg-2 col-lg-offset-6 margin-top-10">
-				<button type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-save">
-					<span>Save</span>
-				</button>
-			</div>
-			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
-				<button ng-click="createProposal()" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-laptop">
-					<span>Publish</span>
-				</button>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="visibleModifiedTaskState && proposalType == 'Modified Task State' && tasks.length != 0">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Item Subject</label>
+                    <select ng-model="selectedTask" ng-options="t.name for t in tasks" ng-change="taskChange()" class="cs-select cs-skin-slide">
+                        <option disabled value="">Select Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
+                <div class="form-group">
+                    <label>State</label>
+                    <select class="cs-select cs-skin-slide" ng-model="$parent.taskState" name="state">
+                        <option ng-selected="getValueIndex() == 0" value="0" disabled selected>Select an state</option>
+                        <option ng-selected="getValueIndex() == 1" value="1">In Preparation</option>
+                        <option ng-selected="getValueIndex() == 2" value="2">Active: On time</option>
+                        <option ng-selected="getValueIndex() == 3" value="3">Active: Best than Expected</option>
+                        <option ng-selected="getValueIndex() == 4" value="4">Active: Delayed</option>
+                        <option ng-selected="getValueIndex() == 5" value="5">Finished</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="visibleModifiedTaskName && proposalType == 'Modified Task Name' && tasks.length != 0">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Item Subject</label>
+                    <select ng-model="selectedTask" ng-options="t.name for t in tasks" ng-change="taskChange()" class="cs-select cs-skin-slide">
+                        <option disabled value="">Select Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input ng-model="$parent.taskName" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="visibleModifiedTaskDescription && proposalType == 'Modified Task Description' && tasks.length != 0">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Item Subject</label>
+                    <select ng-model="selectedTask" ng-options="t.name for t in tasks" ng-change="taskChange()" class="cs-select cs-skin-slide">
+                        <option disabled value="">Select Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
+                <div class="form-group">
+                    <label>Name</label>
+                    <textarea ng-model="$parent.taskDescription" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="visibleModifiedTaskCost && proposalType == 'Modified Task Cost' && tasks.length != 0">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Item Subject</label>
+                    <select ng-model="selectedTask" ng-options="t.name for t in tasks" ng-change="taskChange()" class="cs-select cs-skin-slide">
+                        <option disabled value="">Select Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
+                <div class="form-group">
+                    <label>Total Cost</label>
+                    <input ng-model="$parent.taskCost" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="visibleModifiedTaskOutcome && proposalType == 'Modified Task Outcome' && tasks.length != 0">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Item Subject</label>
+                    <select ng-model="selectedTask" ng-options="t.name for t in tasks" ng-change="taskChange()" class="cs-select cs-skin-slide">
+                        <option disabled value="">Select Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
+                <div class="form-group">
+                    <label>Outcomes</label>
+                    <textarea ng-model="$parent.outcome" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="visibleModifiedTaskDuration && proposalType == 'Modified Task Duration' && tasks.length != 0">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Item Subject</label>
+                    <select ng-model="selectedTask" ng-options="t.name for t in tasks" ng-change="taskChange()" class="cs-select cs-skin-slide">
+                        <option disabled value="">Select Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input ng-model="$parent.duration" class="form-control ng-pristine ng-valid ng-empty ng-touched" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="visibleModifiedTaskStartDate && proposalType == 'Modified Task Start Date' && tasks.length != 0">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Item Subject</label>
+                    <select ng-model="selectedTask" ng-options="t.name for t in tasks" ng-change="taskChange()" class="cs-select cs-skin-slide">
+                        <option disabled value="">Select Task</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTask != ''">
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.startDate" is-open="openDatePickers[1]" datepicker-options="startOptions" close-text="Close">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary" ng-click="openTest($event,1)">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="visibleStartProject">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label>Proposal Content</label>
+                    <textarea ng-model="proposalContent" placeholder="Enter content of the Proposal" class="form-control autosize msd-elastic: \n; ng-pristine ng-valid ng-empty ng-touched" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 71px;"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 margin-top-10">
+                <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-comments-o">
+                    <span>Go to forum</span>
+                </button>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-sm-offset-6 col-md-2 col-md-offset-6 col-lg-2 col-lg-offset-6 margin-top-10">
+                <button type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-save">
+                    <span>Save</span>
+                </button>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 margin-top-10">
+                <button ng-click="createProposal()" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-laptop">
+                    <span>Publish</span>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

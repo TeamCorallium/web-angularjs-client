@@ -4,156 +4,167 @@
  */
 app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
-        $scope.owner = '';
 
-        $scope.creationProjectDate = '';
-        $scope.deathLineProject = '';
-        $scope.currentProjectActive= '';
+        if (!localStorageService.get('isLogged')) {
+            $state.go('app.login.signin');
+        } else {
+            $scope.owner = '';
 
-        $scope.getProjectById = function () {
-            RestService.fetchProjectById(localStorageService.get('currentProjectId'))
-                .then(
-                    function(data) {
-                        $scope.currentProjectActive =  data[0];
-                    },
-                    function(errResponse) {
-                        toaster.pop('error', 'Error', 'Server not available.');
-                        console.log(errResponse);
-                    }
-                );
-        };
+            $scope.creationProjectDate = '';
+            $scope.deathLineProject = '';
+            $scope.currentProjectActive = '';
+            $scope.amount = '';
 
-        $scope.getProjectById();
+            $scope.getProjectById = function () {
+                RestService.fetchProjectById(localStorageService.get('currentProjectId'))
+                    .then(
+                        function (data) {
+                            $scope.currentProjectActive = data[0];
+                        },
+                        function (errResponse) {
+                            toaster.pop('error', 'Error', 'Server not available.');
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
-        $scope.tasksProject = [];
+            $scope.getProjectById();
 
-        $scope.getTaskByProjectsId = function () {
-            RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
-                .then(
-                    function(data) {
-                        $scope.tasksProject = data;
-                    },
-                    function(errResponse){
-                        console.log(errResponse);
-                    }
-                );
-        };
+            $scope.tasksProject = [];
 
-        $scope.getTaskByProjectsId();
+            $scope.getTaskByProjectsId = function () {
+                RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                    .then(
+                        function (data) {
+                            $scope.tasksProject = data;
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
-        $scope.getOwnerData = function () {
-            RestService.fetchUser(localStorageService.get('currentUserId'))
-                .then(
-                    function(data) {
-                        $scope.owner = data[0];
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
-                    }
-                );
-        };
+            $scope.getTaskByProjectsId();
 
-        $scope.getOwnerData();
+            $scope.getOwnerData = function () {
+                RestService.fetchUser(localStorageService.get('currentUserId'))
+                    .then(
+                        function (data) {
+                            $scope.owner = data[0];
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
-        $scope.getUserName = function (userId) {
-            RestService.fetchUser(userId)
-                .then(
-                    function(data) {
-                        $scope.listUserOwners.push(data[0].fullName);
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
-                    }
-                );
-        };
+            $scope.getOwnerData();
 
-        $scope.stateArray = ['','In Preparation', 'Active: On time', 'Active: Best than expected','Active: Delayed', 'Finished'];
+            $scope.getUserName = function (userId) {
+                RestService.fetchUser(userId)
+                    .then(
+                        function (data) {
+                            $scope.listUserOwners.push(data[0].fullName);
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
-        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
-        $scope.categoryArray = ['Commodities Production','Creating a New Business','Diversification','Property developments','Other'];
+            $scope.categoryArray = ['Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
 
-        $scope.getProjectDate = function (date) {
-            var dateTemp = new Date(date);
-            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
-        };
+            $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-        $scope.possibleInvestmentArray = [];
+            $scope.getDateProject = function (date) {
+                var dateTemp = new Date(date);
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
+            };
 
-        $scope.setInvestmentValue = function () {
-            localStorageService.set('currentAmountInvestment', $scope.amount);
-        };
+            $scope.possibleInvestmentArray = [];
 
-        $scope.projectRole = function (userId) {
-            if (localStorageService.get('currentUserId') == userId) {
-                return 'Owner';
-            }
-            else {
-                return 'Financier';
-            }
-        };
+            $scope.setInvestmentValue = function () {
+                if ($scope.amount !=  '' && $scope.amount != null) {
+                    localStorageService.set('currentAmountInvestment', $scope.amount);
+                    $state.go('app.inversion');
+                } else {
+                    toaster.pop('error', 'Error', 'Please select the amount to invest.');
+                }
+            };
 
-        $scope.investmentCapitalProject = 0;
+            $scope.projectRole = function (userId) {
+                if (localStorageService.get('currentUserId') == userId) {
+                    return 'Owner';
+                }
+                else {
+                    return 'Financier';
+                }
+            };
 
-        $scope.invertionByProjectId = function () {
-            RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
-                .then(
-                    function(data) {
-                        $scope.invertions = data;
+            $scope.investmentCapitalProject = 0;
 
-                        for (var i = 0; i<$scope.invertions.length; i++) {
-                            $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
+            $scope.invertionByProjectId = function () {
+                RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
+                    .then(
+                        function (data) {
+                            $scope.invertions = data;
+
+                            for (var i = 0; i < $scope.invertions.length; i++) {
+                                $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
+                            }
+
+                            $scope.coveredCapital();
+                            $scope.getPossibleInvestment();
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
+
+            $scope.invertionByProjectId();
+
+
+            //Upgrade While(true)
+            $scope.getPossibleInvestment = function () {
+                if ($scope.coveredCapitalPercent != 100) {
+                    var remainingInvertion = 0;
+
+                    remainingInvertion = parseInt($scope.currentProjectActive.totalCost) - $scope.investmentCapitalProject;
+
+                    var n = 0;
+
+                    while (true) {
+                        var a = remainingInvertion - n * $scope.currentProjectActive.minCapInves;
+                        if (a >= $scope.currentProjectActive.minCapInves) {
+                            $scope.possibleInvestmentArray.push(a);
+                        } else {
+                            break;
                         }
 
-                        $scope.coveredCapital();
-                        $scope.getPossibleInvestment();
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
+                        n += 1;
                     }
-                );
-        };
-
-        $scope.invertionByProjectId();
-
-
-        //Upgrade While(true)
-        $scope.getPossibleInvestment = function () {
-            if ($scope.coveredCapitalPercent != 100) {
-                var remainingInvertion = 0;
-
-                remainingInvertion = parseInt($scope.currentProjectActive.totalCost) - $scope.investmentCapitalProject;
-
-                var n = 0;
-
-                while(true) {
-                    var a = remainingInvertion-n*$scope.currentProjectActive.minCapInves;
-                    if (a >= $scope.currentProjectActive.minCapInves) {
-                        $scope.possibleInvestmentArray.push(a);
-                    } else {
-                        break;
-                    }
-
-                    n += 1;
                 }
-            }
-        };
+            };
 
-        $scope.estimateRevenueF = 0;
+            $scope.estimateRevenueF = 0;
 
-        $scope.estimatePersonalRevenue = function () {
-            var porcientoF= (parseFloat($scope.amount)/parseFloat($scope.currentProjectActive.totalCost)*100.0);
+            $scope.estimatePersonalRevenue = function () {
+                var porcientoF = (parseFloat($scope.amount) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
 
-            var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner)/100.0)* parseFloat($scope.currentProjectActive.totalRevenue);
-            $scope.estimateRevenueF = (porcientoF/100.0)* (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
-        };
+                var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner) / 100.0) * parseFloat($scope.currentProjectActive.totalRevenue);
+                $scope.estimateRevenueF = (porcientoF / 100.0) * (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
+            };
 
-        $scope.coveredCapital = function () {
-            $scope.coveredCapitalPercent  = ($scope.investmentCapitalProject/parseFloat($scope.currentProjectActive.totalCost))*100;
-        };
+            $scope.coveredCapital = function () {
+                $scope.coveredCapitalPercent = ($scope.investmentCapitalProject / parseFloat($scope.currentProjectActive.totalCost)) * 100;
+            };
 
-        $scope.goToOpportunitiesTask = function (taskId) {
-            localStorageService.set('currentTaskId',taskId);
-            $state.go('app.project.opportunities_task_detail');
-        };
+            $scope.goToOpportunitiesTask = function (taskId) {
+                localStorageService.set('currentTaskId', taskId);
+                $state.go('app.project.opportunities_task_detail');
+            };
+        }
     }]);

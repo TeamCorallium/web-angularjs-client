@@ -4,8 +4,13 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
 
     var uploadsUrl = 'http://localhost:8001/AngularJs-Admin/STANDARD/server/databases/uploads/';
 
+<<<<<<< HEAD
     var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
     // var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+=======
+    // var serverUrl = 'http://10.58.20.230:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+>>>>>>> d03e57b2c415d50e5dc5f31e98a9bba7cf527e2a
 
     return {
         url : serverUrl,
@@ -155,8 +160,8 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
         },
 
         //Function for obtain all projects excepts the user's projects
-        fetchAllProject: function(userId) {
-            return $http.get(serverUrl + 'allProjectsExceptId/' + userId)
+        fetchAllProject: function(userId, filter) {
+            return $http.get(serverUrl + 'allProjectsExceptId/' + userId + '?filter=' + filter)
                 .then(
                     function(response){
                         return response.data;
@@ -168,8 +173,8 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
-        fetchAllOpportunities: function(userId) {
-            return $http.get(serverUrl + 'simpleProjectOpportunities/' + userId)
+        fetchAllOpportunities: function(userId, filter) {
+            return $http.get(serverUrl + 'simpleProjectOpportunities/' + userId + '?filter=' + filter)
                 .then(
                     function(response){
                         return response.data;
@@ -189,6 +194,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     },
                     function(errResponse){
                         console.error('Error while deleting simple Projects');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        deleteTask: function(taskId) {
+            return $http.get(serverUrl + 'taskDelete/' + taskId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while deleting task');
                         return $q.reject(errResponse);
                     }
                 );
@@ -273,6 +291,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        fetchAllActivities: function(userId) {
+            return $http.get(serverUrl + 'activitiesByUserId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching activities By User Id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         createInvertion: function(invertion) {
             return $http.post(serverUrl +'invertion/', invertion)
                 .then(
@@ -307,6 +338,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     },
                     function(errResponse){
                         console.error('Error while fetching comments by projects id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        fetchAllCommentsByUserId: function(userId) {
+            return $http.get(serverUrl + 'commentsByUserId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching comments by user id');
                         return $q.reject(errResponse);
                     }
                 );

@@ -244,56 +244,90 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="row" ng-show="taskFiltre.length > 0">
+                            <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" >
+                                    <div class="panel panel-transparent">
+                                        <div class="panel-title">
+                                            Tasks
+                                        </div>
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <li class="margin-bottom-15" ng-repeat="task in tasksProject">
+                                            <hr class="tall">
+                                            <div class="clearfix">
+                                                <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                                                    <span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
+                                                    <span class="label label-default state-list-tasks pull-right">{{ stateArray[task.state]}}</span>
+                                                </div>
+                                                <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                    <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
+                                                </div>
+                                                <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 no-padding margin-top-10">
+                                                    <span><i class="ti-timer"></i>
+                                                        <strong> Cost:</strong>  {{task.cost}} $
+                                                    </span>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 no-padding margin-top-10">
+                                                    <span><i class="ti-layers-alt"></i>
+                                                        <strong> Start Date:</strong>  {{getDateProject(task.startDate)}}
+                                                    </span>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 no-padding margin-top-10">
+                                                    <span><i class="ti-layers-alt"></i>
+                                                        <strong> Duration:</strong>  {{task.duration}} <strong>Days</strong>
+                                                    </span>
+                                                    </div>
+                                                    <div class="thread-content col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
+                                                        <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
+                                                            <button ng-click="goToUpdateTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) != 'Financier'" type="button" class="btn btn-success btn-xs">
+                                                                <span class="fa fa-edit"></span> Update
+                                                            </button>
+                                                            <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
+                                                                <span class="fa fa-arrow-right"></span> View
+                                                            </button>
+                                                            <button ng-click="deleteTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) != 'Financier'" type="button" class="btn btn-danger btn-xs">
+                                                                <span class="glyphicon glyphicon-trash"></span> Remove
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <hr class="tall">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div ng-show="tasksProject.length != 0">
+                                <button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
+                                </div>
+                                <div id="gantt_here"></div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row" ng-show="currentProjectActive.risks.length != 0">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                     <div class="panel panel-transparent">
                                         <div class="panel-heading no-padding">
                                             <div class="panel-title">
-                                                Tasks
+                                                Risks
                                             </div>
                                         </div>
                                         <div class="panel-body no-padding">
-                                            <ul class="list-group">
-                                                <li class="list-group-item" ng-repeat="task in tasksFiltre">a
-                                                    <a ng-click="goToTask(task.id)">{{task.name}}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
-                                    <!--Gantt Here-->
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                    <!-- /// controller:  'vAccordionCtrl' -  localtion: assets/js/controllers/vAccordionCtrl.js /// -->
-                                    <div ng-controller="vAccordionCtrl">
-                                        <div class="panel panel-transparent">
-                                            <!--<h4 class="no-visible" data-appears-class="fadeInUp" data-appears-delay="300">Risks List</h4>-->
-                                            <div class="panel-heading no-padding">
-                                                <div class="panel-title">
-                                                    Risks
-                                                </div>
-                                            </div>
-                                            <!--<hr class="no-padding">-->
-                                            <div class="panel-body no-padding">
-                                                <v-accordion class="vAccordion--default"
-                                                             control="firstAccordionControl">
-                                                    <v-pane ng-repeat="pane in panes" expanded="$first">
-                                                        <v-pane-header>
-                                                            <h5>{{ pane.header }}</h5>
-                                                        </v-pane-header>
-                                                        <v-pane-content>
-                                                            <p>
-                                                                {{ pane.content }}
-                                                            </p>
-                                                        </v-pane-content>
-                                                    </v-pane>
-                                                </v-accordion>
-                                            </div>
+                                            <v-accordion class="vAccordion--default">
+                                                <v-pane ng-repeat="r in currentProjectActive.risks" expanded="$first">
+                                                    <v-pane-header>
+                                                        <h5>{{ r.name }}</h5>
+                                                    </v-pane-header>
+                                                    <v-pane-content>
+                                                        <p>
+                                                            {{ r.description }}
+                                                        </p>
+                                                    </v-pane-content>
+                                                </v-pane>
+                                            </v-accordion>
                                         </div>
                                     </div>
                                 </div>
@@ -303,9 +337,6 @@
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                     <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments-o">
                                         <span>Go to forum</span>
-                                    </button>
-                                    <button ui-sref="app.project.subproject_list_task" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top fa-arrow-right">
-                                        <span>Future Task</span>
                                     </button>
                                 </div>
                             </div>

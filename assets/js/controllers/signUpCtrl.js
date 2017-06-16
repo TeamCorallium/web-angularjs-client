@@ -71,5 +71,6 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
 
         $scope.userFirstName = function (email) {
             $rootScope.user.name =  email.split("@")[0];
+            $rootScope.user.avatar = 'assets/images/default-user.png';
         }
     }]);

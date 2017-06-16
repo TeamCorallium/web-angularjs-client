@@ -144,6 +144,8 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 RestService.updateUser($scope.userInfo)
                     .then(
                         function(data) {
+                            $rootScope.user.avatar = $scope.userInfo.avatar;
+                            $rootScope.user.name =  $scope.userInfo.email.split("@")[0];
                             toaster.pop('success', 'Good!!!', 'User updated correctly.');
                         },
                         function(errResponse) {

@@ -41,14 +41,19 @@ app.run(['$rootScope', '$state', '$stateParams', 'localStorageService', 'RestSer
         $rootScope.user = {
             name: '',
             job: '',
-            picture: 'app/img/user/02.jpg'
+            avatar: 'assets/images/default-user.png'
         };
 
         if (localStorageService.get('currentUserId') != null) {
             RestService.fetchUser(localStorageService.get('currentUserId'))
                 .then(
                     function(data) {
+                        console.log("AAAAAAAAAA" + $rootScope.user.avatar);
                         $rootScope.user.name = data[0].email.split('@')[0];
+                        $rootScope.user.avatar = data[0].avatar;
+                        if (data[0].avatar == '') {
+                            $rootScope.user.avatar = '';
+                        }
                     },
                     function(errResponse){
                         console.log(errResponse);

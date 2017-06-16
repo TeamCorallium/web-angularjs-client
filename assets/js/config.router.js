@@ -102,7 +102,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             templateUrl: "assets/views/notification.html",
             title: 'Notification',
             ncyBreadcrumb: {
-                label: 'Notification'
+                label: 'Notifications'
             },
             resolve: loadSequence('notificationCtrl')
         }).state('app.opportunities-list-task', {
@@ -534,7 +534,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             templateUrl: "assets/views/pages_timeline.html",
             title: 'Timeline',
             ncyBreadcrumb: {
-                label: 'Timeline'
+                label: 'Activities'
             },
             resolve: loadSequence('ngMap','pagesTimelineCtrl')
         }).state('app.pages.calendar', {

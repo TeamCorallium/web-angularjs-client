@@ -20,7 +20,8 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             facebook: '',
             linkedin: '',
             google: '',
-            skype: ''
+            skype: '',
+            phone: ''
         };
 
         $scope.password_again = '';
@@ -43,7 +44,7 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
                                     if(data == -1) {
                                         toaster.pop('error', 'Error', 'Email in use. Please use another email to sign up.');
                                     } else {
-                                        $scope.user.id = data[0].id;
+                                        $scope.user.id = data;
                                         $scope.userFirstName($scope.user.email);
                                         $scope.updateSessionInfo();
                                         $state.go('app.default');

@@ -4,11 +4,22 @@
  */
 app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
     function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {
+
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
             $scope.currentForumActive = '';
             $scope.userNameCommentActive = '';
+            $scope.comment = {
+                userId: '',
+                fullName: '',
+                projectId: '',
+                value: '',
+                creationDate: ''
+            };
+            $scope.proposalsProject = [];
+            $scope.proposalProjectTasks = [];
+            $scope.comments = [];
 
             $scope.getUserName = function () {
                 RestService.fetchUser(localStorageService.get('currentUserId'))
@@ -38,10 +49,6 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
             };
 
             $scope.getProjectById();
-
-            //Array for all proposal of one project
-            $scope.proposalsProject = [];
-            $scope.proposalProjectTasks = [];
 
             $scope.getProposalByProjectId = function () {
                 RestService.fetchProposalByProjectId(localStorageService.get('currentProjectId'))
@@ -76,8 +83,6 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
                 $state.go('app.forum.proposalview');
             };
 
-            $scope.comments = [];
-
             $scope.getAllComments = function () {
                 RestService.fetchAllCommentsById(localStorageService.get('currentProjectId'))
                     .then(
@@ -96,30 +101,26 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
 
             $scope.getAllComments();
 
-            $scope.comment = {
-                userId: '',
-                fullName: '',
-                projectId: '',
-                value: '',
-                creationDate: ''
-            };
-
             $scope.createComment = function () {
-                $scope.comment.userId = localStorageService.get('currentUserId');
-                $scope.comment.fullName = $scope.userNameCommentActive;
-                $scope.comment.projectId = localStorageService.get('currentProjectId');
-                $scope.comment.creationDate = new Date();
+                if($scope.comment.value != '' && $scope.amount.value != null) {
+                    $scope.comment.userId = localStorageService.get('currentUserId');
+                    $scope.comment.fullName = $scope.userNameCommentActive;
+                    $scope.comment.projectId = localStorageService.get('currentProjectId');
+                    $scope.comment.creationDate = new Date();
 
-                var obj = {
-                    type: 'COMMENT',
-                    value: $scope.comment
-                };
+                    var obj = {
+                        type: 'COMMENT',
+                        value: $scope.comment
+                    };
 
-                WebSocketService.send(obj);
+                    WebSocketService.send(obj);
 
-                $scope.comment.value = '';
+                    $scope.comment.value = '';
 
-                $scope.getAllComments();
+                    $scope.getAllComments();
+                } else {
+                    toaster.pop('error', 'Error', 'Please write something before commenting.');
+                }
             };
 
             $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];

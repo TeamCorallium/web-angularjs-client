@@ -7,7 +7,7 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
 
         $scope.scopeVariable = 0;
 
-        $rootScope.$on('new-notification', function() {
+        $rootScope.$on('new-notification', function () {
             $scope.scopeVariable++;
             $scope.getNotificationsByUserId();
         });
@@ -25,13 +25,13 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
         };
 
         $scope.getNotificationsByUserId = function () {
-            if(localStorageService.get('currentUserId')!=null) {
+            if (localStorageService.get('currentUserId') != null) {
                 RestService.fetchAllNotifications(localStorageService.get('currentUserId'))
                     .then(
-                        function(data) {
+                        function (data) {
                             $scope.notifications = data;
                         },
-                        function(errResponse) {
+                        function (errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');
                             console.log(errResponse);
                         }
@@ -47,8 +47,8 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
         };
 
         $scope.goToProposal = function (projectId, proposalId) {
-            localStorageService.set('currentProjectId',projectId);
-            localStorageService.set('currentProposalId',proposalId);
+            localStorageService.set('currentProjectId', projectId);
+            localStorageService.set('currentProposalId', proposalId);
             $state.go('app.forum.proposalview');
         };
 
@@ -63,28 +63,28 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             $state.go('app.project.task_detail');
         };
 
-        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         $scope.getProjectDate = function (date) {
             var dateTemp = new Date(date);
             var today = new Date();
 
-            if(dateTemp.getMonth() == today.getMonth() && dateTemp.getDate() == today.getDate() && dateTemp.getFullYear() == today.getFullYear()){
-                if(today.getHours() == dateTemp.getHours()) {
-                    if(today.getMinutes() == dateTemp.getMinutes()) {
+            if (dateTemp.getMonth() == today.getMonth() && dateTemp.getDate() == today.getDate() && dateTemp.getFullYear() == today.getFullYear()) {
+                if (today.getHours() == dateTemp.getHours()) {
+                    if (today.getMinutes() == dateTemp.getMinutes()) {
                         return 'a few seconds ago';
                     } else {
-                        return today.getMinutes()-dateTemp.getMinutes() + " minutes ago";
+                        return today.getMinutes() - dateTemp.getMinutes() + " minutes ago";
                     }
                 } else {
-                    if (today.getHours()-dateTemp.getHours() > 1) {
-                        return today.getHours()-dateTemp.getHours() + " hours ago";
-                    } else  {
-                        return today.getHours()-dateTemp.getHours() + " hour ago";
+                    if (today.getHours() - dateTemp.getHours() > 1) {
+                        return today.getHours() - dateTemp.getHours() + " hours ago";
+                    } else {
+                        return today.getHours() - dateTemp.getHours() + " hour ago";
                     }
                 }
             } else {
-                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
             }
         };
     }]);

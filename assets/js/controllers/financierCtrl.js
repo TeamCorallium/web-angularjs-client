@@ -5,22 +5,26 @@
 app.controller('FinancierCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService", "$rootScope",
     function ($scope, $state, toaster, WebSocketService, localStorageService, RestService, $rootScope) {
 
-        $scope.currentFincancierProjectsActive = '';
+        if (!localStorageService.get('isLogged')) {
+            $state.go('app.login.signin');
+        } else {
+            $scope.currentFincancierProjectsActive = '';
 
-        $scope.getProjectById = function(projectId){
-            RestService.fetchProjectById(projectId)
-                .then(
-                    function(data) {
-                        $scope.currentFincancierProjectsActive =  data[0];
-                    },
-                    function(errResponse){
-                        toaster.pop('error', 'Error', 'Server not available.');
-                        console.log(errResponse);
-                    }
-                );
-        };
+            $scope.getProjectById = function (projectId) {
+                RestService.fetchProjectById(projectId)
+                    .then(
+                        function (data) {
+                            $scope.currentFincancierProjectsActive = data[0];
+                        },
+                        function (errResponse) {
+                            toaster.pop('error', 'Error', 'Server not available.');
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
-        if(localStorageService.get('currentProjectId')!= null){
-            $scope.getProjectById(localStorageService.get('currentProjectId'));
+            if (localStorageService.get('currentProjectId') != null) {
+                $scope.getProjectById(localStorageService.get('currentProjectId'));
+            }
         }
     }]);

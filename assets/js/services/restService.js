@@ -338,6 +338,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                 );
         },
 
+        fetchAllCommentsByUserId: function(userId) {
+            return $http.get(serverUrl + 'commentsByUserId/' + userId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching comments by user id');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
         fetchAllVoteByProposalId: function(proposalId) {
             return $http.get(serverUrl + 'voteByProposalId/' + proposalId)
                 .then(

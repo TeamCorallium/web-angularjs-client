@@ -2,128 +2,140 @@
 /**
  * controller for User Profile Example
  */
-app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "toaster", "localStorageService", "$rootScope", "WebSocketService",
-    function ($scope, $state, flowFactory, RestService, toaster, localStorageService, $rootScope, WebSocketService) {
+app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "toaster", "localStorageService", "$rootScope",
+    function ($scope, $state, flowFactory, RestService, toaster, localStorageService, $rootScope) {
 
-        $scope.removeImage = function () {
-            $scope.noImage = true;
-        };
-        $scope.obj = new Flow();
+        if (!localStorageService.get('isLogged')) {
+            $state.go('app.login.signin');
+        } else {
 
-        $scope.userInfo = {
-            firstName: 'Peter',
-            lastName: 'Clark',
-            url: 'www.example.com',
-            email: 'peter@example.com',
-            phone: '(641)-734-4763',
-            gender: 'male',
-            zipCode: '12345',
-            city: 'London (UK)',
-            avatar: 'assets/images/avatar-1-xl.jpg',
-            twitter: '',
-            github: '',
-            facebook: '',
-            linkedin: '',
-            google: '',
-            skype: 'peterclark82'
-        };
+            $scope.removeImage = function () {
+                $scope.noImage = true;
+            };
 
-        if ($scope.userInfo.avatar == '') {
-            $scope.noImage = true;
-        }
+            $scope.obj = new Flow();
 
-        $scope.user = {
-            fullName: '',
-            gender: '',
-            email: '',
-            password: '',
-            id: '',
-            projectsFollow: [],
-        };
+            $scope.allActivities = '';
+            $scope.comments = '';
 
-        $scope.password_again = '';
-        $scope.term_check = '';
-
-        $scope.updateSessionInfo = function () {
-            localStorageService.set('isLogged', $scope.user.id != '');
-            localStorageService.set('currentUserId', $scope.user.id);
-            $rootScope.$broadcast('sessionChanged');
-        };
-
-        $scope.signup = function() {
-            if($scope.user.fullName != '' && $scope.user.email != '' &&
-                $scope.user.gender != '' && $scope.user.password != '') {
-                if($scope.user.password == $scope.password_again) {
-                    if($scope.term_check == true) {
-                        RestService.createUser($scope.user)
-                            .then(
-                                function(data) {
-                                    if(data == -1) {
-                                        toaster.pop('error', 'Error', 'Email in use. Please use another email to sign up.');
-                                    } else {
-                                        $scope.user.id = data[0].id;
-                                        $scope.userFirstName($scope.user.email);
-                                        $scope.updateSessionInfo();
-                                        $state.go('app.default');
-
-                                        //open websocket
-                                        WebSocketService.open();
-                                    }
-                                },
-                                function(errResponse) {
-                                    console.log(errResponse);
-                                }
-                            );
-                    } else {
-                        toaster.pop('error', 'Error', 'Please accept the terms and conditions in this step before proceeding.');
-                    }
-                }
-            } else {
-                toaster.pop('error', 'Error', 'Please complete the form in this step before proceeding.');
-            }
-        };
-
-        $scope.signin = function () {
-            if($scope.user.email != '' && $scope.user.password != '') {
-                RestService.fetchUser($scope.user.email)
+            $scope.getAllActivities = function () {
+                RestService.fetchAllActivities(localStorageService.get('currentUserId'))
                     .then(
                         function(data) {
-                            if(data[0].password == $scope.user.password) {
-                                $scope.user.id = data[0].id;
-                                $scope.userFirstName(data[0].email);
-                                $scope.updateSessionInfo();
-                                $state.go('app.default');
-
-                                //open websocket
-                                WebSocketService.open();
-                            } else {
-                                toaster.pop('error', 'Error', 'Wrong password.');
-                            }
+                            $scope.allActivities =  data;
                         },
-                        function(errResponse){
+                        function(errResponse) {
+                            toaster.pop('error', 'Error', 'Server not available.');
                             console.log(errResponse);
                         }
                     );
-            } else {
-                toaster.pop('error', 'Error', 'Introduce the username and password.');
+            };
+
+            $scope.getAllActivities();
+
+            $scope.getProjectDate = function (date) {
+                var dateTemp = new Date(date);
+                var today = new Date();
+
+                if(dateTemp.getMonth() == today.getMonth() && dateTemp.getDate() == today.getDate() && dateTemp.getFullYear() == today.getFullYear()){
+                    if(today.getHours() == dateTemp.getHours()) {
+                        if(today.getMinutes() == dateTemp.getMinutes()) {
+                            return 'a few seconds ago';
+                        } else {
+                            return today.getMinutes()-dateTemp.getMinutes() + " minutes ago";
+                        }
+                    } else {
+                        if (today.getHours()-dateTemp.getHours() > 1) {
+                            return today.getHours()-dateTemp.getHours() + " hours ago";
+                        } else  {
+                            return today.getHours()-dateTemp.getHours() + " hour ago";
+                        }
+                    }
+                } else {
+                    return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
+                }
+            };
+
+            $scope.userInfo = {
+                fullName: '',
+                email: '',
+                phone: '',
+                gender: '',
+                zipCode: '',
+                city: '',
+                avatar: '',
+                twitter: '',
+                github: '',
+                facebook: '',
+                linkedin: '',
+                google: '',
+                skype: '',
+                password: '',
+                projectsFollow: [],
+                id: ''
+            };
+
+            $scope.getUserData = function () {
+                RestService.fetchUser(localStorageService.get('currentUserId'))
+                    .then(
+                        function(data) {
+                            $scope.userInfo.fullName = data[0].fullName;
+                            $scope.userInfo.email = data[0].email;
+                            // $scope.userInfo.phone = data[0].phone;
+                            $scope.userInfo.gender = data[0].gender;
+                            // $scope.userInfo.zipCode = data[0].zipCode;
+                            // $scope.userInfo.city = data[0].city;
+                            // $scope.userInfo.avatar = data[0].avatar;
+                            // $scope.userInfo.twitter = data[0].twitter;
+                            // $scope.userInfo.github = data[0].github;
+                            // $scope.userInfo.facebook = data[0].facebook;
+                            // $scope.userInfo.linkedin = data[0].linkedin;
+                            // $scope.userInfo.google = data[0].google;
+                            // $scope.userInfo.skype = data[0].skype;
+                            $scope.userInfo.password = data[0].password;
+                            $scope.userInfo.projectsFollow = data[0].projectsFollow;
+                            $scope.userInfo.id = data[0].id;
+                        },
+                        function(errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
+
+            $scope.getUserData();
+
+            // Descomentar cuando este hecho en la BD
+            // $scope.getAllComments = function () {
+            //     RestService.fetchAllCommentsByUserId(localStorageService.get('currentUserId'))
+            //         .then(
+            //             function(data) {
+            //                 $scope.comments =  data;
+            //             },
+            //             function(errResponse){
+            //                 console.log(errResponse);
+            //             }
+            //         );
+            // };
+
+            // $scope.getAllComments();
+
+            if ($scope.userInfo.avatar == '') {
+                $scope.noImage = true;
             }
-        };
 
-        $scope.logout = function () {
-            if(localStorageService.get('isLogged')) {
-                localStorageService.set('isLogged', false);
-                localStorageService.remove('currentUserId');
-                localStorageService.remove('currentProjectId');
 
-                WebSocketService.close();
-                $rootScope.$broadcast('sessionChanged');
-                $state.go('app.default');
-            } else {
-                toaster.pop('error', 'Error', 'Not logged in.');
-            }
-        };
 
-        $scope.userFirstName = function (email) {
-            $rootScope.user.name =  email.split("@")[0];
+            $scope.saveUserAcount = function () {
+                RestService.updateUser($scope.userInfo)
+                    .then(
+                        function(data) {
+                            toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                        },
+                        function(errResponse) {
+                            toaster.pop('error', 'Error', 'Server not available.');
+                            console.log(errResponse);
+                        }
+                    );
+            };
         }
     }]);

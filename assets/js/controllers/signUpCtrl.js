@@ -12,6 +12,15 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             password: '',
             id: '',
             projectsFollow: [],
+            zipCode: '',
+            city: '',
+            avatar: '',
+            twitter: '',
+            github: '',
+            facebook: '',
+            linkedin: '',
+            google: '',
+            skype: ''
         };
 
         $scope.password_again = '';

@@ -7,16 +7,16 @@ app.controller('PagesTimelineCtrl', ["$scope", "localStorageService", "RestServi
 
         $scope.allActivities = '';
 
-        $scope.monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-        $scope.dayArray = ['Sunday','Monday','Tuesday','Wenesday','Thuesday','Friday','Saturday'];
+        $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $scope.dayArray = ['Sunday', 'Monday', 'Tuesday', 'Wenesday', 'Thuesday', 'Friday', 'Saturday'];
 
         $scope.getAllActivities = function () {
             RestService.fetchAllActivities(localStorageService.get('currentUserId'))
                 .then(
-                    function(data) {
-                        $scope.allActivities =  data;
+                    function (data) {
+                        $scope.allActivities = data;
                     },
-                    function(errResponse) {
+                    function (errResponse) {
                         toaster.pop('error', 'Error', 'Server not available.');
                         console.log(errResponse);
                     }
@@ -44,4 +44,5 @@ app.controller('PagesTimelineCtrl', ["$scope", "localStorageService", "RestServi
             var date = new Date(activityDate);
             return date.getFullYear();
         };
+
     }]);

@@ -102,7 +102,7 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
             $scope.getAllComments();
 
             $scope.createComment = function () {
-                if($scope.comment.value != '' && $scope.amount.value != null) {
+                if($scope.comment.value != '' && $scope.comment.value != null) {
                     $scope.comment.userId = localStorageService.get('currentUserId');
                     $scope.comment.fullName = $scope.userNameCommentActive;
                     $scope.comment.projectId = localStorageService.get('currentProjectId');

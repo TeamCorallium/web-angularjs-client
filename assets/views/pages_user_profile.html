@@ -145,11 +145,11 @@
 									</div>
 									<div class="panel-body">
 										<ul class="ltwt">
-											<li class="ltwt_tweet" ng-repeat="comment in commments">
+											<li class="ltwt_tweet" ng-repeat="c in comments">
 												<p class="ltwt_tweet_text">
-													{{comment.value}}
+													{{c.value}}
 												</p>
-												<span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> {{getProjectDate(comment.creationDate)}}</span>
+												<span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> {{getProjectDate(c.creationDate)}}</span>
 											</li>
 										</ul>
 									</div>

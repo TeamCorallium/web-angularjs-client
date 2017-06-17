@@ -35,7 +35,8 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 ownerInvestedCapital: 0,
                 objetives: [],
                 references: [],
-                risks: []
+                risks: [],
+                inverted : false
             };
 
             $scope.risk = {

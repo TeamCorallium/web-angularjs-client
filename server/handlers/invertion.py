@@ -52,5 +52,6 @@ class InvertionHandler(tornado.web.RequestHandler):
             self.write(str(id))
             print(id)
 
+        table_simple_project.update({'inverted': True}, eids=[int(projectId)])
+
         table_activity.insert({'userId': userId, 'title': 'Invertion', 'content': "You make an invertion", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
-        

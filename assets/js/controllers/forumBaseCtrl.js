@@ -19,6 +19,7 @@ app.controller('ForumBaseCtrl', ["$scope", "$rootScope", "$state", "toaster", "W
                 avatar: ''
             };
             $scope.proposalsProject = [];
+            $scope.proposalsAvatarProject = [];
             $scope.proposalProjectTasks = [];
             $scope.comments = [];
 

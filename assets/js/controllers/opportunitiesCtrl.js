@@ -26,7 +26,6 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
             };
 
             $scope.getAllOpportunities = function () {
-                console.log($scope.filter + " filter");
                 RestService.fetchAllOpportunities(localStorageService.get('currentUserId'), $scope.filter)
                     .then(
                         function (data) {

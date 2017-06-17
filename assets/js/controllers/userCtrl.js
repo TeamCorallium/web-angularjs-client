@@ -2,8 +2,8 @@
 /**
  * controller for User Profile Example
  */
-app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "toaster", "localStorageService", "$rootScope",
-    function ($scope, $state, flowFactory, RestService, toaster, localStorageService, $rootScope) {
+app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "toaster", "localStorageService", "$rootScope", "$window",
+    function ($scope, $state, flowFactory, RestService, toaster, localStorageService, $rootScope, $window) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
@@ -43,6 +43,11 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             $scope.getAllActivities();
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+            $scope.getBirthday = function (date) {
+                var dateTemp = new Date(date);
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
+            };
 
             $scope.getProjectDate = function (date) {
                 var dateTemp = new Date(date);
@@ -252,5 +257,9 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
 
             $scope.hstep = 1;
             $scope.mstep = 15;
+
+            $scope.goToLink = function (link) {
+                $window.location.href = link;
+            };
         }
     }]);

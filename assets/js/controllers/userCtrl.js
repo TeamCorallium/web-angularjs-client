@@ -81,7 +81,13 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 skype: '',
                 password: '',
                 projectsFollow: [],
-                id: ''
+                id: '',
+                birthday: '',
+                identityCard: '',
+                industries: [],
+                skills: [],
+                experiencies: [],
+                previusWorks: []
             };
 
             $scope.getUserData = function () {
@@ -103,7 +109,12 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                             $scope.userInfo.skype = data[0].skype;
                             $scope.userInfo.password = data[0].password;
                             $scope.userInfo.projectsFollow = data[0].projectsFollow;
-                            $scope.userInfo.id = data[0].id;
+                            $scope.userInfo.birthday = data[0].birthday;
+                            $scope.userInfo.identityCard = data[0].identityCard;
+                            $scope.userInfo.industries = data[0].industries;
+                            $scope.userInfo.skills = data[0].skills;
+                            $scope.userInfo.experiencies = data[0].experiencies;
+                            $scope.userInfo.previusWorks = data[0].previusWorks;
 
                             if ($scope.userInfo.avatar == '') {
                                 $scope.noImage = true;
@@ -152,5 +163,91 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                         }
                     );
             };
+
+            //Date picker
+            $scope.today = function () {
+                $scope.birthday = new Date();
+            };
+            $scope.today();
+
+            $scope.start = $scope.startDate;
+            $scope.end = $scope.maxDate;
+
+            $scope.clear = function () {
+                $scope.dt = null;
+            };
+
+            $scope.datepickerOptions = {
+                showWeeks: false,
+                startingDay: 1
+            };
+
+            $scope.dateDisabledOptions = {
+                dateDisabled: disabled,
+                showWeeks: false,
+                startingDay: 1
+            };
+
+            $scope.startOptions = {
+                showWeeks: false,
+                startingDay: 1,
+                minDate: $scope.minDate,
+                maxDate: $scope.maxDate
+            };
+
+            $scope.endOptions = {
+                showWeeks: false,
+                startingDay: 1,
+                minDate: $scope.minDate,
+                maxDate: $scope.maxDate
+            };
+// Disable weekend selection
+            function disabled(data) {
+                var date = data.date, mode = data.mode;
+                return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+            }
+
+            $scope.setDate = function (year, month, day) {
+                $scope.userInfo.birthday = new Date(year, month, day);
+            };
+            $scope.toggleMin = function () {
+                $scope.datepickerOptions.minDate = $scope.datepickerOptions.minDate ? null : new Date();
+                $scope.dateDisabledOptions.minDate = $scope.dateDisabledOptions.minDate ? null : new Date();
+            };
+            $scope.maxDate = new Date(2020, 5, 22);
+            $scope.minDate = new Date(1970, 12, 31);
+
+            $scope.open = function () {
+                $scope.opened = !$scope.opened;
+            };
+
+            $scope.openDatePickers = [];
+
+            $scope.openTest = function ($event, datePickerIndex) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                if ($scope.openDatePickers[datePickerIndex] === true) {
+                    $scope.openDatePickers.length = 0;
+                } else {
+                    $scope.openDatePickers.length = 0;
+                    $scope.openDatePickers[datePickerIndex] = true;
+                }
+            };
+
+            $scope.endOpen = function () {
+                $scope.endOptions.minDate = $scope.start;
+                $scope.startOpened = false;
+                $scope.endOpened = !$scope.endOpened;
+            };
+
+            $scope.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
+            $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            $scope.format = $scope.formats[0];
+
+            $scope.hstep = 1;
+            $scope.mstep = 15;
         }
     }]);

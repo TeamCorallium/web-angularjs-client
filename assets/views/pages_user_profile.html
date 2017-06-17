@@ -29,7 +29,7 @@
 													<img src="assets/images/default-user.png" alt="" ng-if="!uploaderImages.queue.length && noImage">
 													<img ng-src="{{userInfo.avatar}}" alt="" ng-if="!uploaderImages.queue.length && !noImage">
 													<div ng-if="uploaderImages.queue.length" ng-repeat="item in uploaderImages.queue">
-													<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+														<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
 													</div>
 												</div>
 												<div class="user-image-buttons" ng-if="uploaderImages.queue.length">
@@ -122,7 +122,7 @@
 									<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
 										<div class="panel-body">
 											<ul class="timeline-xs">
-												<li ng-repeat="activity in allActivities" class="timeline-item success">
+												<li ng-repeat="activity in allActivities | orderBy: 'date':true | limitTo:3" class="timeline-item warning">
 													<div class="margin-left-15">
 														<div class="text-muted text-small">
 															{{getProjectDate(activity.date)}}
@@ -145,7 +145,7 @@
 									</div>
 									<div class="panel-body">
 										<ul class="ltwt">
-											<li class="ltwt_tweet" ng-repeat="c in comments">
+											<li class="ltwt_tweet" ng-repeat="c in comments | orderBy: 'creationDate':true | limitTo:3">
 												<p class="ltwt_tweet_text">
 													{{c.value}}
 												</p>
@@ -175,7 +175,7 @@
 														<img src="assets/images/default-user.png" alt="" ng-if="!uploaderImages.queue.length && noImage">
 														<img ng-src="{{userInfo.avatar}}" alt="" ng-if="!uploaderImages.queue.length && !noImage">
 														<div ng-if="uploaderImages.queue.length" ng-repeat="item in uploaderImages.queue">
-														<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+															<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
 														</div>
 													</div>
 													<div class="user-image-buttons" ng-if="uploaderImages.queue.length">
@@ -246,6 +246,29 @@
 													</label>
 													<input class="form-control" placeholder="enter your city" type="text" name="city" ng-model="userInfo.city">
 												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">
+												Identity Card
+											</label>
+											<input type="text" placeholder="Enter your identity card" class="form-control" name="identityCard" ng-model="userInfo.identityCard">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												Birthday
+											</label>
+											<div class="input-group">
+												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="birthday" is-open="openDatePickers[0]" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="birthday">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-primary" ng-click="openTest($event,0)">
+														<i class="fa fa-calendar"></i>
+													</button>
+												</span>
 											</div>
 										</div>
 									</div>

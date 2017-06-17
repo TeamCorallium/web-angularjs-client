@@ -50,27 +50,27 @@
 										<div class="social-icons block">
 											<ul>
 												<li ng-show="userInfo.twitter != ''" data-placement="top" data-original-title="Twitter" class="social-twitter tooltips">
-													<a href="userInfo.twitter" target="_blank">
+													<a ng-click="goToLink(userInfo.twitter)" target="_blank">
 														Twitter
 													</a>
 												</li>
 												<li ng-show="userInfo.facebook != ''"  data-placement="top" data-original-title="Facebook" class="social-facebook tooltips">
-													<a href="userInfo.facebook" target="_blank">
+													<a ng-click="goToLink(userInfo.facebook)" target="_blank">
 														Facebook
 													</a>
 												</li>
 												<li ng-show="userInfo.google != ''"  data-placement="top" data-original-title="Google" class="social-google tooltips">
-													<a href="userInfo.google" target="_blank">
+													<a ng-click="goToLink(userInfo.google)" target="_blank">
 														Google+
 													</a>
 												</li>
 												<li ng-show="userInfo.linkedin != ''" data-placement="top" data-original-title="LinkedIn" class="social-linkedin tooltips">
-													<a href="userInfo.linkedin" target="_blank">
+													<a ng-click="goToLink(userInfo.linkedin)" target="_blank">
 														LinkedIn
 													</a>
 												</li>
 												<li ng-show="userInfo.github != ''" data-placement="top" data-original-title="Github" class="social-github tooltips">
-													<a href="userInfo.github" target="_blank">
+													<a ng-click="goToLink(userInfo.github)" target="_blank">
 														Github
 													</a>
 												</li>

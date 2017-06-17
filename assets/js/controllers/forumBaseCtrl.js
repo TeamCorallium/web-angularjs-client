@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
-    function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {
+app.controller('ForumBaseCtrl', ["$scope", "$rootScope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
+    function ($scope, $rootScope, $state, toaster, WebSocketService, localStorageService, RestService) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
@@ -15,7 +15,8 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
                 fullName: '',
                 projectId: '',
                 value: '',
-                creationDate: ''
+                creationDate: '',
+                avatar: ''
             };
             $scope.proposalsProject = [];
             $scope.proposalProjectTasks = [];
@@ -107,6 +108,7 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
                     $scope.comment.fullName = $scope.userNameCommentActive;
                     $scope.comment.projectId = localStorageService.get('currentProjectId');
                     $scope.comment.creationDate = new Date();
+                    $scope.comment.avatar = $rootScope.user.avatar;
 
                     var obj = {
                         type: 'COMMENT',

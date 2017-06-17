@@ -30,7 +30,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 mainLayout: 'assets/images/portfolio/image06.jpg',
                 category: '',
                 sector: '',
-                theme: '',
                 background: '',
                 beneficiaries: '',
                 ownerInvestedCapital: 0,

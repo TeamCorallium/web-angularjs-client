@@ -70,7 +70,7 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
         $scope.obj = new Flow();
 
         $scope.allActivities = '';
-        $scope.comments = '';
+        $scope.comments = [];
 
         $scope.getAllActivities = function () {
             RestService.fetchAllActivities(localStorageService.get('viewUserProfileId'))

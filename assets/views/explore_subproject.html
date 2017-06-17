@@ -3,7 +3,6 @@
     <section id="page-title">
         <div class="row">
             <div class="col-sm-8">
-                <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
                 <h1 class="mainTitle"></h1>
             </div>
             <div ncy-breadcrumb>{{currentProjectActive.projectName}}</div>
@@ -108,11 +107,11 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                     <div class="portfolio-info">
-                                        <div class="row">
+                                        <div class="row margin-top-15">
                                             <div class="col-md-12">
                                                 <ul class="pull-right">
                                                     <li>
-                                                        <i class="fa fa-calendar"></i> {{getCreationProject(currentProjectActive.creationDate)}}
+                                                        <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-tags"></i>
@@ -121,15 +120,23 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div class="row margin-top-15">
+                                            <div class="col-md-12">
+                                                <p>
+                                                    Owner:
+                                                    <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h4>Description</h4>
-                                    <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
-                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
+                                    <p class="taller margin-bottom-25"> Description: {{currentProjectActive.description}} </p>
+                                    <p class="taller margin-bottom-25"> Duration: {{currentProjectActive.estimateDuration}} weeks</p>
+                                    <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
                                                 <strong>Type:</strong>
                                             </p>
-                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                            <ul class="list list-skills icons list-unstyled">
                                                 <li>
                                                     <i class="fa fa-check text-primary"></i> {{categoryArray[currentProjectActive.category]}}
                                                 </li>
@@ -139,9 +146,9 @@
                                             <p>
                                                 <strong>Sector:</strong>
                                             </p>
-                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                            <ul class="list list-skills icons list-unstyled">
                                                 <li>
-                                                    <i class="fa fa-check text-primary"></i> {{categoryArray[currentProjectActive.sector]}}
+                                                    <i class="fa fa-check text-primary"></i> {{sectorArray[currentProjectActive.sector]}}
                                                 </li>
                                             </ul>
                                         </li>
@@ -212,6 +219,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
+                                        <li>
+                                            <p>
+                                                <strong>Outcomes:</strong>
+                                            </p>
+                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                                <li ng-repeat="outcome in currentProjectActive.outcomes">
+                                                    <i class="fa fa-check text-primary"></i> {{outcome.name}}
+                                                    <p>{{outcome.description}}</p>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="row">

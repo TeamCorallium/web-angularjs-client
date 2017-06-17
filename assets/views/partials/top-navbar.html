@@ -46,13 +46,13 @@
 		<li class="dropdown current-user" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged" >
 			<a href class="dropdown-toggle" uib-dropdown-toggle> <img ng-src="{{user.avatar}}" alt="">
 				<span class="username"> {{user.name}} <i class="ti-angle-down"></i></i></span> </a>
-			<ul class="dropdown-menu dropdown-dark">
+			<ul class="dropdown-menu dropdown-light">
 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.user" translate="topbar.user.PROFILE"> My Profile </a>
 				</li>
-				<li ng-click="navbarCollapsed = true">
+<!-- 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.calendar" translate="topbar.user.CALENDAR"> My Calendar </a>
-				</li>
+				</li> -->
 				<li ng-click="navbarCollapsed = true" ng-controller="TopNavBarCtrl">
 					<a translate="topbar.user.LOGOUT" ng-click="logout()"> Log Out </a>
 				</li>

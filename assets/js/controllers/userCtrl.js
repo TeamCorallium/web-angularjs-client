@@ -169,11 +169,11 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
 
             //Date picker
             $scope.today = function () {
-                $scope.birthday = new Date();
+                $scope.userInfo.birthday = new Date();
             };
             $scope.today();
 
-            $scope.start = $scope.startDate;
+            $scope.start = $scope.userInfo.birthdaye;
             $scope.end = $scope.maxDate;
 
             $scope.clear = function () {

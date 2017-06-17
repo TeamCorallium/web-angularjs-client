@@ -117,6 +117,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                             $scope.userInfo.skills = data[0].skills;
                             $scope.userInfo.experiencies = data[0].experiencies;
                             $scope.userInfo.previusWorks = data[0].previusWorks;
+                            $scope.userInfo.id = data[0].id;
 
                             if ($scope.userInfo.avatar == '') {
                                 $scope.noImage = true;

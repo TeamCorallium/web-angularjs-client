@@ -71,8 +71,9 @@ class UserHandler(tornado.web.RequestHandler):
                             'gender': user['gender'], 'city': user['city'], 
                             'twitter': user['twitter'], 'github': user['github'], 
                             'facebook': user['facebook'], 'linkedin': user['linkedin'],
-                            'google': user['google'], 'skype': user['skype']},
-                             eids=[user['id']])       
+                            'google': user['google'], 'skype': user['skype'],
+                            'birthday': user['birthday'], 'identityCard': user['identityCard']},
+                             eids=[user['id']])    
 
 class AllUsersExceptIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

@@ -7,7 +7,6 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
 
             $scope.allProjects = [];
             $scope.owner = '';
-            $scope.filter = '';
 
             $scope.getAllProjects = function () {
                 RestService.fetchSimpleProjects(localStorageService.get('viewUserProfileId'))

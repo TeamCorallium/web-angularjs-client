@@ -112,26 +112,44 @@
                                             <div class="col-md-12">
                                                 <ul class="pull-right">
                                                     <li>
-                                                        <i class="fa fa-calendar"></i> {{getCreationProject(currentProjectActive.creationDate)}}
+                                                        <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-tags"></i>
-                                                        <a href="#"> See reference list </a>
+                                                        <a> See reference list </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div class="row margin-top-15">
+                                            <div class="col-md-12">
+                                                <p>
+                                                    Owner:
+                                                    <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h4>Description</h4>
-                                    <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
-                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
+                                    <p class="taller margin-bottom-25"> Description: {{currentProjectActive.description}} </p>
+                                    <p class="taller margin-bottom-25"> Duration: {{currentProjectActive.estimateDuration}} weeks</p>
+                                    <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
                                                 <strong>Type:</strong>
                                             </p>
-                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                            <ul class="list list-skills icons list-unstyled">
                                                 <li>
                                                     <i class="fa fa-check text-primary"></i> {{categoryArray[currentProjectActive.category]}}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong>Sector:</strong>
+                                            </p>
+                                            <ul class="list list-skills icons list-unstyled">
+                                                <li>
+                                                    <i class="fa fa-check text-primary"></i> {{sectorArray[currentProjectActive.sector]}}
                                                 </li>
                                             </ul>
                                         </li>

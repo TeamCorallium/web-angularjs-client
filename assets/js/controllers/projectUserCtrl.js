@@ -8,6 +8,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
             $state.go('app.login.signin');
         } else {
             $scope.simpleProjects = [];
+            $scope.invertionsSimpleProjects = [];
 
             $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
@@ -17,6 +18,10 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                         .then(
                             function (data) {
                                 $scope.simpleProjects = data;
+
+                                for (var i =0; $scope.simpleProjects.length; i++) {
+                                    $scope.getInvertionCount($scope.simpleProjects[i].id);
+                                }
                             },
                             function (errResponse) {
                                 toaster.pop('error', 'Error', 'Server not available.');
@@ -27,6 +32,18 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
             };
 
             $scope.getProjects();
+
+            $scope.getInvertionCount = function (projectId) {
+                RestService.fetchInvertionByProjectId(projectId)
+                    .then(
+                        function (data) {
+                            $scope.invertionsSimpleProjects.push(data.length);
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 

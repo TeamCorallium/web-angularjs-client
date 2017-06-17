@@ -87,6 +87,8 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
 
         $scope.getAllActivities();
 
+        $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
         $scope.getProjectDate = function (date) {
             var dateTemp = new Date(date);
             var today = new Date();

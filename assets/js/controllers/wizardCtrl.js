@@ -123,6 +123,16 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 $scope.simpleProject.outcomes = $scope.outcomesSelection;
                 $scope.simpleProject.retributions = $scope.retributionsSelection;
 
+                //begin estimateDuration calculation. this must be on the server side
+                $scope.tasks.sort(function(a,b){a.startDate - b.startDate});
+                var length = $scope.tasks.length;
+                var timeDiff = Math.abs($scope.tasks[length-1].startDate - $scope.tasks[0].startDate);
+                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+                var duration = diffDays + parseInt($scope.tasks[length-1].duration);
+                console.log(duration);
+                $scope.simpleProject.estimateDuration = duration;
+                //end estimateDuration calculation
+
                 RestService.createSimpleProject($scope.simpleProject)
                     .then(
                         function (data) {
@@ -416,6 +426,10 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                         toaster.pop('warning', 'Error', 'Total cost must be greater than minimal cost.');
                         return false;
                     }
+                    if (parseInt($scope.simpleProject.minNumInves) > parseInt($scope.simpleProject.maxNumInves)) {
+                        toaster.pop('warning', 'Error', 'Max Number of Investors must be greater than minimal.');
+                        return false;
+                    }                    
                     if (parseInt($scope.simpleProject.minCapInves) > parseInt($scope.simpleProject.totalCost)) {
                         toaster.pop('warning', 'Error', 'Total cost must be greater than minimal capital investment.');
                         return false;

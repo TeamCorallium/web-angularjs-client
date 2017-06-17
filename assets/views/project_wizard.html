@@ -83,10 +83,7 @@
 														<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
 
 														<div nowrap>
-															<!-- 														<button type="button" class="btn btn-primary btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                                                                                                        <span class="glyphicon glyphicon-upload"></span> Upload
-                                                                                                                    </button> -->
-															<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
 																<span class="glyphicon glyphicon-trash"></span> Remove
 															</button>
 
@@ -711,32 +708,32 @@
 							</div>
 
 						</div>
-					</div>
-					<!-- end: WIZARD STEP 3 -->
-					<!-- start: WIZARD STEP 4 -->
-					<div id="step-4"  ng-show="currentStep == 4">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="text-center">
-									<h1 class=" ti-check block text-primary"></h1>
-									<h2 class="StepTitle">Congratulations!</h2>
-									<p class="text-large">
-										Your project is complete.
-									</p>
-									<p class="text-small">
-										We solemnly declare that the information provided for the Project Construction and published in my Project using Coralium System is true and correct. There will be no responsibility other than my own if any lost or damage is done as a result of this Project Execution.
-									</p>
-									<a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
-										Back to first step
-									</a>
-									<a class="btn btn-primary btn-o" href ng-click="createSimpleProject()">
-										Submit your project
-									</a>
+
+						<!-- end: WIZARD STEP 3 -->
+						<!-- start: WIZARD STEP 4 -->
+						<div id="step-4"  ng-show="currentStep == 4">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="text-center">
+										<h1 class=" ti-check block text-primary"></h1>
+										<h2 class="StepTitle">Congratulations!</h2>
+										<p class="text-large">
+											Your project is complete.
+										</p>
+										<div class="alert alert-block alert-warning">
+											We solemnly declare that the information provided for the Project Construction and published in my Project using Coralium System is true and correct. There will be no responsibility other than my own if any lost or damage is done as a result of this Project Execution.
+										</div>
+										<a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
+											Back to first step
+										</a>
+										<a class="btn btn-primary btn-o" href ng-click="createSimpleProject()">
+											Submit your project
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- end: WIZARD STEP 4 -->
+						<!-- end: WIZARD STEP 4 -->
 			</div>
 			<!-- <pre class="code margin-top-20">{{ myModel | json }}</pre> -->
 			</form>

@@ -29,8 +29,6 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
         print('userId: ' + userId)
 
         projects = table_simple_project.search((where('userId') == userId) | (where('userId') == int(userId)))
-        
-        print("Project len1: " + str(len(projects)))
 
         investions = table_invertion.search((where('userId') == userId) | (where('userId') == int(userId)))
         
@@ -44,8 +42,6 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
                 rp.append(p[0])
 
         self.write(json.dumps(rp))
-
-        print("Project len2: " + str(len(rp)))
         print(rp)
 
     def post(self):

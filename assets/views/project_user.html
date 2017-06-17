@@ -43,7 +43,7 @@
 									</span>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding margin-top-10 pull-right">
-									<button ng-show="project.state == 1 && projectRole(project.userId) != 'Financier' && invertionsSimpleProjects[$index] == 0" type="button" class="btn btn-danger btn-xs pull-right margin-left-5"
+									<button ng-show="project.state == 1 && projectRole(project.userId) == 'Owner' && project.inverted" type="button" class="btn btn-danger btn-xs pull-right margin-left-5"
 											ng-click="deleteProject(project.id)">
 										<span class="glyphicon glyphicon-trash"></span> Delete
 									</button>

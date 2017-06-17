@@ -46,6 +46,12 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
                         $scope.userInfo.password = data[0].password;
                         $scope.userInfo.projectsFollow = data[0].projectsFollow;
                         $scope.userInfo.id = data[0].id;
+                        $scope.userInfo.birthday = data[0].birthday;
+                        $scope.userInfo.identityCard = data[0].identityCard;
+                        $scope.userInfo.industries = data[0].industries;
+                        $scope.userInfo.skills = data[0].skills;
+                        $scope.userInfo.experiencies = data[0].experiencies;
+                        $scope.userInfo.previusWorks = data[0].previusWorks;
 
                         if ($scope.userInfo.avatar == '') {
                             $scope.noImage = true;

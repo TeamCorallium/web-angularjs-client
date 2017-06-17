@@ -73,8 +73,8 @@
 										<div uib-collapse="panel5" ng-init="panel5=true" class="panel-wrapper">
 											<div class="panel-body">
 												<div class="col-md-6">
-													<span class="btn btn-primary btn-o btn-file"> Select an image file
-													<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
+													<span class="btn btn-primary btn-file"> Select an image file
+														<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
 													</span>
 												</div>
 												<div class="col-md-6 file-upload" style="margin-bottom: 40px">
@@ -434,7 +434,7 @@
 												<div ng-controller="UploadCtrl2" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
 													<div ng-show="uploader.queue.length == 0">
 														<label>Upload a reference archive</label>
-														<span class="btn btn-primary btn-o btn-file pull-right"> Select a file
+														<span class="btn btn-primary btn-file pull-right"> Select a file
 													<input type="file" nv-file-select="" uploader="uploader" />
 													</span>
 													</div>
@@ -461,7 +461,7 @@
 										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
-													<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="addReference()">
+													<button class="btn btn-primary back-step btn-wide pull-right" ng-click="addReference()">
 														<i class="fa fa-circle-arrow-left"></i> Add reference
 													</button>
 												</div>
@@ -533,7 +533,7 @@
 										</div>
 										<div class="row">
 											<div class="col-md-12">
-												<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="addRisk()">
+												<button class="btn btn-primary back-step btn-wide pull-right" ng-click="addRisk()">
 													<i class="fa fa-circle-arrow-left"></i> Add
 												</button>
 											</div>
@@ -648,7 +648,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<br>
-													<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="addTask()">
+													<button class="btn btn-primary back-step btn-wide pull-right" ng-click="addTask()">
 														<i class="fa fa-circle-arrow-left"></i> Add task
 													</button>
 												</div>
@@ -723,10 +723,10 @@
 										<div class="alert alert-block alert-warning">
 											We solemnly declare that the information provided for the Project Construction and published in my Project using Coralium System is true and correct. There will be no responsibility other than my own if any lost or damage is done as a result of this Project Execution.
 										</div>
-										<a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
+										<a class="btn btn-primary" ng-click="form.goTo(Form, 1)">
 											Back to first step
 										</a>
-										<a class="btn btn-primary btn-o" href ng-click="createSimpleProject()">
+										<a class="btn btn-primary" ng-click="createSimpleProject()">
 											Submit your project
 										</a>
 									</div>
@@ -734,12 +734,12 @@
 							</div>
 						</div>
 						<!-- end: WIZARD STEP 4 -->
+					</div>
+					<!-- <pre class="code margin-top-20">{{ myModel | json }}</pre> -->
+				</form>
+				<!-- end: WIZARD FORM -->
 			</div>
-			<!-- <pre class="code margin-top-20">{{ myModel | json }}</pre> -->
-			</form>
-			<!-- end: WIZARD FORM -->
 		</div>
 	</div>
-</div>
 </div>
 <!-- start: WIZARD DEMO -->

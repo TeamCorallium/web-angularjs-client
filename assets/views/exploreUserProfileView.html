@@ -2,7 +2,7 @@
 	<section id="page-title">
 		<div class="row">
 			<div class="col-sm-8">
-				<h1 class="mainTitle" translate="sidebar.nav.pages.USERPROFILE">{{userInfo.fullName}} PROFILE</h1>
+				<h1 class="mainTitle">{{userInfo.fullName}} PROFILE</h1>
 			</div>
 			<div ncy-breadcrumb></div>
 		</div>
@@ -108,7 +108,7 @@
 										<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
 											<div class="panel-body">
 												<ul class="timeline-xs">
-													<li ng-repeat="activity in allActivities" class="timeline-item success">
+													<li ng-repeat="activity in allActivities | orderBy: 'date':true | limitTo:5" class="timeline-item success">
 														<div class="margin-left-15">
 															<div class="text-muted text-small">
 																{{getProjectDate(activity.date)}}
@@ -131,7 +131,7 @@
 										</div>
 										<div class="panel-body">
 											<ul class="ltwt">
-												<li class="ltwt_tweet" ng-repeat="comment in commments">
+												<li class="ltwt_tweet" ng-repeat="comment in comments | orderBy: 'creationDate':true | limitTo:2">
 													<p class="ltwt_tweet_text">
 														{{comment.value}}
 													</p>

@@ -122,7 +122,7 @@
 									<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
 										<div class="panel-body">
 											<ul class="timeline-xs">
-												<li ng-repeat="activity in allActivities | orderBy: 'date':true | limitTo:3" class="timeline-item warning">
+												<li ng-repeat="activity in allActivities | orderBy: 'date':true | limitTo:5" class="timeline-item warning">
 													<div class="margin-left-15">
 														<div class="text-muted text-small">
 															{{getProjectDate(activity.date)}}
@@ -145,7 +145,7 @@
 									</div>
 									<div class="panel-body">
 										<ul class="ltwt">
-											<li class="ltwt_tweet" ng-repeat="c in comments | orderBy: 'creationDate':true | limitTo:3">
+											<li class="ltwt_tweet" ng-repeat="c in comments | orderBy: 'creationDate':true | limitTo:2">
 												<p class="ltwt_tweet_text">
 													{{c.value}}
 												</p>

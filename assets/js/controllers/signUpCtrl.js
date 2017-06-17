@@ -21,7 +21,13 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             linkedin: '',
             google: '',
             skype: '',
-            phone: ''
+            phone: '',
+            dayBirth: '',
+            identityCard: '',
+            industries: '',
+            skills: '',
+            experiencies: '',
+            previusWorks: ''
         };
 
         $scope.password_again = '';

@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
-    function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {
+app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService", "$rootScope",
+    function ($scope, $state, toaster, WebSocketService, localStorageService, RestService, $rootScope) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
@@ -53,7 +53,8 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 state: '',
                 type: '',
                 deathLine: '',
-                date: ''
+                date: '',
+                avatar: ''
             };
 
             $scope.getTaskByProjectsId = function () {
@@ -75,6 +76,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 $scope.currentProposal.state = 'publish';
                 $scope.currentProposal.type = $scope.proposalType;
                 $scope.currentProposal.deathLine = $scope.deathLine;
+                $scope.currentProposal.avatar = $rootScope.user.avatar;
                 $scope.currentProposal.date = new Date();
 
                 if ($scope.proposalTitle != '' && $scope.proposalTitle != null) {
@@ -287,7 +289,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $scope.changeVisibilityItems = function () {
 
                 if ($scope.proposalType == 'Modified Task State') {
-                    // $scope.getTaskByProjectsId();
                     $scope.visibleModifiedTaskState = true;
                     $scope.visibleModifiedTaskOutcome = false;
                     $scope.visibleStartProject = false;
@@ -306,7 +307,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                     $scope.visibleModifiedTaskDuration = false;
                     $scope.visibleModifiedTaskStartDate = false;
                 } else if ($scope.proposalType == 'Modified Task Name') {
-                    // $scope.getTaskByProjectsId();
                     $scope.visibleModifiedTaskName = true;
                     $scope.visibleModifiedTaskOutcome = false;
                     $scope.visibleModifiedTaskCost = false;
@@ -316,7 +316,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                     $scope.visibleModifiedTaskDuration = false;
                     $scope.visibleModifiedTaskStartDate = false;
                 } else if ($scope.proposalType == 'Modified Task Description') {
-                    // $scope.getTaskByProjectsId();
                     $scope.visibleModifiedTaskDescription = true;
                     $scope.visibleModifiedTaskOutcome = false;
                     $scope.visibleModifiedTaskCost = false;
@@ -326,7 +325,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                     $scope.visibleModifiedTaskDuration = false;
                     $scope.visibleModifiedTaskStartDate = false;
                 } else if ($scope.proposalType == 'Modified Task Cost') {
-                    // $scope.getTaskByProjectsId();
                     $scope.visibleModifiedTaskCost = true;
                     $scope.visibleModifiedTaskOutcome = false;
                     $scope.visibleModifiedTaskDescription = false;
@@ -336,7 +334,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                     $scope.visibleModifiedTaskDuration = false;
                     $scope.visibleModifiedTaskStartDate = false;
                 } else if ($scope.proposalType == 'Modified Task Outcome') {
-                    // $scope.getTaskByProjectsId();
                     $scope.visibleModifiedTaskOutcome = true;
                     $scope.visibleModifiedTaskCost = false;
                     $scope.visibleModifiedTaskDescription = false;
@@ -346,7 +343,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                     $scope.visibleModifiedTaskDuration = false;
                     $scope.visibleModifiedTaskStartDate = false;
                 } else if ($scope.proposalType == 'Modified Task Duration') {
-                    // $scope.getTaskByProjectsId();
                     $scope.visibleModifiedTaskDuration = true;
                     $scope.visibleModifiedTaskOutcome = false;
                     $scope.visibleModifiedTaskCost = false;
@@ -356,7 +352,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                     $scope.visibleModifiedTaskState = false;
                     $scope.visibleModifiedTaskStartDate = false;
                 } else if ($scope.proposalType == 'Modified Task Start Date') {
-                    // $scope.getTaskByProjectsId();
                     $scope.visibleModifiedTaskStartDate = true;
                     $scope.visibleModifiedTaskDuration = false;
                     $scope.visibleModifiedTaskOutcome = false;

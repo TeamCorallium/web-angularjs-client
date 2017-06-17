@@ -20,10 +20,10 @@
 										Account Overview
 									</legend>
 									<div class="row col-xs-12 col-sm-3 col-md-3 col-lg-3">
-										<i class="ti-dribbble"></i><span class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong>Income:</strong></span><span class="pull-right">{{investmentCapitalProject}} $</span>
+										<i class="ti-dribbble"></i><span class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong>Income:</strong></span><span class="pull-right">{{income}} $</span>
 									</div>
 									<div class="row col-xs-12 col-sm-3 col-sm-offset-1 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1">
-										<i class="ti-apple"></i><span class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong>Outcome:</strong></span><span class="pull-right">0 $</span>
+										<i class="ti-apple"></i><span class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong>Outcome:</strong></span><span class="pull-right">{{outcome}} $</span>
 									</div>
 									<hr class="tall col-xs-10 visible-xs hidden-sm hidden-md hidden-lg">
 									<div class="row col-xs-12 col-sm-3 col-sm-offset-1 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1">
@@ -36,16 +36,18 @@
 									<thead>
 									<tr>
 										<th> Name </th>
-										<th> Type </th>
+										<th> Operation </th>
+										<th> Date </th>
 										<th class="text-right"> Total </th>
 										<th class="text-right"> Balance </th>
 									</tr>
 									</thead>
 									<tbody>
-									<tr ng-repeat="invertion in invertions">
-										<td> {{getUserName(invertion.userId)}} </td>
-										<td> Income </td>
-										<td class="text-right"> {{invertion.amount}} $</td>
+									<tr ng-repeat="transaction in transactions">
+										<td> {{getUserName(transaction.userId)}} </td>
+										<td> {{transaction.operation}} </td>
+										<td> {{getDateProject(transaction.date)}} </td>
+										<td class="text-right"> {{transaction.amount}} $</td>
 										<td class="text-right"> {{balance[$index]}} $</td>
 									</tr>
 									</tbody>

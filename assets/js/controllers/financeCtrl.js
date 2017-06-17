@@ -11,20 +11,29 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
             $scope.investmentCapitalProject = '';
             $scope.listAllUser = [];
             $scope.balance = [];
-            $scope.invertions = [];
+            $scope.transactions = [];
 
             $scope.investmentCapitalProject = 0;
+            $scope.income = 0;
+            $scope.outcome = 0;
 
             $scope.invertionsByProjectId = function () {
-                RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
+                RestService.fetchTransactionsByProjectId(localStorageService.get('currentProjectId'))
                     .then(
                         function (data) {
-                            $scope.invertions = data;
+                            $scope.transactions = data;
 
-                            for (var i = 0; i < $scope.invertions.length; i++) {
-                                $scope.investmentCapitalProject += parseInt($scope.invertions[i].amount);
+                            for (var i = 0; i < $scope.transactions.length; i++) {
+                                if($scope.transactions[i].operation == 'income'){
+                                    $scope.investmentCapitalProject += parseInt($scope.transactions[i].amount);
+                                    $scope.income += parseInt($scope.transactions[i].amount);
+                                } else {
+                                    $scope.investmentCapitalProject -= parseInt($scope.transactions[i].amount);
+                                    $scope.outcome += parseInt($scope.transactions[i].amount);
+                                }
+
                                 $scope.balance.push($scope.investmentCapitalProject);
-                                $scope.getUserData($scope.invertions[i].userId);
+                                $scope.getUserData($scope.transactions[i].userId);
                             }
                         },
                         function (errResponse) {
@@ -52,17 +61,17 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-            $scope.getDateProject = function (DateProject) {
-                var dateTemp = new Date(DateProject);
-                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
-            };
-
             $scope.getUserName = function (userId) {
                 for (var i = 0; i < $scope.listAllUser.length; i++) {
                     if ($scope.listAllUser[i].id == userId) {
                         return $scope.listAllUser[i].fullName;
                     }
                 }
+            };
+
+            $scope.getDateProject = function (date) {
+                var dateTemp = new Date(date);
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
             };
         }
     }]);

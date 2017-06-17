@@ -257,9 +257,10 @@
 									<h5>{{ pane.header }}</h5>
 								</v-pane-header>
 								<v-pane-content>
-									<p>
+								<div ng-bind-html="pane.content"></div>
+<!-- 									<p>
 										{{ pane.content }}
-									</p>
+									</p> -->
 <!-- 									<v-accordion ng-if="pane.subpanes">
 										<v-pane ng-repeat="subpane in pane.subpanes">
 											<v-pane-header>

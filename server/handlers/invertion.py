@@ -1,4 +1,5 @@
 from datetime import date
+import datetime
 import tornado.escape
 import tornado.ioloop
 import tornado.web
@@ -39,6 +40,7 @@ class InvertionHandler(tornado.web.RequestHandler):
         projectId = self.json_args['projectId']
         userId = self.json_args['userId']
         invertions = table_invertion.search((where('projectId') == projectId) & (where('userId') == userId))
+        transactionAmount = self.json_args['amount']
 
         if len(invertions) != 0:
             id = invertions[0]['id'];
@@ -52,6 +54,31 @@ class InvertionHandler(tornado.web.RequestHandler):
             self.write(str(id))
             print(id)
 
+        table_transaction.insert({'userId': userId, 'projectId': projectId, 
+                                  'amount': transactionAmount, 'operation': 'income', 
+                                  'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+
         table_simple_project.update({'inverted': True}, eids=[int(projectId)])
 
-        table_activity.insert({'userId': userId, 'title': 'Invertion', 'content': "You make an invertion", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+        table_activity.insert({'userId': userId, 'title': 'Invertion', 
+                               'content': "You make an invertion", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+
+class TransactionByProjectIdHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+    
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
+
+    def get(self, projectId):
+        print('TransactionByProjectIdHandler:GET!!!->prjectId:'+ projectId)
+
+        transactions = table_transaction.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+        self.write(json.dumps(transactions))
+
+        print(transactions)

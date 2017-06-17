@@ -5,8 +5,8 @@
 /**
  * controller for User Projects
  */
-app.controller('InvertionCtrl', ["$scope", "localStorageService", "RestService",
-    function ($scope, localStorageService, RestService) {
+app.controller('InvertionCtrl', ["$scope", "localStorageService", "RestService", "toaster",
+    function ($scope, localStorageService, RestService, toaster) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');

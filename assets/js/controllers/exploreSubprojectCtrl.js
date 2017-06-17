@@ -29,6 +29,8 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
 
             $scope.categoryArray = ['Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
 
+            $scope.sectorArray = ['', '', '', '', ''];
+
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
             $scope.getDateProject = function (date) {

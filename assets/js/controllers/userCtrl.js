@@ -156,8 +156,6 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 RestService.updateUser($scope.userInfo)
                     .then(
                         function(data) {
-                            console.log($scope.userInfo.birthday + " birthday");
-                            console.log($scope.userInfo.identityCard + " identityCard");
                             $rootScope.user.avatar = $scope.userInfo.avatar;
                             $rootScope.user.name =  $scope.userInfo.email.split("@")[0];
                             toaster.pop('success', 'Good!!!', 'User updated correctly.');
@@ -175,7 +173,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             };
             $scope.today();
 
-            $scope.start = $scope.startDate;
+            $scope.start = $scope.userInfo.birthdaye;
             $scope.end = $scope.maxDate;
 
             $scope.clear = function () {

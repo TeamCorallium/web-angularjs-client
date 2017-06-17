@@ -81,22 +81,22 @@
 
 													<div ng-repeat="item in uploaderImages.queue">
 														<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-														
-														<div nowrap>
-<!-- 														<button type="button" class="btn btn-primary btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-															<span class="glyphicon glyphicon-upload"></span> Upload
-														</button> -->
-														<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-															<span class="glyphicon glyphicon-trash"></span> Remove
-														</button>
 
-														<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-														</div>											
+														<div nowrap>
+															<!-- 														<button type="button" class="btn btn-primary btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                                                                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                                                                                                    </button> -->
+															<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+																<span class="glyphicon glyphicon-trash"></span> Remove
+															</button>
+
+															<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+														</div>
 													</div>
-												</div>					
+												</div>
 											</div>
 										</div>
-									</div>		
+									</div>
 								</div>
 							</div>
 							<div class="row">
@@ -119,7 +119,7 @@
 																		Project Name <span class="symbol required"></span>
 																	</label>
 																	<input type="text" placeholder="Enter your Project Name" class="form-control" name="projectName" ng-model="simpleProject.projectName" ng-required="currentStep == 1"/>
-																</div>							
+																</div>
 															</div>
 															<div class="col-md-4">
 																<div class="form-group" ng-class="{'has-error':Form.category.$dirty && Form.category.$invalid, 'has-success':Form.category.$valid}">
@@ -155,7 +155,7 @@
 																		<option value="8">Other</option>
 																	</select>
 																</div>
-															</div>							
+															</div>
 														</div>
 														<div class="row">
 															<div class="col-md-4">
@@ -165,7 +165,7 @@
 																	</label>
 
 																	<textarea placeholder="Enter your project description" class="form-control autosize msd-elastic: \n;" data-ng-model="simpleProject.description" name="description" ng-required="currentStep == 1"></textarea>
-																</div>														
+																</div>
 															</div>
 															<div class="col-md-4">
 																<div class="form-group" ng-class="{'has-error':Form.background.$dirty && Form.background.$invalid, 'has-success':Form.background.$valid}">
@@ -183,12 +183,12 @@
 																	</label>
 
 																	<textarea placeholder="Enter your project beneficiaries" class="form-control autosize msd-elastic: \n;" data-ng-model="simpleProject.beneficiaries" name="beneficiaries" ng-required="currentStep == 1"></textarea>
-																</div>			
-															</div>		
-														</div>										
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
-											</div>										
+											</div>
 										</div>
 									</div>
 									<div class="row">
@@ -206,30 +206,30 @@
 																	<li class="list-group-item" ng-repeat="obj in simpleProject.objetives">
 																		{{obj}}
 																		<button type="button" class="btn btn-danger btn-xs pull-right" ng-click="removeObjetive(obj)">
-																		<span class="glyphicon glyphicon-trash"></span>Remove
+																			<span class="glyphicon glyphicon-trash"></span>Remove
 																		</button>
 																	</li>
 																</ul>
 															</div>
-														</div>										
+														</div>
 														<div class="panel panel-white" id="panel51">
 															<div class="panel-heading">
 																<!-- <h5 class="text-primary">Add</h5> -->
 																<ct-paneltool class="panel-tools" tool-collapse="tool-collapse"></ct-paneltool>
-															</div>									
+															</div>
 															<div uib-collapse="panel51" ng-init="panel51=false" class="panel-wrapper">
 																<div class="panel-body">
 
-																<div class="form-group">
-																	<textarea placeholder="Objetive" class="form-control autosize msd-elastic: \n;" data-ng-model="objetive" name="objetive"></textarea>
-																</div>															
-																<a class="btn btn-wide btn-primary pull-right" ng-click="addObjetive()"><i class="fa fa-plus"></i> Add</a>
+																	<div class="form-group">
+																		<textarea placeholder="Objetive" class="form-control autosize msd-elastic: \n;" data-ng-model="objetive" name="objetive"></textarea>
+																	</div>
+																	<a class="btn btn-wide btn-primary pull-right" ng-click="addObjetive()"><i class="fa fa-plus"></i> Add</a>
 																</div>
 															</div>
-														</div>													
+														</div>
 													</div>
 												</div>
-											</div>										
+											</div>
 										</div>
 									</div>
 									<div class="row">
@@ -241,14 +241,14 @@
 												</div>
 												<div uib-collapse="panel60" ng-init="panel60=true" class="panel-wrapper">
 													<div class="panel-body">
-													{{simpleProject.ownerInvestedCapital}} $
-													<a class="btn btn-wide btn-primary pull-right" ng-click=""><i class="fa fa-plus"></i> Make a transaction</a>	
+														{{simpleProject.ownerInvestedCapital}} $
+														<a class="btn btn-wide btn-primary pull-right" ng-click=""><i class="fa fa-plus"></i> Make a transaction</a>
 
 													</div>
 												</div>
-											</div>										
+											</div>
 										</div>
-									</div>									
+									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="panel panel-white" id="panel10">
@@ -306,7 +306,7 @@
 														</div>
 													</div>
 												</div>
-											</div>									
+											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="panel panel-white" id="panel11">
@@ -358,7 +358,7 @@
 														</div>
 													</div>
 												</div>
-											</div>										
+											</div>
 										</div>
 									</div>
 									<div class="row">
@@ -377,14 +377,14 @@
 																		Outcomes
 																	</label>
 																	<div ng-repeat="outcome in outcomes">
-																      	<div class="checkbox clip-check check-primary">
-																	        <input type="checkbox" id="{{outcome}}" value="{{outcome}}" ng-checked="outcomesSelection.indexOf(outcome) > -1" ng-click="toggleOutcomeSelection(outcome)"> 					
-																	        <label for="{{outcome}}">
+																		<div class="checkbox clip-check check-primary">
+																			<input type="checkbox" id="{{outcome}}" value="{{outcome}}" ng-checked="outcomesSelection.indexOf(outcome) > -1" ng-click="toggleOutcomeSelection(outcome)">
+																			<label for="{{outcome}}">
 																				{{outcome.name}}
 																			</label>
-																      	</div>
+																		</div>
 																		<textarea ng-show="outcomesSelection.indexOf(outcome) > -1" placeholder="Enter the outcome description" class="form-control autosize msd-elastic: \n;" ng-model="outcome.description"></textarea>
-																    </div>	
+																	</div>
 																</div>
 
 															</div>
@@ -394,24 +394,24 @@
 																		Retribution Ways
 																	</label>
 																	<div ng-repeat="retribution in retributions">
-																      	<div class="checkbox clip-check check-primary">
-																        <input type="checkbox" id="{{retribution}}" value="{{retribution}}" ng-checked="retributionsSelection.indexOf(retribution) > -1" ng-click="toggleRetributionSelection(retribution)"> 					
-																        <label for="{{retribution}}">
-																			{{retribution.name}}
-																		</label>
-																      	</div>
+																		<div class="checkbox clip-check check-primary">
+																			<input type="checkbox" id="{{retribution}}" value="{{retribution}}" ng-checked="retributionsSelection.indexOf(retribution) > -1" ng-click="toggleRetributionSelection(retribution)">
+																			<label for="{{retribution}}">
+																				{{retribution.name}}
+																			</label>
+																		</div>
 																		<textarea ng-show="retributionsSelection.indexOf(retribution) > -1" placeholder="Enter the retribution description" class="form-control autosize msd-elastic: \n;"ng-model="retribution.description"></textarea>
-																	</div>													      
+																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-											</div>												
+											</div>
 										</div>
 									</div>
 									<div class="form-group">
-										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -436,29 +436,29 @@
 												<hr>
 												<div ng-controller="UploadCtrl2" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
 													<div ng-show="uploader.queue.length == 0">
-													<label>Upload a reference archive</label>
-													<span class="btn btn-primary btn-o btn-file pull-right"> Select a file
+														<label>Upload a reference archive</label>
+														<span class="btn btn-primary btn-o btn-file pull-right"> Select a file
 													<input type="file" nv-file-select="" uploader="uploader" />
 													</span>
-													</div>		
+													</div>
 													<div ng-show="uploader.queue.length != 0" ng-repeat="item in uploader.queue">
 														<strong>File name: {{item.file.name}}</strong>
 														<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-														
+
 														<div nowrap>
-														<button type="button" class="btn btn-danger btn-xs pull-right" ng-click="item.remove()">
-															<span class="glyphicon glyphicon-trash"></span> Remove
-														</button>
-														</div>											
+															<button type="button" class="btn btn-danger btn-xs pull-right" ng-click="item.remove()">
+																<span class="glyphicon glyphicon-trash"></span> Remove
+															</button>
+														</div>
 													</div>
 												</div>
-												<hr>													
+												<hr>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Description</label>
 													<textarea placeholder="Enter reference description" class="form-control autosize msd-elastic: \n;" data-ng-model="reference.description"></textarea>
-												</div>										
+												</div>
 											</div>
 										</div>
 										<div class="row">
@@ -516,8 +516,8 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Probability</label>
-													<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="risk.probability" >	
-												</div>											
+													<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="risk.probability" >
+												</div>
 											</div>
 										</div>
 										<div class="row">
@@ -531,14 +531,14 @@
 												<div class="form-group">
 													<label>Actions to mitigate risk</label>
 													<textarea placeholder="Actions to mitigate risk" class="form-control autosize msd-elastic: \n;" data-ng-model="risk.mitigate"></textarea>
-												</div>												
+												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-12">
-													<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="addRisk()">
-														<i class="fa fa-circle-arrow-left"></i> Add
-													</button>												
+												<button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="addRisk()">
+													<i class="fa fa-circle-arrow-left"></i> Add
+												</button>
 											</div>
 										</div>
 										<hr>
@@ -568,10 +568,10 @@
 										</div>
 									</fieldset>
 									<div class="form-group">
-										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">
-											<i class="fa fa-circle-arrow-left"></i> Back
+										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-wide next-step">
+											<i class="fa fa-arrow-circle-left"></i> Back
 										</button>
-										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -610,14 +610,14 @@
 												<div class="form-group">
 													<label>Description</label>
 													<textarea placeholder="Enter task description" class="form-control autosize msd-elastic: \n;" ng-model="task.description"></textarea>
-												</div>											
+												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>
 														Outcome
 													</label>
-													<textarea placeholder="Declare outcomes" class="form-control autosize msd-elastic: \n;" ng-model="task.outcome"></textarea>							
+													<textarea placeholder="Declare outcomes" class="form-control autosize msd-elastic: \n;" ng-model="task.outcome"></textarea>
 												</div>
 											</div>
 										</div>
@@ -631,8 +631,8 @@
 														<button type="button" class="btn btn-primary" ng-click="startOpen()">
 															<i class="fa fa-calendar"></i>
 														</button> </span>
-													</div>													
-												</div>						
+													</div>
+												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
@@ -655,7 +655,7 @@
 														<i class="fa fa-circle-arrow-left"></i> Add task
 													</button>
 												</div>
-											</div>																	
+											</div>
 										</div>
 										<hr>
 										<div class="row" ng-show="tasks.length != 0">
@@ -688,61 +688,61 @@
 										</div>
 										<div class="row">
 											<div class="col-md-12">
-											<div ng-show="tasks.length != 0">
-											<button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
-											</div>
-											<div id="gantt_here"></div>
-											<div ng-show="tasks.length == -1" id="gantt_hide"></div>
+												<div ng-show="tasks.length != 0">
+													<button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
+												</div>
+												<div id="gantt_here"></div>
+												<div ng-show="tasks.length == -1" id="gantt_hide"></div>
 											</div>
 										</div>
-										
-										
+
+
 									</fieldset>
 
 									<div class="form-group">
-										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">
-											<i class="fa fa-circle-arrow-left"></i> Back
+										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-wide next-step">
+											<i class="fa fa-arrow-circle-left"></i> Back
 										</button>
-										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
 								</div>
 							</div>
-								
-							</div>
+
 						</div>
-						<!-- end: WIZARD STEP 3 -->
-						<!-- start: WIZARD STEP 4 -->
-						<div id="step-4"  ng-show="currentStep == 4">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="text-center">
-										<h1 class=" ti-check block text-primary"></h1>
-										<h2 class="StepTitle">Congratulations!</h2>
-										<p class="text-large">
-											Your project is complete.
-										</p>
-										<p class="text-small">
-											We solemnly declare that the information provided for the Project Construction and published in my Project using Coralium System is true and correct. There will be no responsibility other than my own if any lost or damage is done as a result of this Project Execution.
-                                        </p>
-										<a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
-											Back to first step
-										</a>
-										<a class="btn btn-primary btn-o" href ng-click="createSimpleProject()">
-											Submit your project
-										</a>
-									</div>
+					</div>
+					<!-- end: WIZARD STEP 3 -->
+					<!-- start: WIZARD STEP 4 -->
+					<div id="step-4"  ng-show="currentStep == 4">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="text-center">
+									<h1 class=" ti-check block text-primary"></h1>
+									<h2 class="StepTitle">Congratulations!</h2>
+									<p class="text-large">
+										Your project is complete.
+									</p>
+									<p class="text-small">
+										We solemnly declare that the information provided for the Project Construction and published in my Project using Coralium System is true and correct. There will be no responsibility other than my own if any lost or damage is done as a result of this Project Execution.
+									</p>
+									<a class="btn btn-primary btn-o" href ng-click="form.goTo(Form, 1)">
+										Back to first step
+									</a>
+									<a class="btn btn-primary btn-o" href ng-click="createSimpleProject()">
+										Submit your project
+									</a>
 								</div>
 							</div>
 						</div>
-						<!-- end: WIZARD STEP 4 -->
 					</div>
-					<!-- <pre class="code margin-top-20">{{ myModel | json }}</pre> -->
-				</form>
-				<!-- end: WIZARD FORM -->
+					<!-- end: WIZARD STEP 4 -->
 			</div>
+			<!-- <pre class="code margin-top-20">{{ myModel | json }}</pre> -->
+			</form>
+			<!-- end: WIZARD FORM -->
 		</div>
 	</div>
+</div>
 </div>
 <!-- start: WIZARD DEMO -->

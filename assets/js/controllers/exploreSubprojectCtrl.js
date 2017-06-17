@@ -5,9 +5,6 @@
 app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
 
-        if (!localStorageService.get('isLogged')) {
-            $state.go('app.login.signin');
-        } else {
             $scope.currentProjectActive = '';
             $scope.owner = '';
 
@@ -98,5 +95,4 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
             };
 
             $scope.invertionByProjectId();
-        }
     }]);

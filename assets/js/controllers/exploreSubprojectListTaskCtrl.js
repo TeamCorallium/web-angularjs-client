@@ -4,9 +4,6 @@
  */
 app.controller('ExploreSubprojectListTaskCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
-        if (!localStorageService.get('isLogged')) {
-            $state.go('app.login.signin');
-        } else {
 
             $scope.currentProjectActive = '';
             $scope.tasksFiltreInPreparation = [];
@@ -63,5 +60,4 @@ app.controller('ExploreSubprojectListTaskCtrl', ["$scope", "localStorageService"
                 var dateTemp = new Date(date);
                 return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
             };
-        }
     }]);

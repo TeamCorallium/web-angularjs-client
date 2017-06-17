@@ -4,9 +4,6 @@
  */
 app.controller('ExploreTaskDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
-        if (!localStorageService.get('isLogged')) {
-            $state.go('app.login.signin');
-        } else {
 
             $scope.currentTaskActive = '';
             $scope.currentProjectActive = '';
@@ -58,5 +55,4 @@ app.controller('ExploreTaskDetailCtrl', ["$scope", "localStorageService", "RestS
                 dat.setDate(dat.getDate() + duration);
                 return $scope.getProjectDate(dat);
             };
-        }
     }]);

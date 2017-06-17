@@ -14,7 +14,7 @@
 						<li class="media"  ng-repeat="user in connectedUsers">
 							<a ct-toggle="on" target="users" href ng-click="setOtherId(user.id)">
 								<i class="fa fa-circle status-online"></i>
-								<img alt="..." src="assets/images/default-user.png" class="media-object">
+								<img alt="..." ng-src="{{user.avatar}}" class="media-object">
 								<div class="media-body">
 									<h4 class="media-heading">{{user.fullName}}</h4>
 									<span> Owner </span>

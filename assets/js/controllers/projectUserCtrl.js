@@ -19,7 +19,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                             function (data) {
                                 $scope.simpleProjects = data;
 
-                                for (var i =0; $scope.simpleProjects.length; i++) {
+                                for (var i =0; i < $scope.simpleProjects.length; i++) {
                                     $scope.getInvertionCount($scope.simpleProjects[i].id);
                                 }
                             },

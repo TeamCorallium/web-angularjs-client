@@ -16,6 +16,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         function (data) {
                             $scope.currentProjectActive = data[0];
                             $scope.invertionByProjectId();
+                            $scope.getOwnerData();
                         },
                         function (errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');
@@ -28,7 +29,9 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
             $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
-            $scope.categoryArray = ['Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
+            $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
+
+            $scope.sectorArray = ['', 'Agriculture', 'Industry', 'Technology', 'Engineering','Real State', 'Academic', 'Food industry', 'Other'];
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -53,8 +56,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                                 tasks.data[i].text = tasks.data[i].name;
                                 tasks.data[i].start_date = new Date(tasks.data[i].startDate);
                                 tasks.data[i].end_date = '';
-                                console.log(tasks.data[i].start_date);
-                                console.log(tasks.data[i].end_date);
                             }
 
                             $scope.ganttStart("gantt_here");
@@ -71,6 +72,18 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             };
 
             $scope.getTaskByProjectsId();
+
+            $scope.getOwnerData = function () {
+                RestService.fetchUser($scope.currentProjectActive.userId)
+                    .then(
+                        function (data) {
+                            $scope.owner = data[0];
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
             $scope.projectRole = function (userId) {
                 if (localStorageService.get('currentUserId') == userId) {
@@ -115,6 +128,11 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             $scope.goToUpdateTask = function (taskId) {
                 localStorageService.set('currentTaskId', taskId);
                 $state.go('app.project.modified_task');
+            };
+
+            $scope.goToExploreUserProfile = function (userId) {
+                localStorageService.set('viewUserProfileId', userId);
+                $state.go('app.pages.exploreuser');
             };
 
 //begin Gantt

@@ -116,7 +116,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                             $scope.userInfo.skype = data[0].skype;
                             $scope.userInfo.password = data[0].password;
                             $scope.userInfo.projectsFollow = data[0].projectsFollow;
-                            $scope.userInfo.birthday = data[0].birthday;
+                            $scope.userInfo.birthday = new Date(data[0].birthday);
                             $scope.userInfo.identityCard = data[0].identityCard;
                             $scope.userInfo.industries = data[0].industries;
                             $scope.userInfo.skills = data[0].skills;
@@ -176,9 +176,10 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             $scope.today = function () {
                 $scope.userInfo.birthday = new Date();
             };
+
             $scope.today();
 
-            $scope.start = $scope.userInfo.birthdaye;
+            $scope.start = $scope.userInfo.birthday;
             $scope.end = $scope.maxDate;
 
             $scope.clear = function () {
@@ -209,7 +210,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 minDate: $scope.minDate,
                 maxDate: $scope.maxDate
             };
-// Disable weekend selection
+            // Disable weekend selection
             function disabled(data) {
                 var date = data.date, mode = data.mode;
                 return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
@@ -218,10 +219,12 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             $scope.setDate = function (year, month, day) {
                 $scope.userInfo.birthday = new Date(year, month, day);
             };
+
             $scope.toggleMin = function () {
                 $scope.datepickerOptions.minDate = $scope.datepickerOptions.minDate ? null : new Date();
                 $scope.dateDisabledOptions.minDate = $scope.dateDisabledOptions.minDate ? null : new Date();
             };
+
             $scope.maxDate = new Date(2020, 5, 22);
             $scope.minDate = new Date(1970, 12, 31);
 

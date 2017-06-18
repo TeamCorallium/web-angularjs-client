@@ -121,7 +121,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="row margin-top-15">
+                                        <div class="row margin-top-15" ng-show="projectRole(owner.id) == 'Financier'">
                                             <div class="col-md-12">
                                                 <p>
                                                     Owner:
@@ -130,12 +130,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="taller margin-bottom-25"> Description: {{currentProjectActive.description}} </p>
+                                    <div class="row col-md-12">
+                                        <p class="taller"> Description: </p>
+                                        <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
+                                    </div>
                                     <p class="taller margin-bottom-25"> Duration: {{currentProjectActive.estimateDuration}} weeks</p>
                                     <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
-                                                <strong>Type:</strong>
+                                                Type:
                                             </p>
                                             <ul class="list list-skills icons list-unstyled">
                                                 <li>
@@ -145,7 +148,7 @@
                                         </li>
                                         <li>
                                             <p>
-                                                <strong>Sector:</strong>
+                                                Sector:
                                             </p>
                                             <ul class="list list-skills icons list-unstyled">
                                                 <li>
@@ -235,9 +238,9 @@
                                     <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
-                                                <strong>Outcomes:</strong>
+                                                Outcomes:
                                             </p>
-                                            <ul class="list list-skills icons list-unstyled">
+                                            <ul class="list list-skills icons list-unstyled list-inline">
                                                 <li ng-repeat="outcome in currentProjectActive.outcomes">
                                                     <i class="fa fa-check text-primary"></i> {{outcome.name}}
                                                     <p>{{outcome.description}}</p>
@@ -250,9 +253,9 @@
                                     <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
-                                                <strong>Retributions ways:</strong>
+                                                Retributions ways:
                                             </p>
-                                            <ul class="list list-skills icons list-unstyled">
+                                            <ul class="list list-skills icons list-unstyled list-inline">
                                                 <li ng-repeat="retribution in currentProjectActive.retributions">
                                                     <i class="fa fa-check text-primary"></i> {{retribution.name}}
                                                     <p>{{retribution.description}}</p>

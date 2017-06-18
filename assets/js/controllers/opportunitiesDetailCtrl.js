@@ -20,6 +20,8 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                     .then(
                         function (data) {
                             $scope.currentProjectActive = data[0];
+
+                            $scope.getOwnerData();
                         },
                         function (errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');
@@ -47,7 +49,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             $scope.getTaskByProjectsId();
 
             $scope.getOwnerData = function () {
-                RestService.fetchUser(localStorageService.get('currentUserId'))
+                RestService.fetchUser($scope.currentProjectActive.userId)
                     .then(
                         function (data) {
                             $scope.owner = data[0];
@@ -58,23 +60,11 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                     );
             };
 
-            $scope.getOwnerData();
-
-            $scope.getUserName = function (userId) {
-                RestService.fetchUser(userId)
-                    .then(
-                        function (data) {
-                            $scope.listUserOwners.push(data[0].fullName);
-                        },
-                        function (errResponse) {
-                            console.log(errResponse);
-                        }
-                    );
-            };
-
             $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
-            $scope.categoryArray = ['Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
+            $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
+
+            $scope.sectorArray = ['', 'Agriculture', 'Industry', 'Technology', 'Engineering','Real State', 'Academic', 'Food industry', 'Other'];
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -165,6 +155,11 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             $scope.goToOpportunitiesTask = function (taskId) {
                 localStorageService.set('currentTaskId', taskId);
                 $state.go('app.project.opportunities_task_detail');
+            };
+
+            $scope.goToExploreUserProfile = function (userId) {
+                localStorageService.set('viewUserProfileId', userId);
+                $state.go('app.pages.exploreuser');
             };
         }
     }]);

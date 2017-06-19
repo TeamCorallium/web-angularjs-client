@@ -9,7 +9,13 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $state.go('app.login.signin');
         } else {
             $scope.tasks = [];
-            $scope.selectedTask = '';
+            $scope.selectedTaskState = '';
+            $scope.selectedTaskName = '';
+            $scope.selectedTaskDescription = '';
+            $scope.selectedTaskStartDate = '';
+            $scope.selectedTaskOutcome = '';
+            $scope.selectedTaskDuration = '';
+            $scope.selectedTaskCost = '';
 
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -403,6 +409,70 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
             $scope.getValueIndex = function () {
                 return $scope.currentTaskActive.state;
+            };
+
+            $scope.proposal = {
+                title: '',
+                type: '',
+                deathLine: '',
+                itemSubject: '',
+                itemContent: ''
+            };
+
+            $scope.listProposal = [];
+
+            $scope.addProposal = function () {
+                var currentProposal = {
+                    title: $scope.proposalTitle,
+                    type: $scope.proposalType,
+                    deathLine: $scope.deathLine,
+                    itemSubject: {
+                        name: '',
+                        description: '',
+                        cost: '',
+                        outcome: '',
+                        startDate: '',
+                        duration: '',
+                        state: ''
+                    },
+                    itemContent: ''
+                };
+
+                if ($scope.proposalType == 'Modified Task State') {
+                    currentProposal.itemSubject = $scope.selectedTaskState;
+                    currentProposal.itemContent = $scope.taskState;
+                } else if ($scope.proposalType == 'Modified Task Name') {
+                    currentProposal.itemSubject = $scope.selectedTaskName;
+                    currentProposal.itemContent = $scope.taskName;
+                } else if ($scope.proposalType == 'Modified Task Description') {
+                    currentProposal.itemSubject = $scope.selectedTaskDescription;
+                    currentProposal.itemContent = $scope.taskDescription;
+                } else if ($scope.proposalType == 'Modified Task Cost') {
+                    currentProposal.itemSubject = $scope.selectedTaskCost;
+                    currentProposal.itemContent = $scope.taskCost;
+                } else if ($scope.proposalType == 'Modified Task Outcome') {
+                    currentProposal.itemSubject = $scope.selectedTaskOutcome;
+                    currentProposal.itemContent = $scope.outcome;
+                } else if ($scope.proposalType == 'Modified Task Duration') {
+                    currentProposal.itemSubject = $scope.selectedTaskDuration;
+                    currentProposal.itemContent = $scope.duration;
+                } else if ($scope.proposalType == 'Modified Task Start Date') {
+                    currentProposal.itemSubject = $scope.selectedTaskStartDate;
+                    currentProposal.itemContent = $scope.startDate;
+                } else if ($scope.proposalType == 'Start Project') {
+                    currentProposal.itemSubject = '-';
+                    currentProposal.itemContent = $scope.proposalContent;
+                }
+
+                $scope.listProposal.push(currentProposal);
+            };
+
+            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+            $scope.getProjectDate = function (date) {
+                var dateTemp = new Date(date);
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
             };
         }
     }]);

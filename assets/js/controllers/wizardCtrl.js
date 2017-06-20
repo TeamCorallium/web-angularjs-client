@@ -23,7 +23,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 totalCost: '',
                 minimalCost: '',
                 estimateDuration: '', //calculable from tasks
-                state: '', //1->In Preparation 2->On time 3->Best than Expected 4-Delayed 5->Finished
+                state: '', //0->Under Construction 1->In Preparation 2->On time 3->Best than Expected 4-Delayed 5->Finished
                 deathLine: '',
                 totalRevenue: '',
                 revenueOwner: '',
@@ -75,6 +75,8 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                         .then(
                             function (data) {
                                 $scope.simpleProject = data[0];
+                                $scope.simpleProject.deathLine = new Date($scope.simpleProject.deathLine);
+
                                 for (var i = 0; i < $scope.simpleProject.outcomes.length; i++) {
                                     var name = $scope.simpleProject.outcomes[i].name;
                                     var description = $scope.simpleProject.outcomes[i].description;
@@ -97,10 +99,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                                         }
                                     }
                                 }
-                                console.log($scope.simpleProject.outcomes);
-                                console.log($scope.outcomes);
-                                console.log($scope.simpleProject.retributions);
-                                console.log($scope.retributions);
                             },
                             function (errResponse) {
                                 toaster.pop('error', 'Error', 'Server not available.');

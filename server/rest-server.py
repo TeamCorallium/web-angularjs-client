@@ -121,7 +121,9 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                     percent += int(v['percent'])
 
             if percent > 50:
-                for userId in interestedUserIds:
+                pList = proposal['proposalList']
+
+                for prop in pList:
                     content = ''
                     taskField = ''
                     if proposal['type'] == 'Start Project':
@@ -150,8 +152,9 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                             content = 'A task duration was modified'
                             taskField = 'duration'  
 
-                        table_task.update({taskField: proposalContent}, eids=[proposal['itemSubject']])                              
-
+                        table_task.update({taskField: proposalContent}, eids=[proposal['itemSubject']])                      
+                
+                for userId in interestedUserIds:                             
                     table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                             'subject': proposal['itemSubject'], 'content': content})
                     for c in clients:

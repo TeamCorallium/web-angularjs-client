@@ -6,6 +6,7 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
     function ($scope, localStorageService, RestService, $state, toaster) {
 
         $scope.noImage = false;
+        $scope.allProjects = '';
 
         $scope.userInfo = {
             fullName: '',
@@ -137,4 +138,18 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
         };
 
         $scope.getAllComments();
+
+        $scope.getAllProjects = function () {
+            RestService.fetchSimpleProjects(localStorageService.get('viewUserProfileId'))
+                .then(
+                    function(data) {
+                        $scope.allProjects =  data;
+                    },
+                    function(errResponse){
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.getAllProjects();
     }]);

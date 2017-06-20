@@ -99,4 +99,12 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
             localStorageService.set('viewUserProfileId', userId);
             $state.go('app.pages.exploreuser');
         };
+
+        $scope.getRole = function (userId) {
+          if (localStorageService.get('currentUserId') == userId) {
+                return 'Owner';
+          }
+
+          return 'Financier';
+        };
     }]);

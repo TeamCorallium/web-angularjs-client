@@ -73,9 +73,9 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             for invertion in invertions:
                 interestedUserIds.append(invertion['userId'])
 
-            proposalType = self.json_args['value']['type']
+            notificationType = 'NEW PROPOSAL'
             for userId in interestedUserIds:
-                table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': proposalType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                             'subject': "Creation", 'content': "New proposal was created"})
                 for c in clients:
                     if int(c.id) == int(userId):

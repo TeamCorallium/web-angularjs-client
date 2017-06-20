@@ -10,7 +10,6 @@ function ($scope, $rootScope, FileUploader, RestService) {
     });
 
     // FILTERS
-
     uploaderImages.filters.push({
         name: 'imageFilter',
         fn: function (item/*{File|FileLikeObject}*/, options) {
@@ -19,6 +18,11 @@ function ($scope, $rootScope, FileUploader, RestService) {
         }
     });
 
+    $rootScope.$on('imageRemoved', function(event, opt) {
+        uploaderImages.clearQueue();
+        console.log('imageRemoved');
+    }); 
+    
     // CALLBACKS
 
     uploaderImages.onWhenAddingFileFailed = function (item/*{File|FileLikeObject}*/, filter, options) {
@@ -129,7 +133,6 @@ function ($scope, $rootScope, FileUploader, RestService) {
     });
 
     // FILTERS
-
     uploaderImages.filters.push({
         name: 'imageFilter',
         fn: function (item/*{File|FileLikeObject}*/, options) {

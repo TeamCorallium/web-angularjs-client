@@ -25,8 +25,8 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 minNumInves: '',
                 maxNumInves: '',
                 minCapInves: '',
-                outcomes: '',
-                retributions: '',
+                outcomes: [],
+                retributions: [],
                 mainLayout: 'assets/images/portfolio/image06.jpg',
                 category: '',
                 sector: '',
@@ -64,48 +64,105 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 file: ''
             };
 
+            $scope.getProjectById = function () {
+                if(localStorageService.get('currentProjectId') != '') {
+                    RestService.fetchProjectById(localStorageService.get('currentProjectId'))
+                        .then(
+                            function (data) {
+                                $scope.simpleProject = data[0];
+                                for (var i = 0; i < $scope.simpleProject.outcomes.length; i++) {
+                                    var name = $scope.simpleProject.outcomes[i].name;
+                                    var description = $scope.simpleProject.outcomes[i].description;
+                                    for (var j = 0; j < $scope.outcomes.length; j++) {
+                                        if(name == $scope.outcomes[j].name) {
+                                            $scope.outcomes[j].description = description;
+                                            $scope.simpleProject.outcomes[i] = $scope.outcomes[j];
+                                            break;
+                                        }
+                                    }
+                                }
+                                for (var i = 0; i < $scope.simpleProject.retributions.length; i++) {
+                                    var name = $scope.simpleProject.retributions[i].name;
+                                    var description = $scope.simpleProject.retributions[i].description;
+                                    for (var j = 0; j < $scope.retributions.length; j++) {
+                                        if(name == $scope.retributions[j].name) {
+                                            $scope.retributions[j].description = description;
+                                            $scope.simpleProject.retributions[i] = $scope.retributions[j];
+                                            break;
+                                        }
+                                    }
+                                }
+                                console.log($scope.simpleProject.outcomes);
+                                console.log($scope.outcomes);
+                                console.log($scope.simpleProject.retributions);
+                                console.log($scope.retributions);
+                            },
+                            function (errResponse) {
+                                toaster.pop('error', 'Error', 'Server not available.');
+                                console.log(errResponse);
+                            }
+                        );
+                }
+            };
+            $scope.getProjectById();
+
+            $scope.findWithAttr = function(array, attr, value) {
+                for(var i = 0; i < array.length; i += 1) {
+                    if(array[i][attr] === value) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
             // outcomes
             $scope.outcomes = [{name: 'Producction', description: ''}, {
                 name: 'Income',
                 description: ''
             }, {name: 'New business', description: ''}];
             // selected outcomes
-            $scope.outcomesSelection = [];
+            // $scope.outcomesSelection = [];
 
             // retributions
             $scope.retributions = [{name: 'Pay Back, shared profits', description: ''}, {
                 name: 'Product Delivery',
                 description: ''
-            },
-                {name: 'By Products', description: ''}, {name: 'Stocks in the New Business', description: ''}];
+            }, {name: 'By Products', description: ''}, {name: 'Stocks in the New Business', description: ''}];
             // selected retributions
-            $scope.retributionsSelection = [];
+            // $scope.retributionsSelection = [];
 
             // toggle selection for a given outomes by name
             $scope.toggleOutcomeSelection = function (name) {
-                var idx = $scope.outcomesSelection.indexOf(name);
+                var idx = $scope.simpleProject.outcomes.indexOf(name);
                 // is currently selected
                 if (idx > -1) {
-                    $scope.outcomesSelection.splice(idx, 1);
+                    $scope.simpleProject.outcomes.splice(idx, 1);
                 }
                 // is newly selected
                 else {
-                    $scope.outcomesSelection.push(name);
+                    $scope.simpleProject.outcomes.push(name);
                 }
-                console.log($scope.outcomesSelection);
+                console.log($scope.simpleProject.outcomes);
             };
             // toggle selection for a given retribution by name
             $scope.toggleRetributionSelection = function (name) {
-                var idx = $scope.retributionsSelection.indexOf(name);
+                var idx = $scope.simpleProject.retributions.indexOf(name);
                 // is currently selected
                 if (idx > -1) {
-                    $scope.retributionsSelection.splice(idx, 1);
+                    $scope.simpleProject.retributions.splice(idx, 1);
                 }
                 // is newly selected
                 else {
-                    $scope.retributionsSelection.push(name);
+                    $scope.simpleProject.retributions.push(name);
                 }
-                console.log($scope.retributionsSelection);
+                console.log($scope.simpleProject.retributions);
+            };
+
+            $scope.noImage = false;
+
+            $scope.removeImage = function () {
+                $scope.noImage = true;
+                $rootScope.$broadcast('imageRemoved');
+                console.log("removeImage");
             };
 
             $rootScope.$on('mainLayoutChanged', function (event, opt) {
@@ -121,8 +178,8 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $scope.createSimpleProject = function () {
                 $scope.simpleProject.creationDate = new Date();
                 $scope.simpleProject.state = '1';
-                $scope.simpleProject.outcomes = $scope.outcomesSelection;
-                $scope.simpleProject.retributions = $scope.retributionsSelection;
+                // $scope.simpleProject.outcomes = $scope.outcomesSelection;
+                // $scope.simpleProject.retributions = $scope.retributionsSelection;
 
                 //begin estimateDuration calculation. this must be on the server side
                 $scope.tasks.sort(function(a,b){a.startDate - b.startDate});

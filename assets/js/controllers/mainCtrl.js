@@ -12,6 +12,10 @@ function($rootScope, $scope, $state, $translate, $localStorage, $window, $docume
     	$scope.isLogged = localStorageService.get('isLogged');
   	});
 
+	$scope.goToWizard = function() {
+		localStorageService.set('currentProjectId', '');
+		$state.go('app.project.wizard');
+	}
 	// $scope.setIsLogged = function(value) {
 	// 	$scope.isLogged = value;
 	// }

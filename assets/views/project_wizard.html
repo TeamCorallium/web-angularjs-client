@@ -262,10 +262,11 @@
 															<div class="col-md-6">
 																<div class="form-group" ng-class="{'has-error':Form.minimalCost.$dirty && Form.minimalCost.$invalid, 'has-success':Form.minimalCost.$valid}">
 																	<label>
+																		<i class="ti-info-alt text-primary" uib-tooltip="Optional"></i>
 																		Minimal cost <span class="symbol required"></span>
 																	</label>
-
-																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minimalCost" name="minimalCost" ng-required="currentStep == 1">
+																	
+																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minimalCost" name="minimalCost">
 																</div>
 															</div>
 														</div>
@@ -273,7 +274,7 @@
 															<div class="col-md-6">
 																<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
 																	<label>
-																		My estimate revenue <span class="symbol required"></span>
+																		My revenue <span class="symbol required"></span>
 																	</label>
 
 																	<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
@@ -310,10 +311,11 @@
 															<div class="col-md-6">
 																<div class="form-group" ng-class="{'has-error':Form.totalRevenue.$dirty && Form.totalRevenue.$invalid, 'has-success':Form.totalRevenue.$valid}">
 																	<label>
+																		<i class="ti-info-alt text-primary" uib-tooltip="Optional"></i>
 																		Total Estimate Revenue <span class="symbol required"></span>
 																	</label>
 
-																	<input type="text" value="0" touchspin data-min="0" data-max="10000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue" ng-required="currentStep == 1">
+																	<input type="text" value="0" touchspin data-min="0" data-max="10000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue">
 																</div>
 															</div>
 															<div class="col-md-6">

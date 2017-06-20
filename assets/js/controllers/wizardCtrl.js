@@ -630,7 +630,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     // {name:"duration",   label:"Duration"},
                     // {name:"add",        label:""}
                 ];
-gantt.detachAllEvents();
 
                 gantt.config.drag_move = false;
                 gantt.config.drag_links = false;

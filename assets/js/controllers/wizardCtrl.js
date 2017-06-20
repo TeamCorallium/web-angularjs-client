@@ -8,6 +8,11 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $state.go('app.login.signin');
         } else {
 
+            // $scope.$on("$destroy", function handler() {
+            //     gantt.detachAllEvents();
+            //     console.log("WizardCtrl destroy");
+            // }); 
+
             $scope.currentStep = 1;
             $scope.simpleProject = {
                 creationDate: '',
@@ -492,11 +497,11 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                         toaster.pop('warning', 'Error', 'Total cost must be greater than minimal capital investment.');
                         return false;
                     }
-                    if ($scope.outcomesSelection.length == 0) {
+                    if ($scope.simpleProject.outcomes.length == 0) {
                         toaster.pop('warning', 'Error', 'The project must have at least one outcome.');
                         return false;
                     }
-                    if ($scope.retributionsSelection.length == 0) {
+                    if ($scope.simpleProject.retributions.length == 0) {
                         toaster.pop('warning', 'Error', 'The project must have at least one retribution way.');
                         return false;
                     }
@@ -625,6 +630,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     // {name:"duration",   label:"Duration"},
                     // {name:"add",        label:""}
                 ];
+gantt.detachAllEvents();
 
                 gantt.config.drag_move = false;
                 gantt.config.drag_links = false;
@@ -821,5 +827,5 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     ]
                 }
             ];
-        }
+        }       
 }]);

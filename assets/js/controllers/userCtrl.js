@@ -278,6 +278,9 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                                 if ($scope.passwordStruct.newPassword == $scope.passwordStruct.newPasswordAgain) {
                                         $scope.userInfo.password = $scope.passwordStruct.newPassword;
                                         $scope.saveUserAcount();
+                                    $scope.passwordStruct.newPassword = '';
+                                    $scope.passwordStruct.oldPassword = '';
+                                    $scope.passwordStruct.newPasswordAgain = '';
                                 } else {
                                     toaster.pop('error', 'Error', 'Password not match');
                                 }

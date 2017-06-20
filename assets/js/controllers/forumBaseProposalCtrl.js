@@ -84,15 +84,12 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         $scope.currentProposal.state = 'publish';
 
                         for (var i = 0; i<$scope.listProposal.length; i++) {
-                            console.log($scope.listProposal[i].type);
-                            console.log($scope.listProposal[i].itemSubject);
-                            console.log($scope.listProposal[i].itemContent);
                             var proposalTemp = {
                                 type: $scope.listProposal[i].type,
                                 itemSubject: $scope.listProposal[i].itemSubject,
-                                itemContent: $scope.listProposal[i].itemContent
+                                itemContent: $scope.listProposal[i].itemContent,
+                                currentContent: $scope.listProposal[i].currentContent
                             };
-                            console.log(proposalTemp.type + " " + proposalTemp.itemSubject + " " + proposalTemp.itemContent);
                             $scope.currentProposal.proposalList.push(proposalTemp);
                         }
                         $scope.currentProposal.projectId = localStorageService.get('currentProjectId');
@@ -337,7 +334,8 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                     var currentProposal = {
                         type: $scope.proposalType,
                         itemSubject: '',
-                        itemContent: ''
+                        itemContent: '',
+                        currentContent: ''
                     };
 
                     if ($scope.proposalType == 'Modified Task State') {
@@ -345,6 +343,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             if($scope.taskState != $scope.taskStateOld || $scope.taskState != '') {
                                 currentProposal.itemSubject = $scope.selectedTaskState.id;
                                 currentProposal.itemContent = $scope.taskState;
+                                currentProposal.currentContent = $scope.selectedTaskState.state;
                                 $scope.listProposal.push(currentProposal);
                             }else {
                                 toaster.pop('error', 'Error', 'Please change the task state.');
@@ -357,6 +356,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             if($scope.taskName != $scope.taskNameOld || $scope.taskName != '') {
                                 currentProposal.itemSubject = $scope.selectedTaskName.id;
                                 currentProposal.itemContent = $scope.taskName;
+                                currentProposal.currentContent = $scope.selectedTaskName.name;
                                 $scope.listProposal.push(currentProposal);
                             }else {
                                 toaster.pop('error', 'Error', 'Please change the task name.');
@@ -369,6 +369,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             if($scope.taskDescription != $scope.taskDescriptionOld || $scope.taskDescription != '') {
                                 currentProposal.itemSubject = $scope.selectedTaskDescription.id;
                                 currentProposal.itemContent = $scope.taskDescription;
+                                currentProposal.currentContent = $scope.selectedTaskDescription.description;
                                 $scope.listProposal.push(currentProposal);
                             }else {
                                 toaster.pop('error', 'Error', 'Please change the task description.');
@@ -381,6 +382,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             if($scope.taskCost != $scope.taskCostOld || $scope.taskCostOld != '') {
                                 currentProposal.itemSubject = $scope.selectedTaskCost.id;
                                 currentProposal.itemContent = $scope.taskCost;
+                                currentProposal.currentContent = $scope.selectedTaskCost.totalCost;
                                 $scope.listProposal.push(currentProposal);
                             }else {
                                 toaster.pop('error', 'Error', 'Please change the task cost.');
@@ -393,6 +395,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             if($scope.outcome != $scope.outcomeOld || $scope.outcome != '') {
                                 currentProposal.itemSubject = $scope.selectedTaskOutcome.id;
                                 currentProposal.itemContent = $scope.outcome;
+                                currentProposal.currentContent = $scope.selectedTaskOutcome.outcome;
                                 $scope.listProposal.push(currentProposal);
                             }else {
                                 toaster.pop('error', 'Error', 'Please change the task outcome.');
@@ -405,6 +408,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             if($scope.duration != $scope.durationOld || $scope.duration != '') {
                                 currentProposal.itemSubject = $scope.selectedTaskDuration.id;
                                 currentProposal.itemContent = $scope.duration;
+                                currentProposal.currentContent = $scope.selectedTaskDuration.duration;
                                 $scope.listProposal.push(currentProposal);
                             }else {
                                 toaster.pop('error', 'Error', 'Please change the task duration.');
@@ -417,6 +421,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             if($scope.startDate != $scope.startDate || $scope.startDate != '') {
                                 currentProposal.itemSubject = $scope.selectedTaskStartDate.id;
                                 currentProposal.itemContent = $scope.startDate;
+                                currentProposal.currentContent = $scope.selectedTaskStartDate.startDate;
                                 $scope.listProposal.push(currentProposal);
                             }else {
                                 toaster.pop('error', 'Error', 'Please change the task start date.');
@@ -429,6 +434,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         if($scope.proposalContent != '') {
                             currentProposal.itemSubject = '';
                             currentProposal.itemContent = $scope.proposalContent;
+                            currentProposal.currentContent = '';
                             $scope.listProposal.push(currentProposal);
                         }else {
                             toaster.pop('error', 'Error', 'Please change the proposal content.');

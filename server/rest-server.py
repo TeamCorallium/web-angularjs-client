@@ -110,10 +110,9 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             for invertion in invertions:
                 interestedUserIds.append(invertion['userId'])
 
-            notifieType = proposal['type'] + ' Approved'
-            proposalContent = proposal['proposalContent']              
+            notifieType = 'PROPOSAL APPROVED'              
 
-            table_activity.insert({'userId': self.id, 'title': 'Vote', 'content': "Vote:" + vote['value'] + ' for ' + proposalContent, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+            table_activity.insert({'userId': self.id, 'title': 'Vote', 'content': "Vote:" + vote['value'] + ' for ' + proposal['name'], 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
             percent = 0
             for v in votes:
@@ -123,40 +122,42 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             if percent > 50:
                 pList = proposal['proposalList']
 
+                content = ''
                 for prop in pList:
-                    content = ''
                     taskField = ''
-                    if proposal['type'] == 'Start Project':
+                    if prop['type'] == 'Start Project':
                         table_simple_project.update({'state': '2'}, eids=[project['id']])
-                        content = 'Project ' + project['projectName'] + ' Started'
+                        content += 'Project ' + project['projectName'] + ' Started.  '
                     else:
-                        if proposal['type'] == 'Modified Task State':
-                            content = 'A task state was modified'
+                        if prop['type'] == 'Modified Task State':
+                            content += 'A task state was modified.  '
                             taskField = 'state'
-                        if proposal['type'] == 'Modified Task Name': 
-                            content = 'A task name was modified'
+                        if prop['type'] == 'Modified Task Name': 
+                            content += 'A task name was modified.  '
                             taskField = 'name'                               
-                        if proposal['type'] == 'Modified Task Description':
-                            content = 'A task description was modified'
+                        if prop['type'] == 'Modified Task Description':
+                            content += 'A task description was modified.  '
                             taskField = 'description'                                
-                        if proposal['type'] == 'Modified Task Cost':
-                            content = 'A task cost was modified'
+                        if prop['type'] == 'Modified Task Cost':
+                            content += 'A task cost was modified.  '
                             taskField = 'cost'                                
-                        if proposal['type'] == 'Modified Task Outcome':
-                            content = 'A task outcome was modified'
+                        if prop['type'] == 'Modified Task Outcome':
+                            content += 'A task outcome was modified.  '
                             taskField = 'outcome'                                
-                        if proposal['type'] == 'Modified Task Start Date':
-                            content = 'A task start date was modified'
+                        if prop['type'] == 'Modified Task Start Date':
+                            content += 'A task start date was modified.  '
                             taskField = 'startDate'                                
-                        if proposal['type'] == 'Modified Task Duration':   
-                            content = 'A task duration was modified'
+                        if prop['type'] == 'Modified Task Duration':   
+                            content += 'A task duration was modified.  '
                             taskField = 'duration'  
 
-                        table_task.update({taskField: proposalContent}, eids=[proposal['itemSubject']])                      
+                        proposalContent = prop['itemContent']
+
+                        table_task.update({taskField: proposalContent}, eids=[prop['itemSubject']])                      
                 
                 for userId in interestedUserIds:                             
-                    table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': proposal['itemSubject'], 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                            'subject': proposal['itemSubject'], 'content': content})
+                    table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'proposalSubject': '', 'from': fromName, 'read': False, 'type': notifieType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                                'subject': '', 'content': content})
                     for c in clients:
                         if int(c.id) == int(userId):
                             c.connection.write_message("NOTIFICATION")

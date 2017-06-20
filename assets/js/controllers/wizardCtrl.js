@@ -104,10 +104,44 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                                 toaster.pop('error', 'Error', 'Server not available.');
                                 console.log(errResponse);
                             }
-                        );
+                        );     
                 }
             };
             $scope.getProjectById();
+
+            $scope.getTaskByProjectsId = function () {
+                if(localStorageService.get('currentProjectId') != '') {
+                    RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                        .then(
+                            function (data) {
+                                $scope.tasks = data;
+
+                                var tasks = {data: $scope.tasks.slice()};
+
+                                //begin gantt
+                                for (var i = 0; i < $scope.tasks.length; i++) {
+                                    tasks.data[i].text = tasks.data[i].name;
+                                    tasks.data[i].start_date = new Date(tasks.data[i].startDate);
+                                    tasks.data[i].end_date = '';
+
+                                    $scope.tasks[i].startDate = new Date(tasks.data[i].startDate);
+                                    $scope.tasks[i].end_date = '';
+                                }
+
+                                $scope.ganttStart("gantt_here");
+                                gantt.clearAll();
+                                gantt.parse(tasks);
+                                gantt.refreshData();
+                                gantt.render();
+                                //end gantt
+                            },
+                            function (errResponse) {
+                                console.log(errResponse);
+                            }
+                        );
+                }
+            };           
+            $scope.getTaskByProjectsId();
 
             $scope.findWithAttr = function(array, attr, value) {
                 for(var i = 0; i < array.length; i += 1) {
@@ -353,7 +387,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     'name': $scope.task.name, 'description': $scope.task.description,
                     'cost': $scope.task.cost, 'outcome': $scope.task.outcome, 'startDate': $scope.start,
                     'duration': $scope.task.duration, 'state': '1',
-                    'text': $scope.task.name, 'start_date': $scope.start, 'progress': 0
+                    'text': $scope.task.name, 'start_date': $scope.start, 'progress': 0, id: ''
                 });
 
                 $scope.task.name = '';
@@ -375,10 +409,12 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
 
             $scope.removeTask = function (name) {
                 var index = -1;
+                var taskId = '';
                 var comArr = eval($scope.tasks);
                 for (var i = 0; i < comArr.length; i++) {
                     if (comArr[i].name === name) {
                         index = i;
+                        taskId = comArr[i].id;
                         break;
                     }
                 }
@@ -386,6 +422,18 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     alert("Something gone wrong");
                 }
                 $scope.tasks.splice(index, 1);
+                if (taskId != '') {
+                    RestService.deleteTask(taskId)
+                        .then(
+                            function (data) {
+                                // $scope.getTaskByProjectsId();
+                            },
+                            function (errResponse) {
+                                toaster.pop('error', 'Error', 'Server not available.');
+                                console.log(errResponse);
+                            }
+                        );                  
+                }
 
                 var tasks = {data: $scope.tasks.slice()};
 

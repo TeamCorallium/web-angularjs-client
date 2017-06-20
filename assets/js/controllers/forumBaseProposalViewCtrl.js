@@ -84,7 +84,8 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                             $scope.currentProposalView = data[0];
 
                             for (var i=0; i<$scope.currentProposalView.proposalList.length; i++) {
-                                if ($scope.currentProposalView.proposalList[i].itemSubject != '') {
+
+                                if ($scope.currentProposalView.proposalList[i].type != 'Start Project') {
                                     $scope.getTaskByTaskId($scope.currentProposalView.proposalList[i].itemSubject);
                                 } else {
                                     $scope.currentTaskProposalView.push('');

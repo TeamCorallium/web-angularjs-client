@@ -8,6 +8,12 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
+
+            // $scope.$on("$destroy", function handler() {
+            //     gantt.detachAllEvents();
+            //     console.log("SubprojectCtrl destroy");
+            // }); 
+
             $scope.currentProjectActive = [];
 
             $scope.getProjectById = function () {
@@ -167,7 +173,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 // tasks.data = $scope.tasksProject;
                 // gantt.parse (tasks);
                 // gantt.parse($scope.tasks);
-
                 gantt.attachEvent("onTaskClick", function (id, e) {
                     // alert("You've just clicked an item with id="+id);
                     return false;
@@ -179,15 +184,17 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             }
             // $scope.ganttStart();
 
-            $scope.toggleMode = function (toggle) {
+            $scope.toggleMode = function (toggle) { 
                 toggle.enabled = !toggle.enabled;
                 if (toggle.enabled) {
                     toggle.innerHTML = "Set default Scale";
+                    console.log(toggle.innerHTML);
                     //Saving previous scale state for future restore
                     saveConfig();
                     zoomToFit();
                 } else {
                     toggle.innerHTML = "Zoom to Fit";
+                    console.log(toggle.innerHTML);
                     //Restore previous scale state
                     restoreConfig();
                     gantt.render();
@@ -391,5 +398,5 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     }
                 });
             };
-        }
+        }        
     }]);

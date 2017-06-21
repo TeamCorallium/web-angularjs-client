@@ -32,7 +32,7 @@
 			<uib-tab heading="Projects" select="tabSelectedProjects()">
 				<div class="blog-posts">
 					<ul class="list-unstyled">
-						<li class="margin-bottom-15" ng-repeat="project in allProjects">
+						<li class="margin-bottom-15" ng-repeat="project in allProjectsAbstracts">
 							<hr class="tall">
 							<div class="clearfix">
 								<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
@@ -40,7 +40,7 @@
 										  class="img-responsive img-rounded notification-image">
 								</div>
 								<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-									<span class="notification-author"><a ng-click="goToExploreProject(project.id)"> {{project.projectName}} </a></span>
+									<span class="notification-author"><a ng-click="goToExploreProject(project.id)"> {{project.name}} </a></span>
 									<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
 								</div>
 								<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding margin-top-10">
@@ -73,7 +73,7 @@
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-layers-alt"></i>
-											<strong> Owner:</strong> {{listUserOwners[$index]}}
+											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
@@ -105,15 +105,14 @@
 			</uib-tab>
 			<uib-tab heading="Users" select="tabSelectedUser()">
 				<ul class="list-unstyled">
-					<li class="margin-bottom-15" ng-repeat="user in listAllUser">
+					<li class="margin-bottom-15" ng-repeat="user in listAllUserAbstracts">
 						<hr class="tall">
 						<div class="clearfix">
 							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
-								<img  ng-src="assets/images/default-user.png"
-									  class="img-responsive img-rounded notification-image">
+								<img  ng-src="user.avatar" class="img-responsive img-rounded notification-image">
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-								<span class="notification-author"><a ng-click="viewProfile(user.id)"> {{user.fullName}} </a></span>
+								<span class="notification-author"><a ng-click="viewProfile(user.id)"> {{user.name}} </a></span>
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<label><strong>Email:</strong></label>
@@ -125,7 +124,7 @@
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<label><strong>Projects:</strong></label>
-								<span>{{listCountProjectByUser[$index]}}</span>
+								<span>{{user.countProjects}}</span>
 							</div>
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">

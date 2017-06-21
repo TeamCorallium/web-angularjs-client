@@ -134,13 +134,13 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                         }
                     }
 
-                    if (myInvertion < ($scope.currentProjectActive.totalCost - (minimalInvertion * (remainingNumMinInvestors - 1)))){
+
+                    if (myInvertion < ($scope.currentProjectActive.totalCost - (minimalInvertion * (remainingNumMinInvestors)))){
 
                         var n = 0;
 
                         while (true) {
                             var a = remainingInvertion - n * minimalInvertion;
-                            console.log(a + " a");
                             if ((a >= minimalInvertion)) {
                                 if ((remainingNumMinInvestors > 0) && (a > (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
                                     n += 1;

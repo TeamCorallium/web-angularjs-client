@@ -108,25 +108,23 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                     <div class="portfolio-info">
-                                        <div class="row">
+                                        <div class="row margin-top-15">
                                             <div class="col-md-12">
-                                                <ul class="pull-right">
-                                                    <li>
-                                                        <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
-                                                    </li>
-                                                    <li>
+                                                <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right">
+                                                    <li class="pull-right">
                                                         <i class="fa fa-tags"></i>
                                                         <a> See reference list </a>
                                                     </li>
+                                                    <li class="pull-right">
+                                                        <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
+                                                    </li>
                                                 </ul>
+                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding">State: {{stateArray[currentProjectActive.state]}}</p>
                                             </div>
                                         </div>
                                         <div class="row margin-top-15" ng-show="projectRole(owner.id) == 'Financier'">
                                             <div class="col-md-12">
-                                                <p>
-                                                    Owner:
-                                                    <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a>
-                                                </p>
+                                                <p>Owner: <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -325,10 +323,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                <div ng-show="tasksProject.length != 0">
-                                <button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
-                                </div>
-                                <div id="gantt_here"></div>
+                                    <div ng-show="tasksProject.length != 0">
+                                        <button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
+                                    </div>
+                                    <div id="gantt_here"></div>
                                 </div>
                             </div>
                             <hr>

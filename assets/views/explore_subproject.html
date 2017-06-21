@@ -109,23 +109,21 @@
                                     <div class="portfolio-info">
                                         <div class="row margin-top-15">
                                             <div class="col-md-12">
-                                                <ul class="pull-right">
-                                                    <li>
-                                                        <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
-                                                    </li>
-                                                    <li>
+                                                <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right">
+                                                    <li class="pull-right">
                                                         <i class="fa fa-tags"></i>
                                                         <a> See reference list </a>
                                                     </li>
+                                                    <li class="pull-right">
+                                                        <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
+                                                    </li>
                                                 </ul>
+                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding">State: {{stateArray[currentProjectActive.state]}}</p>
                                             </div>
                                         </div>
                                         <div class="row margin-top-15">
                                             <div class="col-md-12">
-                                                <p>
-                                                    Owner:
-                                                    <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a>
-                                                </p>
+                                                <p>Owner: <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a></p>
                                             </div>
                                         </div>
                                     </div>

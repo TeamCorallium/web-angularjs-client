@@ -120,21 +120,39 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             //Upgrade While(true)
             $scope.getPossibleInvestment = function () {
                 if ($scope.coveredCapitalPercent != 100) {
-                    var remainingInvertion = 0;
+                    var minimalInvertion = parseInt($scope.currentProjectActive.totalCost/$scope.currentProjectActive.maxNumInves);
 
-                    remainingInvertion = parseInt($scope.currentProjectActive.totalCost) - $scope.investmentCapitalProject;
+                    var remainingInvertion = parseInt($scope.currentProjectActive.totalCost) - $scope.investmentCapitalProject;
 
-                    var n = 0;
+                    var remainingNumMinInvestors = parseInt($scope.currentProjectActive.minNumInves) - $scope.invertions.length;
 
-                    while (true) {
-                        var a = remainingInvertion - n * $scope.currentProjectActive.minCapInves;
-                        if (a >= $scope.currentProjectActive.minCapInves) {
-                            $scope.possibleInvestmentArray.push(a);
-                        } else {
-                            break;
+                    var myInvertion = 0;
+
+                    for (var i=0; i<$scope.invertions.length;  i++) {
+                        if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
+                            myInvertion = parseInt($scope.invertions[i].amount);
                         }
+                    }
 
-                        n += 1;
+                    if (myInvertion < ($scope.currentProjectActive.totalCost - (minimalInvertion * (remainingNumMinInvestors - 1)))){
+
+                        var n = 0;
+
+                        while (true) {
+                            var a = remainingInvertion - n * minimalInvertion;
+                            console.log(a + " a");
+                            if ((a >= minimalInvertion)) {
+                                if ((remainingNumMinInvestors > 0) && (a > (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
+                                    n += 1;
+                                    continue;
+                                }
+                                $scope.possibleInvestmentArray.push(a);
+                            } else {
+                                break;
+                            }
+
+                            n += 1;
+                        }
                     }
                 }
             };

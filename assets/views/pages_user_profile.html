@@ -169,7 +169,7 @@
 									Account Info
 								</legend>
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<div class="form-group">
 											<label>
 												Image Upload
@@ -197,26 +197,6 @@
 													</div>
 												</div>
 											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">
-												Full Name
-											</label>
-											<input type="text" placeholder="Enter your full name" class="form-control" name="firstname" ng-model="userInfo.fullName">
-										</div>
-										<div class="form-group">
-											<label class="control-label">
-												Email Address
-											</label>
-											<input type="email" placeholder="email address" class="form-control" name="email" ng-model="userInfo.email">
-										</div>
-										<div class="form-group">
-											<label class="control-label">
-												Phone
-											</label>
-											<input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="userInfo.phone">
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -259,6 +239,24 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label">
+												Full Name
+											</label>
+											<input type="text" placeholder="Enter your full name" class="form-control" name="firstname" ng-model="userInfo.fullName">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												Email Address
+											</label>
+											<input type="email" placeholder="email address" class="form-control" name="email" ng-model="userInfo.email">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												Phone
+											</label>
+											<input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="userInfo.phone">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
 												Identity Card
 											</label>
 											<input type="text" placeholder="Enter your identity card" class="form-control" name="identityCard" ng-model="userInfo.identityCard">
@@ -275,6 +273,32 @@
 													</button>
 												</span>
 											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<label class="margin-bottom-10"><strong>Change password:</strong></label>
+										<div class="form-group">
+											<label class="control-label">
+												Old Password
+											</label>
+											<input name="oldPassword" type="password" placeholder="Introduce your old password" class="form-control" ng-model="passwordStruct.oldPassword">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												New Password
+											</label>
+											<input name="newPassword" type="password" placeholder="Introduce your new password" class="form-control" ng-model="passwordStruct.newPassword">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												New Password
+											</label>
+											<input name="newPasswordAgain" type="password" placeholder="Introduce your new password again" class="form-control" ng-model="passwordStruct.newPasswordAgain">
+										</div>
+										<div class="pull-right">
+											<a class="btn btn-primary btn-wide" ng-click="changePassword()">
+												Change Password
+											</a>
 										</div>
 									</div>
 								</div>

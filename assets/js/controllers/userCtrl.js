@@ -8,8 +8,18 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
-            
+
+            $scope.passwordStruct = {
+                oldPassword: '',
+                newPassword: '',
+                newPasswordAgain: ''
+            };
+
             $scope.noImage = false;
+            $scope.obj = new Flow();
+
+            $scope.allActivities = '';
+            $scope.comments = [];
 
             $scope.removeImage = function () {
                 $scope.noImage = true;
@@ -21,11 +31,6 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 $scope.userInfo.avatar = RestService.uploads + opt.layout;
                 $scope.noImage = false;
             });
-
-            $scope.obj = new Flow();
-
-            $scope.allActivities = '';
-            $scope.comments = [];
 
             $scope.getAllActivities = function () {
                 RestService.fetchAllActivities(localStorageService.get('currentUserId'))
@@ -126,10 +131,10 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
 
                             if ($scope.userInfo.avatar == '') {
                                 $scope.noImage = true;
-                            } 
+                            }
                             else {
                                 $scope.noImage = false;
-                            }                         
+                            }
                         },
                         function(errResponse) {
                             console.log(errResponse);
@@ -263,6 +268,34 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
 
             $scope.goToLink = function (link) {
                 $window.location.href = link;
+            };
+
+            $scope.changePassword = function () {
+                if ($scope.passwordStruct.oldPassword != '') {
+                    if ( $scope.passwordStruct.newPassword != '') {
+                        if ($scope.passwordStruct.newPasswordAgain != '') {
+                            if($scope.passwordStruct.newPassword != $scope.userInfo.password) {
+                                if ($scope.passwordStruct.newPassword == $scope.passwordStruct.newPasswordAgain) {
+                                        $scope.userInfo.password = $scope.passwordStruct.newPassword;
+                                        $scope.saveUserAcount();
+                                    $scope.passwordStruct.newPassword = '';
+                                    $scope.passwordStruct.oldPassword = '';
+                                    $scope.passwordStruct.newPasswordAgain = '';
+                                } else {
+                                    toaster.pop('error', 'Error', 'Password not match');
+                                }
+                            } else {
+                                toaster.pop('error', 'Error', 'The current password is wrong');
+                            }
+                        } else {
+                            toaster.pop('error', 'Error', 'Please introduce the new password again');
+                        }
+                    } else {
+                        toaster.pop('error', 'Error', 'Please introduce the new password');
+                    }
+                } else {
+                    toaster.pop('error', 'Error', 'Please introduce the current password');
+                }
             };
         }
     }]);

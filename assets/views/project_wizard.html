@@ -403,7 +403,10 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
+										<button ng-click="createSimpleProject('save')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-save"></i> Save project
+										</button>
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-md next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -560,10 +563,13 @@
 										</div>
 									</fieldset>
 									<div class="form-group">
-										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-wide next-step">
+										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-md next-step">
 											<i class="fa fa-arrow-circle-left"></i> Back
 										</button>
-										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
+										<button ng-click="createSimpleProject('save')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-save"></i> Save project
+										</button>
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-md next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -682,8 +688,8 @@
 											<div class="col-md-12">
 												<div ng-show="tasks.length != 0">
 													<button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
+													<div id="gantt_here"></div>
 												</div>
-												<div id="gantt_here"></div>
 												<div ng-show="tasks.length == -1" id="gantt_hide"></div>
 											</div>
 										</div>
@@ -692,10 +698,13 @@
 									</fieldset>
 
 									<div class="form-group">
-										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-wide next-step">
+										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-md next-step">
 											<i class="fa fa-arrow-circle-left"></i> Back
 										</button>
-										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
+										<button ng-click="createSimpleProject('save')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-save"></i> Save project
+										</button>
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-md next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -718,12 +727,15 @@
 										<div class="alert alert-block alert-warning">
 											We solemnly declare that the information provided for the Project Construction and published in my Project using Coralium System is true and correct. There will be no responsibility other than my own if any lost or damage is done as a result of this Project Execution.
 										</div>
-										<a class="btn btn-primary" ng-click="form.goTo(Form, 1)">
+<!-- 										<a class="btn btn-primary btn-md" ng-click="form.goTo(Form, 1)">
 											Back to first step
-										</a>
-										<a class="btn btn-primary" ng-click="createSimpleProject()">
-											Submit your project
-										</a>
+										</a> -->
+										<button ng-click="createSimpleProject('save')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-save"></i> Save project
+										</button>
+										<button ng-click="createSimpleProject('publish')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-cloud-upload"></i> Publish project
+										</button>
 									</div>
 								</div>
 							</div>

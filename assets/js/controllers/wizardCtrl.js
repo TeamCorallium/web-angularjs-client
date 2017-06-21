@@ -212,20 +212,27 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 $scope.reference.file = RestService.uploads + opt.reference;
             });
 
-            $scope.createSimpleProject = function () {
+            $scope.createSimpleProject = function (action) {
                 $scope.simpleProject.creationDate = new Date();
                 $scope.simpleProject.state = '1';
+
+                if (action == 'save') {
+                    $scope.simpleProject.state = '0';
+                }
                 // $scope.simpleProject.outcomes = $scope.outcomesSelection;
                 // $scope.simpleProject.retributions = $scope.retributionsSelection;
 
                 //begin estimateDuration calculation. this must be on the server side
-                $scope.tasks.sort(function(a,b){a.startDate - b.startDate});
-                var length = $scope.tasks.length;
-                var timeDiff = Math.abs($scope.tasks[length-1].startDate - $scope.tasks[0].startDate);
-                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-                var duration = diffDays + parseInt($scope.tasks[length-1].duration);
-                console.log(duration);
-                $scope.simpleProject.estimateDuration = duration;
+                $scope.simpleProject.estimateDuration = 0;
+                if($scope.tasks.length != 0) {
+                    $scope.tasks.sort(function(a,b){a.startDate - b.startDate});
+                    var length = $scope.tasks.length;
+                    var timeDiff = Math.abs($scope.tasks[length-1].startDate - $scope.tasks[0].startDate);
+                    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+                    var duration = diffDays + parseInt($scope.tasks[length-1].duration);
+                    console.log(duration);
+                    $scope.simpleProject.estimateDuration = duration;
+                }
                 //end estimateDuration calculation
 
                 RestService.createSimpleProject($scope.simpleProject)
@@ -387,7 +394,7 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     'name': $scope.task.name, 'description': $scope.task.description,
                     'cost': $scope.task.cost, 'outcome': $scope.task.outcome, 'startDate': $scope.start,
                     'duration': $scope.task.duration, 'state': '1',
-                    'text': $scope.task.name, 'start_date': $scope.start, 'progress': 0, id: ''
+                    'text': $scope.task.name, 'start_date': $scope.start, 'progress': 0
                 });
 
                 $scope.task.name = '';

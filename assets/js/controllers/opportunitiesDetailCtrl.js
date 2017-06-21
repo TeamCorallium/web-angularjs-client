@@ -116,7 +116,6 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
             $scope.invertionByProjectId();
 
-
             //Upgrade While(true)
             $scope.getPossibleInvestment = function () {
                 if ($scope.coveredCapitalPercent != 100) {

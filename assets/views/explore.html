@@ -51,12 +51,12 @@
 								<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-timer"></i>
-											<strong> Total Cost:</strong>  {{project.totalCost}} $
+											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-layers-alt"></i>
-											<strong> Total Revenue:</strong>  {{project.totalRevenue}} $
+											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">

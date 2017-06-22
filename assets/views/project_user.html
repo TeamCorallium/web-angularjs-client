@@ -17,7 +17,6 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="project in simpleProjects">
-						<hr>
 						<div class="clearfix">
 							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
 								<img  ng-src="{{project.mainLayout}}" alt=""
@@ -58,11 +57,11 @@
 								</div>
 							</div>
 						</div>
+						<hr class="tall">
 					</li>
 				</ul>
 			</div>
 		</div>
-		<hr class="tall">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
 				<button ui-sref="app.project.create" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-plus pull-right">

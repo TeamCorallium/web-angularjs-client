@@ -142,9 +142,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                         }
                     }
 
-
-                    if (myInvertion < ($scope.currentProjectActive.totalCost - (minimalInvertion * (remainingNumMinInvestors)))){
-
+                    if (myInvertion == 0) {
                         var n = 0;
 
                         while (true) {
@@ -160,6 +158,26 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                             }
 
                             n += 1;
+                        }
+                    } else {
+                        if (($scope.investmentCapitalProject < ($scope.currentProjectActive.totalCost - (minimalInvertion * (remainingNumMinInvestors))))){
+
+                            var n = 0;
+
+                            while (true) {
+                                var a = remainingInvertion - n * minimalInvertion;
+                                if ((a >= minimalInvertion)) {
+                                    if ((remainingNumMinInvestors > 0) && (a > (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
+                                        n += 1;
+                                        continue;
+                                    }
+                                    $scope.possibleInvestmentArray.push(a);
+                                } else {
+                                    break;
+                                }
+
+                                n += 1;
+                            }
                         }
                     }
                 }

@@ -119,24 +119,24 @@
                                                         <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
                                                     </li>
                                                 </ul>
-                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15">State: {{stateArray[currentProjectActive.state]}}</p>
+                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15"><strong>State:</strong> {{stateArray[currentProjectActive.state]}}</p>
                                             </div>
                                         </div>
                                         <div class="row margin-top-15" ng-show="projectRole(owner.id) == 'Financier'">
                                             <div class="col-md-12">
-                                                <p>Owner: <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a></p>
+                                                <p><strong>Owner:</strong> <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row col-md-12">
-                                        <p class="taller"> Description: </p>
+                                        <p class="taller"> <strong>Description:</strong> </p>
                                         <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
                                     </div>
-                                    <p class="taller margin-bottom-25"> Duration: {{getDuration()}}</p>
+                                    <p class="taller margin-bottom-25"> <strong>Duration:</strong> {{getDuration()}}</p>
                                     <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
-                                                Type:
+                                                <strong>Type:</strong>
                                             </p>
                                             <ul class="list list-skills icons list-unstyled">
                                                 <li>
@@ -146,7 +146,7 @@
                                         </li>
                                         <li>
                                             <p>
-                                                Sector:
+                                                <strong>Sector:</strong>
                                             </p>
                                             <ul class="list list-skills icons list-unstyled">
                                                 <li>
@@ -228,7 +228,7 @@
                                     <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
-                                                Outcomes:
+                                                <strong>Outcomes:</strong>
                                             </p>
                                             <ul class="list list-skills icons list-unstyled list-inline">
                                                 <li ng-repeat="outcome in currentProjectActive.outcomes">
@@ -243,7 +243,7 @@
                                     <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
-                                                Retributions ways:
+                                                <strong>Retributions ways:</strong>
                                             </p>
                                             <ul class="list list-skills icons list-unstyled list-inline">
                                                 <li ng-repeat="retribution in currentProjectActive.retributions">
@@ -257,11 +257,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                    <p class="taller"> Beneficiaries: </p>
+                                    <p class="taller"> <strong>Beneficiaries:</strong> </p>
                                     <p class="taller margin-bottom-25"> {{currentProjectActive.beneficiaries}} </p>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                    <p class="taller"> Competitive advantage: </p>
+                                    <p class="taller"> <strong>Competitive advantage:</strong> </p>
                                     <p class="taller margin-bottom-25"> {{currentProjectActive.competitiveAdvantage}} </p>
                                 </div>
                             </div>
@@ -269,7 +269,7 @@
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" >
                                     <div class="panel panel-transparent">
                                         <div class="panel-title">
-                                            Tasks
+                                            <strong>Tasks</strong>
                                         </div>
                                     </div>
                                     <ul class="list-unstyled">

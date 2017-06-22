@@ -8,8 +8,14 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
-            $scope.owner = '';
 
+            if (localStorageService.get('isLogged') == null || localStorageService.get('isLogged') == 'false') {
+                $scope.logged = false;
+            } else {
+                $scope.logged = true;
+            }
+
+            $scope.owner = '';
             $scope.creationProjectDate = '';
             $scope.deathLineProject = '';
             $scope.currentProjectActive = '';
@@ -20,7 +26,6 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                     .then(
                         function (data) {
                             $scope.currentProjectActive = data[0];
-
                             $scope.getOwnerData();
                         },
                         function (errResponse) {
@@ -94,6 +99,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             };
 
             $scope.investmentCapitalProject = 0;
+            $scope.inverted = false;
 
             $scope.invertionByProjectId = function () {
                 RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
@@ -103,6 +109,9 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
                             for (var i = 0; i < $scope.invertions.length; i++) {
                                 $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
+                                if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
+                                    $scope.inverted = true;
+                                }
                             }
 
                             $scope.coveredCapital();
@@ -209,6 +218,62 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                 }
 
                 return text;
+            };
+
+            $scope.isFollowProject = function (projectId) {
+                var followFlag = false;
+
+                if (localStorageService.get('isLogged')) {
+
+                    if ($scope.owner.projectsFollow) {
+                        for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
+                            if (projectId == $scope.owner.projectsFollow[i]) {
+                                followFlag = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                return followFlag;
+            };
+
+            $scope.updateUser = function () {
+                RestService.updateUser($scope.owner)
+                    .then(
+                        function (data) {
+                            toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
+
+            $scope.follow = function (projectId) {
+
+                if (localStorageService.get('isLogged')) {
+
+                    if (!$scope.owner.projectsFollow) {
+                        $scope.owner.projectsFollow = [];
+                    }
+                    $scope.owner.projectsFollow.push(projectId);
+
+                    $scope.updateUser();
+                }
+                else {
+                    toaster.pop('error', 'Error!!!', 'Must be login first.');
+                }
+            };
+
+            $scope.unfollow = function (projectId) {
+                for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
+                    if (projectId == $scope.owner.projectsFollow[i]) {
+                        $scope.owner.projectsFollow.splice(i, 1);
+                        break;
+                    }
+                }
+                $scope.updateUser();
             };
         }
     }]);

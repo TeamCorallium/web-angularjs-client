@@ -101,9 +101,9 @@
                             </div>
                             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                 <div class="portfolio-info">
-                                    <div class="row margin-top-15">
+                                    <div class="row">
                                         <div class="col-md-12">
-                                            <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right">
+                                            <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right margin-top-15">
                                                 <li class="pull-right">
                                                     <i class="fa fa-tags"></i>
                                                     <a> See reference list </a>
@@ -112,7 +112,7 @@
                                                     <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
                                                 </li>
                                             </ul>
-                                            <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding">State: {{stateArray[currentProjectActive.state]}}</p>
+                                            <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15">State: {{stateArray[currentProjectActive.state]}}</p>
                                         </div>
                                     </div>
                                     <div class="row margin-top-15">
@@ -169,47 +169,39 @@
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
-                                                    <ul class="portfolio-details list-unstyled">
-                                                        <li>
-                                                            <p>
-                                                                <strong>Deathline:</strong>
-                                                                {{getDateProject(currentProjectActive.deathLine)}}
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p>
-                                                                <strong>Total Cost:</strong>
-                                                                {{currentProjectActive.totalCost | number: 2}} $
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p>
-                                                                <strong>Covered Capital:</strong>
-                                                                {{coveredCapitalPercent}} %
-                                                            </p>
-                                                        </li>
-                                                    </ul>
+                                                    <p>
+                                                        <strong>Deathline:</strong>
+                                                        {{getDateProject(currentProjectActive.deathLine)}}
+                                                    </p>
                                                 </div>
-                                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
-                                                    <ul class="portfolio-details list-unstyled">
-                                                        <li>
-                                                            <p class="margin-top-15">
-                                                                <strong>Owner Raiting:</strong>
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p class="margin-top-15">
-                                                                <strong>Owner Revenue:</strong>
-                                                                {{currentProjectActive.revenueOwner}} %
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p>
-                                                                <strong>Total of Investors:</strong>
-                                                                {{invertions.length}}
-                                                            </p>
-                                                        </li>
-                                                    </ul>
+                                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
+                                                    <p>
+                                                        <strong>Owner Raiting:</strong>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
+                                                    <p>
+                                                        <strong>Total Cost:</strong>
+                                                        {{currentProjectActive.totalCost | number: 2}} $
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
+                                                    <p>
+                                                        <strong>Owner Revenue:</strong>
+                                                        {{currentProjectActive.revenueOwner}} %
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
+                                                    <p>
+                                                        <strong>Covered Capital:</strong>
+                                                        {{coveredCapitalPercent | number: 2}} %
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
+                                                    <p>
+                                                        <strong>Total of Investors:</strong>
+                                                        {{invertions.length}}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>

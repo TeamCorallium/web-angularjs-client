@@ -5,7 +5,7 @@
 app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
 
-        if (localStorageService.get('isLogged') == null || localStorageService.get('isLogged') == 'false') {
+        if (localStorageService.get('isLogged') == null || (!localStorageService.get('isLogged'))) {
             $scope.logged = false;
         } else {
             $scope.logged = true;
@@ -71,8 +71,6 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
 
                         for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {
                             if ($scope.allProjectsAbstracts[i].id == projectId) {
-                                console.log(investmentCapitalProject + " " + $scope.allProjectsAbstracts[i].totalCost + " " +
-                                    $scope.allProjectsAbstracts[i].name);
                                 coveredCapitalPercent = (investmentCapitalProject / parseFloat($scope.allProjectsAbstracts[i].totalCost)) * 100;
                                 $scope.allProjectsAbstracts[i].coveredCapital = coveredCapitalPercent;
                             }

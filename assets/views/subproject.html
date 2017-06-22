@@ -419,7 +419,7 @@
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                                                                 <span class="notification-author"><a>{{reference.name}}</a></span>
-                                                                <span class="pull-right"><a ng-click="seeReference(reference.file)"> See reference</a></span>
+                                                                <span ng-hide="reference.file == ''" class="pull-right"><a ng-click="seeReference(reference.file)"> See reference</a></span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview">{{ reference.description}}</span>

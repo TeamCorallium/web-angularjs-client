@@ -146,18 +146,18 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row" class="margin-top-10">
+                        <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="panel panel-white" id="panel3">
                                     <div class="panel-heading">
                                         <h4 class="panel-title text-primary">Investment</h4>
                                         <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
-                                                                                                           class="btn btn-transparent btn-sm"
-                                                                                                           panel-collapse=""
-                                                                                                           tooltip-placement="top"
-                                                                                                           uib-tooltip="Collapse"
-                                                                                                           ng-click="panel3 = !panel3"
-                                                                                                           ng-init="panel3=true">
+                                                class="btn btn-transparent btn-sm"
+                                                panel-collapse=""
+                                                tooltip-placement="top"
+                                                uib-tooltip="Collapse"
+                                                ng-click="panel3 = !panel3"
+                                                ng-init="panel3=true">
                                             <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel3"
                                                                                           class="ti-minus ng-scope"
                                                                                           style=""></i>
@@ -215,12 +215,12 @@
                                     <div class="panel-heading">
                                         <h4 class="panel-title text-primary">Outcomes and Retributions ways</h4>
                                         <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
-                                                                                                           class="btn btn-transparent btn-sm"
-                                                                                                           panel-collapse=""
-                                                                                                           tooltip-placement="top"
-                                                                                                           uib-tooltip="Collapse"
-                                                                                                           ng-click="panel1 = !panel1"
-                                                                                                           ng-init="panel1=true">
+                                                class="btn btn-transparent btn-sm"
+                                                panel-collapse=""
+                                                tooltip-placement="top"
+                                                uib-tooltip="Collapse"
+                                                ng-click="panel1 = !panel1"
+                                                ng-init="panel1=true">
                                             <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel1"
                                                                                           class="ti-minus ng-scope"
                                                                                           style=""></i>
@@ -271,12 +271,12 @@
                                     <div class="panel-heading">
                                         <h4 class="panel-title text-primary">Beneficiaries and Competitive advantage</h4>
                                         <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
-                                                                                                           class="btn btn-transparent btn-sm"
-                                                                                                           panel-collapse=""
-                                                                                                           tooltip-placement="top"
-                                                                                                           uib-tooltip="Collapse"
-                                                                                                           ng-click="panel2 = !panel2"
-                                                                                                           ng-init="panel2=true">
+                                                class="btn btn-transparent btn-sm"
+                                                panel-collapse=""
+                                                tooltip-placement="top"
+                                                uib-tooltip="Collapse"
+                                                ng-click="panel2 = !panel2"
+                                                ng-init="panel2=true">
                                             <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel2"
                                                                                           class="ti-minus ng-scope"
                                                                                           style=""></i>
@@ -305,12 +305,12 @@
                                     <div class="panel-heading">
                                         <h4 class="panel-title text-primary">Task</h4>
                                         <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
-                                                                                                           class="btn btn-transparent btn-sm"
-                                                                                                           panel-collapse=""
-                                                                                                           tooltip-placement="top"
-                                                                                                           uib-tooltip="Collapse"
-                                                                                                           ng-click="panel4 = !panel4"
-                                                                                                           ng-init="panel4=false">
+                                                class="btn btn-transparent btn-sm"
+                                                panel-collapse=""
+                                                tooltip-placement="top"
+                                                uib-tooltip="Collapse"
+                                                ng-click="panel4 = !panel4"
+                                                ng-init="panel4=false">
                                             <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel4"
                                                                                           class="ti-minus ng-scope"
                                                                                           style=""></i>
@@ -394,7 +394,7 @@
                                                     <div class="clearfix">
                                                         <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                                                             <span class="notification-author"><a>{{reference.name}}</a></span>
-                                                            <span class="pull-right"><a ng-click="seeReference(reference.file)"> See reference</a></span>
+                                                            <span ng-hide="reference.file == ''" class="pull-right"><a ng-click="seeReference(reference.file)"> See reference</a></span>
                                                         </div>
                                                         <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                             <span class="notification-preview">{{ reference.description}}</span>

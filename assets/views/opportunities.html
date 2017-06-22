@@ -25,52 +25,56 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
-					<li class="margin-bottom-15" ng-repeat="project in allProjects">
-						<hr>
+					<li class="margin-bottom-15" ng-repeat="project in allProjectsAbstracts">
+						<hr class="tall">
 						<div class="clearfix">
 							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
 								<img  ng-src="{{project.mainLayout}}"
 									  class="img-responsive img-rounded notification-image">
 							</div>
-							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-								<span class="notification-author"><a ng-click="goToOpportunities(project.id)"> {{project.projectName}} </a></span>
-								<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
-							</div>
-							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding margin-top-10">
-								<span class="notification-preview"><strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-									<span><i class="ti-timer"></i>
-										<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
+							<div class="col-sm-10 col-md-10 col-lg-10">
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding">
+									<span class="notification-author"><a ng-click="goToOpportunities(project.id)"> {{project.name}} </a></span>
+									<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
+								</div>
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
+									<span class="notification-preview">
+										<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
 									</span>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-									<span><i class="ti-layers-alt"></i>
-										<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
-									</span>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-timer"></i>
+											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> State:</strong>  {{stateArray[project.state]}}
+										</span>
+									</div>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-									<span><i class="ti-layers-alt"></i>
-										<strong> State:</strong>  {{stateArray[project.state]}}
-									</span>
-								</div>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-									<span><i class="ti-timer"></i>
-										<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
-									</span>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-									<span><i class="ti-layers-alt"></i>
-										<strong> Owner:</strong> {{listUserOwners[$index]}}
-									</span>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-									<span><i class="ti-layers-alt"></i>
-										<strong> Owner Raiting:</strong>
-									</span>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-timer"></i>
+											<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> Owner Raiting:</strong>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="thread-content margin-top-10">

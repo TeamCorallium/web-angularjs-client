@@ -432,7 +432,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             };
 
             $scope.seeReference = function (file) {
-                console.log(file + " file");
                 $window.location.href = file;
             };
         }        

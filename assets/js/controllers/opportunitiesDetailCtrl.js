@@ -295,7 +295,6 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             };
 
             $scope.seeReference = function (file) {
-                console.log(file + " file");
                 $window.location.href = file;
             };
         }

@@ -125,7 +125,11 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
 
         $scope.goToExploreProject = function (projectId) {
             localStorageService.set('currentProjectId', projectId);
-            $state.go('app.project.opportunities_detail');
+            if ($scope.logged) {
+                $state.go('app.project.opportunities_detail');
+            } else {
+                $state.go('app.project.explore_subproject');
+            }
         };
 
         $scope.isFollowProject = function (projectId) {

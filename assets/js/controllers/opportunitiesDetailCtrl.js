@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
-    function ($scope, localStorageService, RestService, $state, toaster) {
+app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "$window",
+    function ($scope, localStorageService, RestService, $state, toaster, $window) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
@@ -292,6 +292,11 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                     }
                 }
                 $scope.updateUser();
+            };
+
+            $scope.seeReference = function (file) {
+                console.log(file + " file");
+                $window.location.href = file;
             };
         }
     }]);

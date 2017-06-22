@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert",
-    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert) {
+app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert", "$window",
+    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert, $window) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
@@ -429,6 +429,11 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 }
 
                 return text;
+            };
+
+            $scope.seeReference = function (file) {
+                console.log(file + " file");
+                $window.location.href = file;
             };
         }        
     }]);

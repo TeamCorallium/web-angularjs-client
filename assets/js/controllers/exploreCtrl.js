@@ -5,7 +5,7 @@
 app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
 
-        if (localStorageService.get('isLogged') == null) {
+        if (localStorageService.get('isLogged') == null || localStorageService.get('isLogged') == 'false') {
             $scope.logged = false;
         } else {
             $scope.logged = true;

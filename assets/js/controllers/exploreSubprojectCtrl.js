@@ -5,7 +5,11 @@
 app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
 
-        $scope.logged = localStorageService.get('isLogged');
+        if (localStorageService.get('isLogged') == null || localStorageService.get('isLogged') == 'false') {
+            $scope.logged = false;
+        } else {
+            $scope.logged = true;
+        }
 
         $scope.currentProjectActive = '';
         $scope.owner = '';

@@ -125,7 +125,10 @@ class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
         projects = []
         if userId != 'null':
             projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
-            
+            investions = table_invertion.search((where('userId') == userId) | (where('userId') == int(userId)))
+
+            for inver in investions:
+                projects = [item for item in projects if int(item['id']) != int(inver['projectId'])]
         else:
             projects = table_simple_project.all()
 

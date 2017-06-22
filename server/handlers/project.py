@@ -47,19 +47,22 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
     def post(self):
         print("SimpleProject:POST!!!")
 
-        self.json_args = json.loads(self.request.body)
+        newProject = json.loads(self.request.body)
 
-        print(self.json_args['projectName'])
+        print(newProject['projectName'])
 
-        if len(table_simple_project.search(where('projectName') == self.json_args['projectName'])) != 0:
-            self.write('-1')
+        if len(table_simple_project.search(where('id') == newProject['id'])) != 0:
+            # self.write('-1')
+            id = newProject['id']
+            table_simple_project.update(newProject, eids=[int(id)])
+            self.write(str(id))
         else:
-            id = table_simple_project.insert(self.json_args)
+            id = table_simple_project.insert(newProject)
             table_simple_project.update({'id': id}, eids=[id])
             self.write(str(id))
             print(id)
 
-        table_activity.insert({'userId': self.json_args['userId'], 'title': 'Project', 'content': "You created a new project", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+        table_activity.insert({'userId': newProject['userId'], 'title': 'Project', 'content': "You created a new project", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
 class SimpleProjectByIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

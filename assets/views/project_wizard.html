@@ -64,7 +64,6 @@
 						<div id="step-1" ng-show="currentStep == 1">
 							<div class="row" ng-controller="UploadCtrl" nv-file-drop="" uploader="uploaderImages">
 								<div class="col-md-12">
-
 									<div class="panel panel-white" id="panel5">
 										<div class="panel-heading">
 											<h4 class="panel-title text-primary">Main layout</h4>
@@ -72,23 +71,25 @@
 										</div>
 										<div uib-collapse="panel5" ng-init="panel5=true" class="panel-wrapper">
 											<div class="panel-body">
-												<div class="col-md-6">
-													<span class="btn btn-primary btn-file"> Select an image file
-														<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
-													</span>
-												</div>
-												<div class="col-md-6 file-upload" style="margin-bottom: 40px">
-
-													<div ng-repeat="item in uploaderImages.queue">
-														<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-
-														<div nowrap>
-                                                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-																<span class="glyphicon glyphicon-trash"></span> Remove
-															</button>
-
-															<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+												<div class="user-image">
+													<div class="thumbnail">
+														<img src="assets/images/default-user.png" alt="" ng-if="!uploaderImages.queue.length && noImage">
+														<img ng-src="{{simpleProject.mainLayout}}" alt="" ng-if="!uploaderImages.queue.length && !noImage">
+														<div ng-if="uploaderImages.queue.length" ng-repeat="item in uploaderImages.queue">
+															<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
 														</div>
+													</div>
+													<div class="user-image-buttons" ng-if="uploaderImages.queue.length">
+														<span class="btn btn-primary btn-o btn-file"> <i class="fa fa-pencil"></i>
+														<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
+														</span>
+														<span class="btn btn-danger" ng-click="removeImage()"> <i class="fa fa-times"></i> </span>
+													</div>
+													<div class="user-image-buttons" ng-if="!uploaderImages.queue.length">
+														<span class="btn btn-primary btn-o btn-file"> <i class="fa fa-pencil"></i>
+														<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
+														</span>
+														<span class="btn btn-danger" ng-if="!noImage" ng-click="removeImage()"><i class="fa fa-times"></i></span>
 													</div>
 												</div>
 											</div>
@@ -125,12 +126,12 @@
 																	</label>
 
 																	<select class="cs-select cs-skin-slide" data-ng-model="simpleProject.category" name="category" ng-required="currentStep == 1">
-																		<option value="0" disabled selected>Select an category</option>
-																		<option value="1">Commodities Production</option>
-																		<option value="2">Creating a New Business</option>
-																		<option value="3">Diversification</option>
-																		<option value="4">Property developments</option>
-																		<option value="5">Other</option>
+																		<option value="0" disabled selected>Select a category</option>
+																		<option ng-selected="simpleProject.category == 1" value="1">Commodities Production</option>
+																		<option ng-selected="simpleProject.category == 2" value="2">Creating a New Business</option>
+																		<option ng-selected="simpleProject.category == 3" value="3">Diversification</option>
+																		<option ng-selected="simpleProject.category == 4" value="4">Property developments</option>
+																		<option ng-selected="simpleProject.category == 5" value="5">Other</option>
 																	</select>
 																</div>
 															</div>
@@ -141,15 +142,15 @@
 																	</label>
 
 																	<select class="cs-select cs-skin-slide" data-ng-model="simpleProject.sector" name="sector" ng-required="currentStep == 1">
-																		<option value="0" disabled selected>Select an sector</option>
-																		<option value="1">Agriculture</option>
-																		<option value="2">Industry</option>
-																		<option value="3">Technology</option>
-																		<option value="4">Engineering</option>
-																		<option value="5">Real State</option>
-																		<option value="6">Academic</option>
-																		<option value="7">Food industry</option>
-																		<option value="8">Other</option>
+																		<option value="0" disabled selected>Select a sector</option>
+																		<option ng-selected="simpleProject.sector == 1" value="1">Agriculture</option>
+																		<option ng-selected="simpleProject.sector == 2" value="2">Industry</option>
+																		<option ng-selected="simpleProject.sector == 3" value="3">Technology</option>
+																		<option ng-selected="simpleProject.sector == 4" value="4">Engineering</option>
+																		<option ng-selected="simpleProject.sector == 5" value="5">Real State</option>
+																		<option ng-selected="simpleProject.sector == 6" value="6">Academic</option>
+																		<option ng-selected="simpleProject.sector == 7" value="7">Food industry</option>
+																		<option ng-selected="simpleProject.sector == 8" value="8">Other</option>
 																	</select>
 																</div>
 															</div>
@@ -209,21 +210,10 @@
 																</ul>
 															</div>
 														</div>
-														<div class="panel panel-white" id="panel51">
-															<div class="panel-heading">
-																<!-- <h5 class="text-primary">Add</h5> -->
-																<ct-paneltool class="panel-tools" tool-collapse="tool-collapse"></ct-paneltool>
-															</div>
-															<div uib-collapse="panel51" ng-init="panel51=false" class="panel-wrapper">
-																<div class="panel-body">
-
-																	<div class="form-group">
-																		<textarea placeholder="Objetive" class="form-control autosize msd-elastic: \n;" data-ng-model="objetive" name="objetive"></textarea>
-																	</div>
-																	<a class="btn btn-wide btn-primary pull-right" ng-click="addObjetive()"><i class="fa fa-plus"></i> Add</a>
-																</div>
-															</div>
+														<div class="form-group">
+															<textarea placeholder="Objetive" class="form-control autosize msd-elastic: \n;" data-ng-model="objetive" name="objetive"></textarea>
 														</div>
+														<a class="btn btn-wide btn-primary pull-right" ng-click="addObjetive()"><i class="fa fa-plus"></i> Add</a>
 													</div>
 												</div>
 											</div>
@@ -238,9 +228,12 @@
 												</div>
 												<div uib-collapse="panel60" ng-init="panel60=true" class="panel-wrapper">
 													<div class="panel-body">
-														{{simpleProject.ownerInvestedCapital}} $
-														<a class="btn btn-wide btn-primary pull-right" ng-click=""><i class="fa fa-plus"></i> Make a transaction</a>
-
+														<div class="form-group col-md-6">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.ownerInvestedCapital" name="ownerInvestedCapital">
+														</div>
+														<div class="form-group col-md-6">			
+														<a class="btn btn-wide btn-primary pull-right" ng-click=""><i class="fa fa-plus"></i> Make the transaction</a>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -269,10 +262,11 @@
 															<div class="col-md-6">
 																<div class="form-group" ng-class="{'has-error':Form.minimalCost.$dirty && Form.minimalCost.$invalid, 'has-success':Form.minimalCost.$valid}">
 																	<label>
+																		<i class="ti-info-alt text-primary" uib-tooltip="Optional"></i>
 																		Minimal cost <span class="symbol required"></span>
 																	</label>
-
-																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minimalCost" name="minimalCost" ng-required="currentStep == 1">
+																	
+																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minimalCost" name="minimalCost">
 																</div>
 															</div>
 														</div>
@@ -280,7 +274,7 @@
 															<div class="col-md-6">
 																<div class="form-group" ng-class="{'has-error':Form.revenueOwner.$dirty && Form.revenueOwner.$invalid, 'has-success':Form.revenueOwner.$valid}">
 																	<label>
-																		My estimate revenue <span class="symbol required"></span>
+																		My revenue <span class="symbol required"></span>
 																	</label>
 
 																	<input type="text" value="0" touchspin data-min="0" data-max="100" data-step="1" data-maxboostedstep="10000000" data-postfix="%" data-ng-model="simpleProject.revenueOwner" name="revenueOwner" ng-required="currentStep == 1">
@@ -317,10 +311,11 @@
 															<div class="col-md-6">
 																<div class="form-group" ng-class="{'has-error':Form.totalRevenue.$dirty && Form.totalRevenue.$invalid, 'has-success':Form.totalRevenue.$valid}">
 																	<label>
+																		<i class="ti-info-alt text-primary" uib-tooltip="Optional"></i>
 																		Total Estimate Revenue <span class="symbol required"></span>
 																	</label>
 
-																	<input type="text" value="0" touchspin data-min="0" data-max="10000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue" ng-required="currentStep == 1">
+																	<input type="text" value="0" touchspin data-min="0" data-max="10000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue">
 																</div>
 															</div>
 															<div class="col-md-6">
@@ -375,12 +370,12 @@
 																	</label>
 																	<div ng-repeat="outcome in outcomes">
 																		<div class="checkbox clip-check check-primary">
-																			<input type="checkbox" id="{{outcome}}" value="{{outcome}}" ng-checked="outcomesSelection.indexOf(outcome) > -1" ng-click="toggleOutcomeSelection(outcome)">
+																			<input type="checkbox" id="{{outcome}}" value="{{outcome}}" ng-checked="simpleProject.outcomes.indexOf(outcome) > -1" ng-click="toggleOutcomeSelection(outcome)">
 																			<label for="{{outcome}}">
 																				{{outcome.name}}
 																			</label>
 																		</div>
-																		<textarea ng-show="outcomesSelection.indexOf(outcome) > -1" placeholder="Enter the outcome description" class="form-control autosize msd-elastic: \n;" ng-model="outcome.description"></textarea>
+																		<textarea ng-show="simpleProject.outcomes.indexOf(outcome) > -1" placeholder="Enter the outcome description" class="form-control autosize msd-elastic: \n;" ng-model="outcome.description"></textarea>
 																	</div>
 																</div>
 
@@ -392,12 +387,12 @@
 																	</label>
 																	<div ng-repeat="retribution in retributions">
 																		<div class="checkbox clip-check check-primary">
-																			<input type="checkbox" id="{{retribution}}" value="{{retribution}}" ng-checked="retributionsSelection.indexOf(retribution) > -1" ng-click="toggleRetributionSelection(retribution)">
+																			<input type="checkbox" id="{{retribution}}" value="{{retribution}}" ng-checked="simpleProject.retributions.indexOf(retribution) > -1" ng-click="toggleRetributionSelection(retribution)">
 																			<label for="{{retribution}}">
 																				{{retribution.name}}
 																			</label>
 																		</div>
-																		<textarea ng-show="retributionsSelection.indexOf(retribution) > -1" placeholder="Enter the retribution description" class="form-control autosize msd-elastic: \n;"ng-model="retribution.description"></textarea>
+																		<textarea ng-show="simpleProject.retributions.indexOf(retribution) > -1" placeholder="Enter the retribution description" class="form-control autosize msd-elastic: \n;"ng-model="retribution.description"></textarea>
 																	</div>
 																</div>
 															</div>
@@ -408,7 +403,10 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
+										<button ng-click="createSimpleProject('save')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-save"></i> Save project
+										</button>
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-md next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -565,10 +563,13 @@
 										</div>
 									</fieldset>
 									<div class="form-group">
-										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-wide next-step">
+										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-md next-step">
 											<i class="fa fa-arrow-circle-left"></i> Back
 										</button>
-										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
+										<button ng-click="createSimpleProject('save')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-save"></i> Save project
+										</button>
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-md next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -687,8 +688,8 @@
 											<div class="col-md-12">
 												<div ng-show="tasks.length != 0">
 													<button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
+													<div id="gantt_here"></div>
 												</div>
-												<div id="gantt_here"></div>
 												<div ng-show="tasks.length == -1" id="gantt_hide"></div>
 											</div>
 										</div>
@@ -697,10 +698,13 @@
 									</fieldset>
 
 									<div class="form-group">
-										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-wide next-step">
+										<button ng-click="form.prev(Form)" type="button" class="btn btn-primary btn-md next-step">
 											<i class="fa fa-arrow-circle-left"></i> Back
 										</button>
-										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-wide next-step">
+										<button ng-click="createSimpleProject('save')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-save"></i> Save project
+										</button>
+										<button ng-click="form.next(Form)" type="button" class="pull-right btn btn-primary btn-md next-step">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -723,12 +727,15 @@
 										<div class="alert alert-block alert-warning">
 											We solemnly declare that the information provided for the Project Construction and published in my Project using Coralium System is true and correct. There will be no responsibility other than my own if any lost or damage is done as a result of this Project Execution.
 										</div>
-										<a class="btn btn-primary" ng-click="form.goTo(Form, 1)">
+<!-- 										<a class="btn btn-primary btn-md" ng-click="form.goTo(Form, 1)">
 											Back to first step
-										</a>
-										<a class="btn btn-primary" ng-click="createSimpleProject()">
-											Submit your project
-										</a>
+										</a> -->
+										<button ng-click="createSimpleProject('save')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-save"></i> Save project
+										</button>
+										<button ng-click="createSimpleProject('publish')" type="button" class="btn btn-primary btn-md next-step">
+											<i class="fa fa-cloud-upload"></i> Publish project
+										</button>
 									</div>
 								</div>
 							</div>

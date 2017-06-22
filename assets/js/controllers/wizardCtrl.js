@@ -8,6 +8,11 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             $state.go('app.login.signin');
         } else {
 
+            // $scope.$on("$destroy", function handler() {
+            //     gantt.detachAllEvents();
+            //     console.log("WizardCtrl destroy");
+            // }); 
+
             $scope.currentStep = 1;
             $scope.simpleProject = {
                 creationDate: '',
@@ -18,15 +23,15 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 totalCost: '',
                 minimalCost: '',
                 estimateDuration: '', //calculable from tasks
-                state: '', //1->In Preparation 2->On time 3->Best than Expected 4-Delayed 5->Finished
+                state: '', //0->Under Construction 1->In Preparation 2->On time 3->Best than Expected 4-Delayed 5->Finished
                 deathLine: '',
                 totalRevenue: '',
                 revenueOwner: '',
                 minNumInves: '',
                 maxNumInves: '',
                 minCapInves: '',
-                outcomes: '',
-                retributions: '',
+                outcomes: [],
+                retributions: [],
                 mainLayout: 'assets/images/portfolio/image06.jpg',
                 category: '',
                 sector: '',
@@ -64,48 +69,137 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 file: ''
             };
 
+            $scope.getProjectById = function () {
+                if(localStorageService.get('currentProjectId') != '') {
+                    RestService.fetchProjectById(localStorageService.get('currentProjectId'))
+                        .then(
+                            function (data) {
+                                $scope.simpleProject = data[0];
+                                $scope.simpleProject.deathLine = new Date($scope.simpleProject.deathLine);
+
+                                for (var i = 0; i < $scope.simpleProject.outcomes.length; i++) {
+                                    var name = $scope.simpleProject.outcomes[i].name;
+                                    var description = $scope.simpleProject.outcomes[i].description;
+                                    for (var j = 0; j < $scope.outcomes.length; j++) {
+                                        if(name == $scope.outcomes[j].name) {
+                                            $scope.outcomes[j].description = description;
+                                            $scope.simpleProject.outcomes[i] = $scope.outcomes[j];
+                                            break;
+                                        }
+                                    }
+                                }
+                                for (var i = 0; i < $scope.simpleProject.retributions.length; i++) {
+                                    var name = $scope.simpleProject.retributions[i].name;
+                                    var description = $scope.simpleProject.retributions[i].description;
+                                    for (var j = 0; j < $scope.retributions.length; j++) {
+                                        if(name == $scope.retributions[j].name) {
+                                            $scope.retributions[j].description = description;
+                                            $scope.simpleProject.retributions[i] = $scope.retributions[j];
+                                            break;
+                                        }
+                                    }
+                                }
+                            },
+                            function (errResponse) {
+                                toaster.pop('error', 'Error', 'Server not available.');
+                                console.log(errResponse);
+                            }
+                        );     
+                }
+            };
+            $scope.getProjectById();
+
+            $scope.getTaskByProjectsId = function () {
+                if(localStorageService.get('currentProjectId') != '') {
+                    RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
+                        .then(
+                            function (data) {
+                                $scope.tasks = data;
+
+                                var tasks = {data: $scope.tasks.slice()};
+
+                                //begin gantt
+                                for (var i = 0; i < $scope.tasks.length; i++) {
+                                    tasks.data[i].text = tasks.data[i].name;
+                                    tasks.data[i].start_date = new Date(tasks.data[i].startDate);
+                                    tasks.data[i].end_date = '';
+
+                                    $scope.tasks[i].startDate = new Date(tasks.data[i].startDate);
+                                    $scope.tasks[i].end_date = '';
+                                }
+
+                                $scope.ganttStart("gantt_here");
+                                gantt.clearAll();
+                                gantt.parse(tasks);
+                                gantt.refreshData();
+                                gantt.render();
+                                //end gantt
+                            },
+                            function (errResponse) {
+                                console.log(errResponse);
+                            }
+                        );
+                }
+            };           
+            $scope.getTaskByProjectsId();
+
+            $scope.findWithAttr = function(array, attr, value) {
+                for(var i = 0; i < array.length; i += 1) {
+                    if(array[i][attr] === value) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
             // outcomes
             $scope.outcomes = [{name: 'Producction', description: ''}, {
                 name: 'Income',
                 description: ''
             }, {name: 'New business', description: ''}];
             // selected outcomes
-            $scope.outcomesSelection = [];
+            // $scope.outcomesSelection = [];
 
             // retributions
             $scope.retributions = [{name: 'Pay Back, shared profits', description: ''}, {
                 name: 'Product Delivery',
                 description: ''
-            },
-                {name: 'By Products', description: ''}, {name: 'Stocks in the New Business', description: ''}];
+            }, {name: 'By Products', description: ''}, {name: 'Stocks in the New Business', description: ''}];
             // selected retributions
-            $scope.retributionsSelection = [];
+            // $scope.retributionsSelection = [];
 
             // toggle selection for a given outomes by name
             $scope.toggleOutcomeSelection = function (name) {
-                var idx = $scope.outcomesSelection.indexOf(name);
+                var idx = $scope.simpleProject.outcomes.indexOf(name);
                 // is currently selected
                 if (idx > -1) {
-                    $scope.outcomesSelection.splice(idx, 1);
+                    $scope.simpleProject.outcomes.splice(idx, 1);
                 }
                 // is newly selected
                 else {
-                    $scope.outcomesSelection.push(name);
+                    $scope.simpleProject.outcomes.push(name);
                 }
-                console.log($scope.outcomesSelection);
+                console.log($scope.simpleProject.outcomes);
             };
             // toggle selection for a given retribution by name
             $scope.toggleRetributionSelection = function (name) {
-                var idx = $scope.retributionsSelection.indexOf(name);
+                var idx = $scope.simpleProject.retributions.indexOf(name);
                 // is currently selected
                 if (idx > -1) {
-                    $scope.retributionsSelection.splice(idx, 1);
+                    $scope.simpleProject.retributions.splice(idx, 1);
                 }
                 // is newly selected
                 else {
-                    $scope.retributionsSelection.push(name);
+                    $scope.simpleProject.retributions.push(name);
                 }
-                console.log($scope.retributionsSelection);
+                console.log($scope.simpleProject.retributions);
+            };
+
+            $scope.noImage = false;
+
+            $scope.removeImage = function () {
+                $scope.noImage = true;
+                $rootScope.$broadcast('imageRemoved');
+                console.log("removeImage");
             };
 
             $rootScope.$on('mainLayoutChanged', function (event, opt) {
@@ -118,20 +212,27 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 $scope.reference.file = RestService.uploads + opt.reference;
             });
 
-            $scope.createSimpleProject = function () {
+            $scope.createSimpleProject = function (action) {
                 $scope.simpleProject.creationDate = new Date();
                 $scope.simpleProject.state = '1';
-                $scope.simpleProject.outcomes = $scope.outcomesSelection;
-                $scope.simpleProject.retributions = $scope.retributionsSelection;
+
+                if (action == 'save') {
+                    $scope.simpleProject.state = '0';
+                }
+                // $scope.simpleProject.outcomes = $scope.outcomesSelection;
+                // $scope.simpleProject.retributions = $scope.retributionsSelection;
 
                 //begin estimateDuration calculation. this must be on the server side
-                $scope.tasks.sort(function(a,b){a.startDate - b.startDate});
-                var length = $scope.tasks.length;
-                var timeDiff = Math.abs($scope.tasks[length-1].startDate - $scope.tasks[0].startDate);
-                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-                var duration = diffDays + parseInt($scope.tasks[length-1].duration);
-                console.log(duration);
-                $scope.simpleProject.estimateDuration = duration;
+                $scope.simpleProject.estimateDuration = 0;
+                if($scope.tasks.length != 0) {
+                    $scope.tasks.sort(function(a,b){a.startDate - b.startDate});
+                    var length = $scope.tasks.length;
+                    var timeDiff = Math.abs($scope.tasks[length-1].startDate - $scope.tasks[0].startDate);
+                    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+                    var duration = diffDays + parseInt($scope.tasks[length-1].duration);
+                    console.log(duration);
+                    $scope.simpleProject.estimateDuration = duration;
+                }
                 //end estimateDuration calculation
 
                 RestService.createSimpleProject($scope.simpleProject)
@@ -315,10 +416,12 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
 
             $scope.removeTask = function (name) {
                 var index = -1;
+                var taskId = '';
                 var comArr = eval($scope.tasks);
                 for (var i = 0; i < comArr.length; i++) {
                     if (comArr[i].name === name) {
                         index = i;
+                        taskId = comArr[i].id;
                         break;
                     }
                 }
@@ -326,6 +429,18 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     alert("Something gone wrong");
                 }
                 $scope.tasks.splice(index, 1);
+                if (taskId != '') {
+                    RestService.deleteTask(taskId)
+                        .then(
+                            function (data) {
+                                // $scope.getTaskByProjectsId();
+                            },
+                            function (errResponse) {
+                                toaster.pop('error', 'Error', 'Server not available.');
+                                console.log(errResponse);
+                            }
+                        );                  
+                }
 
                 var tasks = {data: $scope.tasks.slice()};
 
@@ -435,11 +550,11 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                         toaster.pop('warning', 'Error', 'Total cost must be greater than minimal capital investment.');
                         return false;
                     }
-                    if ($scope.outcomesSelection.length == 0) {
+                    if ($scope.simpleProject.outcomes.length == 0) {
                         toaster.pop('warning', 'Error', 'The project must have at least one outcome.');
                         return false;
                     }
-                    if ($scope.retributionsSelection.length == 0) {
+                    if ($scope.simpleProject.retributions.length == 0) {
                         toaster.pop('warning', 'Error', 'The project must have at least one retribution way.');
                         return false;
                     }
@@ -764,5 +879,5 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     ]
                 }
             ];
-        }
+        }       
 }]);

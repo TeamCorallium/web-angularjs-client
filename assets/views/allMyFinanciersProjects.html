@@ -7,36 +7,21 @@
 		<div ncy-breadcrumb></div>
 	</div>
 </section>
-<!-- end: PAGE TITLE -->
-<!-- start: YOUR CONTENT HERE -->
-<!-- end: YOUR CONTENT HERE -->
-<!-- start: FEATURED BOX LINKS -->
 <section class="container-fluid container-fullw bg-white" ng-controller="AllMyFinancierProjectsCtrl">
 	<div class="container">
-		<!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">-->
-			<!--<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right no-padding">-->
-				<!--<select class="cs-select cs-skin-elastic border-combo-projects">-->
-					<!--<option value="Order By" disabled selected>Order By</option>-->
-					<!--<option value="Cost">Cost</option>-->
-					<!--<option value="State">State</option>-->
-					<!--<option value="Owner">Owner</option>-->
-					<!--<option value="Deathline">Deathline</option>-->
-				<!--</select>-->
-			<!--</div>-->
-		<!--</div>-->
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
-					<li class="margin-bottom-15" ng-repeat="financierProject in allMyFincancierProjects">
+					<li class="margin-bottom-15" ng-repeat="financierProject in allFinancierAbstracts">
 						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
 							<hr class="tall">
-							<span class="notification-author"><a ng-click="goToFinancierProject(financierProject.id)"> {{financierProject.projectName}} </a></span>
+							<span class="notification-author"><a ng-click="goToFinancierProject(financierProject.id)"> {{financierProject.name}} </a></span>
 							<span class="notification-preview margin-top-10"><strong>Description:</strong> {{financierProject.description | htmlToPlaintext | words:40 :true}} </span>
 						</div>
 						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 no-padding margin-top-10">
 								<span><i class="ti-timer"></i>
-									<strong> Balance:</strong>  {{allBalanceProjects[$index]}} $
+									<strong> Balance:</strong>  {{financierProject.balance}} $
 								</span>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin-top-10 no-padding">

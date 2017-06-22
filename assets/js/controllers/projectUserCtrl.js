@@ -10,7 +10,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
             $scope.simpleProjects = [];
             $scope.invertionsSimpleProjects = [];
 
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.getProjects = function () {
                 if (localStorageService.get('isLogged')) {
@@ -40,6 +40,11 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                 localStorageService.set('currentProjectId', projectId);
                 $state.go('app.project.subproject_detail');
             };
+
+            $scope.updateProject = function(projectId) {
+                localStorageService.set('currentProjectId', projectId);
+                $state.go('app.project.wizard');              
+            }
 
             $scope.deleteProject = function (projectId) {
                 SweetAlert.swal({

@@ -9,7 +9,8 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
             $state.go('app.login.signin');
         } else {
             $scope.allMyFincancierProjects = [];
-            $scope.allBalanceProjects = [];
+            $scope.allFinancierAbstracts = [];
+
 
             $scope.getAllMyFincancierProjects = function () {
                 RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
@@ -18,6 +19,13 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
                             $scope.allMyFincancierProjects = data;
 
                             for (var i = 0; i < $scope.allMyFincancierProjects.length; i++) {
+                                var forumAbstract = {
+                                    id: $scope.allMyFincancierProjects[i].id,
+                                    name: $scope.allMyFincancierProjects[i].projectName,
+                                    description: $scope.allMyFincancierProjects[i].description,
+                                    balance: '',
+                                };
+                                $scope.allFinancierAbstracts.push(forumAbstract);
                                 $scope.invertionsByProjectId($scope.allMyFincancierProjects[i].id);
                             }
                         },
@@ -31,7 +39,6 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
             $scope.getAllMyFincancierProjects();
 
             $scope.invertions = [];
-            $scope.investmentCapitalProject = 0;
 
             $scope.invertionsByProjectId = function (projectId) {
                 RestService.fetchInvertionByProjectId(projectId)
@@ -39,13 +46,19 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
                         function (data) {
                             $scope.invertions = data;
 
+                            var investmentCapitalProject = 0;
+
                             for (var i = 0; i < $scope.invertions.length; i++) {
-                                $scope.investmentCapitalProject += parseInt($scope.invertions[i].amount);
+                                investmentCapitalProject += parseInt($scope.invertions[i].amount);
                             }
 
-                            $scope.allBalanceProjects.push(parseInt($scope.investmentCapitalProject));
+                            for (var i=0; i<$scope.allFinancierAbstracts.length; i++) {
+                                if ($scope.allFinancierAbstracts[i].id == projectId) {
+                                    $scope.allFinancierAbstracts[i].balance = investmentCapitalProject;
+                                }
+                            }
 
-                            $scope.investmentCapitalProject = 0;
+                            investmentCapitalProject = 0;
                         },
                         function (errResponse) {
                             console.log(errResponse);

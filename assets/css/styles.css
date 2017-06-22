@@ -6057,8 +6057,8 @@ input[type="radio"], input[type="checkbox"] {
   border-color: #1e97c6;
 }
 .btn-primary:focus {
-  background-color: #4da2ff;
-  border-color: #4da2ff;
+  background-color: #e24627;
+  border-color: #e24627;
 }
 .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
   background-color: #66afff;

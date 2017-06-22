@@ -295,16 +295,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
-                                    <!--Gantt Here-->
-                                </div>
-                            </div>
                             <hr class="tall">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                     <button ui-sref="app.explore" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
                                         <span> Back </span>
+                                    </button>
+                                    <button ng-click="follow(currentProjectActive.id)" ng-hide="isFollowProject(currentProjectActive.id) || (!logged)"
+                                            type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
+                                        <span> Follow </span>
+                                    </button>
+                                    <button ng-click="unfollow(currentProjectActive.id)" ng-show="isFollowProject(currentProjectActive.id) && (logged)"
+                                            type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
+                                        <span> Unfollow </span>
                                     </button>
                                 </div>
                             </div>

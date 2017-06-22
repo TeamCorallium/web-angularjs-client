@@ -5,6 +5,12 @@
 app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
 
+        if (localStorageService.get('isLogged') == null) {
+            $scope.logged = false;
+        } else {
+            $scope.logged = true;
+        }
+
         $scope.allProjects = [];
         $scope.listAllUserAbstracts = [];
         $scope.allProjectsAbstracts = [];

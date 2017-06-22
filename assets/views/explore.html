@@ -88,11 +88,11 @@
 												ng-click="goToExploreProject(project.id)">
 											<span class="fa fa-arrow-right"></span> Read more
 										</button>
-										<button ng-click="follow(project.id)" ng-hide="isFollowProject(project.id)"
+										<button ng-click="follow(project.id)" ng-hide="isFollowProject(project.id) || (!logged)"
 												type="button" class="btn btn-success btn-xs pull-right margin-left-5">
 											<span class="fa fa-share"></span> Follow
 										</button>
-										<button ng-click="unfollow(project.id)" ng-show="isFollowProject(project.id)"
+										<button ng-click="unfollow(project.id)" ng-show="isFollowProject(project.id) && (logged)"
 												type="button" class="btn btn-success btn-xs pull-right margin-left-5">
 											<span class="fa fa-thumb-tack"></span> Following
 										</button>

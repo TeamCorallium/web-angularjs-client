@@ -200,16 +200,19 @@
                     <thead>
                     <tr>
                         <th> Type </th>
-                        <th> Task Id </th>
-                        <th> Content </th>
+                        <th> Item Subject </th>
+                        <th> Current Content </th>
+                        <th> Proposal Content </th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="proposal in listProposal">
                         <td> {{proposal.type}} </td>
-                        <td> {{proposal.itemSubject}} </td>
-                        <th ng-show="proposal.type == 'Modified Task State'"> {{stateArray[proposal.itemContent]}} </th>
-                        <th ng-hide="proposal.type == 'Modified Task State'"> {{proposal.itemContent}} </th>
+                        <td> Task: {{getTaskName(proposal.itemSubject)}} </td>
+                        <td ng-show="proposal.type == 'Modified Task State'"> {{stateArray[proposal.currentContent]}} </td>
+                        <td ng-hide="proposal.type == 'Modified Task State'"> {{proposal.currentContent}} </td>
+                        <td ng-show="proposal.type == 'Modified Task State'"> {{stateArray[proposal.itemContent]}} </td>
+                        <td ng-hide="proposal.type == 'Modified Task State'"> {{proposal.itemContent}} </td>
                     </tr>
                     </tbody>
                 </table>

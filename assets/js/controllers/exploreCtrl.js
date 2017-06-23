@@ -202,6 +202,7 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 countProjects: '',
                                 avatar: $scope.listAllUser[i].avatar
                             };
+                            console.log(usersAbstract.avatar + " avatar");
                             $scope.listAllUserAbstracts.push(usersAbstract);
                             $scope.getProjectByUserId($scope.listAllUser[i].id);
                         }

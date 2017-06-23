@@ -10,6 +10,7 @@ import json
 import logging
 
 from databases.coralliumTiny import *
+from localutils.client import * 
 
 class InvertionHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -68,7 +69,7 @@ class InvertionHandler(tornado.web.RequestHandler):
         ownerId = project['userId']
 
         notificationType = 'NEW INVERTION'
-        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': '', 'from': fromName, 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': '', 'from': '', 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                    'subject': "Invertion", 'content': "New invertion in your project"})
         for c in clients:
             if int(c.id) == int(ownerId):

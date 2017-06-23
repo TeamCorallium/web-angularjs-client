@@ -37,11 +37,12 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 sector: '',
                 background: '',
                 beneficiaries: '',
+                competitiveAdvantage: '',
                 ownerInvestedCapital: 0,
                 objetives: [],
                 references: [],
                 risks: [],
-                inverted : false
+                inverted : false,
             };
 
             $scope.risk = {
@@ -143,29 +144,17 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
             };           
             $scope.getTaskByProjectsId();
 
-            $scope.findWithAttr = function(array, attr, value) {
-                for(var i = 0; i < array.length; i += 1) {
-                    if(array[i][attr] === value) {
-                        return i;
-                    }
-                }
-                return -1;
-            }
             // outcomes
             $scope.outcomes = [{name: 'Producction', description: ''}, {
                 name: 'Income',
                 description: ''
             }, {name: 'New business', description: ''}];
-            // selected outcomes
-            // $scope.outcomesSelection = [];
 
             // retributions
             $scope.retributions = [{name: 'Pay Back, shared profits', description: ''}, {
                 name: 'Product Delivery',
                 description: ''
             }, {name: 'By Products', description: ''}, {name: 'Stocks in the New Business', description: ''}];
-            // selected retributions
-            // $scope.retributionsSelection = [];
 
             // toggle selection for a given outomes by name
             $scope.toggleOutcomeSelection = function (name) {
@@ -219,8 +208,6 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 if (action == 'save') {
                     $scope.simpleProject.state = '0';
                 }
-                // $scope.simpleProject.outcomes = $scope.outcomesSelection;
-                // $scope.simpleProject.retributions = $scope.retributionsSelection;
 
                 //begin estimateDuration calculation. this must be on the server side
                 $scope.simpleProject.estimateDuration = 0;
@@ -243,8 +230,14 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                             } else {
                                 $scope.simpleProject.id = data;
                                 $scope.addtasktoServer($scope.simpleProject.id);
-                                toaster.pop('success', 'Good!!!', 'Project created correctly.');
-                                $state.go('app.project.user_project');
+                                
+                                if (action == 'publish') {
+                                    toaster.pop('success', 'Good!!!', 'Project was created and publish correctly.');
+                                    $state.go('app.project.user_project');
+                                }
+                                else {
+                                    toaster.pop('success', 'Good!!!', 'Project was saved correctly.');
+                                }
                             }
                         },
                         function (errResponse) {
@@ -373,6 +366,10 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                     toaster.pop('warning', 'Error', 'Please, define a task cost.');
                     return false;
                 }
+                if ($scope.task.cost > $scope.getTaskPossibleCost()) {
+                    toaster.pop('warning', 'Error', 'Please, define a permited task cost. The maximun possible cost is: $'+$scope.getTaskPossibleCost() + ". Maybe you should change the project total cost.");
+                    return false;                    
+                }
                 if ($scope.task.description == '') {
                     toaster.pop('warning', 'Error', 'Please, define a task description.');
                     return false;
@@ -454,6 +451,17 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 gantt.parse(tasks);
                 gantt.render();
             };
+
+            $scope.getTaskPossibleCost = function() {
+                var currentCost = 0;
+                for (var i = 0; i < $scope.tasks.length; i++) {
+                    currentCost += parseInt($scope.tasks[i].cost);
+                }
+                console.log('getTaskPossibleCost');
+                console.log(parseInt($scope.simpleProject.totalCost) - currentCost);
+
+                return parseInt($scope.simpleProject.totalCost) - currentCost;
+            }
 
             $scope.getDate = function (date) {
                 var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

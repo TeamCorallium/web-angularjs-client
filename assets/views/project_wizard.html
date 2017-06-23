@@ -184,11 +184,22 @@
 																</div>
 															</div>
 														</div>
+														<div class="row">
+															<div class="col-md-12">
+																<div class="form-group" ng-class="{'has-error':Form.competitiveAdvantage.$dirty && Form.competitiveAdvantage.$invalid, 'has-success':Form.competitiveAdvantage.$valid}">
+																	<label class="control-label">
+																		Competitive Advantage <span class="symbol required"></span>
+																	</label>
+
+																	<textarea placeholder="Enter your project competitive advantage" class="form-control autosize msd-elastic: \n;" data-ng-model="simpleProject.competitiveAdvantage" name="competitiveAdvantage" ng-required="currentStep == 1"></textarea>
+																</div>		
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
+									</div>									
 									<div class="row">
 										<div class="col-md-12">
 											<div class="panel panel-white" id="panel50">
@@ -229,7 +240,7 @@
 												<div uib-collapse="panel60" ng-init="panel60=true" class="panel-wrapper">
 													<div class="panel-body">
 														<div class="form-group col-md-6">
-															<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.ownerInvestedCapital" name="ownerInvestedCapital">
+															<input type="text" value="0" touchspin data-min="0" data-max="1000000000"data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.ownerInvestedCapital" name="ownerInvestedCapital">
 														</div>
 														<div class="form-group col-md-6">			
 														<a class="btn btn-wide btn-primary pull-right" ng-click=""><i class="fa fa-plus"></i> Make the transaction</a>
@@ -260,10 +271,10 @@
 
 															</div>
 															<div class="col-md-6">
-																<div class="form-group" ng-class="{'has-error':Form.minimalCost.$dirty && Form.minimalCost.$invalid, 'has-success':Form.minimalCost.$valid}">
+																<div class="form-group">
 																	<label>
 																		<i class="ti-info-alt text-primary" uib-tooltip="Optional"></i>
-																		Minimal cost <span class="symbol required"></span>
+																		Minimal cost
 																	</label>
 																	
 																	<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.minimalCost" name="minimalCost">
@@ -309,10 +320,10 @@
 													<div class="panel-body">
 														<div class="row">
 															<div class="col-md-6">
-																<div class="form-group" ng-class="{'has-error':Form.totalRevenue.$dirty && Form.totalRevenue.$invalid, 'has-success':Form.totalRevenue.$valid}">
+																<div class="form-group">
 																	<label>
 																		<i class="ti-info-alt text-primary" uib-tooltip="Optional"></i>
-																		Total Estimate Revenue <span class="symbol required"></span>
+																		Total Estimate Revenue
 																	</label>
 
 																	<input type="text" value="0" touchspin data-min="0" data-max="10000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" data-ng-model="simpleProject.totalRevenue" name="totalRevenue">
@@ -599,7 +610,7 @@
 														Cost
 													</label>
 
-													<input type="text" value="0" touchspin data-min="0" data-max="1000000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="task.cost">
+													<input type="text" value="0" touchspin data-min="0" data-max="10000000" data-step="50" data-maxboostedstep="10000000" data-prefix="$" ng-model="task.cost">
 												</div>
 											</div>
 										</div>

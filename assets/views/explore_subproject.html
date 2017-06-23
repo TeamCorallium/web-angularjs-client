@@ -107,9 +107,9 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                     <div class="portfolio-info">
-                                        <div class="row margin-top-15">
+                                        <div class="row">
                                             <div class="col-md-12">
-                                                <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right">
+                                                <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right margin-top-15">
                                                     <li class="pull-right">
                                                         <i class="fa fa-tags"></i>
                                                         <a> See reference list </a>
@@ -118,7 +118,7 @@
                                                         <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
                                                     </li>
                                                 </ul>
-                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding">State: {{stateArray[currentProjectActive.state]}}</p>
+                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15">State: {{stateArray[currentProjectActive.state]}}</p>
                                             </div>
                                         </div>
                                         <div class="row margin-top-15">
@@ -131,7 +131,7 @@
                                         <p class="taller"> Description: </p>
                                         <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
                                     </div>
-                                    <p class="taller margin-bottom-25"> Duration: {{currentProjectActive.estimateDuration}} weeks</p>
+                                    <p class="taller margin-bottom-25"> Duration: {{getDuration()}} </p>
                                     <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
@@ -174,47 +174,39 @@
                                              style="height: auto;">
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
-                                                        <ul class="portfolio-details list-unstyled">
-                                                            <li>
-                                                                <p>
-                                                                    <strong>Total Cost:</strong>
-                                                                    {{currentProjectActive.totalCost | number: 2}} $
-                                                                </p>
-                                                            </li>
-                                                            <li>
-                                                                <p>
-                                                                    <strong>Invested Capital:</strong>
-                                                                    {{investmentCapitalProject | number: 2}} $
-                                                                </p>
-                                                            </li>
-                                                            <li>
-                                                                <p>
-                                                                    <strong>Execution Plan:</strong>
-                                                                </p>
-                                                            </li>
-                                                        </ul>
+                                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                        <p>
+                                                            <strong>Total Cost:</strong>
+                                                            {{currentProjectActive.totalCost | number: 2}} $
+                                                        </p>
                                                     </div>
-                                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
-                                                        <ul class="portfolio-details list-unstyled">
-                                                            <li>
-                                                                <p class="margin-top-15">
-                                                                    <strong>Total Estimate Revenue:</strong>
-                                                                    {{currentProjectActive.totalRevenue | number: 2}} $
-                                                                </p>
-                                                            </li>
-                                                            <li>
-                                                                <p class="margin-top-15">
-                                                                    <strong>Total of investors:</strong>
-                                                                    {{invertions.length}}
-                                                                </p>
-                                                            </li>
-                                                            <li>
-                                                                <p>
-                                                                    <strong>Real Execution:</strong>
-                                                                </p>
-                                                            </li>
-                                                        </ul>
+                                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                        <p>
+                                                            <strong>Total Estimate Revenue:</strong>
+                                                            {{currentProjectActive.totalRevenue | number: 2}} $
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                        <p>
+                                                            <strong>Invested Capital:</strong>
+                                                            {{investmentCapitalProject | number: 2}} $
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                        <p>
+                                                            <strong>Total of investors:</strong>
+                                                            {{invertions.length}}
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                        <p>
+                                                            <strong>Execution Plan:</strong>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                        <p>
+                                                            <strong>Real Execution:</strong>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>

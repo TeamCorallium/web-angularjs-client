@@ -8,7 +8,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
             $state.go('app.login.signin');
         } else {
             $scope.allProjects = [];
-            $scope.listUserOwners = [];
+            $scope.allProjectsAbstracts = [];
             $scope.creationProjectDate = '';
             $scope.deathLineProject = '';
             $scope.filter = '';
@@ -17,7 +17,13 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                 RestService.fetchUser(userId)
                     .then(
                         function (data) {
-                            $scope.listUserOwners.push(data[0].fullName);
+                            var name = data[0].fullName;
+
+                            for (var i=0 ; i<$scope.allProjectsAbstracts.length; i++) {
+                                if ($scope.allProjectsAbstracts[i].ownerId == userId) {
+                                    $scope.allProjectsAbstracts[i].ownerName = name;
+                                }
+                            }
                         },
                         function (errResponse) {
                             console.log(errResponse);
@@ -32,7 +38,24 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                             $scope.allProjects = data;
 
                             for (var i = 0; i < $scope.allProjects.length; i++) {
+                                var projectAbstract = {
+                                    id: $scope.allProjects[i].id,
+                                    mainLayout: $scope.allProjects[i].mainLayout,
+                                    name: $scope.allProjects[i].projectName,
+                                    creationDate: $scope.allProjects[i].creationDate,
+                                    description: $scope.allProjects[i].description,
+                                    totalCost: $scope.allProjects[i].totalCost,
+                                    totalRevenue: $scope.allProjects[i].totalRevenue,
+                                    state: $scope.allProjects[i].state,
+                                    deathLine: $scope.allProjects[i].deathLine,
+                                    ownerId: $scope.allProjects[i].userId,
+                                    ownerName: '',
+                                    ownerRaiting: '',
+                                    coveredCapital: ''
+                                };
+                                $scope.allProjectsAbstracts.push(projectAbstract);
                                 $scope.getUserName($scope.allProjects[i].userId);
+                                $scope.invertionByProjectId($scope.allProjects[i].id);
                             }
                         },
                         function (errResponse) {
@@ -44,7 +67,33 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
 
             $scope.getAllOpportunities();
 
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.invertionByProjectId = function (projectId) {
+                RestService.fetchInvertionByProjectId(projectId)
+                    .then(
+                        function (data) {
+                            $scope.invertions = data;
+
+                            var investmentCapitalProject = 0;
+
+                            for (var i = 0; i < $scope.invertions.length; i++) {
+                                investmentCapitalProject += parseFloat($scope.invertions[i].amount);
+                            }
+                            var coveredCapitalPercent = 0;
+
+                            for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {
+                                if ($scope.allProjectsAbstracts[i].id == projectId) {
+                                    coveredCapitalPercent = (investmentCapitalProject / parseFloat($scope.allProjectsAbstracts[i].totalCost)) * 100;
+                                    $scope.allProjectsAbstracts[i].coveredCapital = coveredCapitalPercent;
+                                }
+                            }
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
+
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -112,6 +161,11 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                     }
                 }
                 $scope.updateUser();
+            };
+
+            $scope.viewProfile = function (userId) {
+                localStorageService.set('viewUserProfileId', userId);
+                $state.go('app.pages.exploreuser');
             };
         }
     }]);

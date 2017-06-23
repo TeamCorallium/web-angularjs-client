@@ -3,30 +3,16 @@
     <section id="page-title">
         <div class="row">
             <div class="col-sm-8">
-                <!-- <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">WELCOME TO CORALLIUM</h1> -->
-                <h1 class="mainTitle"></h1>
+                <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
             </div>
-            <div ncy-breadcrumb>{{currentProjectActive.projectName}}</div>
+            <div ncy-breadcrumb></div>
         </div>
     </section>
-    <!-- end: PAGE TITLE -->
-    <!-- start: YOUR CONTENT HERE -->
-    <!-- end: YOUR CONTENT HERE -->
-    <!-- start: FEATURED BOX LINKS -->
     <div class="container-fluid container-fullw bg-white">
-        <!-- start: APP CONTENT -->
         <div class="app-content">
             <div class="main-content" id="subproject">
                 <section class="container-fluid container-fullw bg-white" id="section_subproject">
                     <div class="container">
-                        <div class="portfolio-title">
-                            <div class="row">
-                                <div class="col-md-12 left no-padding">
-                                    <h2 class="shorter">{{currentProjectActive.projectName}}</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="tall">
                         <div class="row">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
@@ -108,35 +94,31 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                     <div class="portfolio-info">
-                                        <div class="row margin-top-15">
+                                        <div class="row">
                                             <div class="col-md-12">
-                                                <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right">
-                                                    <li class="pull-right">
-                                                        <i class="fa fa-tags"></i>
-                                                        <a> See reference list </a>
-                                                    </li>
+                                                <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right margin-top-15">
                                                     <li class="pull-right">
                                                         <i class="fa fa-calendar"></i> {{getDateProject(currentProjectActive.creationDate)}}
                                                     </li>
                                                 </ul>
-                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding">State: {{stateArray[currentProjectActive.state]}}</p>
+                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15"><strong>State:</strong> {{stateArray[currentProjectActive.state]}}</p>
                                             </div>
                                         </div>
                                         <div class="row margin-top-15" ng-show="projectRole(owner.id) == 'Financier'">
                                             <div class="col-md-12">
-                                                <p>Owner: <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a></p>
+                                                <p><strong>Owner:</strong> <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row col-md-12">
-                                        <p class="taller"> Description: </p>
+                                        <p class="taller"> <strong>Description:</strong> </p>
                                         <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
                                     </div>
-                                    <p class="taller margin-bottom-25"> Duration: {{currentProjectActive.estimateDuration}} weeks</p>
+                                    <p class="taller margin-bottom-25"> <strong>Duration:</strong> {{getDuration()}}</p>
                                     <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
-                                                Type:
+                                                <strong>Type:</strong>
                                             </p>
                                             <ul class="list list-skills icons list-unstyled">
                                                 <li>
@@ -146,7 +128,7 @@
                                         </li>
                                         <li>
                                             <p>
-                                                Sector:
+                                                <strong>Sector:</strong>
                                             </p>
                                             <ul class="list list-skills icons list-unstyled">
                                                 <li>
@@ -155,6 +137,10 @@
                                             </ul>
                                         </li>
                                     </ul>
+                                </div>
+                            </div>
+                            <div class="row margin-top-10">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="panel panel-white" id="panel3">
                                         <div class="panel-heading">
                                             <h4 class="panel-title text-primary">Investment</h4>
@@ -175,187 +161,303 @@
                                              style="height: auto;">
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12">
-                                                        <ul class="portfolio-details list-unstyled">
-                                                            <li>
-                                                                <p>
-                                                                    <strong>Total Cost:</strong>
-                                                                    {{currentProjectActive.totalCost | number: 2}} $
-                                                                </p>
-                                                            </li>
-                                                            <li>
-                                                                <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                                    <strong>My Invested Capital:</strong>
-                                                                    {{currentProjectActive.ownerInvestedCapital | number: 2}} $
-                                                                </p>
-                                                                <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                                    <strong>My Invested Capital:</strong>
-                                                                    {{amount | number: 2}} $
-                                                                </p>
-                                                            </li>
-                                                            <li>
-                                                                <p>
-                                                                    <strong>Execution Plan:</strong>
-                                                                </p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-6  col-lg-6 col-xs-12 margin-top-minus-15">
-                                                        <ul class="portfolio-details list-unstyled">
-                                                            <li>
-                                                                <p class="margin-top-15">
-                                                                    <strong>Total Estimate Revenue:</strong>
-                                                                    {{currentProjectActive.totalRevenue | number: 2}} $
-                                                                </p>
-                                                            </li>
-                                                            <li>
-                                                                <p class="margin-top-15" ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                                    <strong>My Estimate Revenue:</strong>
-                                                                    {{currentProjectActive.revenueOwner}} %
-                                                                </p>
-                                                                <p class="margin-top-15" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                                    <strong>My Estimate Revenue:</strong>
-                                                                    {{estimateRevenueF | number: 2}} $
-                                                                </p>
-                                                            </li>
-                                                            <li>
-                                                                <p>
-                                                                    <strong>Real Execution:</strong>
-                                                                </p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
-                                        <li>
-                                            <p>
-                                                Outcomes:
-                                            </p>
-                                            <ul class="list list-skills icons list-unstyled list-inline">
-                                                <li ng-repeat="outcome in currentProjectActive.outcomes">
-                                                    <i class="fa fa-check text-primary"></i> {{outcome.name}}
-                                                    <p>{{outcome.description}}</p>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
-                                        <li>
-                                            <p>
-                                                Retributions ways:
-                                            </p>
-                                            <ul class="list list-skills icons list-unstyled list-inline">
-                                                <li ng-repeat="retribution in currentProjectActive.retributions">
-                                                    <i class="fa fa-check text-primary"></i> {{retribution.name}}
-                                                    <p>{{retribution.description}}</p>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" >
-                                    <div class="panel panel-transparent">
-                                        <div class="panel-title">
-                                            Tasks
-                                        </div>
-                                    </div>
-                                    <ul class="list-unstyled">
-                                        <li class="margin-bottom-15" ng-repeat="task in tasksProject">
-                                            <hr class="tall">
-                                            <div class="clearfix">
-                                                <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                    <span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
-                                                </div>
-                                                <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
-                                                    <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
-                                                </div>
-                                                <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
-                                                    <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 no-padding margin-top-10">
-                                                    <span><i class="ti-timer"></i>
-                                                        <strong> State:</strong>  {{stateArray[task.state]}}
-                                                    </span>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 no-padding margin-top-10">
-                                                    <span><i class="ti-timer"></i>
-                                                        <strong> Cost:</strong>  {{task.cost | number: 2}} $
-                                                    </span>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 no-padding margin-top-10">
-                                                    <span><i class="ti-layers-alt"></i>
-                                                        <strong> Start Date:</strong>  {{getDateProject(task.startDate)}}
-                                                    </span>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 no-padding margin-top-10">
-                                                    <span><i class="ti-layers-alt"></i>
-                                                        <strong> Duration:</strong>  {{task.duration}} <strong>Days</strong>
-                                                    </span>
-                                                    </div>
-                                                    <div class="thread-content col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
-                                                        <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
-                                                            <button ng-click="goToUpdateTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-success btn-xs">
-                                                                <span class="fa fa-edit"></span> Update
-                                                            </button>
-                                                            <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
-                                                                <span class="fa fa-arrow-right"></span> View
-                                                            </button>
-                                                            <button ng-click="deleteTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-danger btn-xs">
-                                                                <span class="glyphicon glyphicon-trash"></span> Remove
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <hr class="tall">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div ng-show="tasksProject.length != 0">
-                                        <button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
-                                    </div>
-                                    <div id="gantt_here"></div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row" ng-show="currentProjectActive.risks.length != 0">
-                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                    <div class="panel panel-transparent">
-                                        <div class="panel-heading no-padding">
-                                            <div class="panel-title">
-                                                Risks
-                                            </div>
-                                        </div>
-                                        <div class="panel-body no-padding">
-                                            <v-accordion class="vAccordion--default">
-                                                <v-pane ng-repeat="r in currentProjectActive.risks" expanded="$first">
-                                                    <v-pane-header>
-                                                        <h5>{{ r.name }}</h5>
-                                                    </v-pane-header>
-                                                    <v-pane-content>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p>
-                                                            {{ r.description }}
+                                                            <strong>Total Cost:</strong>
+                                                            {{currentProjectActive.totalCost | number: 2}} $
                                                         </p>
-                                                    </v-pane-content>
-                                                </v-pane>
-                                            </v-accordion>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p>
+                                                            <strong>Total Estimate Revenue:</strong>
+                                                            {{currentProjectActive.totalRevenue | number: 2}} $
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                            <strong>My Invested Capital:</strong>
+                                                            {{currentProjectActive.ownerInvestedCapital | number: 2}} $
+                                                        </p>
+                                                        <p ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                            <strong>My Invested Capital:</strong>
+                                                            {{amount | number: 2}} $
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                            <strong>My Estimate Revenue:</strong>
+                                                            {{currentProjectActive.revenueOwner}} %
+                                                        </p>
+                                                        <p ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                            <strong>My Estimate Revenue:</strong>
+                                                            {{estimateRevenueF | number: 2}} $
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p>
+                                                            <strong>Execution Plan:</strong>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p>
+                                                            <strong>Real Execution:</strong>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr class="tall">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="panel panel-white" id="panel4">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">Outcomes and retributions ways</h4>
+                                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
+                                                    class="btn btn-transparent btn-sm"
+                                                    panel-collapse=""
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Collapse"
+                                                    ng-click="panel4 = !panel4"
+                                                    ng-init="panel4=false">
+                                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel4"
+                                                                                              class="ti-minus ng-scope"
+                                                                                              style=""></i>
+                                                <!-- end ngIf: !panel1 --></a></ct-paneltool>
+                                        </div>
+                                        <div uib-collapse="panel4" ng-init="panel4=false"
+                                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                             style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
+                                                        <li>
+                                                            <p>
+                                                                <strong>Outcomes:</strong>
+                                                            </p>
+                                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                                                <li ng-repeat="outcome in currentProjectActive.outcomes">
+                                                                    <i class="fa fa-check text-primary"></i> {{outcome.name}}
+                                                                    <p>{{outcome.description}}</p>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                    <ul class="portfolio-details list-unstyled margin-top-25 margin-bottom-25">
+                                                        <li>
+                                                            <p>
+                                                                <strong>Retributions ways:</strong>
+                                                            </p>
+                                                            <ul class="list list-skills icons list-unstyled list-inline">
+                                                                <li ng-repeat="retribution in currentProjectActive.retributions">
+                                                                    <i class="fa fa-check text-primary"></i> {{retribution.name}}
+                                                                    <p>{{retribution.description}}</p>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="panel panel-white" id="panel5">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">Beneficiaries and Competitive advantage</h4>
+                                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
+                                                    class="btn btn-transparent btn-sm"
+                                                    panel-collapse=""
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Collapse"
+                                                    ng-click="panel5 = !panel5"
+                                                    ng-init="panel5=false">
+                                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel5"
+                                                                                              class="ti-minus ng-scope"
+                                                                                              style=""></i>
+                                                <!-- end ngIf: !panel1 --></a></ct-paneltool>
+                                        </div>
+                                        <div uib-collapse="panel5" ng-init="panel5=false"
+                                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                             style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                    <p class="taller"> <strong>Beneficiaries:</strong> </p>
+                                                    <p class="taller margin-bottom-25"> {{currentProjectActive.beneficiaries}} </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                                                    <p class="taller"> <strong>Competitive advantage:</strong> </p>
+                                                    <p class="taller margin-bottom-25"> {{currentProjectActive.competitiveAdvantage}} </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="tasksProject.length > 0">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="panel panel-white" id="panel6">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">Tasks</h4>
+                                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
+                                                    class="btn btn-transparent btn-sm"
+                                                    panel-collapse=""
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Collapse"
+                                                    ng-click="panel6 = !panel6"
+                                                    ng-init="panel6=false">
+                                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel6"
+                                                                                              class="ti-minus ng-scope"
+                                                                                              style=""></i>
+                                                <!-- end ngIf: !panel1 --></a></ct-paneltool>
+                                        </div>
+                                        <div uib-collapse="panel6" ng-init="panel6=false"
+                                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                             style="height: auto;">
+                                            <div class="panel-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="margin-bottom-15" ng-repeat="task in tasksProject">
+                                                        <hr class="tall">
+                                                        <div class="clearfix">
+                                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                                                                <span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
+                                                            </div>
+                                                            <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                                <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
+                                                            </div>
+                                                            <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 no-padding margin-top-10">
+                                                                    <span><i class="ti-timer"></i>
+                                                                        <strong> State:</strong>  {{stateArray[task.state]}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 no-padding margin-top-10">
+                                                                    <span><i class="ti-timer"></i>
+                                                                        <strong> Cost:</strong>  {{task.cost | number: 2}} $
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 no-padding margin-top-10">
+                                                                    <span><i class="ti-layers-alt"></i>
+                                                                        <strong> Start Date:</strong>  {{getDateProject(task.startDate)}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 no-padding margin-top-10">
+                                                                    <span><i class="ti-layers-alt"></i>
+                                                                        <strong> Duration:</strong>  {{task.duration}} <strong>Days</strong>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="thread-content col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
+                                                                    <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
+                                                                        <button ng-click="goToUpdateTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-success btn-xs">
+                                                                            <span class="fa fa-edit"></span> Update
+                                                                        </button>
+                                                                        <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
+                                                                            <span class="fa fa-arrow-right"></span> View
+                                                                        </button>
+                                                                        <button ng-click="deleteTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-danger btn-xs">
+                                                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <hr class="tall">
+                                                <div ng-show="tasksProject.length != 0">
+                                                    <button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
+                                                </div>
+                                                <div id="gantt_here"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="currentProjectActive.references.length > 0">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="panel panel-white" id="panel1">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">References</h4>
+                                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
+                                                    class="btn btn-transparent btn-sm"
+                                                    panel-collapse=""
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Collapse"
+                                                    ng-click="panel1 = !panel1"
+                                                    ng-init="panel1=true">
+                                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel1"
+                                                                                              class="ti-minus ng-scope"
+                                                                                              style=""></i>
+                                                <!-- end ngIf: !panel1 --></a></ct-paneltool>
+                                        </div>
+                                        <div uib-collapse="panel1" ng-init="panel1=true"
+                                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                             style="height: auto;">
+                                            <div class="panel-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="margin-bottom-15" ng-repeat="reference in currentProjectActive.references">
+                                                        <hr class="tall">
+                                                        <div class="clearfix">
+                                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                                                                <span class="notification-author"><a>{{reference.name}}</a></span>
+                                                                <span ng-hide="reference.file == ''" class="pull-right"><a ng-click="seeReference(reference.file)"> See reference</a></span>
+                                                            </div>
+                                                            <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                                <span class="notification-preview">{{ reference.description}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <hr class="tall">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="currentProjectActive.risks.length != 0">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="panel panel-white" id="panel2">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">Risks</h4>
+                                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
+                                                    class="btn btn-transparent btn-sm"
+                                                    panel-collapse=""
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Collapse"
+                                                    ng-click="panel2 = !panel2"
+                                                    ng-init="panel2=true">
+                                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel2"
+                                                                                              class="ti-minus ng-scope"
+                                                                                              style=""></i>
+                                                <!-- end ngIf: !panel1 --></a></ct-paneltool>
+                                        </div>
+                                        <div uib-collapse="panel2" ng-init="panel2=true"
+                                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                             style="height: auto;">
+                                            <div class="panel-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="margin-bottom-15" ng-repeat="risk in currentProjectActive.risks">
+                                                        <hr class="tall">
+                                                        <div class="clearfix">
+                                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                                                                <span class="notification-author"><a>{{risk.name}}</a></span> <span class="pull-right">
+                                                            </div>
+                                                            <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                                <span class="notification-preview">{{ risk.description}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                     <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments-o">

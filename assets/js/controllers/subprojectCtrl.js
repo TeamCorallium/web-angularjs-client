@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert",
-    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert) {
+app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert", "$window",
+    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert, $window) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
@@ -33,7 +33,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
             $scope.getProjectById();
 
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
 
@@ -397,6 +397,42 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         });
                     }
                 });
+            };
+
+            $scope.getDuration =  function () {
+                var weeks = parseInt($scope.currentProjectActive.estimateDuration / 7);
+                var days = parseInt($scope.currentProjectActive.estimateDuration % 7);
+
+                var text = '';
+
+                if (weeks > 0) {
+                    if (weeks == 1) {
+                        text = weeks + " week";
+                    } else {
+                        text = weeks + " weeks";
+                    }
+
+                    if (days!=0) {
+                        text+= " and ";
+                        if (days == 1) {
+                            text+= days + " day"
+                        } else {
+                            text+= days + " days"
+                        }
+                    }
+                } else {
+                    if (days == 1) {
+                        text = days + " day"
+                    } else {
+                        text = days + " days"
+                    }
+                }
+
+                return text;
+            };
+
+            $scope.seeReference = function (file) {
+                $window.location.href = file;
             };
         }        
     }]);

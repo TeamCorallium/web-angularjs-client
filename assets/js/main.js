@@ -30,7 +30,7 @@ app.run(['$rootScope', '$state', '$stateParams', 'localStorageService', 'RestSer
                 isSidebarClosed: false, // true if you want to initialize the template with closed sidebar
                 isFooterFixed: false, // true if you want to initialize the template with fixed footer
                 theme: 'theme-corallium', // indicate the theme chosen for your project
-                logo: 'assets/images/clogo.png', // relative path of the project logo
+                clogo: 'assets/images/clogo.png', // relative path of the project clogo
             }
         };
 

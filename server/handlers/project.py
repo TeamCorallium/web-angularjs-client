@@ -125,6 +125,7 @@ class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
         projects = []
         if userId != 'null':
             projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
+            
         else:
             projects = table_simple_project.all()
 

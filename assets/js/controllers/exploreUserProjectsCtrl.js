@@ -5,14 +5,42 @@
 app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
 
+        if (localStorageService.get('isLogged') == null || (!localStorageService.get('isLogged'))) {
+            $scope.logged = false;
+        } else {
+            $scope.logged = true;
+        }
+
         $scope.allProjects = [];
+        $scope.allProjectsAbstracts = [];
         $scope.owner = '';
+        $scope.invertions = [];
 
         $scope.getAllProjects = function () {
             RestService.fetchSimpleProjects(localStorageService.get('viewUserProfileId'))
                 .then(
                     function (data) {
                         $scope.allProjects = data;
+
+                        for (var i = 0; i < $scope.allProjects.length; i++) {
+                            var projectAbstract = {
+                                id: $scope.allProjects[i].id,
+                                mainLayout: $scope.allProjects[i].mainLayout,
+                                name: $scope.allProjects[i].projectName,
+                                creationDate: $scope.allProjects[i].creationDate,
+                                description: $scope.allProjects[i].description,
+                                totalCost: $scope.allProjects[i].totalCost,
+                                totalRevenue: $scope.allProjects[i].totalRevenue,
+                                state: $scope.allProjects[i].state,
+                                deathLine: $scope.allProjects[i].deathLine,
+                                ownerId: $scope.allProjects[i].userId,
+                                ownerRaiting: '',
+                                coveredCapital: '',
+                                userFinancier: ''
+                            };
+                            $scope.allProjectsAbstracts.push(projectAbstract);
+                            $scope.invertionByProjectId($scope.allProjects[i].id);
+                        }
                     },
                     function (errResponse) {
                         toaster.pop('error', 'Error', 'Server not available.');
@@ -22,6 +50,38 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
         };
 
         $scope.getAllProjects();
+
+        $scope.invertionByProjectId = function (projectId) {
+            RestService.fetchInvertionByProjectId(projectId)
+                .then(
+                    function (data) {
+                        $scope.invertions = data;
+
+                        var investmentCapitalProject = 0;
+                        var iInverted = false;
+
+                        for (var i = 0; i < $scope.invertions.length; i++) {
+                            investmentCapitalProject += parseFloat($scope.invertions[i].amount);
+                            if (localStorageService.get('currentUserId') == $scope.invertions[i].userId) {
+                                iInverted = true;
+                            }
+                        }
+                        var coveredCapitalPercent = 0;
+
+                        for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {
+                            if ($scope.allProjectsAbstracts[i].id == projectId) {
+                                coveredCapitalPercent = (investmentCapitalProject / parseFloat($scope.allProjectsAbstracts[i].totalCost)) * 100;
+                                $scope.allProjectsAbstracts[i].coveredCapital = coveredCapitalPercent;
+                                $scope.allProjectsAbstracts[i].userFinancier = iInverted;
+                            }
+                        }
+                    },
+                    function (errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
 
         $scope.getOwnerData = function () {
             RestService.fetchUser(localStorageService.get('viewUserProfileId'))
@@ -104,7 +164,6 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
           if (localStorageService.get('currentUserId') == userId) {
                 return 'Owner';
           }
-
-          return 'Financier';
+          return '';
         };
     }]);

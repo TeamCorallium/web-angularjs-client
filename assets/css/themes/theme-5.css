@@ -2,13 +2,13 @@
 /*  Theme 5
 /* ---------------------------------------------------------------------- */
 ::-moz-selection {
-  background: #1FBBA6;
+  background: #FF642C;
   text-shadow: none;
   color: #ffffff;
 }
 
 ::selection {
-  background: #1FBBA6;
+  background: #FF642C;
   text-shadow: none;
   color: #ffffff;
 }

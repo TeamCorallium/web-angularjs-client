@@ -84,7 +84,7 @@
 }
 
 .slider.slider-green .slider-selection {
-  background: #1FBBA6;
+  background: #FF642C;
 }
 
 .slider.slider-orange .slider-selection {
@@ -184,7 +184,7 @@ img-crop {
 
 /* Default class applied to drop zones on over */
 .another-file-over-class {
-  border: dotted 1px #1FBBA6;
+  border: dotted 1px #FF642C;
 }
 
 .file-upload canvas {
@@ -511,7 +511,7 @@ img-crop {
 }
 
 .event-off-site-work {
-  background-color: #1FBBA6 !important;
+  background-color: #FF642C !important;
 }
 
 .day-highlight.dh-event-job {

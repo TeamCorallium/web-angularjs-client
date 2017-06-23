@@ -152,4 +152,8 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
         };
 
         $scope.getAllProjects();
+
+        $scope.goToLink = function (link) {
+            $window.location.href = link;
+        };
     }]);

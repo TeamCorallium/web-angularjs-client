@@ -125,7 +125,11 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
 
         $scope.goToExploreProject = function (projectId) {
             localStorageService.set('currentProjectId', projectId);
-            $state.go('app.project.opportunities_detail');
+            if ($scope.logged) {
+                $state.go('app.project.opportunities_detail');
+            } else {
+                $state.go('app.project.explore_subproject');
+            }
         };
 
         $scope.isFollowProject = function (projectId) {
@@ -195,7 +199,8 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 id: $scope.listAllUser[i].id,
                                 name: $scope.listAllUser[i].fullName,
                                 email: $scope.listAllUser[i].email,
-                                countProjects: ''
+                                countProjects: '',
+                                avatar: $scope.listAllUser[i].avatar
                             };
                             $scope.listAllUserAbstracts.push(usersAbstract);
                             $scope.getProjectByUserId($scope.listAllUser[i].id);

@@ -43,12 +43,12 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr ng-repeat="transaction in transactions">
-										<td> {{getUserName(transaction.userId)}} </td>
+									<tr ng-repeat="transaction in listFinanceAbstract">
+										<td> {{transaction.name}} </td>
 										<td> {{transaction.operation}} </td>
 										<td> {{getDateProject(transaction.date)}} </td>
-										<td class="text-right"> {{transaction.amount}} $</td>
-										<td class="text-right"> {{balance[$index]}} $</td>
+										<td class="text-right"> {{transaction.total}} $</td>
+										<td class="text-right"> {{transaction.balance}} $</td>
 									</tr>
 									</tbody>
 								</table>

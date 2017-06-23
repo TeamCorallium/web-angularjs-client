@@ -9,7 +9,7 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
         } else {
             $scope.currentProjectActive = '';
             $scope.investmentCapitalProject = '';
-            $scope.listAllUser = [];
+            $scope.listFinanceAbstract = [];
             $scope.balance = [];
             $scope.transactions = [];
 
@@ -24,6 +24,7 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                             $scope.transactions = data;
 
                             for (var i = 0; i < $scope.transactions.length; i++) {
+
                                 if($scope.transactions[i].operation == 'income'){
                                     $scope.investmentCapitalProject += parseInt($scope.transactions[i].amount);
                                     $scope.income += parseInt($scope.transactions[i].amount);
@@ -32,7 +33,16 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                                     $scope.outcome += parseInt($scope.transactions[i].amount);
                                 }
 
-                                $scope.balance.push($scope.investmentCapitalProject);
+                                var financeAbstract = {
+                                    id: $scope.transactions[i].userId,
+                                    name: '',
+                                    operation: $scope.transactions[i].operation,
+                                    date: $scope.transactions[i].date,
+                                    total: $scope.transactions[i].amount,
+                                    balance: $scope.investmentCapitalProject
+                                };
+
+                                $scope.listFinanceAbstract.push(financeAbstract);
                                 $scope.getUserData($scope.transactions[i].userId);
                             }
                         },
@@ -49,7 +59,13 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                 RestService.fetchUser(userId)
                     .then(
                         function (data) {
-                            $scope.listAllUser.push(data[0]);
+                            var user = data[0]
+
+                            for (var i=0; i<$scope.listFinanceAbstract.length; i++) {
+                                if ($scope.listFinanceAbstract[i].id == userId) {
+                                    $scope.listFinanceAbstract[i].name = user.fullName;
+                                }
+                            }
                         },
                         function (errResponse) {
                             console.log(errResponse);

@@ -34,7 +34,8 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                                         ownerId: $scope.simpleProjects[i].userId,
                                         ownerName: '',
                                         ownerRaiting: '',
-                                        coveredCapital: ''
+                                        coveredCapital: '',
+                                        inverted: $scope.simpleProjects[i].inverted
                                     };
                                     $scope.allProjectsAbstracts.push(projectAbstract);
                                     $scope.getUserName($scope.simpleProjects[i].userId);
@@ -129,6 +130,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                             for (var i = 0; i < $scope.invertions.length; i++) {
                                 investmentCapitalProject += parseFloat($scope.invertions[i].amount);
                             }
+
                             var coveredCapitalPercent = 0;
 
                             for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {

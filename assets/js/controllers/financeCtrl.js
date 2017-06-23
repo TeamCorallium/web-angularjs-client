@@ -17,6 +17,21 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
             $scope.income = 0;
             $scope.outcome = 0;
 
+            $scope.getProjectById = function () {
+                RestService.fetchProjectById(localStorageService.get('currentProjectId'))
+                    .then(
+                        function (data) {
+                            $scope.currentProjectActive = data[0];
+                        },
+                        function (errResponse) {
+                            toaster.pop('error', 'Error', 'Server not available.');
+                            console.log(errResponse);
+                        }
+                    );
+            };
+
+            $scope.getProjectById();
+
             $scope.invertionsByProjectId = function () {
                 RestService.fetchTransactionsByProjectId(localStorageService.get('currentProjectId'))
                     .then(

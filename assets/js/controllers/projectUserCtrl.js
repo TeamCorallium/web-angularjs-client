@@ -161,5 +161,10 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                         }
                     );
             };
+
+            $scope.viewProfile = function (userId) {
+                localStorageService.set('viewUserProfileId', userId);
+                $state.go('app.pages.exploreuser');
+            };
         }
     }]);

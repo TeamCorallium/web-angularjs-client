@@ -34,7 +34,7 @@
 							</div>
 							<div class="col-sm-10 col-md-10 col-lg-10">
 								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding">
-									<span class="notification-author"><a ng-click="goToOpportunities(project.id)"> {{project.name}} </a></span>
+									<span class="notification-author"><a ng-click="goToOpportunityProject(project.id)"> {{project.name}} </a></span>
 									<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
 								</div>
 								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
@@ -87,7 +87,7 @@
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
 									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
-											ng-click="goToExploreProject(project.id)">
+											ng-click="goToOpportunityProject(project.id)">
 										<span class="fa fa-arrow-right"></span> Read more
 									</button>
 									<button ng-click="follow(project.id)" ng-hide="(project.isFollow) || (project.iInverted) || (!logged)"

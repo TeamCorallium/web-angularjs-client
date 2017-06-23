@@ -146,13 +146,9 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
         };
 
-        $scope.goToExploreProject = function (projectId) {
+        $scope.goToOpportunityProject = function (projectId) {
             localStorageService.set('currentProjectId', projectId);
-            if ($scope.logged) {
-                $state.go('app.project.opportunities_detail');
-            } else {
-                $state.go('app.project.explore_subproject');
-            }
+            $state.go('app.project.opportunities_detail');
         };
 
         $scope.isFollowProject = function (projectId) {

@@ -63,10 +63,16 @@ class InvertionHandler(tornado.web.RequestHandler):
         table_activity.insert({'userId': userId, 'title': 'Invertion', 
                                'content': "You made an invertion", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
-        
-        # table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': '', 'from': fromName, 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                    # 'subject': "Invertion", 'content': "ou made an invertion"})
+        projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+        project = projects[0]
+        ownerId = project['userId']
 
+        notificationType = 'NEW INVERTION'
+        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': '', 'from': fromName, 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                   'subject': "Invertion", 'content': "New invertion in your project"})
+        for c in clients:
+            if int(c.id) == int(ownerId):
+                c.connection.write_message("NOTIFICATION")
 
 class TransactionByProjectIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

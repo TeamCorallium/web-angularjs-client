@@ -199,7 +199,8 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 id: $scope.listAllUser[i].id,
                                 name: $scope.listAllUser[i].fullName,
                                 email: $scope.listAllUser[i].email,
-                                countProjects: ''
+                                countProjects: '',
+                                avatar: $scope.listAllUser[i].avatar
                             };
                             $scope.listAllUserAbstracts.push(usersAbstract);
                             $scope.getProjectByUserId($scope.listAllUser[i].id);

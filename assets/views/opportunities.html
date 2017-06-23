@@ -44,41 +44,41 @@
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-timer"></i>
+										<span><i class="ti-pencil-alt"></i>
 											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-layers-alt"></i>
+										<span><i class="ti-wallet"></i>
 											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-layers-alt"></i>
+										<span><i class="ti-stats-up"></i>
 											<strong> State:</strong>  {{stateArray[project.state]}}
 										</span>
 									</div>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-timer"></i>
+										<span><i class="ti-calendar"></i>
 											<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-layers-alt"></i>
+										<span><i class="ti-id-badge"></i>
 											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-layers-alt"></i>
+										<span><i class="ti-menu"></i>
 											<strong> Owner Raiting:</strong>
 										</span>
 									</div>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-timer"></i>
+										<span><i class="ti-bar-chart"></i>
 											<strong> Covered Capital:</strong>  {{project.coveredCapital | number: 2}} %
 										</span>
 									</div>

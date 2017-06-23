@@ -7,7 +7,7 @@ app.controller('TopNavBarCtrl', ["$scope", "$state", "flowFactory", "RestService
 
         $scope.email = '';
 
-        $scope.logout = function () {
+        $scope.clogout = function () {
             if(localStorageService.get('isLogged')) {
                 localStorageService.set('isLogged', false);
                 localStorageService.remove('currentUserId');

@@ -26,6 +26,8 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                     function (data) {
                         $scope.allProjects = data;
 
+                        $scope.allProjectsAbstracts = [];
+
                         for (var i = 0; i < $scope.allProjects.length; i++) {
                             var projectAbstract = {
                                 id: $scope.allProjects[i].id,
@@ -202,7 +204,6 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 countProjects: '',
                                 avatar: $scope.listAllUser[i].avatar
                             };
-                            console.log(usersAbstract.avatar + " avatar");
                             $scope.listAllUserAbstracts.push(usersAbstract);
                             $scope.getProjectByUserId($scope.listAllUser[i].id);
                         }

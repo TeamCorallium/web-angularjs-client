@@ -2,7 +2,7 @@
 	<section id="page-title">
 		<div class="row">
 			<div class="col-sm-8">
-				<h1 class="mainTitle">{{owner.fullName}}'s Projects</h1>
+				<h1 class="mainTitle">Projects</h1>
 			</div>
 			<div ncy-breadcrumb></div>
 		</div>
@@ -18,42 +18,56 @@
 								<img  ng-src="{{project.mainLayout}}"
 									  class="img-responsive img-rounded notification-image">
 							</div>
-							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-								<span class="notification-author"><a ng-click="goToExploreProject(project.id)"> {{project.projectName}} </a></span>
-								<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
-							</div>
-							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding margin-top-10">
+							<div class="col-sm-10 col-md-10 col-lg-10">
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding">
+									<span class="notification-author"><a ng-click="goToExploreProject(project.id)"> {{project.name}} </a></span>
+									<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
+								</div>
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
 									<span class="notification-preview">
 										<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
 									</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-timer"></i>
-											<strong> Total Cost:</strong>  {{project.totalCost}} $
+											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
 										</span>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-layers-alt"></i>
-											<strong> Total Revenue:</strong>  {{project.totalRevenue}} $
+											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
 										</span>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-layers-alt"></i>
 											<strong> State:</strong>  {{stateArray[project.state]}}
 										</span>
+									</div>
 								</div>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 margin-top-10 no-padding">
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-timer"></i>
 											<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
 										</span>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-layers-alt"></i>
+											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-layers-alt"></i>
 											<strong> Owner Raiting:</strong>
 										</span>
+									</div>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-timer"></i>
+											<strong> Covered Capital:</strong>  {{project.coveredCapital | number: 2}} %
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="row">
@@ -62,11 +76,11 @@
 											ng-click="goToExploreProject(project.id)">
 										<span class="fa fa-arrow-right"></span> Read more
 									</button>
-									<button ng-click="follow(project.id)" ng-hide="isFollowProject(project.id) || getRole(project.userId) == 'Owner' || (project.userFinancier) || (!logged)"
+									<button ng-click="follow(project.id)" ng-hide="(project.isFollow) || (project.iInverted) || (!logged)"
 											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
 										<span class="fa fa-share"></span> Follow
 									</button>
-									<button ng-click="unfollow(project.id)" ng-show="isFollowProject(project.id) && (!project.userFinancier) && (logged)"
+									<button ng-click="unfollow(project.id)" ng-show="(project.isFollow) && (logged) && (!project.iInverted)"
 											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
 										<span class="fa fa-thumb-tack"></span> Following
 									</button>

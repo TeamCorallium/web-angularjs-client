@@ -52,7 +52,6 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
         print(newProject['projectName'])
 
         if len(table_simple_project.search(where('id') == newProject['id'])) != 0:
-            # self.write('-1')
             id = newProject['id']
             table_simple_project.update(newProject, eids=[int(id)])
             self.write(str(id))
@@ -125,7 +124,10 @@ class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
         projects = []
         if userId != 'null':
             projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
-            
+            investions = table_invertion.search((where('userId') == userId) | (where('userId') == int(userId)))
+
+            for inver in investions:
+                projects = [item for item in projects if int(item['id']) != int(inver['projectId'])]
         else:
             projects = table_simple_project.all()
 
@@ -171,7 +173,6 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
         else:
             projects = table_simple_project.all()
 
-        print(projects)
         opportunities = []
 
         for project in projects:
@@ -202,7 +203,6 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
                 sortedOpportunities = sorted(opportunities, key=lambda opportinity: int(opportinity[filter]), reverse=True) 
 
             self.write(json.dumps(sortedOpportunities))
-            print('sorted....')
             print(sortedOpportunities)   
         else:
             self.write(json.dumps(opportunities))

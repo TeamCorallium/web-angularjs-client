@@ -368,7 +368,7 @@ header .dropdown-off-sidebar {
 }
 #off-sidebar .nav-tabs.nav-justified > li > a:hover, #off-sidebar .nav-tabs.nav-justified > li > a:focus {
   background: #e6e6e6;
-  color: rgba(0, 122, 255, 0.8);
+  color: #f46e45;
 }
 #off-sidebar .nav-tabs.nav-justified > li.active > a, #off-sidebar .nav-tabs.nav-justified > li.active > a:hover, #off-sidebar .nav-tabs.nav-justified > li.active > a:focus {
   color: #FF6839;

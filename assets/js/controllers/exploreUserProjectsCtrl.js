@@ -26,6 +26,8 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                     function (data) {
                         $scope.allProjects = data;
 
+                        $scope.allProjectsAbstracts = [];
+
                         for (var i = 0; i < $scope.allProjects.length; i++) {
                             var projectAbstract = {
                                 id: $scope.allProjects[i].id,
@@ -176,6 +178,8 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                 .then(
                     function (data) {
                         toaster.pop('success', 'Good!!!', 'User updated correctly.');
+
+                        $scope.getAllProjects();
                     },
                     function (errResponse) {
                         console.log(errResponse);

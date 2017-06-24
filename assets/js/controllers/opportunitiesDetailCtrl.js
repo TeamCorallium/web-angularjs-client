@@ -167,7 +167,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                             while (true) {
                                 var a = remainingInvertion - n * minimalInvertion;
                                 if ((a >= minimalInvertion)) {
-                                    if ((remainingNumMinInvestors > 0) && (a > (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
+                                    if ((remainingNumMinInvestors > 0) && (a >= (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
                                         n += 1;
                                         continue;
                                     }

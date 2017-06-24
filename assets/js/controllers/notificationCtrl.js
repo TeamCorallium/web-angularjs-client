@@ -62,6 +62,11 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             $state.go('app.project.subproject_detail');
         };
 
+        $scope.goToFinance = function (projectId) {
+            localStorageService.set('currentProjectId', projectId);
+            $state.go('app.finance');
+        };
+
         $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         $scope.getProjectDate = function (date) {

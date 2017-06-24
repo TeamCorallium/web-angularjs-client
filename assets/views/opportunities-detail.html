@@ -414,7 +414,7 @@
                                     <p>{{estimateRevenueF | number: 2}} $</p>
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 pull-right margin-top-15">
-                                    <button ng-click="setInvestmentValue()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-eye pull-right">
+                                    <button ng-click="setInvestmentValue()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-light-bulb pull-right">
                                         <span> Invest </span>
                                     </button>
                                 </div>
@@ -422,15 +422,15 @@
                             <hr class="tall">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                    <button ui-sref="app.project.opportunities" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
+                                    <button ui-sref="app.project.opportunities" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-arrow-left">
                                         <span> Back </span>
                                     </button>
                                     <button ng-click="follow(currentProjectActive.id)" ng-hide="isFollowProject(currentProjectActive.id) || (inverted)"
-                                            type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
+                                            type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-thumb-up pull-right">
                                         <span> Follow </span>
                                     </button>
                                     <button ng-click="unfollow(currentProjectActive.id)" ng-show="isFollowProject(currentProjectActive.id) && (!inverted)"
-                                            type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
+                                            type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-thumb-down pull-right">
                                         <span> Unfollow </span>
                                     </button>
                                 </div>

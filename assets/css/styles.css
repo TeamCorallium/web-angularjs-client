@@ -6219,8 +6219,8 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .btn-warning {
-  background-color: #eea236;
-  border-color: #eea236;
+  background-color: #FF6839;
+  border-color: #FF6839;
   color: #ffffff;
 }
 .open .btn-warning.dropdown-toggle {
@@ -10600,7 +10600,7 @@ td.small-width {
   vertical-align: middle;
 }
 .message-bar a.icon-only {
-  color: #636363;
+
   font-size: 20px;
   margin: 0;
   margin-right: 8px;

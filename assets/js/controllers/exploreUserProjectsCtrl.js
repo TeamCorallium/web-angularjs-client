@@ -148,10 +148,14 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
         };
 
-        $scope.goToExploreProject = function (projectId) {
+        $scope.goToExploreProject = function (projectId, ownerId) {
             localStorageService.set('currentProjectId', projectId);
             if ($scope.logged) {
-                $state.go('app.project.opportunities_detail');
+                if (localStorageService.get('currentUserId') == ownerId) {
+                    $state.go('app.project.subproject_detail');
+                } else {
+                    $state.go('app.project.opportunities_detail');
+                }
             } else {
                 $state.go('app.project.explore_subproject');
             }
@@ -268,5 +272,13 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
 
         $scope.tabSelectedProjects = function () {
             $scope.selectedTabProjects = true;
+        };
+
+        $scope.isOwner = function (ownerId) {
+            var flag =  false;
+            if (localStorageService.get('currentUserId') == ownerId) {
+                flag = true;
+            }
+            return flag;
         };
     }]);

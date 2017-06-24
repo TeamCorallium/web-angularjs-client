@@ -154,7 +154,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             }
 
             $scope.setDate = function (year, month, day) {
-                $scope.simpleProject.deathLine = new Date(year, month, day);
+                $scope.deathLine = new Date(year, month, day);
             };
             $scope.toggleMin = function () {
                 $scope.datepickerOptions.minDate = $scope.datepickerOptions.minDate ? null : new Date();
@@ -277,46 +277,68 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 }
             };
 
-            $scope.taskChange = function () {
-
-                if ($scope.selectedTask != '' && $scope.selectedTask != null) {
-                    RestService.fetchTaskByTaskId($scope.selectedTask.id)
-                        .then(
-                            function (data) {
-                                $scope.currentTaskActive = data[0];
-
-                                $scope.currentTaskActive.name = data[0].name;
-                                $scope.currentTaskActive.description = data[0].description;
-                                $scope.currentTaskActive.cost = data[0].cost;
-                                $scope.currentTaskActive.outcome = data[0].outcome;
-                                $scope.currentTaskActive.startDate = new Date(data[0].startDate);
-                                $scope.currentTaskActive.duration = data[0].duration;
-                                $scope.currentTaskActive.state = data[0].state;
-
-                                $scope.taskName = data[0].name;
-                                $scope.taskDescription = data[0].description;
-                                $scope.taskCost = data[0].cost;
-                                $scope.outcome = data[0].outcome;
-                                $scope.duration = data[0].duration;
-                                $scope.startDate = new Date(data[0].startDate);
-
-                                $scope.taskNameOld = data[0].name;
-                                $scope.taskStateOld = data[0].state;
-                                $scope.taskDescriptionOld = data[0].description;
-                                $scope.taskCostOld = data[0].cost;
-                                $scope.outcomeOld = data[0].outcome;
-                                $scope.durationOld = data[0].duration;
-                                $scope.startDateOld = new Date(data[0].startDate);
-                            },
-                            function (errResponse) {
-                                console.log(errResponse);
-                            }
-                        );
-                }
+            $scope.taskChangeComboState = function () {
+                $scope.taskChange($scope.selectedTaskState.id);
             };
 
-            $scope.getValueIndex = function () {
-                return $scope.currentTaskActive.state;
+            $scope.taskChangeComboName = function () {
+                $scope.taskChange($scope.selectedTaskName.id);
+            };
+
+            $scope.taskChangeComboCost = function () {
+                $scope.taskChange($scope.selectedTaskCost.id);
+            };
+
+            $scope.taskChangeComboDuration = function () {
+                $scope.taskChange($scope.selectedTaskDuration.id);
+            };
+
+            $scope.taskChangeComboStartDate = function () {
+                $scope.taskChange($scope.selectedTaskStartDate.id);
+            };
+
+            $scope.taskChangeComboOutcome = function () {
+                $scope.taskChange($scope.selectedTaskOutcome.id);
+            };
+
+            $scope.taskChangeComboDescription = function () {
+                $scope.taskChange($scope.selectedTaskDescription.id);
+            };
+
+            $scope.taskChange = function (taskId) {
+
+                RestService.fetchTaskByTaskId(taskId)
+                    .then(
+                        function (data) {
+                            $scope.currentTaskActive = data[0];
+
+                            $scope.currentTaskActive.name = data[0].name;
+                            $scope.currentTaskActive.description = data[0].description;
+                            $scope.currentTaskActive.cost = data[0].cost;
+                            $scope.currentTaskActive.outcome = data[0].outcome;
+                            $scope.currentTaskActive.startDate = new Date(data[0].startDate);
+                            $scope.currentTaskActive.duration = data[0].duration;
+                            $scope.currentTaskActive.state = data[0].state;
+
+                            $scope.taskName = data[0].name;
+                            $scope.taskDescription = data[0].description;
+                            $scope.taskCost = data[0].cost;
+                            $scope.outcome = data[0].outcome;
+                            $scope.duration = data[0].duration;
+                            $scope.startDate = new Date(data[0].startDate);
+
+                            $scope.taskNameOld = data[0].name;
+                            $scope.taskStateOld = data[0].state;
+                            $scope.taskDescriptionOld = data[0].description;
+                            $scope.taskCostOld = data[0].cost;
+                            $scope.outcomeOld = data[0].outcome;
+                            $scope.durationOld = data[0].duration;
+                            $scope.startDateOld = new Date(data[0].startDate);
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
             };
 
             $scope.proposal = {

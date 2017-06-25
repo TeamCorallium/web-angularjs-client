@@ -16,6 +16,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             }
 
             $scope.owner = '';
+            $scope.currentUserActive = '';
             $scope.creationProjectDate = '';
             $scope.deathLineProject = '';
             $scope.currentProjectActive = '';
@@ -64,6 +65,20 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                         }
                     );
             };
+
+            $scope.getUserData = function () {
+                RestService.fetchUser(localStorageService.get('currentUserId'))
+                    .then(
+                        function (data) {
+                            $scope.currentUserActive = data[0];
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
+
+            $scope.getUserData();
 
             $scope.stateArray = ['Under Construction', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
@@ -243,9 +258,9 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
                 if (localStorageService.get('isLogged')) {
 
-                    if ($scope.owner.projectsFollow) {
-                        for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
-                            if (projectId == $scope.owner.projectsFollow[i]) {
+                    if ($scope.currentUserActive.projectsFollow) {
+                        for (var i = 0; i < $scope.currentUserActive.projectsFollow.length; i++) {
+                            if (projectId == $scope.currentUserActive.projectsFollow[i]) {
                                 followFlag = true;
                                 break;
                             }
@@ -257,7 +272,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             };
 
             $scope.updateUser = function () {
-                RestService.updateUser($scope.owner)
+                RestService.updateUser($scope.currentUserActive)
                     .then(
                         function (data) {
                             toaster.pop('success', 'Good!!!', 'User updated correctly.');
@@ -272,10 +287,10 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
                 if (localStorageService.get('isLogged')) {
 
-                    if (!$scope.owner.projectsFollow) {
-                        $scope.owner.projectsFollow = [];
+                    if (!$scope.currentUserActive.projectsFollow) {
+                        $scope.currentUserActive.projectsFollow = [];
                     }
-                    $scope.owner.projectsFollow.push(projectId);
+                    $scope.currentUserActive.projectsFollow.push(projectId);
 
                     $scope.updateUser();
                 }
@@ -285,9 +300,9 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             };
 
             $scope.unfollow = function (projectId) {
-                for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
-                    if (projectId == $scope.owner.projectsFollow[i]) {
-                        $scope.owner.projectsFollow.splice(i, 1);
+                for (var i = 0; i < $scope.currentUserActive.projectsFollow.length; i++) {
+                    if (projectId == $scope.currentUserActive.projectsFollow[i]) {
+                        $scope.currentUserActive.projectsFollow.splice(i, 1);
                         break;
                     }
                 }

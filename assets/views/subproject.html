@@ -353,11 +353,11 @@
                                                                 </div>
                                                                 <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-15">
                                                                     <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
-                                                                        <button ng-click="goToUpdateTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-success btn-xs">
-                                                                            <span class="ti-reload"></span> Update
-                                                                        </button>
                                                                         <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
                                                                             <span class="ti-eye"></span> View
+                                                                        </button>
+                                                                        <button ng-click="goToUpdateTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-success btn-xs">
+                                                                            <span class="ti-reload"></span> Update
                                                                         </button>
                                                                         <button ng-click="deleteTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-danger btn-xs">
                                                                             <span class="ti-trash"></span> Remove

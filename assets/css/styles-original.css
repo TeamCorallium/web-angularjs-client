@@ -6078,8 +6078,8 @@ input[type="radio"], input[type="checkbox"] {
   border-color: #86d0e7;
 }
 .btn-info:hover {
-  background-color: #71c8e2 !important;
-  border-color: #71c8e2;
+  background-color: #e54823 !important;
+  border-color: #e54823;
   color: #ffffff;
 }
 .btn-info:active, .btn-info.active, .btn-info.active:focus, .btn-info:active:focus, .btn-info:active:hover, .btn-info.dropdown-toggle:active:hover {
@@ -6100,8 +6100,8 @@ input[type="radio"], input[type="checkbox"] {
   color: #e54823;
 }
 .btn-info.btn-o:hover {
-  color: #71c8e2;
-  border-color: #71c8e2;
+  color: #e54823;
+  border-color: #e54823;
   background: none !important;
 }
 .btn-info.btn-o:active, .btn-info.btn-o.active, .btn-info.btn-o.active:focus, .btn-info.btn-o:active:focus, .btn-info.btn-o:active:hover {
@@ -6112,7 +6112,7 @@ input[type="radio"], input[type="checkbox"] {
 .btn-info.btn-o:focus {
   background-color: #9bd9eb;
   border-color: #9bd9eb;
-  color: #71c8e2;
+  color: #e54823;
 }
 .btn-info.btn-o.disabled:hover, .btn-info.btn-o.disabled:focus, .btn-info.btn-o.disabled:active, .btn-info.btn-o.disabled.active, .btn-info.btn-o[disabled], .btn-info.btn-o[disabled]:hover, .btn-info.btn-o[disabled]:focus, .btn-info.btn-o[disabled]:active, .btn-info.btn-o[disabled].active, fieldset[disabled] .btn-info.btn-o:hover, fieldset[disabled] .btn-info.btn-o:focus, fieldset[disabled] .btn-info.btn-o:active, fieldset[disabled] .btn-info.btn-o.active {
   border-color: #9bd9eb;

@@ -14,7 +14,7 @@
 }
 
 body {
-  background: #FAFAFA;
+  background: #F6F6F6;
 }
 
 @media (max-width: 991px) {
@@ -180,7 +180,7 @@ header .dropdown-off-sidebar {
   }
 }
 #sidebar nav > ul > li.active > a:active:focus {
-  background: #1e97c6 !important;
+  background: #f9572b !important;
 }
 #sidebar nav > ul > li.active > a .item-inner {
   color: #ffffff !important;

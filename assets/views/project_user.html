@@ -79,16 +79,16 @@
 									<button ng-show="((project.state == 1 || project.state == 0) && (projectRole(project.ownerId) == 'Owner') && (!project.inverted))"
 											type="button" class="btn btn-danger btn-xs pull-right margin-left-5"
 											ng-click="deleteProject(project.id)">
-										<span class="glyphicon glyphicon-trash"></span> Delete
+										<span class="ti-trash"></span> Delete
 									</button>
 									<button ng-show="((project.state == 1 || project.state == 0) && (projectRole(project.ownerId) == 'Owner') && (!project.inverted))"
 											type="button" class="btn btn-success btn-xs pull-right margin-left-5"
 											ng-click="updateProject(project.id)">
-										<span class="fa fa-edit"></span> Update
+										<span class="ti-reload"></span> Update
 									</button>
 									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
 											ng-click="goToProject(project.id)">
-										<span class="fa fa-arrow-right"></span> Read more
+										<span class="fa fa-angle-right"></span> Read more
 									</button>
 								</div>
 							</div>
@@ -100,7 +100,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-				<button ui-sref="app.project.create" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-plus pull-right">
+				<button ui-sref="app.project.create" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-plus pull-right">
 					<span>Create project</span>
 				</button>
 			</div>

@@ -34,30 +34,30 @@
                                             </div>
                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
-                                                    <span><i class="ti-timer"></i>
+                                                    <span><i class="ti-pencil-alt"></i>
                                                         <strong> Cost:</strong>  {{task.cost}} $
                                                     </span>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
-                                                    <span><i class="ti-layers-alt"></i>
+                                                    <span><i class="ti-calendar"></i>
                                                         <strong> Start Date:</strong>  {{getDateProject(task.startDate)}}
                                                     </span>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
-                                                    <span><i class="ti-layers-alt"></i>
+                                                    <span><i class="ti-timer"></i>
                                                         <strong> Duration:</strong>  {{task.duration}} <strong>Weeks</strong>
                                                     </span>
                                                 </div>
                                                 <div class="thread-content col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding">
                                                     <div data-title="Actions" data-title-override="Actions" class="pull-right margin-top-10">
                                                         <button type="button" class="btn btn-success btn-xs">
-                                                            <span class="fa fa-edit"></span> Update
+                                                            <span class="ti-reload"></span> Update
                                                         </button>
                                                         <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
-                                                            <span class="fa fa-arrow-right"></span> View
+                                                            <span class="ti-arrow-right"></span> View
                                                         </button>
                                                         <button type="button" class="btn btn-danger btn-xs">
-                                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                                            <span class="ti-trash"></span> Remove
                                                         </button>
                                                     </div>
                                                 </div>
@@ -70,12 +70,12 @@
                         <hr class="tall">
                         <div class="row">
                             <div class="col-md-2 col-sm-2 col-lg-2 col-xs-6">
-                                <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-comments-o">
+                                <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-comment-alt">
                                     <span>Go to forum</span>
                                 </button>
                             </div>
                             <div class="col-md-2 col-md-offset-8 col-sm-2 col-sm-offset-8 col-lg-2 col-lg-offset-8 col-xs-6">
-                                <button ui-sref="app.project.subproject_detail" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-arrow-left">
+                                <button ui-sref="app.project.subproject_detail" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-arrow-left">
                                     <span> Back </span>
                                 </button>
                             </div>

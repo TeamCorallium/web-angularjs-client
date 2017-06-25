@@ -88,15 +88,15 @@
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
 									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
 											ng-click="goToOpportunityProject(project.id)">
-										<span class="fa fa-arrow-right"></span> Read more
+										<span class="fa fa-angle-right"></span> Read more
 									</button>
 									<button ng-click="follow(project.id)" ng-hide="(project.isFollow) || (project.iInverted) || (!logged)"
 											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
-										<span class="fa fa-share"></span> Follow
+										<span class="ti-thumb-up"></span> Follow
 									</button>
 									<button ng-click="unfollow(project.id)" ng-show="(project.isFollow) && (logged) && (!project.iInverted)"
 											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
-										<span class="fa fa-thumb-tack"></span> Following
+										<span class="ti-thumb-down"></span> Following
 									</button>
 								</div>
 							</div>

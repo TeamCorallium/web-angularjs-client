@@ -51,17 +51,20 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
 
         print(newProject['projectName'])
 
+        activityContent = ''
+
         if len(table_simple_project.search(where('id') == newProject['id'])) != 0:
             id = newProject['id']
             table_simple_project.update(newProject, eids=[int(id)])
             self.write(str(id))
+            activityContent = 'You updated a project'
         else:
             id = table_simple_project.insert(newProject)
             table_simple_project.update({'id': id}, eids=[id])
             self.write(str(id))
-            print(id)
+            activityContent = 'You created a new project'
 
-        table_activity.insert({'userId': newProject['userId'], 'title': 'Project', 'content': "You created a new project", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+        table_activity.insert({'userId': newProject['userId'], 'title': 'Project', 'content': activityContent, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
 class SimpleProjectByIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

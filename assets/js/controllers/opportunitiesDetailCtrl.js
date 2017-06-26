@@ -104,12 +104,12 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                 }
             };
 
-            $scope.projectRole = function (userId) {
+            $scope.isOwner = function (userId) {
                 if (localStorageService.get('currentUserId') == userId) {
-                    return 'Owner';
+                    return true;
                 }
                 else {
-                    return 'Financier';
+                    return false;
                 }
             };
 

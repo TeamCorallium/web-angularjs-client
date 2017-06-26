@@ -15,6 +15,11 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             // }); 
 
             $scope.currentProjectActive = [];
+            $scope.myInvestedCapital = 0;
+            $scope.coveredCapitalPercent = 0;
+            $scope.investmentCapitalProject = 0;
+            $scope.estimateRevenueF = 0;
+            $scope.amount = 0;
 
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -47,7 +52,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             };
 
             $scope.tasksProject = [];
-            // $scope.tasksFiltre = [];
 
             $scope.getTaskByProjectsId = function () {
                 RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
@@ -106,10 +110,15 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         function (data) {
                             $scope.invertions = data;
                             for (var i = 0; i < $scope.invertions.length; i++) {
+                                $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
                                 if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
-                                    $scope.amount = $scope.invertions[i].amount;
+                                    $scope.myInvestedCapital = $scope.invertions[i].amount;
                                 }
                             }
+
+
+                            $scope.coveredCapital();
+                            $scope.getPossibleInvestment();
                             $scope.getFinancierEsimateRevenue();
                         },
                         function (errResponse) {
@@ -117,8 +126,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         }
                     );
             };
-
-            $scope.estimateRevenueF = 0;
 
             $scope.getFinancierEsimateRevenue = function () {
                 var porcientoF = (parseFloat($scope.amount) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
@@ -141,7 +148,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 $state.go('app.pages.exploreuser');
             };
 
-//begin Gantt
+            //begin Gantt
 
             $scope.ganttStart = function (containerName) {
                 var tasks = {
@@ -181,10 +188,10 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     // alert("You've just double clicked an item with id="+id);
                     return false;
                 });
-            }
+            };
             // $scope.ganttStart();
 
-            $scope.toggleMode = function (toggle) { 
+            $scope.toggleMode = function (toggle) {
                 toggle.enabled = !toggle.enabled;
                 if (toggle.enabled) {
                     toggle.innerHTML = "Set default Scale";
@@ -199,7 +206,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     restoreConfig();
                     gantt.render();
                 }
-            }
+            };
             var cachedSettings = {};
 
             function saveConfig() {
@@ -212,11 +219,11 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 cachedSettings.template = gantt.templates.date_scale;
                 cachedSettings.start_date = config.start_date;
                 cachedSettings.end_date = config.end_date;
-            }
+            };
 
             function restoreConfig() {
                 applyConfig(cachedSettings);
-            }
+            };
 
             function applyConfig(config, dates) {
                 gantt.config.scale_unit = config.scale_unit;
@@ -237,7 +244,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 } else {
                     gantt.config.start_date = gantt.config.end_date = null;
                 }
-            }
+            };
 
             function zoomToFit() {
                 var project = gantt.getSubtaskDates(),
@@ -256,7 +263,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
                 applyConfig(scaleConfigs[i], project);
                 gantt.render();
-            }
+            };
 
             // get number of columns in timeline
             function getUnitsBetween(from, to, unit, step) {
@@ -268,7 +275,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     start = gantt.date.add(start, step, unit);
                 }
                 return units;
-            }
+            };
 
             //Setting available scales
             var scaleConfigs = [
@@ -434,5 +441,79 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             $scope.seeReference = function (file) {
                 $window.location.href = file;
             };
-        }        
+
+            $scope.coveredCapital = function () {
+                $scope.coveredCapitalPercent = ($scope.investmentCapitalProject / parseFloat($scope.currentProjectActive.totalCost)) * 100;
+            };
+
+            $scope.possibleInvestmentArray = [];
+
+            //Upgrade While(true)
+            $scope.getPossibleInvestment = function () {
+                if ($scope.coveredCapitalPercent != 100) {
+                    var minimalInvertion = parseInt($scope.currentProjectActive.totalCost/$scope.currentProjectActive.maxNumInves);
+
+                    var remainingInvertion = parseInt($scope.currentProjectActive.totalCost) - $scope.investmentCapitalProject;
+
+                    var remainingNumMinInvestors = parseInt($scope.currentProjectActive.minNumInves) - $scope.invertions.length;
+
+                    var myInvertion = 0;
+
+                    for (var i=0; i<$scope.invertions.length;  i++) {
+                        if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
+                            myInvertion = parseInt($scope.invertions[i].amount);
+                        }
+                    }
+
+                    if (myInvertion == 0) {
+                        var n = 0;
+
+                        while (true) {
+                            var a = remainingInvertion - n * minimalInvertion;
+                            if ((a >= minimalInvertion)) {
+                                if ((remainingNumMinInvestors > 0) && (a > (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
+                                    n += 1;
+                                    continue;
+                                }
+                                $scope.possibleInvestmentArray.push(a);
+                            } else {
+                                break;
+                            }
+
+                            n += 1;
+                        }
+                    } else {
+                        if (($scope.investmentCapitalProject < ($scope.currentProjectActive.totalCost - (minimalInvertion * (remainingNumMinInvestors))))){
+
+                            var n = 0;
+
+                            while (true) {
+                                var a = remainingInvertion - n * minimalInvertion;
+                                if ((a >= minimalInvertion)) {
+                                    if ((remainingNumMinInvestors > 0) && (a >= (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
+                                        n += 1;
+                                        continue;
+                                    }
+                                    $scope.possibleInvestmentArray.push(a);
+                                } else {
+                                    break;
+                                }
+
+                                n += 1;
+                            }
+                        }
+                    }
+                }
+            };
+
+            $scope.setInvestmentValue = function () {
+                if ($scope.amount !=  '' && $scope.amount != null) {
+                    localStorageService.set('currentAmountInvestment', $scope.amount);
+                    $state.go('app.inversion');
+                } else {
+                    toaster.pop('error', 'Error', 'Please select the amount to invest.');
+                }
+            };
+
+        }
     }]);

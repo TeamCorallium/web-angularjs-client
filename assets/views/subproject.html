@@ -180,7 +180,7 @@
                                                         </p>
                                                         <p ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
                                                             <strong>My Invested Capital:</strong>
-                                                            {{amount | number: 2}} $
+                                                            {{myInvestedCapital | number: 2}} $
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
@@ -456,6 +456,24 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <hr class="tall" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation')">
+                            <div class="row" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation')">
+                                <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 no-padding">
+                                        <span><strong>Possible Investment</strong></span>
+                                        <select ng-model="amount" ng-options="i for i in possibleInvestmentArray" ng-change="getFinancierEsimateRevenue()" class="cs-select cs-skin-slide"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                    <p><strong>Estimate Personal Revenue</strong></p>
+                                    <p>{{estimateRevenueF | number: 2}} $</p>
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 pull-right margin-top-15">
+                                    <button ng-click="setInvestmentValue()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-light-bulb pull-right">
+                                        <span> Invest </span>
+                                    </button>
                                 </div>
                             </div>
                             <div class="row">

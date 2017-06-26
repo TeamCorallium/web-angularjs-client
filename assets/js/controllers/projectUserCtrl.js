@@ -67,7 +67,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
             $scope.updateProject = function(projectId) {
                 localStorageService.set('currentProjectId', projectId);
                 $state.go('app.project.wizard');              
-            }
+            };
 
             $scope.deleteProject = function (projectId) {
                 SweetAlert.swal({

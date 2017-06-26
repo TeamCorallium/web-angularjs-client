@@ -20,6 +20,8 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                             function (data) {
                                 $scope.simpleProjects = data;
 
+                                $scope.allProjectsAbstracts = [];
+
                                 for (var i = 0; i < $scope.simpleProjects.length; i++) {
                                     var projectAbstract = {
                                         id: $scope.simpleProjects[i].id,

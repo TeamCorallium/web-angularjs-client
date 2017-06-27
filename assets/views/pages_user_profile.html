@@ -127,7 +127,7 @@
 									<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
 										<div class="panel-body">
 											<ul class="timeline-xs">
-												<li ng-repeat="activity in allActivities | orderBy: 'date':true | limitTo:5" class="timeline-item warning">
+												<li ng-repeat="activity in allActivities | orderBy: 'date':true | limitTo:5" class="timeline-item info">
 													<div class="margin-left-15">
 														<div class="text-muted text-small">
 															{{getProjectDate(activity.date)}}

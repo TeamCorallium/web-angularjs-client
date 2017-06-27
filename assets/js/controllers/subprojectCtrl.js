@@ -118,6 +118,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
                             $scope.coveredCapital();
                             $scope.getPossibleInvestment();
+                            $scope.getFinancierEsimateRevenueFinancier();
                         },
                         function (errResponse) {
                             console.log(errResponse);
@@ -125,10 +126,16 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     );
             };
 
-            $scope.getFinancierEsimateRevenue = function () {
-                var porcientoF = (parseFloat($scope.myInvestedCapital) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
+            $scope.getFinancierEsimateRevenue = function (myInvested) {
+                var porcientoF = (parseFloat(myInvested) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
                 var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner) / 100.0) * parseFloat($scope.currentProjectActive.totalRevenue);
                 $scope.estimateRevenueF = (porcientoF / 100.0) * (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
+            };
+
+            $scope.getFinancierEsimateRevenueFinancier = function () {
+                var porcientoF = (parseFloat($scope.myInvestedCapital) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
+                var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner) / 100.0) * parseFloat($scope.currentProjectActive.totalRevenue);
+                $scope.estimateRevenueFinancier = (porcientoF / 100.0) * (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
             };
 
             $scope.goToTask = function (taskId) {

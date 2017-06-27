@@ -129,6 +129,8 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                                 }
                             }
 
+                            $scope.investmentCapitalProject += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
+
                             $scope.coveredCapital();
                             $scope.getPossibleInvestment();
                         },
@@ -143,9 +145,9 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             //Upgrade While(true)
             $scope.getPossibleInvestment = function () {
                 if ($scope.coveredCapitalPercent != 100) {
-                    var minimalInvertion = parseInt($scope.currentProjectActive.totalCost/$scope.currentProjectActive.maxNumInves);
+                    var minimalInvertion = parseInt(($scope.currentProjectActive.totalCost-$scope.currentProjectActive.ownerInvestedCapital)/$scope.currentProjectActive.maxNumInves);
 
-                    var remainingInvertion = parseInt($scope.currentProjectActive.totalCost) - $scope.investmentCapitalProject;
+                    var remainingInvertion = parseInt($scope.currentProjectActive.totalCost - $scope.investmentCapitalProject);
 
                     var remainingNumMinInvestors = parseInt($scope.currentProjectActive.minNumInves) - $scope.invertions.length;
 

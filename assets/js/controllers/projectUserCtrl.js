@@ -34,6 +34,10 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                                         state: $scope.simpleProjects[i].state,
                                         deathLine: $scope.simpleProjects[i].deathLine,
                                         ownerId: $scope.simpleProjects[i].userId,
+                                        sector: $scope.simpleProjects[i].sector,
+                                        category: $scope.simpleProjects[i].category,
+                                        minNumInves: $scope.simpleProjects[i].minNumInves,
+                                        maxNumInves: $scope.simpleProjects[i].maxNumInves,
                                         ownerName: '',
                                         ownerRaiting: '',
                                         coveredCapital: '',
@@ -55,6 +59,10 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
             $scope.getProjects();
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+            $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property Developments', 'Other'];
+
+            $scope.sectorArray = ['','Agriculture', 'Industry', 'Technology', 'Engineering', 'Real State', 'Academic', 'Food Industry', 'Other'];
 
             $scope.getCreationProject = function (date) {
                 var dateTemp = new Date(date);

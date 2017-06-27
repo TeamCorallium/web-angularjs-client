@@ -45,49 +45,59 @@
 										<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
 									</div>
 									<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
-									<span class="notification-preview">
-										<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
-									</span>
+										<span class="notification-preview">
+											<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
+										</span>
 									</div>
 									<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-pencil-alt"></i>
-											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
-										</span>
+											<span><i class="ti-pencil-alt"></i>
+												<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
+											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-wallet"></i>
-											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
-										</span>
+											<span><i class="ti-wallet"></i>
+												<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
+											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-stats-up"></i>
-											<strong> State:</strong>  {{stateArray[project.state]}}
-										</span>
+											<span><i class="ti-stats-up"></i>
+												<strong> State:</strong>  {{stateArray[project.state]}}
+											</span>
 										</div>
 									</div>
 									<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-calendar"></i>
-											<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
-										</span>
+											<span><i class="ti-calendar"></i>
+												<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
+											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-id-badge"></i>
-											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
-										</span>
+											<span><i class="ti-id-badge"></i>
+												<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
+											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-menu"></i>
-											<strong> Owner Raiting:</strong>
-										</span>
+											<span><i class="ti-menu"></i>
+												<strong> Owner Raiting:</strong>
+											</span>
 										</div>
 									</div>
 									<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 										<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-bar-chart"></i>
-											<strong> Covered Capital:</strong>  {{project.coveredCapital | number: 2}} %
-										</span>
+											<span><i class="ti-bar-chart"></i>
+												<strong> Covered Capital:</strong>  {{project.coveredCapital | number: 2}} %
+											</span>
+										</div>
+										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+											<span><i class="ti-id-badge"></i>
+												<strong> Sector:</strong> {{sectorArray[project.sector]}}
+											</span>
+										</div>
+										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+											<span><i class="ti-id-badge"></i>
+												<strong> Category:</strong> {{categoryArray[project.category]}}
+											</span>
 										</div>
 									</div>
 								</div>

@@ -47,7 +47,11 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
                         $scope.userInfo.password = data[0].password;
                         $scope.userInfo.projectsFollow = data[0].projectsFollow;
                         $scope.userInfo.id = data[0].id;
-                        $scope.userInfo.birthday = data[0].birthday;
+                        if (data[0].birthday == '') {
+                            $scope.userInfo.birthday = '';
+                        } else {
+                            $scope.userInfo.birthday = new Date(data[0].birthday);
+                        }
                         $scope.userInfo.identityCard = data[0].identityCard;
                         $scope.userInfo.industries = data[0].industries;
                         $scope.userInfo.skills = data[0].skills;
@@ -97,8 +101,10 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
         $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         $scope.getBirthday = function (date) {
-            var dateTemp = new Date(date);
-            return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
+            if (date != '') {
+                var dateTemp = new Date(date);
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
+            }
         };
 
 

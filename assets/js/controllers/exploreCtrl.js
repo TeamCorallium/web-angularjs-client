@@ -40,9 +40,15 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 state: $scope.allProjects[i].state,
                                 deathLine: $scope.allProjects[i].deathLine,
                                 ownerId: $scope.allProjects[i].userId,
+                                sector: $scope.allProjects[i].sector,
+                                category: $scope.allProjects[i].category,
+                                minNumInves: $scope.allProjects[i].minNumInves,
+                                maxNumInves: $scope.allProjects[i].maxNumInves,
                                 ownerName: '',
                                 ownerRaiting: '',
-                                coveredCapital: ''
+                                coveredCapital: '',
+                                isFollow: '',
+                                iInverted: ''
                             };
                             $scope.allProjectsAbstracts.push(projectAbstract);
                             $scope.getUserName($scope.allProjects[i].userId);
@@ -119,6 +125,10 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
         $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
         $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property Developments', 'Other'];
+
+        $scope.sectorArray = ['','Agriculture', 'Industry', 'Technology', 'Engineering', 'Real State', 'Academic', 'Food Industry', 'Other'];
 
         $scope.getProjectDate = function (date) {
             var dateTemp = new Date(date);

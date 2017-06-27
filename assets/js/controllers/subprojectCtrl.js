@@ -128,7 +128,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             };
 
             $scope.getFinancierEsimateRevenue = function () {
-                var porcientoF = (parseFloat($scope.amount) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
+                var porcientoF = (parseFloat($scope.myInvestedCapital) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
                 var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner) / 100.0) * parseFloat($scope.currentProjectActive.totalRevenue);
                 $scope.estimateRevenueF = (porcientoF / 100.0) * (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
             };

@@ -202,7 +202,6 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
             $scope.estimatePersonalRevenue = function () {
                 var porcientoF = (parseFloat($scope.amount) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
-
                 var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner) / 100.0) * parseFloat($scope.currentProjectActive.totalRevenue);
                 $scope.estimateRevenueF = (porcientoF / 100.0) * (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
             };

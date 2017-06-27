@@ -121,7 +121,11 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                             $scope.userInfo.skype = data[0].skype;
                             $scope.userInfo.password = data[0].password;
                             $scope.userInfo.projectsFollow = data[0].projectsFollow;
-                            $scope.userInfo.birthday = new Date(data[0].birthday);
+                            if (data[0].birthday == '') {
+                                $scope.userInfo.birthday = new Date();
+                            } else {
+                                $scope.userInfo.birthday = new Date(data[0].birthday);
+                            }
                             $scope.userInfo.identityCard = data[0].identityCard;
                             $scope.userInfo.industries = data[0].industries;
                             $scope.userInfo.skills = data[0].skills;
@@ -276,8 +280,8 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                         if ($scope.passwordStruct.newPasswordAgain != '') {
                             if($scope.passwordStruct.newPassword != $scope.userInfo.password) {
                                 if ($scope.passwordStruct.newPassword == $scope.passwordStruct.newPasswordAgain) {
-                                        $scope.userInfo.password = $scope.passwordStruct.newPassword;
-                                        $scope.saveUserAcount();
+                                    $scope.userInfo.password = $scope.passwordStruct.newPassword;
+                                    $scope.saveUserAcount();
                                     $scope.passwordStruct.newPassword = '';
                                     $scope.passwordStruct.oldPassword = '';
                                     $scope.passwordStruct.newPasswordAgain = '';

@@ -80,7 +80,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
             $scope.getUserData();
 
-            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
 
@@ -104,12 +104,12 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                 }
             };
 
-            $scope.projectRole = function (userId) {
+            $scope.isOwner = function (userId) {
                 if (localStorageService.get('currentUserId') == userId) {
-                    return 'Owner';
+                    return true;
                 }
                 else {
-                    return 'Financier';
+                    return false;
                 }
             };
 
@@ -202,7 +202,6 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
 
             $scope.estimatePersonalRevenue = function () {
                 var porcientoF = (parseFloat($scope.amount) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
-
                 var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner) / 100.0) * parseFloat($scope.currentProjectActive.totalRevenue);
                 $scope.estimateRevenueF = (porcientoF / 100.0) * (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
             };

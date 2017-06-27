@@ -8,7 +8,7 @@ app.controller('ExploreSubprojectListTaskCtrl', ["$scope", "localStorageService"
             $scope.currentProjectActive = '';
             $scope.tasksFiltreInPreparation = [];
             $scope.tasksProject = [];
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))

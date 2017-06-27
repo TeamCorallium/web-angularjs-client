@@ -208,9 +208,11 @@
                     <tbody>
                     <tr ng-repeat="proposal in listProposal">
                         <td> {{proposal.type}} </td>
-                        <td> Task: {{getTaskName(proposal.itemSubject)}} </td>
+                        <td ng-hide="proposal.type == 'Start Project'"> Task: {{getTaskName(proposal.itemSubject)}} </td>
+                        <td ng-show="proposal.type == 'Start Project'">  </td>
                         <td ng-show="proposal.type == 'Modified Task State'"> {{stateArray[proposal.currentContent]}} </td>
                         <td ng-hide="proposal.type == 'Modified Task State'"> {{proposal.currentContent}} </td>
+                        <td ng-show="proposal.type == 'Start Project'">  </td>
                         <td ng-show="proposal.type == 'Modified Task State'"> {{stateArray[proposal.itemContent]}} </td>
                         <td ng-hide="proposal.type == 'Modified Task State'"> {{proposal.itemContent}} </td>
                     </tr>

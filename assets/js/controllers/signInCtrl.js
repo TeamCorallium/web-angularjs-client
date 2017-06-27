@@ -30,10 +30,12 @@ app.controller('SignInCtrl', ["$scope", "$state", "flowFactory", "RestService", 
                                     $scope.user.id = data[0].id;
                                     $scope.updateSessionInfo();
                                     $scope.userFirstName(data[0].email, data[0].avatar);
-                                    $state.go('app.default');
 
                                     //open websocket
                                     WebSocketService.open();
+
+                                    $state.go('app.default');
+
                                 } else {
                                     toaster.pop('error', 'Error', 'Wrong password.');
                                 }

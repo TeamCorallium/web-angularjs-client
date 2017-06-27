@@ -53,10 +53,11 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
                                         $scope.user.id = data;
                                         $scope.userFirstName($scope.user.email);
                                         $scope.updateSessionInfo();
-                                        $state.go('app.default');
 
                                         //open websocket
                                         WebSocketService.open();
+
+                                        $state.go('app.default');
                                     }
                                 },
                                 function(errResponse) {

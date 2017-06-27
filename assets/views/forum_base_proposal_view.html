@@ -97,8 +97,11 @@
 					<button ng-click="setVote()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-check">
 						<span>Vote</span>
 					</button>
-					<button ng-click="showVotesResult()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
+					<button ng-hide="viewVoteResults" ng-click="showVotesResult()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
 						<span>View Votes</span>
+					</button>
+					<button ng-show="viewVoteResults" ng-click="showVotesResult()" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-eye pull-right">
+						<span>Hide Votes</span>
 					</button>
 				</div>
 			</div>

@@ -116,10 +116,8 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                                 }
                             }
 
-
                             $scope.coveredCapital();
                             $scope.getPossibleInvestment();
-                            $scope.getFinancierEsimateRevenue();
                         },
                         function (errResponse) {
                             console.log(errResponse);

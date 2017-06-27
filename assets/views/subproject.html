@@ -470,8 +470,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr class="tall" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation')">
-                            <div class="row" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation')">
+                            <hr class="tall" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation') && (projectRole(currentProjectActive.userId) != 'Owner')">
+                            <div class="row" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation') && (projectRole(currentProjectActive.userId) != 'Owner')">
                                 <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 no-padding">
                                         <span><strong>Possible Investment</strong></span>

@@ -50,14 +50,16 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
         newProject = json.loads(self.request.body)
 
         print(newProject['projectName'])
+        projectId = newProject['id']
 
         activityContent = ''
 
-        if len(table_simple_project.search(where('id') == newProject['id'])) != 0:
-            id = newProject['id']
-            table_simple_project.update(newProject, eids=[int(id)])
-            self.write(str(id))
-            activityContent = 'You updated a project'
+        if projectId != '':
+            if len(table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))) != 0:
+                id = newProject['id']
+                table_simple_project.update(newProject, eids=[int(id)])
+                self.write(str(id))
+                activityContent = 'You updated a project'
         else:
             id = table_simple_project.insert(newProject)
             table_simple_project.update({'id': id}, eids=[id])

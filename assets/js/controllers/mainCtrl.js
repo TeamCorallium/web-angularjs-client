@@ -125,6 +125,11 @@ function($rootScope, $scope, $state, $translate, $localStorage, $window, $docume
 
 	$scope.language.init();
 
+    $rootScope.$on('$translateChangeSuccess', function () {
+    	console.log('translateChangeSuccess');
+    	console.log($translate.instant('topbar.activities.HEADER'));
+    });
+
 	// Function that find the exact height and width of the viewport in a cross-browser way
 	var viewport = function() {
 		var e = window, a = 'inner';

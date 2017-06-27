@@ -121,11 +121,22 @@ class ConnectedUserHandler(tornado.web.RequestHandler):
         print('ConnectedUser:GET!!!' + userId)
 
         users = []
+        if userId != 'null':
+            users = table_user.search((where('id') != userId) & (where('id') != int(userId)))
+        else:
+            users = table_user.all()
+
+        for user in users:
+            table_user.update({'connected': False}, eids=[int(user['id'])])
+
         for client in clients:
-            print(client.id)
+            table_user.update({'connected': True}, eids=[int(client.id)])
 
-            if int(client.id) != int(userId):
-                user = table_user.get(eid=int(client.id))
-                users.append(user)
+        if userId != 'null':
+            users = table_user.search((where('id') != userId) & (where('id') != int(userId)))
+        else:
+            users = table_user.all()
 
-        self.write(json.dumps(users))
+        sortedUsers = sorted(users, key=lambda user: user['connected'], reverse=True)
+
+        self.write(json.dumps(sortedUsers))

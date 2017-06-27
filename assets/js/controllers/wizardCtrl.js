@@ -21,11 +21,11 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                 projectName: '',
                 description: '',
                 totalCost: '',
-                minimalCost: '',
+                minimalCost: '0',
                 estimateDuration: '', //calculable from tasks
                 state: '', //0->Under Construction 1->In Preparation 2->On time 3->Best than Expected 4-Delayed 5->Finished
                 deathLine: '',
-                totalRevenue: '',
+                totalRevenue: '0',
                 revenueOwner: '',
                 minNumInves: '',
                 maxNumInves: '',

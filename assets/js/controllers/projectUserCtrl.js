@@ -11,7 +11,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
             $scope.allProjectsAbstracts = [];
             $scope.invertions = [];
 
-            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.getProjects = function () {
                 if (localStorageService.get('isLogged')) {

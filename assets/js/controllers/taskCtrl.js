@@ -12,7 +12,7 @@ app.controller('TaskCtrl', ["$scope", "localStorageService", "RestService", "$st
             $scope.tasksFiltre = [];
             $scope.tasksFiltreInPreparation = [];
             $scope.currentTaskActive = '';
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.getTaskByProjectsId = function (projectId) {
                 RestService.fetchTaskByProjectId(projectId)

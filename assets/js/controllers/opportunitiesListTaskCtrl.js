@@ -6,7 +6,7 @@ app.controller('OpportunitiesListTaskCtrl', ["$scope", "localStorageService", "R
         } else {
             $scope.tasksProject = [];
 
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.getTaskByProjectsId = function () {
                 RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))

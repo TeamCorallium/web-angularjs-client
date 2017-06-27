@@ -16,6 +16,7 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
         $scope.deathLineProject = '';
         $scope.currentProjectActive = '';
         $scope.amount = '';
+        $scope.investmentCapitalProject = 0;
 
         $scope.getProjectById = function () {
             RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -128,4 +129,28 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
         $scope.seeReference = function (file) {
             $window.location.href = file;
         };
+
+        $scope.coveredCapital = function () {
+            $scope.coveredCapitalPercent = ($scope.investmentCapitalProject / parseFloat($scope.currentProjectActive.totalCost)) * 100;
+        };
+
+        $scope.invertionByProjectId = function () {
+            RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
+                .then(
+                    function (data) {
+                        $scope.invertions = data;
+
+                        for (var i = 0; i < $scope.invertions.length; i++) {
+                            $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
+                        }
+
+                        $scope.coveredCapital();
+                    },
+                    function (errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
+
+        $scope.invertionByProjectId();
     }]);

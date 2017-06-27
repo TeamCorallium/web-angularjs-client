@@ -14,6 +14,7 @@ app.controller('TopNavBarCtrl', ["$scope", "$state", "flowFactory", "RestService
                 localStorageService.remove('currentProjectId');
 
                 WebSocketService.close();
+                $rootScope.user.avatar = 'assets/images/default-user.png';
                 $rootScope.$broadcast('sessionChanged');
                 $state.go('app.default');
             } else {

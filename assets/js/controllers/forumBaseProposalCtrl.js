@@ -58,8 +58,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 state: '',
                 deathLine: '',
                 date: '',
-                avatar: '',
-                status: ''
+                avatar: ''
             };
 
             $scope.getTaskByProjectsId = function () {
@@ -83,7 +82,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         $scope.currentProposal.date = new Date();
                         $scope.currentProposal.avatar = $rootScope.user.avatar;
                         $scope.currentProposal.state = 'publish';
-                        $scope.currentProposal.status = 0;
 
                         for (var i = 0; i<$scope.listProposal.length; i++) {
                             var proposalTemp = {
@@ -348,8 +346,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 type: '',
                 deathLine: '',
                 itemSubject: '',
-                itemContent: '',
-                status: 0
+                itemContent: ''
             };
 
             $scope.listProposal = [];
@@ -361,8 +358,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             type: $scope.proposalType,
                             itemSubject: '',
                             itemContent: '',
-                            currentContent: '',
-                            status: 0
+                            currentContent: ''
                         };
 
                         if ($scope.proposalType == 'Modified Task State') {

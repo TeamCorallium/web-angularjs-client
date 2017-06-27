@@ -20,6 +20,10 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
         $scope.filter = '';
         $scope.selectedTabProjects = true;
 
+        $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property Developments', 'Other'];
+
+        $scope.sectorArray = ['','Agriculture', 'Industry', 'Technology', 'Engineering', 'Real State', 'Academic', 'Food Industry', 'Other'];
+
         $scope.getAllProjects = function () {
             RestService.fetchAllOpportunities(localStorageService.get('currentUserId'), $scope.filter)
                 .then(
@@ -40,6 +44,10 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                                 state: $scope.allProjects[i].state,
                                 deathLine: $scope.allProjects[i].deathLine,
                                 ownerId: $scope.allProjects[i].userId,
+                                sector: $scope.allProjects[i].sector,
+                                category: $scope.allProjects[i].category,
+                                minNumInves: $scope.allProjects[i].minNumInves,
+                                maxNumInves: $scope.allProjects[i].maxNumInves,
                                 ownerName: '',
                                 ownerRaiting: '',
                                 coveredCapital: '',

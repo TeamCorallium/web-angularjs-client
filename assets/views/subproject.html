@@ -163,44 +163,56 @@
                                                 <div class="row">
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p>
-                                                            <strong>Total Cost:</strong>
+                                                            <strong>Total Cost: </strong>
                                                             {{currentProjectActive.totalCost | number: 2}} $
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p>
-                                                            <strong>Total Estimate Revenue:</strong>
+                                                            <strong>Total Estimate Revenue: </strong>
                                                             {{currentProjectActive.totalRevenue | number: 2}} $
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                            <strong>My Invested Capital:</strong>
+                                                            <strong>My Invested Capital: </strong>
                                                             {{currentProjectActive.ownerInvestedCapital | number: 2}} $
                                                         </p>
                                                         <p ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                            <strong>My Invested Capital:</strong>
+                                                            <strong>My Invested Capital: </strong>
                                                             {{myInvestedCapital | number: 2}} $
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                            <strong>My Estimate Revenue:</strong>
+                                                            <strong>My Estimate Revenue: </strong>
                                                             {{currentProjectActive.revenueOwner}} %
                                                         </p>
                                                         <p ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                            <strong>My Estimate Revenue:</strong>
+                                                            <strong>My Estimate Revenue: </strong>
                                                             {{estimateRevenueF | number: 2}} $
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p>
-                                                            <strong>Execution Plan:</strong>
+                                                            <strong>Execution Plan: </strong>
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p>
-                                                            <strong>Real Execution:</strong>
+                                                            <strong>Real Execution: </strong>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p>
+                                                            <strong>Minimum Number of Invertors: </strong>
+                                                            {{currentProjectActive.minNumInves}}
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p>
+                                                            <strong>Maximum Number of Invertors: </strong>
+                                                            {{currentProjectActive.maxNumInves}}
                                                         </p>
                                                     </div>
                                                 </div>

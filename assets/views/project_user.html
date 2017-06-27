@@ -62,36 +62,24 @@
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-menu"></i>
-											<strong> Owner Raiting:</strong>
+											<strong> Owner Raiting: </strong>
 										</span>
 									</div>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-id-badge"></i>
-											<strong> Sector:</strong> <a ng-click="viewProfile(project.ownerId)"> {{sectorArray[project.sector]}}</a>
+											<strong> Sector:</strong> {{sectorArray[project.sector]}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-id-badge"></i>
-											<strong> Category:</strong> <a ng-click="viewProfile(project.ownerId)"> {{categoryArray[project.category]}}</a>
+											<strong> Category:</strong> {{categoryArray[project.category]}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding" ng-show="projectRole(project.ownerId) != 'Owner'">
 										<span><i class="ti-id-badge"></i>
 											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)"> {{project.ownerName}}</a>
-										</span>
-									</div>
-								</div>
-								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
-									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-id-badge"></i>
-											<strong> Minimum Number of Investor:</strong> <a ng-click="viewProfile(project.ownerId)"> {{project.minNumInves}}</a>
-										</span>
-									</div>
-									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span><i class="ti-id-badge"></i>
-											<strong> Maximum Number of Investor:</strong> <a ng-click="viewProfile(project.ownerId)"> {{project.maxNumInves}}</a>
 										</span>
 									</div>
 								</div>

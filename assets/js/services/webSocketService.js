@@ -24,6 +24,7 @@ app.factory('WebSocketService', ["$websocket", "localStorageService", "$rootScop
         var ws = '';
         var wsBinding = function() {
 
+
             ws = $websocket('ws://localhost:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
             // ws = $websocket('ws://127.0.0.1:9090/CoralliumRestAPI/ws?userId='+localStorageService.get('currentUserId'));
 

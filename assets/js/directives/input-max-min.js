@@ -53,4 +53,3 @@ app.directive('myMax', function () {
         }
     };
 });
-

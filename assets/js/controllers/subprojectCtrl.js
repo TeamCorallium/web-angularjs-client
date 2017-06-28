@@ -116,6 +116,9 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                                 }
                             }
 
+
+                            $scope.investmentCapitalProject += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
+
                             $scope.coveredCapital();
                             $scope.getPossibleInvestment();
                             $scope.getFinancierEsimateRevenueFinancier();

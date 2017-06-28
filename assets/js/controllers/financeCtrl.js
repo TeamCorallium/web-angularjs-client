@@ -88,17 +88,9 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                     );
             };
 
-            $scope.stateArray = ['', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-            $scope.getUserName = function (userId) {
-                for (var i = 0; i < $scope.listAllUser.length; i++) {
-                    if ($scope.listAllUser[i].id == userId) {
-                        return $scope.listAllUser[i].fullName;
-                    }
-                }
-            };
 
             $scope.getDateProject = function (date) {
                 var dateTemp = new Date(date);

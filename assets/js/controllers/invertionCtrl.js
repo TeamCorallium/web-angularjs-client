@@ -28,7 +28,6 @@ app.controller('InvertionCtrl', ["$scope", "localStorageService", "RestService",
                 $scope.invertion.userId = localStorageService.get('currentUserId');
                 $scope.invertion.projectId = localStorageService.get('currentProjectId');
                 $scope.invertion.amount = localStorageService.get('currentAmountInvestment');
-                ;
                 $scope.invertion.id = '';
 
                 RestService.createInvertion($scope.invertion)

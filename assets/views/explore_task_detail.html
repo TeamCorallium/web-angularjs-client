@@ -1,5 +1,4 @@
-<!-- start: PAGE TITLE -->
-<div ng-controller="ExploreTaskDetailCtrl">
+<div ng-controller="SubprojectTaskDetailCtrl">
     <section id="page-title">
         <div class="row">
             <div class="col-sm-8">
@@ -8,11 +7,7 @@
             <div ncy-breadcrumb></div>
         </div>
     </section>
-    <!-- end: PAGE TITLE -->
-
-    <!-- start: FEATURED BOX LINKS -->
     <div class="container-fluid container-fullw bg-white">
-        <!-- start: APP CONTENT -->
         <div class="app-content">
             <div class="main-content" id="subproject">
                 <section class="container-fluid container-fullw bg-white" id="section_subproject">
@@ -25,9 +20,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr class="tall">
+                            <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-bottom-15 no-padding margin-left-0 margin-right-0">
+                                <span class="label label-default pull-right">{{stateArray[currentTaskActive.state]}}</span>
+                            </div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-4 col-lg-3 col-xs-12 pull-right">
+                                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 pull-right">
                                     <div class="portfolio-info">
                                         <div class="row">
                                             <ul class="pull-right text-right">
@@ -44,42 +41,44 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- The color of the progres bar depend of the task stage -->
-                                <div class="col-md-7 col-sm-6 col-lg-7 col-xs-12 margin-top-15">
-                                    <div class="progress progress-striped ng-isolate-scope" value="dynamic" type="success">
-                                        <div class="progress-bar progress-bar-success"
-                                             ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar"
-                                             aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"
-                                             ng-style="{width: (percent &lt; 100 ? percent : 100) + '%'}"
-                                             aria-valuetext="24%" aria-labelledby="progressbar" ng-transclude=""
-                                             style="width: 24%;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-2 col-lg-2 col-xs-12 margin-top-15">
-                                    <span class="label label-success pull-right">{{stateArray[currentTaskActive.state]}}</span>
+                                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 margin-top-15">
+                                    <p><strong>Financial Execution: </strong></p>
+                                    <p><strong>Phisical Execution: </strong></p>
                                 </div>
                             </div>
                             <hr class="tall">
                             <div class="row">
-                                <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12">
-                                    <p class="taller"> Description:</p>
-                                    <p class="taller margin-bottom-25"> {{currentTaskActive.description}} </p>
-                                </div>
-                                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 pull-right">
-                                    <address>
-                                        <strong class="text-dark">Financial Execution:</strong>
-                                        <br>
-                                        <br>
-                                    </address>
-                                    <address>
-                                        <strong class="text-dark">Phisical Execution:</strong>
-                                        <br>
-                                        <br>
-                                    </address>
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <div class="panel panel-white" id="panel2">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">Description</h4>
+                                            <ct-paneltool class="panel-tools" tool-collapse="tool-collapse"><a
+                                                    class="btn btn-transparent btn-sm"
+                                                    panel-collapse=""
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Collapse"
+                                                    ng-click="panel2 = !panel2"
+                                                    ng-init="panel2=false">
+                                                <!-- ngIf: panel1 --><!-- ngIf: !panel1 --><i ng-if="!panel2"
+                                                                                              class="ti-minus ng-scope"
+                                                                                              style=""></i>
+                                                <!-- end ngIf: !panel1 --></a>
+                                            </ct-paneltool>
+                                        </div>
+                                        <div uib-collapse="panel2" ng-init="panel2=false"
+                                             class="panel-wrapper in collapse" aria-expanded="true" aria-hidden="false"
+                                             style="height: auto;">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                                        {{currentTaskActive.description}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <hr class="tall">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                     <div class="panel panel-white" id="panel1">
@@ -122,11 +121,9 @@
                                                         <ul class="portfolio-details list-unstyled margin-top-minus-15">
                                                             <li>
                                                                 <p class="margin-top-15">
-                                                                    Outcomes:
+                                                                    <strong>Outcomes:</strong>
                                                                 </p>
-                                                                <p>
-                                                                    {{currentTaskActive.outcome}}
-                                                                </p>
+                                                                {{currentTaskActive.outcome}}
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -150,117 +147,117 @@
             </div>
         </div>
     </div>
-
-    <script>
-        jQuery(document).ready(function () {
-            var swiperDefault = $('.horizontal-slider');
-            if (swiperDefault.length) {
-                swiperDefault.each(function () {
-                    var _this = $(this);
-                    var swiper = new Swiper(_this, {
-                        pagination: _this.find('.swiper-pagination'),
-                        paginationClickable: _this.find('.swiper-pagination'),
-                        loop: true,
-                        autoplay: 3000,
-                        nextButton: _this.find('.swiper-button-next'),
-                        prevButton: _this.find('.swiper-button-prev')
-
-                    });
-                });
-            }
-
-            var swiperVertical = $('.vertical-slider');
-            if (swiperVertical.length) {
-                swiperVertical.each(function () {
-                    var _this = $(this);
-                    var swiper = new Swiper(_this, {
-                        pagination: _this.find('.swiper-pagination'),
-                        paginationClickable: _this.find('.swiper-pagination'),
-                        loop: true,
-                        autoplay: 3000,
-                        direction: 'vertical'
-
-                    });
-                });
-            }
-
-            var swiperNestedHorizontal = $('.swiper-container-h');
-            if (swiperNestedHorizontal.length) {
-                swiperNestedHorizontal.each(function () {
-                    var _this = $(this);
-                    var swiperH = new Swiper(_this, {
-                        pagination: _this.find('.swiper-pagination-h'),
-                        paginationClickable: true,
-                        spaceBetween: 50
-                    });
-                });
-            }
-            var swiperNestedVertical = $('.swiper-container-v');
-            if (swiperNestedVertical.length) {
-                swiperNestedVertical.each(function () {
-                    var _this = $(this);
-                    var swiperV = new Swiper(_this, {
-                        pagination: _this.find('.swiper-pagination-v'),
-                        paginationClickable: true,
-                        direction: 'vertical',
-                        spaceBetween: 50
-                    });
-                });
-            }
-            var swiperFade = $('.fade-slider');
-            if (swiperFade.length) {
-                swiperFade.each(function () {
-                    var _this = $(this);
-                    var swiper = new Swiper(_this, {
-                        pagination: _this.find('.swiper-pagination'),
-                        paginationClickable: _this.find('.swiper-pagination'),
-                        loop: true,
-                        autoplay: 3000,
-                        nextButton: _this.find('.swiper-button-next'),
-                        prevButton: _this.find('.swiper-button-prev'),
-                        effect: 'fade'
-
-                    });
-                });
-            }
-
-            var swiperParallax = $('.parallax-slider');
-            if (swiperParallax.length) {
-                swiperParallax.each(function () {
-                    var _this = $(this);
-                    var swiper = new Swiper(_this, {
-                        pagination: _this.find('.swiper-pagination'),
-                        paginationClickable: true,
-                        nextButton: _this.find('.swiper-button-next'),
-                        prevButton: _this.find('.swiper-button-prev'),
-                        parallax: true,
-                        speed: 600,
-                    });
-                });
-            }
-
-            var swiperThumbs = $('.gallery-top');
-            if (swiperThumbs.length) {
-                swiperThumbs.each(function () {
-                    var _this = $(this);
-                    var _thumbs = _this.next('.gallery-thumbs');
-                    var galleryTop = new Swiper(_this, {
-                        nextButton: _this.find('.swiper-button-next'),
-                        prevButton: _this.find('.swiper-button-prev'),
-                        spaceBetween: 10,
-                    });
-                    var galleryThumbs = new Swiper(_thumbs, {
-                        spaceBetween: 10,
-                        centeredSlides: true,
-                        slidesPerView: 'auto',
-                        touchRatio: 0.2,
-                        slideToClickedSlide: true
-                    });
-                    galleryTop.params.control = galleryThumbs;
-                    galleryThumbs.params.control = galleryTop;
-                });
-            }
-        });
-    </script>
-    <!-- end: FEATURED BOX LINKS -->
 </div>
+
+<script>
+    jQuery(document).ready(function () {
+        var swiperDefault = $('.horizontal-slider');
+        if (swiperDefault.length) {
+            swiperDefault.each(function () {
+                var _this = $(this);
+                var swiper = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination'),
+                    paginationClickable: _this.find('.swiper-pagination'),
+                    loop: true,
+                    autoplay: 3000,
+                    nextButton: _this.find('.swiper-button-next'),
+                    prevButton: _this.find('.swiper-button-prev')
+
+                });
+            });
+        }
+
+        var swiperVertical = $('.vertical-slider');
+        if (swiperVertical.length) {
+            swiperVertical.each(function () {
+                var _this = $(this);
+                var swiper = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination'),
+                    paginationClickable: _this.find('.swiper-pagination'),
+                    loop: true,
+                    autoplay: 3000,
+                    direction: 'vertical'
+
+                });
+            });
+        }
+
+        var swiperNestedHorizontal = $('.swiper-container-h');
+        if (swiperNestedHorizontal.length) {
+            swiperNestedHorizontal.each(function () {
+                var _this = $(this);
+                var swiperH = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination-h'),
+                    paginationClickable: true,
+                    spaceBetween: 50
+                });
+            });
+        }
+        var swiperNestedVertical = $('.swiper-container-v');
+        if (swiperNestedVertical.length) {
+            swiperNestedVertical.each(function () {
+                var _this = $(this);
+                var swiperV = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination-v'),
+                    paginationClickable: true,
+                    direction: 'vertical',
+                    spaceBetween: 50
+                });
+            });
+        }
+        var swiperFade = $('.fade-slider');
+        if (swiperFade.length) {
+            swiperFade.each(function () {
+                var _this = $(this);
+                var swiper = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination'),
+                    paginationClickable: _this.find('.swiper-pagination'),
+                    loop: true,
+                    autoplay: 3000,
+                    nextButton: _this.find('.swiper-button-next'),
+                    prevButton: _this.find('.swiper-button-prev'),
+                    effect: 'fade'
+
+                });
+            });
+        }
+
+        var swiperParallax = $('.parallax-slider');
+        if (swiperParallax.length) {
+            swiperParallax.each(function () {
+                var _this = $(this);
+                var swiper = new Swiper(_this, {
+                    pagination: _this.find('.swiper-pagination'),
+                    paginationClickable: true,
+                    nextButton: _this.find('.swiper-button-next'),
+                    prevButton: _this.find('.swiper-button-prev'),
+                    parallax: true,
+                    speed: 600,
+                });
+            });
+        }
+
+        var swiperThumbs = $('.gallery-top');
+        if (swiperThumbs.length) {
+            swiperThumbs.each(function () {
+                var _this = $(this);
+                var _thumbs = _this.next('.gallery-thumbs');
+                var galleryTop = new Swiper(_this, {
+                    nextButton: _this.find('.swiper-button-next'),
+                    prevButton: _this.find('.swiper-button-prev'),
+                    spaceBetween: 10,
+                });
+                var galleryThumbs = new Swiper(_thumbs, {
+                    spaceBetween: 10,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    touchRatio: 0.2,
+                    slideToClickedSlide: true
+                });
+                galleryTop.params.control = galleryThumbs;
+                galleryThumbs.params.control = galleryTop;
+            });
+        }
+    });
+</script>
+<!-- end: FEATURED BOX LINKS -->

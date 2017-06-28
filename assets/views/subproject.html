@@ -174,11 +174,14 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
-                                                        <p ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
-                                                            <strong>My Invested Capital: </strong>
+                                                        <p>
+                                                            <strong ng-show="projectRole(currentProjectActive.userId) == 'Owner'">My Invested Capital: </strong>
+                                                            <strong ng-show="projectRole(currentProjectActive.userId) != 'Owner'">Owner Invested Capital: </strong>
                                                             {{currentProjectActive.ownerInvestedCapital | number: 2}} $
                                                         </p>
-                                                        <p ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12" ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
+                                                        <p>
                                                             <strong>My Invested Capital: </strong>
                                                             {{myInvestedCapital | number: 2}} $
                                                         </p>
@@ -190,7 +193,7 @@
                                                         </p>
                                                         <p ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
                                                             <strong>My Estimate Revenue: </strong>
-                                                            {{estimateRevenueF | number: 2}} $
+                                                            {{estimateRevenueFinancier | number: 2}} $
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
@@ -457,10 +460,16 @@
                                                         <hr class="tall">
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                                <span class="notification-author"><a>{{risk.name}}</a></span> <span class="pull-right">
+                                                                <span class="notification-author"><a>{{risk.name}}</a></span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview">{{ risk.description}}</span>
+                                                            </div>
+                                                            <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                                <span class="notification-preview"><strong>Probability: </strong>{{ risk.probability}} %</span>
+                                                            </div>
+                                                            <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                                <span class="notification-preview"><strong>Action to Mitigate: </strong>{{ risk.mitigate}}</span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -470,12 +479,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr class="tall" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation')">
-                            <div class="row" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation')">
+                            <hr class="tall" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation') && (projectRole(currentProjectActive.userId) != 'Owner')">
+                            <div class="row" ng-show="(possibleInvestmentArray.length != 0) && (stateArray[currentProjectActive.state] == 'In Preparation') && (projectRole(currentProjectActive.userId) != 'Owner')">
                                 <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 no-padding">
                                         <span><strong>Possible Investment</strong></span>
-                                        <select ng-model="amount" ng-options="i for i in possibleInvestmentArray" ng-change="getFinancierEsimateRevenue()" class="cs-select cs-skin-slide"></select>
+                                        <select ng-model="amount" ng-options="i for i in possibleInvestmentArray" ng-change="getFinancierEsimateRevenue(amount)" class="cs-select cs-skin-slide"></select>
                                     </div>
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">

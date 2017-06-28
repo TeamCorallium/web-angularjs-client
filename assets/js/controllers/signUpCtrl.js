@@ -35,7 +35,7 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
 
         $scope.updateSessionInfo = function () {
             localStorageService.set('isLogged', $scope.user.id != '');
-            localStorageService.set('currentUserId', $scope.user.id);
+            localStorageService.set('currentUserId', parseInt($scope.user.id));
             $rootScope.$broadcast('sessionChanged');
         };
 
@@ -50,7 +50,7 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
                                     if(data == -1) {
                                         toaster.pop('error', 'Error', 'Email in use. Please use another email to sign up.');
                                     } else {
-                                        $scope.user.id = data;
+                                        $scope.user.id = parseInt(data);
                                         $scope.userFirstName($scope.user.email);
                                         $scope.updateSessionInfo();
 

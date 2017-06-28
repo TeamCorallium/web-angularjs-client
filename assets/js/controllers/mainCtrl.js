@@ -106,8 +106,8 @@ function($rootScope, $scope, $state, $translate, $localStorage, $window, $docume
 		// list of available languages
 		available : {
 			'en' : 'English',
-			'it_IT' : 'Italiano',
-			'de_DE' : 'Deutsch'
+			'es_ES' : 'Spanish',
+			'cn_CN' : 'Chinese'
 		},
 		// display always the current ui language
 		init : function() {

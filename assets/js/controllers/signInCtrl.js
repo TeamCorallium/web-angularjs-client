@@ -11,7 +11,23 @@ app.controller('SignInCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             email: '',
             password: '',
             id: '',
-            projectsFollow: []
+            projectsFollow: [],
+            zipCode: '',
+            city: '',
+            avatar: '',
+            twitter: '',
+            github: '',
+            facebook: '',
+            linkedin: '',
+            google: '',
+            skype: '',
+            phone: '',
+            birthday: '',
+            identityCard: '',
+            industries: '',
+            skills: '',
+            experiencies: '',
+            previusWorks: ''
         };
 
         $scope.updateSessionInfo = function () {

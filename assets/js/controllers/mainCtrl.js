@@ -12,6 +12,10 @@ function($rootScope, $scope, $state, $translate, $localStorage, $window, $docume
     	$scope.isLogged = localStorageService.get('isLogged');
   	});
 
+	$scope.goToWizard = function() {
+		localStorageService.set('currentProjectId', '');
+		$state.go('app.project.wizard');
+	}
 	// $scope.setIsLogged = function(value) {
 	// 	$scope.isLogged = value;
 	// }
@@ -120,6 +124,11 @@ function($rootScope, $scope, $state, $translate, $localStorage, $window, $docume
 	};
 
 	$scope.language.init();
+
+    $rootScope.$on('$translateChangeSuccess', function () {
+    	console.log('translateChangeSuccess');
+    	console.log($translate.instant('topbar.activities.HEADER'));
+    });
 
 	// Function that find the exact height and width of the viewport in a cross-browser way
 	var viewport = function() {

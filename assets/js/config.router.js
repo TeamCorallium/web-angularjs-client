@@ -66,6 +66,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Explore'
             },
             resolve: loadSequence('exploreCtrl')
+        }).state('app.explore_user_projects', {
+            url: '/exploreuserprojects',
+            templateUrl: "assets/views/explore_user_projects.html",
+            title: 'Explore User Projects',
+            ncyBreadcrumb: {
+                label: 'Explore User Projects'
+            },
+            resolve: loadSequence('exploreUserProjectsCtrl')
         }).state('app.finance', {
             url: '/finance',
             templateUrl: "assets/views/finance.html",
@@ -94,7 +102,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             templateUrl: "assets/views/notification.html",
             title: 'Notification',
             ncyBreadcrumb: {
-                label: 'Notification'
+                label: 'Notifications'
             },
             resolve: loadSequence('notificationCtrl')
         }).state('app.opportunities-list-task', {
@@ -526,7 +534,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             templateUrl: "assets/views/pages_timeline.html",
             title: 'Timeline',
             ncyBreadcrumb: {
-                label: 'Timeline'
+                label: 'Activities'
             },
             resolve: loadSequence('ngMap','pagesTimelineCtrl')
         }).state('app.pages.calendar', {

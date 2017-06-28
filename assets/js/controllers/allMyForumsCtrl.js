@@ -9,8 +9,7 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
             $state.go('app.login.signin');
         } else {
             $scope.allMyForums = [];
-            $scope.allProposalsProject = [];
-            $scope.allCommentsProject = [];
+            $scope.allForumsAbstracts = [];
 
             $scope.getAllMyForums = function () {
                 RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
@@ -19,9 +18,23 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
                             $scope.allMyForums =  data;
 
                             for (var i=0; i<$scope.allMyForums.length; i++) {
-                                $scope.getProposalCount($scope.allMyForums[i].id);
-                                $scope.getCommentsCount($scope.allMyForums[i].id);
+
+                                var abstractForum = {
+                                    projectId: '',
+                                    proposalsCount: '',
+                                    commentsCount: '',
+                                    projectName: '',
+                                    projectDescription: ''
+                                };
+
+                                abstractForum.projectId = $scope.allMyForums[i].id;
+                                abstractForum.projectName = $scope.allMyForums[i].projectName;
+                                abstractForum.projectDescription = $scope.allMyForums[i].description;
+                                $scope.getProposalCount(abstractForum.projectId);
+                                $scope.getCommentsCount(abstractForum.projectId);
+                                $scope.allForumsAbstracts.push(abstractForum);
                             }
+
                         },
                         function(errResponse){
                             toaster.pop('error', 'Error', 'Server not available.');
@@ -41,7 +54,14 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
                 RestService.fetchProposalByProjectId(projectId)
                     .then(
                         function(data) {
-                            $scope.allProposalsProject.push(data.length);
+                            var count = data.length;
+
+                            for (var i = 0; i <$scope.allForumsAbstracts.length; i++) {
+                                if ($scope.allForumsAbstracts[i].projectId == projectId)  {
+                                    $scope.allForumsAbstracts[i].proposalsCount = count;
+                                    break;
+                                }
+                            }
                         },
                         function(errResponse){
                             console.log(errResponse);
@@ -53,7 +73,14 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
                 RestService.fetchAllCommentsById(projectId)
                     .then(
                         function(data) {
-                            $scope.allCommentsProject.push(data.length);
+                            var count = data.length;
+
+                            for (var i = 0; i <$scope.allForumsAbstracts.length; i++) {
+                                if ($scope.allForumsAbstracts[i].projectId == projectId)  {
+                                    $scope.allForumsAbstracts[i].commentsCount = count;
+                                    break;
+                                }
+                            }
                         },
                         function(errResponse){
                             console.log(errResponse);

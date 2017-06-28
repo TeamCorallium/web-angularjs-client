@@ -2,29 +2,63 @@
 /**
  * controller for User Projects
  */
-app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService",
-    function ($scope, localStorageService, RestService) {
+app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$state",
+    function ($scope, localStorageService, RestService,$state) {
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
             $scope.currentProjectActive = '';
             $scope.investmentCapitalProject = '';
-            $scope.listAllUser = [];
+            $scope.listFinanceAbstract = [];
             $scope.balance = [];
-            $scope.invertions = [];
+            $scope.transactions = [];
 
             $scope.investmentCapitalProject = 0;
+            $scope.income = 0;
+            $scope.outcome = 0;
 
-            $scope.invertionsByProjectId = function () {
-                RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
+            $scope.getProjectById = function () {
+                RestService.fetchProjectById(localStorageService.get('currentProjectId'))
                     .then(
                         function (data) {
-                            $scope.invertions = data;
+                            $scope.currentProjectActive = data[0];
+                        },
+                        function (errResponse) {
+                            toaster.pop('error', 'Error', 'Server not available.');
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
-                            for (var i = 0; i < $scope.invertions.length; i++) {
-                                $scope.investmentCapitalProject += parseInt($scope.invertions[i].amount);
-                                $scope.balance.push($scope.investmentCapitalProject);
-                                $scope.getUserData($scope.invertions[i].userId);
+            $scope.getProjectById();
+
+            $scope.invertionsByProjectId = function () {
+                RestService.fetchTransactionsByProjectId(localStorageService.get('currentProjectId'))
+                    .then(
+                        function (data) {
+                            $scope.transactions = data;
+
+                            for (var i = 0; i < $scope.transactions.length; i++) {
+
+                                if($scope.transactions[i].operation == 'income'){
+                                    $scope.investmentCapitalProject += parseInt($scope.transactions[i].amount);
+                                    $scope.income += parseInt($scope.transactions[i].amount);
+                                } else {
+                                    $scope.investmentCapitalProject -= parseInt($scope.transactions[i].amount);
+                                    $scope.outcome += parseInt($scope.transactions[i].amount);
+                                }
+
+                                var financeAbstract = {
+                                    id: $scope.transactions[i].userId,
+                                    name: '',
+                                    operation: $scope.transactions[i].operation,
+                                    date: $scope.transactions[i].date,
+                                    total: $scope.transactions[i].amount,
+                                    balance: $scope.investmentCapitalProject
+                                };
+
+                                $scope.listFinanceAbstract.push(financeAbstract);
+                                $scope.getUserData($scope.transactions[i].userId);
                             }
                         },
                         function (errResponse) {
@@ -40,7 +74,13 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService",
                 RestService.fetchUser(userId)
                     .then(
                         function (data) {
-                            $scope.listAllUser.push(data[0]);
+                            var user = data[0]
+
+                            for (var i=0; i<$scope.listFinanceAbstract.length; i++) {
+                                if ($scope.listFinanceAbstract[i].id == userId) {
+                                    $scope.listFinanceAbstract[i].name = user.fullName;
+                                }
+                            }
                         },
                         function (errResponse) {
                             console.log(errResponse);
@@ -48,14 +88,9 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService",
                     );
             };
 
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-            $scope.getDateProject = function (DateProject) {
-                var dateTemp = new Date(DateProject);
-                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
-            };
 
             $scope.getUserName = function (userId) {
                 for (var i = 0; i < $scope.listAllUser.length; i++) {
@@ -63,6 +98,11 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService",
                         return $scope.listAllUser[i].fullName;
                     }
                 }
+            };
+
+            $scope.getDateProject = function (date) {
+                var dateTemp = new Date(date);
+                return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
             };
         }
     }]);

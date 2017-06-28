@@ -118,3 +118,4 @@ server/databases/uploads/**
 server/databases/uploads
 server/handlers/__pycache__
 server/handlers/__pycache__/**
+server/databases/__pycache__/

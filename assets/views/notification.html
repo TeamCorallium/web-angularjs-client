@@ -12,10 +12,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="notification in notifications">
-						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'Start Project' || notification.type == 'Modified Task State' ||
-																				   notification.type == 'Modified Task Name' || notification.type == 'Modified Task Description' ||
-																				   notification.type == 'Modified Task Outcome' || notification.type == 'Modified Task Start Date' ||
-																				   notification.type == 'Modified Task Cost' || notification.type == 'Modified Task Duration'">
+						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'NEW PROPOSAL'">
 							<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>
 							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
 							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> New proposal created by {{notification.from}}</h4>
@@ -26,23 +23,20 @@
 								<a ng-click="goToProposal(notification.projectId, notification.proposalId)" class="btn btn-info"> View proposal </a>
 							</p>
 						</div>
-						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'Start Project Approved'">
+						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'PROPOSAL APPROVED'">
 							<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>
 							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
 							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> {{notification.content}} </h4>
 							<p>
-								<a ng-click="goToProject(notification.projectId)" class="btn btn-info"> View Project </a>
+								<a ng-click="goToTask(notification.projectId)" class="btn btn-info"> View Task </a>
 							</p>
 						</div>
-						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'Modified Task State Approved' || notification.type == 'Modified Task Duration Approved' ||
-																				   notification.type == 'Modified Task Name Approved' || notification.type == 'Modified Task Description Approved' ||
-																				   notification.type == 'Modified Task Outcome Approved' || notification.type == 'Modified Task Start Date Approved' ||
-																				   notification.type == 'Modified Task Cost Approved'">
+						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'NEW INVERTION'">
 							<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>
 							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
 							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> {{notification.content}} </h4>
 							<p>
-								<a ng-click="goToTask(notification.projectId, notification.subject)" class="btn btn-info"> View Task </a>
+								<a ng-click="goToFinance(notification.projectId)" class="btn btn-info"> View Your Finances </a>
 							</p>
 						</div>
 					</li>

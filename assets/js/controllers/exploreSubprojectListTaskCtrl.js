@@ -4,14 +4,11 @@
  */
 app.controller('ExploreSubprojectListTaskCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
-        if (!localStorageService.get('isLogged')) {
-            $state.go('app.login.signin');
-        } else {
 
             $scope.currentProjectActive = '';
             $scope.tasksFiltreInPreparation = [];
             $scope.tasksProject = [];
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -63,5 +60,4 @@ app.controller('ExploreSubprojectListTaskCtrl', ["$scope", "localStorageService"
                 var dateTemp = new Date(date);
                 return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
             };
-        }
     }]);

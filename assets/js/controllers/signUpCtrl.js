@@ -21,7 +21,13 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             linkedin: '',
             google: '',
             skype: '',
-            phone: ''
+            phone: '',
+            birthday: '',
+            identityCard: '',
+            industries: '',
+            skills: '',
+            experiencies: '',
+            previusWorks: ''
         };
 
         $scope.password_again = '';
@@ -47,10 +53,11 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
                                         $scope.user.id = data;
                                         $scope.userFirstName($scope.user.email);
                                         $scope.updateSessionInfo();
-                                        $state.go('app.default');
 
                                         //open websocket
                                         WebSocketService.open();
+
+                                        $state.go('app.default');
                                     }
                                 },
                                 function(errResponse) {
@@ -71,5 +78,6 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
 
         $scope.userFirstName = function (email) {
             $rootScope.user.name =  email.split("@")[0];
+            $rootScope.user.avatar = 'assets/images/default-user.png';
         }
     }]);

@@ -4,13 +4,10 @@
  */
 app.controller('ExploreTaskDetailCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
     function ($scope, localStorageService, RestService, $state, toaster) {
-        if (!localStorageService.get('isLogged')) {
-            $state.go('app.login.signin');
-        } else {
 
             $scope.currentTaskActive = '';
             $scope.currentProjectActive = '';
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -58,5 +55,4 @@ app.controller('ExploreTaskDetailCtrl', ["$scope", "localStorageService", "RestS
                 dat.setDate(dat.getDate() + duration);
                 return $scope.getProjectDate(dat);
             };
-        }
     }]);

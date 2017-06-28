@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
-    function ($scope, $state, toaster, WebSocketService, localStorageService, RestService) {
+app.controller('ForumBaseCtrl', ["$scope", "$rootScope", "$state", "toaster", "WebSocketService", "localStorageService", "RestService",
+    function ($scope, $rootScope, $state, toaster, WebSocketService, localStorageService, RestService) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
@@ -15,9 +15,11 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
                 fullName: '',
                 projectId: '',
                 value: '',
-                creationDate: ''
+                creationDate: '',
+                avatar: ''
             };
             $scope.proposalsProject = [];
+            $scope.proposalsAvatarProject = [];
             $scope.proposalProjectTasks = [];
             $scope.comments = [];
 
@@ -102,11 +104,12 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
             $scope.getAllComments();
 
             $scope.createComment = function () {
-                if($scope.comment.value != '' && $scope.amount.value != null) {
+                if($scope.comment.value != '' && $scope.comment.value != null) {
                     $scope.comment.userId = localStorageService.get('currentUserId');
                     $scope.comment.fullName = $scope.userNameCommentActive;
                     $scope.comment.projectId = localStorageService.get('currentProjectId');
                     $scope.comment.creationDate = new Date();
+                    $scope.comment.avatar = $rootScope.user.avatar;
 
                     var obj = {
                         type: 'COMMENT',
@@ -123,7 +126,7 @@ app.controller('ForumBaseCtrl', ["$scope", "$state", "toaster", "WebSocketServic
                 }
             };
 
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 

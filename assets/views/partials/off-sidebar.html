@@ -11,109 +11,28 @@
 				<div class="sidebar-content" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
 					<h5 class="sidebar-title" translate="offsidebar.chat.ONLINE">On-line</h5>
 					<ul class="media-list">
-						<li class="media"  ng-repeat="user in connectedUsers">
+						<li ng-show="user.connected" class="media"  ng-repeat="user in connectedUsers">
 							<a ct-toggle="on" target="users" href ng-click="setOtherId(user.id)">
 								<i class="fa fa-circle status-online"></i>
-								<img alt="..." src="assets/images/default-user.png" class="media-object">
+								<img alt="..." ng-src="{{user.avatar}}" class="media-object">
+								<div class="media-body">
+									<h4 class="media-heading">{{user.fullName}}</h4>
+									<span> Owner </span>
+								</div>
+							</a>
+						</li>					
+ 					</ul>					
+					<h5 class="sidebar-title" translate="offsidebar.chat.OFFLINE">Off-line</h5>
+					<ul class="media-list">
+ 						<li ng-show="!user.connected" class="media"  ng-repeat="user in connectedUsers">
+							<a ct-toggle="on" target="users" href ng-click="setOtherId(user.id)">
+								<img alt="..." ng-src="{{user.avatar}}" class="media-object">
 								<div class="media-body">
 									<h4 class="media-heading">{{user.fullName}}</h4>
 									<span> Owner </span>
 								</div>
 							</a>
 						</li>
-						<!-- <li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223458)">
-								<div class="user-label">
-									<span class="label label-success">3</span>
-								</div>
-								<i class="fa fa-circle status-online"></i>
-								<img alt="..." src="assets/images/avatar-3.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Steven Thompson</h4>
-									<span> Visual Designer </span>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223459)">
-								<i class="fa fa-circle status-online"></i>
-								<img alt="..." src="assets/images/avatar-4.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Ella Patterson</h4>
-									<span> Web Editor </span>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223460)">
-								<i class="fa fa-circle status-online"></i>
-								<img alt="..." src="assets/images/avatar-5.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Kenneth Ross</h4>
-									<span> Senior Designer </span>
-								</div>
-							</a>
-						</li> -->
-<!-- 					</ul>
-					<h5 class="sidebar-title" translate="offsidebar.chat.OFFLINE">Off-line</h5>
-					<ul class="media-list">
-						<li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223457)">
-								<img alt="..." src="assets/images/avatar-6.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Nicole Bell</h4>
-									<span> Content Designer </span>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223458)">
-								<div class="user-label">
-									<span class="label label-success">3</span>
-								</div>
-								<img alt="..." src="assets/images/avatar-7.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Steven Thompson</h4>
-									<span> Visual Designer </span>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223459)">
-								<img alt="..." src="assets/images/avatar-8.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Ella Patterson</h4>
-									<span> Web Editor </span>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223460)">
-								<img alt="..." src="assets/images/avatar-9.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Kenneth Ross</h4>
-									<span> Senior Designer </span>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223459)">
-								<img alt="..." src="assets/images/avatar-10.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Ella Patterson</h4>
-									<span> Web Editor </span>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a ct-toggle="on" target="users" href ng-click="setOtherId(50223460)">
-								<img alt="..." src="assets/images/avatar-5.jpg" class="media-object">
-								<div class="media-body">
-									<h4 class="media-heading">Kenneth Ross</h4>
-									<span> Senior Designer </span>
-								</div>
-							</a>
-						</li>-->
 					</ul>
 				</div>
 			</div>
@@ -247,7 +166,7 @@
 					</li>
 				</ul>
 				<div class="save-options">
-					<button class="btn btn-success">
+					<button class="btn btn-primary">
 						<i class="icon-settings"></i><span translate="offsidebar.settings.SAVE">Save Changes</span>
 					</button>
 				</div>

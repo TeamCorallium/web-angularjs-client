@@ -34,18 +34,20 @@ class TaskHandler(tornado.web.RequestHandler):
     def post(self):
         print("Task:POST!!!")
 
-        self.json_args = json.loads(self.request.body)
-        print(self.json_args)
-        print(self.json_args['projectId'])
+        newTask = json.loads(self.request.body)
+        print(newTask)
+        print(newTask['projectId'])
 
-        if len(table_simple_project.search(where('id') == int(self.json_args['projectId']))) != 0:
-            id = table_task.insert(self.json_args)
+        if len(table_task.search(where('id') == newTask['id'])) != 0:
+            # self.write('-1')
+            id = newTask['id']
+            table_task.update(newTask, eids=[int(id)])
+            self.write(str(id))
+        else:
+            id = table_task.insert(newTask)
             table_task.update({'id': id}, eids=[id])
             self.write(str(id))
-            print(id)
-        else:
-            self.write('-1')
-            print('ProjectId not found')
+            print(id)            
 
     def put(self):
         print("Task:PUT!!!")

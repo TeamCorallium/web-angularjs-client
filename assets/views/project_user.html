@@ -16,52 +16,101 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
-					<li class="margin-bottom-15" ng-repeat="project in simpleProjects">
-						<hr>
+					<li class="margin-bottom-15" ng-repeat="project in allProjectsAbstracts">
 						<div class="clearfix">
 							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
-								<img  ng-src="{{project.mainLayout}}" alt=""
+								<img  ng-src="{{project.mainLayout}}"
 									  class="img-responsive img-rounded notification-image">
 							</div>
-							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-								<span class="notification-author"><a ng-click="goToProject(project.id)"> {{project.projectName}} </a></span>
-								<span class="notification-time"> {{getCreationProject(project.creationDate)}}</span>
-							</div>
-							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding margin-top-10">
-								<span class="notification-preview"><strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}</span>
-							</div>
-							<div class="thread-content col-xs-12 col-sm-10 col-md-10 col-lg-10 no-padding">
-								<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 no-padding margin-top-10">
-									<span><i class="fa fa-users"></i><strong> Role:</strong>  {{projectRole(project.userId)}} </span>
+							<div class="col-sm-10 col-md-10 col-lg-10">
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding">
+									<span class="notification-author"><a ng-click="goToProject(project.id)"> {{project.name}} </a></span>
+									<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
 								</div>
-								<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 no-padding margin-top-10">
-									<span><i class="ti-layers-alt"></i><strong> State:</strong>  {{stateArray[project.state]}} </span>
-								</div>
-								<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 margin-top-10 no-padding">
-									<span><i class="ti-layers-alt"></i>
-										<strong> Owner Raiting:</strong>
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
+									<span class="notification-preview">
+										<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
 									</span>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding margin-top-10 pull-right">
-									<button ng-show="project.state == 1 && projectRole(project.userId) != 'Financier'" type="button" class="btn btn-danger btn-xs pull-right margin-left-5"
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-pencil-alt"></i>
+											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-wallet"></i>
+											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-stats-up"></i>
+											<strong> State:</strong>  {{stateArray[project.state]}}
+										</span>
+									</div>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-user"></i>
+											<strong> Role:</strong>  {{projectRole(project.ownerId)}}
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-bar-chart"></i>
+											<strong> Covered Capital: </strong>  {{project.coveredCapital | number: 2}} %
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-menu"></i>
+											<strong> Owner Raiting: </strong>
+										</span>
+									</div>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-widget"></i>
+											<strong> Sector:</strong> {{sectorArray[project.sector]}}
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-view-list-alt"></i>
+											<strong> Category:</strong> {{categoryArray[project.category]}}
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding" ng-show="projectRole(project.ownerId) != 'Owner'">
+										<span><i class="ti-id-badge"></i>
+											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)"> {{project.ownerName}}</a>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10 pull-right">
+									<button ng-show="((project.state == 1 || project.state == 0) && (projectRole(project.ownerId) == 'Owner') && (!project.inverted))"
+											type="button" class="btn btn-danger btn-xs pull-right margin-left-5"
 											ng-click="deleteProject(project.id)">
-										<span class="glyphicon glyphicon-trash"></span> Delete
+										<span class="ti-trash"></span> Delete
+									</button>
+									<button ng-show="((project.state == 1 || project.state == 0) && (projectRole(project.ownerId) == 'Owner') && (!project.inverted))"
+											type="button" class="btn btn-success btn-xs pull-right margin-left-5"
+											ng-click="updateProject(project.id)">
+										<span class="ti-reload"></span> Update
 									</button>
 									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
 											ng-click="goToProject(project.id)">
-										<span class="fa fa-arrow-right"></span> Read more
+										<span class="fa fa-angle-right"></span> Read more
 									</button>
 								</div>
 							</div>
 						</div>
+						<hr class="tall">
 					</li>
 				</ul>
 			</div>
 		</div>
-		<hr class="tall">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-				<button ui-sref="app.project.create" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa-plus pull-right">
+				<button ui-sref="app.project.create" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-plus pull-right">
 					<span>Create project</span>
 				</button>
 			</div>

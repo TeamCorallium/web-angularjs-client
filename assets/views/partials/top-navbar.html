@@ -2,7 +2,7 @@
 <!-- start: NAVBAR HEADER -->
 <div class="navbar-header">
 	<a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" ng-click="toggle('sidebar')" class="btn btn-navbar sidebar-toggle"> <i class="ti-align-justify"></i> </a>
-	<a class="navbar-brand" ui-sref="app.default"> <img ng-src="{{app.layout.logo}}" alt="{{app.name}}"/> </a>
+	<a class="navbar-brand" ui-sref="app.default"> <img ng-src="{{app.layout.clogo}}" alt="{{app.name}}"/> </a>
 	<a href="#" class="sidebar-toggler pull-right visible-md visible-lg" ng-click="app.layout.isSidebarClosed = !app.layout.isSidebarClosed"> <i class="ti-align-justify"></i> </a>
 	<a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" ng-click="navbarCollapsed = !navbarCollapsed"> <span class="sr-only">Toggle navigation</span> <i class="ti-view-grid"></i> </a>
 <!-- 	<a ng-controller="NotificationCtrl" class="visible-xs-block pull-right margin-right-10" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
@@ -44,17 +44,17 @@
 		<!-- start: LANGUAGE SWITCHER -->
 		<!-- start: USER OPTIONS DROPDOWN -->
 		<li class="dropdown current-user" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged" >
-			<a href class="dropdown-toggle" uib-dropdown-toggle> <img src="assets/images/avatar-1.jpg" alt="">
+			<a href class="dropdown-toggle" uib-dropdown-toggle> <img ng-src="{{user.avatar}}" alt="">
 				<span class="username"> {{user.name}} <i class="ti-angle-down"></i></i></span> </a>
-			<ul class="dropdown-menu dropdown-dark">
+			<ul class="dropdown-menu dropdown-light">
 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.user" translate="topbar.user.PROFILE"> My Profile </a>
 				</li>
-				<li ng-click="navbarCollapsed = true">
+<!-- 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.calendar" translate="topbar.user.CALENDAR"> My Calendar </a>
-				</li>
+				</li> -->
 				<li ng-click="navbarCollapsed = true" ng-controller="TopNavBarCtrl">
-					<a translate="topbar.user.LOGOUT" ng-click="logout()"> Log Out </a>
+					<a translate="topbar.user.clogoUT" ng-click="clogout()"> Log Out </a>
 				</li>
 			</ul>
 		</li>
@@ -64,7 +64,7 @@
 			<a ui-sref="app.login.signin"><i class="fa fa-sign-in"></i> Signin</a>
 		</li>
 		<li class="current-user" ng-hide="isLogged" ng-click="navbarCollapsed = true">
-			<a ui-sref="app.login.registration"><i class="fa fa-user"></i> Signup </a>
+			<a ui-sref="app.login.registration"><i class="ti-user"></i> Signup </a>
 		</li>
 		<!-- end: USER OPTIONS -->
 	</ul>

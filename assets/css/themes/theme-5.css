@@ -2,24 +2,24 @@
 /*  Theme 5
 /* ---------------------------------------------------------------------- */
 ::-moz-selection {
-  background: #f45700;
+  background: #FF642C;
   text-shadow: none;
   color: #ffffff;
 }
 
 ::selection {
-  background: #f45700;
+  background: #FF642C;
   text-shadow: none;
   color: #ffffff;
 }
 
 body {
-  background: #FAFAFA;
+  background: #F8F8F8;
 }
 
 @media (max-width: 991px) {
   .app-content {
-    background: #FAFAFA;
+    background: #F8F8F8;
   }
 }
 
@@ -29,13 +29,13 @@ header .navbar-header {
   border-bottom-color: transparent !important;
 }
 header .navbar-header .sidebar-toggler, header .navbar-header .sidebar-mobile-toggler {
-  color: #FF642C !important;
+  color: #5F8295 !important;
 }
 header .navbar-header .navbar-brand {
   color: #ffffff !important;
 }
 header .navbar-header .menu-toggler {
-  color: #FF642C !important;
+  color: #5F8295 !important;
 }
 header .navbar-collapse {
   background: #2C3543 !important;
@@ -46,7 +46,7 @@ header .navbar-collapse .navbar-right > li > a {
   color: #ffffff;
 }
 header .navbar-collapse .navbar-right > li > a i {
-  color: #FF642C !important;
+  color: #5F8295 !important;
 }
 header .navbar-collapse .navbar-right > li > a:hover, header .navbar-collapse .navbar-right > li > a:focus, header .navbar-collapse .navbar-right > li > a:active {
   background: #1c222a !important;
@@ -72,7 +72,7 @@ header .navbar-collapse .navbar-right .dot-badge {
     color: #ffffff;
   }
   header .navbar-collapse .navbar-right > li > a i {
-    color: #FF642C !important;
+    color: #5F8295 !important;
   }
   header .navbar-collapse .navbar-right > li > a:hover {
     background: #1c222a !important;
@@ -102,7 +102,7 @@ header .navbar-collapse .navbar-right .dot-badge {
     background: #2C3543;
   }
   header .navbar-collapse .close-handle .arrow-left, header .navbar-collapse .close-handle .arrow-right {
-    background-color: #FF642C;
+    background-color: #5F8295;
   }
   header .navbar-collapse .navbar-right .current-user a i {
     color: #ffffff !important;
@@ -112,13 +112,13 @@ header .navbar-collapse .navbar-right .dot-badge {
 header .dropdown-off-sidebar {
   border-left-color: #394557 !important;
   background: #2C3543 !important;
-  color: #FF642C !important;
+  color: #5F8295 !important;
 }
 @media (max-width: 991px) {
   header .dropdown-off-sidebar {
     background: #2C3543 !important;
     border-left-color: transparent !important;
-    color: #FF642C !important;
+    color: #5F8295 !important;
   }
 }
 
@@ -176,7 +176,7 @@ header .dropdown-off-sidebar {
     border-right-color: transparent !important;
   }
   #sidebar nav > ul > li.active:after {
-    border-right-color: #FAFAFA !important;
+    border-right-color: #F8F8F8 !important;
   }
 }
 #sidebar nav > ul > li.active > a:active:focus {
@@ -189,7 +189,7 @@ header .dropdown-off-sidebar {
   color: #ffffff !important;
 }
 #sidebar nav > ul > li.active > a .item-media .fa-stack .fa-square {
-  color: #FF642C !important;
+  color: #007aff !important;
 }
 #sidebar nav > ul > li.active .sub-menu {
   background: #262e38;
@@ -356,7 +356,7 @@ header .dropdown-off-sidebar {
   border-color: #394557 !important;
 }
 #off-sidebar .sidebar-back {
-  color: #FF642C;
+  color: #5F8295;
 }
 #off-sidebar .tab-content {
   background: #364150 !important;
@@ -371,7 +371,7 @@ header .dropdown-off-sidebar {
   color: rgba(95, 130, 149, 0.8);
 }
 #off-sidebar .nav-tabs.nav-justified > li.active > a, #off-sidebar .nav-tabs.nav-justified > li.active > a:hover, #off-sidebar .nav-tabs.nav-justified > li.active > a:focus {
-  color: #FF642C;
+  color: #5F8295;
   background: #364150;
   border-bottom-color: #364150;
 }
@@ -406,7 +406,7 @@ header .dropdown-off-sidebar {
   border-color: #394557;
 }
 #off-sidebar .message-bar .link {
-  color: #FF642C;
+  color: #5F8295;
 }
 #off-sidebar .message-bar a.icon-only {
   color: #ffffff;

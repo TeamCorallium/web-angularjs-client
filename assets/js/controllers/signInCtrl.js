@@ -29,11 +29,13 @@ app.controller('SignInCtrl', ["$scope", "$state", "flowFactory", "RestService", 
                                 if(data[0].password == $scope.user.password) {
                                     $scope.user.id = data[0].id;
                                     $scope.updateSessionInfo();
-                                    $scope.userFirstName(data[0].email);
-                                    $state.go('app.default');
+                                    $scope.userFirstName(data[0].email, data[0].avatar);
 
                                     //open websocket
                                     WebSocketService.open();
+
+                                    $state.go('app.default');
+
                                 } else {
                                     toaster.pop('error', 'Error', 'Wrong password.');
                                 }
@@ -51,7 +53,8 @@ app.controller('SignInCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             }
         };
 
-        $scope.userFirstName = function (email) {
+        $scope.userFirstName = function (email, avatar) {
             $rootScope.user.name =  email.split("@")[0];
+            $rootScope.user.avatar = avatar;
         }
     }]);

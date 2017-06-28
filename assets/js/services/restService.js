@@ -4,13 +4,8 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
 
     var uploadsUrl = 'http://localhost:8001/AngularJs-Admin/STANDARD/server/databases/uploads/';
 
-<<<<<<< HEAD
     var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
     // var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
-=======
-    // var serverUrl = 'http://10.58.20.230:9090/CoralliumRestAPI/';
-    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
->>>>>>> d03e57b2c415d50e5dc5f31e98a9bba7cf527e2a
 
     return {
         url : serverUrl,
@@ -325,6 +320,19 @@ app.factory('RestService', ['$http', '$q', function($http, $q) {
                     },
                     function(errResponse){
                         console.error('Error while fetching invertions By ProjectId');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        fetchTransactionsByProjectId: function(projectId) {
+            return $http.get(serverUrl + 'transactionByProjectId/' + projectId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching transactions By ProjectId');
                         return $q.reject(errResponse);
                     }
                 );

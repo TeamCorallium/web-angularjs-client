@@ -1,4 +1,5 @@
 from datetime import date
+import datetime
 import tornado.escape
 import tornado.ioloop
 import tornado.web
@@ -9,6 +10,7 @@ import json
 import logging
 
 from databases.coralliumTiny import *
+from localutils.client import * 
 
 class InvertionHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -39,6 +41,7 @@ class InvertionHandler(tornado.web.RequestHandler):
         projectId = self.json_args['projectId']
         userId = self.json_args['userId']
         invertions = table_invertion.search((where('projectId') == projectId) & (where('userId') == userId))
+        transactionAmount = self.json_args['amount']
 
         if len(invertions) != 0:
             id = invertions[0]['id'];
@@ -52,73 +55,42 @@ class InvertionHandler(tornado.web.RequestHandler):
             self.write(str(id))
             print(id)
 
-        table_activity.insert({'userId': userId, 'title': 'Invertion', 'content': "You make an invertion", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+        table_transaction.insert({'userId': userId, 'projectId': projectId, 
+                                  'amount': transactionAmount, 'operation': 'income', 
+                                  'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
-# class SimpleProjectByIdHandler(tornado.web.RequestHandler):
-#     def set_default_headers(self):
-#         print("setting headers!!!")
-#         self.set_header("Access-Control-Allow-Origin", "*")
-#         self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
-#         self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
+        table_simple_project.update({'inverted': True}, eids=[int(projectId)])
+
+        table_activity.insert({'userId': userId, 'title': 'Invertion', 
+                               'content': "You made an invertion", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+
+        projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+        project = projects[0]
+        ownerId = project['userId']
+
+        notificationType = 'NEW INVERTION'
+        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': '', 'from': '', 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                   'subject': "Invertion", 'content': "New invertion in your project"})
+        for c in clients:
+            if int(c.id) == int(ownerId):
+                c.connection.write_message("NOTIFICATION")
+
+class TransactionByProjectIdHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print("setting headers!!!")
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
+        self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
     
-#     def options(self):
-#         print('options!!!')
-#         self.set_status(204)
-#         self.finish()
+    def options(self):
+        print('options!!!')
+        self.set_status(204)
+        self.finish()
 
-#     def get(self, projectId):
-#         print('SimpleProjectById:GET!!!')
+    def get(self, projectId):
+        print('TransactionByProjectIdHandler:GET!!!->prjectId:'+ projectId)
 
-#         print('projectId: ' + projectId)
+        transactions = table_transaction.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+        self.write(json.dumps(transactions))
 
-#         projects = table_simple_project.search(where('id') == int(projectId))
-#         self.write(json.dumps(projects))
-
-#         print(projects)
-
-
-# class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
-#     def set_default_headers(self):
-#         print("setting headers!!!")
-#         self.set_header("Access-Control-Allow-Origin", "*")
-#         self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
-#         self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
-    
-#     def options(self):
-#         print('options!!!')
-#         self.set_status(204)
-#         self.finish()
-
-#     def get(self, projectId):
-#         print('SimpleProjectById:DELETE!!!')
-
-#         table_simple_project.remove(eids=[int(projectId)])
-#         self.write(str(projectId))
-
-# class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
-#     def set_default_headers(self):
-#         print("setting headers!!!")
-#         self.set_header("Access-Control-Allow-Origin", "*")
-#         self.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding")
-#         self.set_header('Access-Control-Allow-Methods', "POST, GET, OPTIONS, DELETE, PUT")
-    
-#     def options(self):
-#         print('options!!!')
-#         self.set_status(204)
-#         self.finish()
-
-#     def get(self, userId):
-#         print('AllProjectsExceptIdHandler:GET!!!')
-
-#         print('userId: ' + userId)
-
-#         projects = []
-#         if userId != 'null':
-#             projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
-#         else:
-#             projects = table_simple_project.all()
-
-#         self.write(json.dumps(projects))
-
-#         print(projects)        
-#                 
+        print(transactions)

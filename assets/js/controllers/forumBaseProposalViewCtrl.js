@@ -9,7 +9,7 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             $state.go('app.login.signin');
         } else {
             $scope.currentForumActive = '';
-            $scope.currentTaskProposalView = '';
+            $scope.currentTaskProposalView = [];
             $scope.viewVoteResults = false;
             $scope.allVotes = [];
             $scope.percent = 0;
@@ -22,7 +22,7 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 abs: 0
             };
 
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -83,11 +83,13 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                         function (data) {
                             $scope.currentProposalView = data[0];
 
-                            if ($scope.currentProposalView.type == 'Modified Task State' || $scope.currentProposalView.type == 'Modified Task Duration' ||
-                                $scope.currentProposalView.type == 'Modified Task Name' || $scope.currentProposalView.type == 'Modified Task Description' ||
-                                $scope.currentProposalView.type == 'Modified Task Outcome' || $scope.currentProposalView.type == 'Modified Task Start Date' ||
-                                $scope.currentProposalView.type == 'Modified Task Cost') {
-                                $scope.getTaskByTaskId($scope.currentProposalView.itemSubject);
+                            for (var i=0; i<$scope.currentProposalView.proposalList.length; i++) {
+
+                                if ($scope.currentProposalView.proposalList[i].type != 'Start Project') {
+                                    $scope.getTaskByTaskId($scope.currentProposalView.proposalList[i].itemSubject);
+                                } else {
+                                    $scope.currentTaskProposalView.push('');
+                                }
                             }
                         },
                         function (errResponse) {
@@ -102,7 +104,7 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 RestService.fetchTaskByTaskId(taskId)
                     .then(
                         function (data) {
-                            $scope.currentTaskProposalView = data[0];
+                            $scope.currentTaskProposalView.push(data[0]);
                         },
                         function (errResponse) {
                             console.log(errResponse);

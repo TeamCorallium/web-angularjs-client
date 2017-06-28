@@ -29,20 +29,8 @@
 													<img src="assets/images/default-user.png" alt="" ng-if="!uploaderImages.queue.length && noImage">
 													<img ng-src="{{userInfo.avatar}}" alt="" ng-if="!uploaderImages.queue.length && !noImage">
 													<div ng-if="uploaderImages.queue.length" ng-repeat="item in uploaderImages.queue">
-													<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+														<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
 													</div>
-												</div>
-												<div class="user-image-buttons" ng-if="uploaderImages.queue.length">
-													<span class="btn btn-primary btn-o btn-file"> <i class="fa fa-pencil"></i>
-													<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
-													</span>
-													<span class="btn btn-danger" ng-click="removeImage()"> <i class="fa fa-times"></i> </span>
-												</div>
-												<div class="user-image-buttons" ng-if="!uploaderImages.queue.length">
-													<span class="btn btn-primary btn-o btn-file"> <i class="fa fa-pencil"></i>
-													<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
-													</span>
-													<span class="btn btn-danger" ng-if="!noImage" ng-click="removeImage()"><i class="fa fa-times"></i></span>
 												</div>
 											</div>
 										</div>
@@ -50,27 +38,27 @@
 										<div class="social-icons block">
 											<ul>
 												<li ng-show="userInfo.twitter != ''" data-placement="top" data-original-title="Twitter" class="social-twitter tooltips">
-													<a target="_blank">
+													<a ng-click="goToLink(userInfo.twitter)" target="_blank">
 														Twitter
 													</a>
 												</li>
-												<li ng-show="userInfo.facebook != ''" data-placement="top" data-original-title="Facebook" class="social-facebook tooltips">
-													<a target="_blank">
+												<li ng-show="userInfo.facebook != ''"  data-placement="top" data-original-title="Facebook" class="social-facebook tooltips">
+													<a ng-click="goToLink(userInfo.facebook)" target="_blank">
 														Facebook
 													</a>
 												</li>
-												<li ng-show="userInfo.google != ''" data-placement="top" data-original-title="Google" class="social-google tooltips">
-													<a target="_blank">
+												<li ng-show="userInfo.google != ''"  data-placement="top" data-original-title="Google" class="social-google tooltips">
+													<a ng-click="goToLink(userInfo.google)" target="_blank">
 														Google+
 													</a>
 												</li>
 												<li ng-show="userInfo.linkedin != ''" data-placement="top" data-original-title="LinkedIn" class="social-linkedin tooltips">
-													<a target="_blank">
+													<a ng-click="goToLink(userInfo.linkedin)" target="_blank">
 														LinkedIn
 													</a>
 												</li>
 												<li ng-show="userInfo.github != ''" data-placement="top" data-original-title="Github" class="social-github tooltips">
-													<a target="_blank">
+													<a ng-click="goToLink(userInfo.github)" target="_blank">
 														Github
 													</a>
 												</li>
@@ -81,26 +69,38 @@
 									<table class="table table-condensed">
 										<thead>
 										<tr>
-											<th colspan="3">Contact Information</th>
+											<th colspan="3">User Information</th>
 										</tr>
 										</thead>
 										<tbody>
 										<tr>
 											<td>email:</td>
-											<td>
-												<a href>
-													{{userInfo.email}}
-												</a></td>
+											<td>{{userInfo.email}}</td>
 										</tr>
 										<tr>
 											<td>phone:</td>
 											<td>{{userInfo.phone}}</td>
 										</tr>
 										<tr>
-											<td>position:</td>
-											<td>{{userInfo.phone}}</td>
+											<td>gender:</td>
+											<td>{{userInfo.gender}}</td>
 										</tr>
-										</tbody>
+										<tr>
+											<td>city:</td>
+											<td>{{userInfo.city}}</td>
+										</tr>
+										<tr>
+											<td>zip code:</td>
+											<td>{{userInfo.zipCode}}</td>
+										</tr>
+										<tr>
+											<td>birthday:</td>
+											<td>{{getBirthday(userInfo.birthday)}}</td>
+										</tr>
+										<tr>
+											<td>identity card:</td>
+											<td>{{userInfo.identityCard}}</td>
+										</tr>
 									</table>
 								</div>
 							</div>
@@ -108,13 +108,13 @@
 								<div class="row space20">
 									<div class="col-sm-3">
 										<button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block" ui-sref="app.project.user_project">
-											<i class="ti-layers-alt block text-primary text-extra-large margin-bottom-10"></i>
+											<i class="ti-folder block text-primary text-extra-large margin-bottom-10"></i>
 											Projects
 										</button>
 									</div>
 									<div class="col-sm-3">
 										<button ui-sref="app.notification" class="btn btn-icon margin-bottom-5 btn-block">
-											<i class="ti-flag block text-primary text-extra-large margin-bottom-10"></i>
+											<i class="ti-bell block text-primary text-extra-large margin-bottom-10"></i>
 											Notifications
 										</button>
 									</div>
@@ -127,7 +127,7 @@
 									<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
 										<div class="panel-body">
 											<ul class="timeline-xs">
-												<li ng-repeat="activity in allActivities" class="timeline-item success">
+												<li ng-repeat="activity in allActivities | orderBy: 'date':true | limitTo:5" class="timeline-item info">
 													<div class="margin-left-15">
 														<div class="text-muted text-small">
 															{{getProjectDate(activity.date)}}
@@ -150,11 +150,11 @@
 									</div>
 									<div class="panel-body">
 										<ul class="ltwt">
-											<li class="ltwt_tweet" ng-repeat="comment in commments">
+											<li class="ltwt_tweet" ng-repeat="c in comments | orderBy: 'creationDate':true | limitTo:2">
 												<p class="ltwt_tweet_text">
-													{{comment.value}}
+													{{c.value}}
 												</p>
-												<span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> {{getProjectDate(comment.creationDate)}}</span>
+												<span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> {{getProjectDate(c.creationDate)}}</span>
 											</li>
 										</ul>
 									</div>
@@ -169,7 +169,7 @@
 									Account Info
 								</legend>
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<div class="form-group">
 											<label>
 												Image Upload
@@ -180,43 +180,23 @@
 														<img src="assets/images/default-user.png" alt="" ng-if="!uploaderImages.queue.length && noImage">
 														<img ng-src="{{userInfo.avatar}}" alt="" ng-if="!uploaderImages.queue.length && !noImage">
 														<div ng-if="uploaderImages.queue.length" ng-repeat="item in uploaderImages.queue">
-														<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+															<div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
 														</div>
 													</div>
 													<div class="user-image-buttons" ng-if="uploaderImages.queue.length">
-														<span class="btn btn-primary btn-o btn-file"> <i class="fa fa-pencil"></i>
+														<span class="btn btn-primary btn-o btn-file"> <i class="ti-image"></i>
 														<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
 														</span>
 														<span class="btn btn-danger" ng-click="removeImage()"> <i class="fa fa-times"></i> </span>
 													</div>
 													<div class="user-image-buttons" ng-if="!uploaderImages.queue.length">
-														<span class="btn btn-primary btn-o btn-file"> <i class="fa fa-pencil"></i>
+														<span class="btn btn-primary btn-o btn-file"> <i class="ti-image"></i>
 														<input type="file" nv-file-select="" uploader="uploaderImages" multiple />
 														</span>
 														<span class="btn btn-danger" ng-if="!noImage" ng-click="removeImage()"><i class="fa fa-times"></i></span>
 													</div>
 												</div>
 											</div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">
-												Full Name
-											</label>
-											<input type="text" placeholder="Enter your full name" class="form-control" name="firstname" ng-model="userInfo.fullName">
-										</div>
-										<div class="form-group">
-											<label class="control-label">
-												Email Address
-											</label>
-											<input type="email" placeholder="email address" class="form-control" name="email" ng-model="userInfo.email">
-										</div>
-										<div class="form-group">
-											<label class="control-label">
-												Phone
-											</label>
-											<input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="userInfo.phone">
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -252,6 +232,73 @@
 													<input class="form-control" placeholder="enter your city" type="text" name="city" ng-model="userInfo.city">
 												</div>
 											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">
+												Full Name
+											</label>
+											<input type="text" placeholder="Enter your full name" class="form-control" name="firstname" ng-model="userInfo.fullName">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												Email Address
+											</label>
+											<input type="email" placeholder="email address" class="form-control" name="email" ng-model="userInfo.email">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												Phone
+											</label>
+											<input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="userInfo.phone">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												Identity Card
+											</label>
+											<input type="text" placeholder="Enter your identity card" class="form-control" name="identityCard" ng-model="userInfo.identityCard">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												Birthday
+											</label>
+											<div class="input-group">
+												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="userInfo.birthday" is-open="openDatePickers[0]" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" name="birthday">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-primary" ng-click="openTest($event,0)">
+														<i class="fa fa-calendar"></i>
+													</button>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<label class="margin-bottom-10"><strong>Change password:</strong></label>
+										<div class="form-group">
+											<label class="control-label">
+												Old Password
+											</label>
+											<input name="oldPassword" type="password" placeholder="Introduce your old password" class="form-control" ng-model="passwordStruct.oldPassword">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												New Password
+											</label>
+											<input name="newPassword" type="password" placeholder="Introduce your new password" class="form-control" ng-model="passwordStruct.newPassword">
+										</div>
+										<div class="form-group">
+											<label class="control-label">
+												New Password
+											</label>
+											<input name="newPasswordAgain" type="password" placeholder="Introduce your new password again" class="form-control" ng-model="passwordStruct.newPasswordAgain">
+										</div>
+										<div class="pull-right">
+											<a class="btn btn-primary btn-wide" ng-click="changePassword()">
+												Change Password
+											</a>
 										</div>
 									</div>
 								</div>
@@ -316,8 +363,8 @@
 								</div>
 							</fieldset>
 							<div class="text-right padding-right-25 padding-left-25">
-								<a class="btn btn-primary btn-o btn-wide" ng-click="saveUserAcount()">
-									Save Account
+								<a class="btn btn-primary btn-wide" ng-click="saveUserAcount()">
+									Save Profile
 								</a>
 							</div>
 						</form>

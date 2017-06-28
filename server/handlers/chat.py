@@ -29,7 +29,7 @@ class ChatHandler(tornado.web.RequestHandler):
         for client in clients:
             print(client.id)
 
-        chats = table_chat.search((where('idUser') == int(userId)) | (where('idOther') == int(userId)))
+        chats = table_chat.search((where('idUser') == int(userId)) | (where('idOther') == int(userId)) | (where('idOther') == userId) | (where('idUser') == userId))
         self.write(json.dumps(chats))
 
         print(chats)

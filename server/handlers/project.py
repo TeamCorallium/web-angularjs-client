@@ -29,8 +29,6 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
         print('userId: ' + userId)
 
         projects = table_simple_project.search((where('userId') == userId) | (where('userId') == int(userId)))
-        
-        print("Project len1: " + str(len(projects)))
 
         investions = table_invertion.search((where('userId') == userId) | (where('userId') == int(userId)))
         
@@ -44,26 +42,31 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
                 rp.append(p[0])
 
         self.write(json.dumps(rp))
-
-        print("Project len2: " + str(len(rp)))
         print(rp)
 
     def post(self):
         print("SimpleProject:POST!!!")
 
-        self.json_args = json.loads(self.request.body)
+        newProject = json.loads(self.request.body)
 
-        print(self.json_args['projectName'])
+        print(newProject['projectName'])
+        projectId = newProject['id']
 
-        if len(table_simple_project.search(where('projectName') == self.json_args['projectName'])) != 0:
-            self.write('-1')
+        activityContent = ''
+
+        if projectId != '':
+            if len(table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))) != 0:
+                id = newProject['id']
+                table_simple_project.update(newProject, eids=[int(id)])
+                self.write(str(id))
+                activityContent = 'You updated a project'
         else:
-            id = table_simple_project.insert(self.json_args)
+            id = table_simple_project.insert(newProject)
             table_simple_project.update({'id': id}, eids=[id])
             self.write(str(id))
-            print(id)
+            activityContent = 'You created a new project'
 
-        table_activity.insert({'userId': self.json_args['userId'], 'title': 'Project', 'content': "You created a new project", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+        table_activity.insert({'userId': newProject['userId'], 'title': 'Project', 'content': activityContent, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
 class SimpleProjectByIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -126,6 +129,10 @@ class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
         projects = []
         if userId != 'null':
             projects = table_simple_project.search((where('userId') != userId) & (where('userId') != int(userId)))
+            investions = table_invertion.search((where('userId') == userId) | (where('userId') == int(userId)))
+
+            for inver in investions:
+                projects = [item for item in projects if int(item['id']) != int(inver['projectId'])]
         else:
             projects = table_simple_project.all()
 
@@ -171,7 +178,6 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
         else:
             projects = table_simple_project.all()
 
-        print(projects)
         opportunities = []
 
         for project in projects:
@@ -202,7 +208,6 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
                 sortedOpportunities = sorted(opportunities, key=lambda opportinity: int(opportinity[filter]), reverse=True) 
 
             self.write(json.dumps(sortedOpportunities))
-            print('sorted....')
             print(sortedOpportunities)   
         else:
             self.write(json.dumps(opportunities))

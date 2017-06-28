@@ -2,13 +2,13 @@
 /*  Theme 3
 /* ---------------------------------------------------------------------- */
 ::-moz-selection {
-  background: #f45700;
+  background: #FF642C;
   text-shadow: none;
   color: #ffffff;
 }
 
 ::selection {
-  background: #f45700;
+  background: #FF642C;
   text-shadow: none;
   color: #ffffff;
 }
@@ -29,13 +29,13 @@ header .navbar-header {
   border-bottom-color: transparent !important;
 }
 header .navbar-header .sidebar-toggler, header .navbar-header .sidebar-mobile-toggler {
-  color: #f45700 !important;
+  color: #FF642C !important;
 }
 header .navbar-header .navbar-brand {
   color: #ffffff !important;
 }
 header .navbar-header .menu-toggler {
-  color: #f45700 !important;
+  color: #FF642C !important;
 }
 header .navbar-collapse {
   background: #485058 !important;
@@ -46,7 +46,7 @@ header .navbar-collapse .navbar-right > li > a {
   color: #ffffff;
 }
 header .navbar-collapse .navbar-right > li > a i {
-  color: #f45700 !important;
+  color: #FF642C !important;
 }
 header .navbar-collapse .navbar-right > li > a:hover, header .navbar-collapse .navbar-right > li > a:focus, header .navbar-collapse .navbar-right > li > a:active {
   background: #363c42 !important;
@@ -72,7 +72,7 @@ header .navbar-collapse .navbar-right .dot-badge {
     color: #ffffff;
   }
   header .navbar-collapse .navbar-right > li > a i {
-    color: #f45700 !important;
+    color: #FF642C !important;
   }
   header .navbar-collapse .navbar-right > li > a:hover {
     background: #363c42 !important;
@@ -86,7 +86,7 @@ header .navbar-collapse .navbar-right .dot-badge {
 }
 @media (max-width: 991px) and (max-width: 767px) {
   header .navbar-collapse .navbar-right > li {
-    border-bottom: 1px solid #262626!important;
+    border-bottom: 1px solid #2C2F3B !important;
   }
 }
 @media (max-width: 991px) {
@@ -102,7 +102,7 @@ header .navbar-collapse .navbar-right .dot-badge {
     background: #485058;
   }
   header .navbar-collapse .close-handle .arrow-left, header .navbar-collapse .close-handle .arrow-right {
-    background-color: #f45700;
+    background-color: #FF642C;
   }
   header .navbar-collapse .navbar-right .current-user a i {
     color: #ffffff !important;
@@ -112,13 +112,13 @@ header .navbar-collapse .navbar-right .dot-badge {
 header .dropdown-off-sidebar {
   border-left-color: transparent !important;
   background: #485058 !important;
-  color: #f45700 !important;
+  color: #FF642C !important;
 }
 @media (max-width: 991px) {
   header .dropdown-off-sidebar {
     background: #485058 !important;
     border-left-color: transparent !important;
-    color: #f45700 !important;
+    color: #FF642C !important;
   }
 }
 
@@ -150,7 +150,7 @@ header .dropdown-off-sidebar {
   color: #B4B4B4 !important;
 }
 #sidebar nav > ul > li > a .item-media .fa-stack .fa-square {
-  color: #f45700 !important;
+  color: #FF642C !important;
 }
 #sidebar nav > ul > li > a .item-inner {
   color: #ffffff !important;
@@ -166,10 +166,10 @@ header .dropdown-off-sidebar {
   background: #59616c !important;
 }
 #sidebar nav > ul > li.active {
-  background: #f45700 !important;
+  background: #FF642C !important;
 }
 #sidebar nav > ul > li.active:hover {
-  background: #f45700 !important;
+  background: #FF642C !important;
 }
 @media (min-width: 992px) {
   #sidebar nav > ul > li.active:before {
@@ -189,7 +189,7 @@ header .dropdown-off-sidebar {
   color: #ffffff !important;
 }
 #sidebar nav > ul > li.active > a .item-media .fa-stack .fa-square {
-  color: #FF642C !important;
+  color: #007aff !important;
 }
 #sidebar nav > ul > li.active .sub-menu {
   background: #5d6672;
@@ -266,7 +266,7 @@ header .dropdown-off-sidebar {
     border-left: 12px solid transparent;
   }
   .app-sidebar-closed .app-aside > .item-inner.active:after {
-    border-left: 12px solid #f45700 !important;
+    border-left: 12px solid #FF642C !important;
   }
   .app-sidebar-closed .app-aside > .item-inner:before {
     border-left: 12px solid transparent;
@@ -356,7 +356,7 @@ header .dropdown-off-sidebar {
   border-color: #4D555E !important;
 }
 #off-sidebar .sidebar-back {
-  color: #f45700;
+  color: #FF642C;
 }
 #off-sidebar .tab-content {
   background: #788290 !important;
@@ -371,7 +371,7 @@ header .dropdown-off-sidebar {
   color: rgba(31, 187, 166, 0.8);
 }
 #off-sidebar .nav-tabs.nav-justified > li.active > a, #off-sidebar .nav-tabs.nav-justified > li.active > a:hover, #off-sidebar .nav-tabs.nav-justified > li.active > a:focus {
-  color: #f45700;
+  color: #FF642C;
   background: #788290;
   border-bottom-color: #788290;
 }
@@ -406,7 +406,7 @@ header .dropdown-off-sidebar {
   border-color: #4D555E;
 }
 #off-sidebar .message-bar .link {
-  color: #f45700;
+  color: #FF642C;
 }
 #off-sidebar .message-bar a.icon-only {
   color: #ffffff;

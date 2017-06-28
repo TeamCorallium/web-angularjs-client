@@ -72,7 +72,7 @@ textarea, select, input[type="text"], input[type="password"], input[type="dateti
     &:focus {
         box-shadow: none !important;
         border-color: darken($border-default, 5%) !important;
-        background-color: #FAFAFA !important;
+        background-color: #F8F8F8 !important;
     }
 }
 
@@ -106,11 +106,11 @@ textarea.underline, select.underline, input[type="text"].underline, input[type="
 
 textarea[disabled], input[disabled], select[disabled] {
     background: $lightGrey !important;
-    border-color: #FAFAFA !important;
+    border-color: #F8F8F8 !important;
 
     &:hover, &:focus {
         background: $lightGrey !important;
-        border-color: #FAFAFA;
+        border-color: #F8F8F8;
     }
 }
 
@@ -127,7 +127,7 @@ legend {
 }
 
 select[multiple="multiple"]:focus option {
-    background: #FAFAFA !important;
+    background: #F8F8F8 !important;
 }
 
 .has-error .form-control, .has-warning .form-control, .has-success .form-control {
@@ -152,7 +152,7 @@ select[multiple="multiple"]:focus option {
 
     .form-control {
         color: $text-dark;
-        border-color: #FAFAFA;
+        border-color: #F8F8F8;
         border-bottom-color: #a94442 !important;
         border-bottom-width: 1px !important;
         border-bottom-style: dotted;
@@ -161,7 +161,7 @@ select[multiple="multiple"]:focus option {
         border-style: dotted;
 
         &:focus, &:hover {
-            border-color: #FAFAFA;
+            border-color: #F8F8F8;
             border-bottom-color: #a94442 !important;
         }
     }
@@ -180,7 +180,7 @@ select[multiple="multiple"]:focus option {
 
     .form-control {
         color: $text-dark;
-        border-color: #FAFAFA;
+        border-color: #F8F8F8;
         border-bottom-color: #8a6d3b !important;
         border-bottom-width: 1px !important;
         border-bottom-style: dotted;
@@ -189,7 +189,7 @@ select[multiple="multiple"]:focus option {
         border-style: dotted;
 
         &:focus, &:hover {
-            border-color: #FAFAFA;
+            border-color: #F8F8F8;
             border-bottom-color: #8a6d3b !important;
         }
     }
@@ -208,7 +208,7 @@ select[multiple="multiple"]:focus option {
 
     .form-control {
         color: $text-dark;
-        border-color: #FAFAFA;
+        border-color: #F8F8F8;
         border-bottom-color: #3c763d !important;
         border-bottom-width: 1px !important;
         border-bottom-style: dotted;
@@ -217,7 +217,7 @@ select[multiple="multiple"]:focus option {
         border-style: dotted;
 
         &:focus, &:hover {
-            border-color: #FAFAFA;
+            border-color: #F8F8F8;
             border-bottom-color: #3c763d !important;
         }
     }
@@ -1011,7 +1011,7 @@ input[type="radio"], input[type="checkbox"] {
             opacity: 0.65;
 
             &:before {
-                background-color: #FAFAFA;
+                background-color: #F8F8F8;
             }
         }
     }
@@ -1183,7 +1183,7 @@ input[type="radio"], input[type="checkbox"] {
         &:checked {
             + label:before {
                 border-width: 6px;
-                background: #FAFAFA;
+                background: #F8F8F8;
                 border-color: $white;
             }
         }

@@ -30,7 +30,7 @@ app.run(['$rootScope', '$state', '$stateParams', 'localStorageService', 'RestSer
                 isSidebarClosed: false, // true if you want to initialize the template with closed sidebar
                 isFooterFixed: false, // true if you want to initialize the template with fixed footer
                 theme: 'theme-corallium', // indicate the theme chosen for your project
-                logo: 'assets/images/clogo.png', // relative path of the project logo
+                clogo: 'assets/images/clogo2.png', // relative path of the project clogo
             }
         };
 
@@ -41,7 +41,7 @@ app.run(['$rootScope', '$state', '$stateParams', 'localStorageService', 'RestSer
         $rootScope.user = {
             name: '',
             job: '',
-            picture: 'app/img/user/02.jpg'
+            avatar: 'assets/images/default-user.png'
         };
 
         if (localStorageService.get('currentUserId') != null) {
@@ -49,6 +49,10 @@ app.run(['$rootScope', '$state', '$stateParams', 'localStorageService', 'RestSer
                 .then(
                     function(data) {
                         $rootScope.user.name = data[0].email.split('@')[0];
+                        $rootScope.user.avatar = data[0].avatar;
+                        if (data[0].avatar == '') {
+                            $rootScope.user.avatar = 'assets/images/default-user.png';
+                        }
                     },
                     function(errResponse){
                         console.log(errResponse);

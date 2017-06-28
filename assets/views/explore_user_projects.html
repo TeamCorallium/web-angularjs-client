@@ -1,0 +1,95 @@
+<div ng-controller="ExploreUserProjectsCtrl">
+	<section id="page-title">
+		<div class="row">
+			<div class="col-sm-8">
+				<h1 class="mainTitle">Projects</h1>
+			</div>
+			<div ncy-breadcrumb></div>
+		</div>
+	</section>
+	<section class="container-fluid container-fullw bg-white">
+		<div class="container no-padding">
+			<div class="blog-posts">
+				<ul class="list-unstyled">
+					<li class="margin-bottom-15" ng-repeat="project in allProjectsAbstracts">
+						<hr class="tall">
+						<div class="clearfix">
+							<div class="col-sm-2 col-md-2 col-lg-2 no-padding">
+								<img  ng-src="{{project.mainLayout}}"
+									  class="img-responsive img-rounded notification-image">
+							</div>
+							<div class="col-sm-10 col-md-10 col-lg-10">
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding">
+									<span class="notification-author"><a ng-click="goToExploreProject(project.id,project.ownerId)"> {{project.name}} </a></span>
+									<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
+								</div>
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
+									<span class="notification-preview">
+										<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
+									</span>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-pencil-alt"></i>
+											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-wallet"></i>
+											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-stats-up"></i>
+											<strong> State:</strong>  {{stateArray[project.state]}}
+										</span>
+									</div>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-calendar"></i>
+											<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-id-badge"></i>
+											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
+										</span>
+									</div>
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-menu"></i>
+											<strong> Owner Raiting:</strong>
+										</span>
+									</div>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
+									<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<span><i class="ti-bar-chart"></i>
+											<strong> Covered Capital:</strong>  {{project.coveredCapital | number: 2}} %
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
+									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
+											ng-click="goToExploreProject(project.id,project.ownerId)">
+										<span class="fa fa-angle-right"></span> Read more
+									</button>
+									<button ng-click="follow(project.id)" ng-hide="(project.isFollow) || (project.iInverted) || (!logged) || (isOwner(project.ownerId))"
+											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
+										<span class="ti-thumb-up"></span> Follow
+									</button>
+									<button ng-click="unfollow(project.id)" ng-show="(project.isFollow) && (logged) && (!project.iInverted) && (!isOwner(project.ownerId))"
+											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
+										<span class="ti-thumb-down"></span> Following
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</div>

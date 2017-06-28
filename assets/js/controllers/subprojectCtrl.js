@@ -2,13 +2,24 @@
 /**
  * controller for User Projects
  */
-app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert",
-    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert) {
+app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "SweetAlert", "$window",
+    function ($scope, localStorageService, RestService, $state, toaster, SweetAlert, $window) {
 
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
+
+            // $scope.$on("$destroy", function handler() {
+            //     gantt.detachAllEvents();
+            //     console.log("SubprojectCtrl destroy");
+            // }); 
+
             $scope.currentProjectActive = [];
+            $scope.myInvestedCapital = 0;
+            $scope.coveredCapitalPercent = 0;
+            $scope.investmentCapitalProject = 0;
+            $scope.estimateRevenueF = 0;
+            $scope.amount = 0;
 
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))
@@ -16,6 +27,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         function (data) {
                             $scope.currentProjectActive = data[0];
                             $scope.invertionByProjectId();
+                            $scope.getOwnerData();
                         },
                         function (errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');
@@ -26,9 +38,11 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
             $scope.getProjectById();
 
-            $scope.stateArray = ['', 'In Preparation', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
+            $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
-            $scope.categoryArray = ['Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
+            $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property developments', 'Other'];
+
+            $scope.sectorArray = ['', 'Agriculture', 'Industry', 'Technology', 'Engineering','Real State', 'Academic', 'Food industry', 'Other'];
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -38,7 +52,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             };
 
             $scope.tasksProject = [];
-            // $scope.tasksFiltre = [];
 
             $scope.getTaskByProjectsId = function () {
                 RestService.fetchTaskByProjectId(localStorageService.get('currentProjectId'))
@@ -53,8 +66,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                                 tasks.data[i].text = tasks.data[i].name;
                                 tasks.data[i].start_date = new Date(tasks.data[i].startDate);
                                 tasks.data[i].end_date = '';
-                                console.log(tasks.data[i].start_date);
-                                console.log(tasks.data[i].end_date);
                             }
 
                             $scope.ganttStart("gantt_here");
@@ -72,6 +83,18 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
             $scope.getTaskByProjectsId();
 
+            $scope.getOwnerData = function () {
+                RestService.fetchUser($scope.currentProjectActive.userId)
+                    .then(
+                        function (data) {
+                            $scope.owner = data[0];
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
+
             $scope.projectRole = function (userId) {
                 if (localStorageService.get('currentUserId') == userId) {
                     return 'Owner';
@@ -87,11 +110,15 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                         function (data) {
                             $scope.invertions = data;
                             for (var i = 0; i < $scope.invertions.length; i++) {
+                                $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
                                 if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
-                                    $scope.amount = $scope.invertions[i].amount;
+                                    $scope.myInvestedCapital = $scope.invertions[i].amount;
                                 }
                             }
-                            $scope.getFinancierEsimateRevenue();
+
+                            $scope.coveredCapital();
+                            $scope.getPossibleInvestment();
+                            $scope.getFinancierEsimateRevenueFinancier();
                         },
                         function (errResponse) {
                             console.log(errResponse);
@@ -99,12 +126,16 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     );
             };
 
-            $scope.estimateRevenueF = 0;
-
-            $scope.getFinancierEsimateRevenue = function () {
-                var porcientoF = (parseFloat($scope.amount) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
+            $scope.getFinancierEsimateRevenue = function (myInvested) {
+                var porcientoF = (parseFloat(myInvested) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
                 var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner) / 100.0) * parseFloat($scope.currentProjectActive.totalRevenue);
                 $scope.estimateRevenueF = (porcientoF / 100.0) * (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
+            };
+
+            $scope.getFinancierEsimateRevenueFinancier = function () {
+                var porcientoF = (parseFloat($scope.myInvestedCapital) / parseFloat($scope.currentProjectActive.totalCost) * 100.0);
+                var estimateRevenueO = (parseFloat($scope.currentProjectActive.revenueOwner) / 100.0) * parseFloat($scope.currentProjectActive.totalRevenue);
+                $scope.estimateRevenueFinancier = (porcientoF / 100.0) * (parseFloat($scope.currentProjectActive.totalRevenue) - estimateRevenueO);
             };
 
             $scope.goToTask = function (taskId) {
@@ -117,7 +148,12 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 $state.go('app.project.modified_task');
             };
 
-//begin Gantt
+            $scope.goToExploreUserProfile = function (userId) {
+                localStorageService.set('viewUserProfileId', userId);
+                $state.go('app.pages.exploreuser');
+            };
+
+            //begin Gantt
 
             $scope.ganttStart = function (containerName) {
                 var tasks = {
@@ -149,7 +185,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 // tasks.data = $scope.tasksProject;
                 // gantt.parse (tasks);
                 // gantt.parse($scope.tasks);
-
                 gantt.attachEvent("onTaskClick", function (id, e) {
                     // alert("You've just clicked an item with id="+id);
                     return false;
@@ -158,23 +193,25 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     // alert("You've just double clicked an item with id="+id);
                     return false;
                 });
-            }
+            };
             // $scope.ganttStart();
 
             $scope.toggleMode = function (toggle) {
                 toggle.enabled = !toggle.enabled;
                 if (toggle.enabled) {
                     toggle.innerHTML = "Set default Scale";
+                    console.log(toggle.innerHTML);
                     //Saving previous scale state for future restore
                     saveConfig();
                     zoomToFit();
                 } else {
                     toggle.innerHTML = "Zoom to Fit";
+                    console.log(toggle.innerHTML);
                     //Restore previous scale state
                     restoreConfig();
                     gantt.render();
                 }
-            }
+            };
             var cachedSettings = {};
 
             function saveConfig() {
@@ -187,11 +224,11 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 cachedSettings.template = gantt.templates.date_scale;
                 cachedSettings.start_date = config.start_date;
                 cachedSettings.end_date = config.end_date;
-            }
+            };
 
             function restoreConfig() {
                 applyConfig(cachedSettings);
-            }
+            };
 
             function applyConfig(config, dates) {
                 gantt.config.scale_unit = config.scale_unit;
@@ -212,7 +249,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 } else {
                     gantt.config.start_date = gantt.config.end_date = null;
                 }
-            }
+            };
 
             function zoomToFit() {
                 var project = gantt.getSubtaskDates(),
@@ -231,7 +268,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
 
                 applyConfig(scaleConfigs[i], project);
                 gantt.render();
-            }
+            };
 
             // get number of columns in timeline
             function getUnitsBetween(from, to, unit, step) {
@@ -243,7 +280,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     start = gantt.date.add(start, step, unit);
                 }
                 return units;
-            }
+            };
 
             //Setting available scales
             var scaleConfigs = [
@@ -373,5 +410,115 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     }
                 });
             };
+
+            $scope.getDuration =  function () {
+                var weeks = parseInt($scope.currentProjectActive.estimateDuration / 7);
+                var days = parseInt($scope.currentProjectActive.estimateDuration % 7);
+
+                var text = '';
+
+                if (weeks > 0) {
+                    if (weeks == 1) {
+                        text = weeks + " week";
+                    } else {
+                        text = weeks + " weeks";
+                    }
+
+                    if (days!=0) {
+                        text+= " and ";
+                        if (days == 1) {
+                            text+= days + " day"
+                        } else {
+                            text+= days + " days"
+                        }
+                    }
+                } else {
+                    if (days == 1) {
+                        text = days + " day"
+                    } else {
+                        text = days + " days"
+                    }
+                }
+
+                return text;
+            };
+
+            $scope.seeReference = function (file) {
+                $window.location.href = file;
+            };
+
+            $scope.coveredCapital = function () {
+                $scope.coveredCapitalPercent = ($scope.investmentCapitalProject / parseFloat($scope.currentProjectActive.totalCost)) * 100;
+            };
+
+            $scope.possibleInvestmentArray = [];
+
+            //Upgrade While(true)
+            $scope.getPossibleInvestment = function () {
+                if ($scope.coveredCapitalPercent != 100) {
+                    var minimalInvertion = parseInt(($scope.currentProjectActive.totalCost-$scope.currentProjectActive.ownerInvestedCapital)/$scope.currentProjectActive.maxNumInves);
+
+                    var remainingInvertion = parseInt($scope.currentProjectActive.totalCost - $scope.investmentCapitalProject);
+
+                    var remainingNumMinInvestors = parseInt($scope.currentProjectActive.minNumInves) - $scope.invertions.length;
+
+                    var myInvertion = 0;
+
+                    for (var i=0; i<$scope.invertions.length;  i++) {
+                        if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
+                            myInvertion = parseInt($scope.invertions[i].amount);
+                        }
+                    }
+
+                    if (myInvertion == 0) {
+                        var n = 0;
+
+                        while (true) {
+                            var a = remainingInvertion - n * minimalInvertion;
+                            if ((a >= minimalInvertion)) {
+                                if ((remainingNumMinInvestors > 0) && (a > (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
+                                    n += 1;
+                                    continue;
+                                }
+                                $scope.possibleInvestmentArray.push(a);
+                            } else {
+                                break;
+                            }
+
+                            n += 1;
+                        }
+                    } else {
+                        if (($scope.investmentCapitalProject < ($scope.currentProjectActive.totalCost - (minimalInvertion * (remainingNumMinInvestors))))){
+
+                            var n = 0;
+
+                            while (true) {
+                                var a = remainingInvertion - n * minimalInvertion;
+                                if ((a >= minimalInvertion)) {
+                                    if ((remainingNumMinInvestors > 0) && (a >= (remainingInvertion - (minimalInvertion * (remainingNumMinInvestors - 1))))) {
+                                        n += 1;
+                                        continue;
+                                    }
+                                    $scope.possibleInvestmentArray.push(a);
+                                } else {
+                                    break;
+                                }
+
+                                n += 1;
+                            }
+                        }
+                    }
+                }
+            };
+
+            $scope.setInvestmentValue = function () {
+                if ($scope.amount !=  '' && $scope.amount != null) {
+                    localStorageService.set('currentAmountInvestment', $scope.amount);
+                    $state.go('app.inversion');
+                } else {
+                    toaster.pop('error', 'Error', 'Please select the amount to invest.');
+                }
+            };
+
         }
     }]);

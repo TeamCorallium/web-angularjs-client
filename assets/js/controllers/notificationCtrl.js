@@ -57,9 +57,9 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             $state.go('app.project.subproject_detail');
         };
 
-        $scope.goToTask = function (projectId) {
-            localStorageService.set('currentProjectId', projectId);
-            $state.go('app.project.subproject_detail');
+        $scope.goToTask = function (taskId) {
+            localStorageService.set('currentTaskId', taskId);
+            $state.go('app.project.task_detail');
         };
 
         $scope.goToFinance = function (projectId) {

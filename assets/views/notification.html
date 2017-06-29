@@ -20,7 +20,7 @@
 								{{notification.content}}
 							</h5>
 							<p>
-								<a ng-click="goToProposal(notification.projectId, notification.proposalId)" class="btn btn-info"> View proposal </a>
+								<a ng-click="goToProposal(notification.projectId, notification.proposalId)" class="btn btn-primary btn-xs pull-left margin-left-5"> View proposal </a>
 							</p>
 						</div>
 						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'PROPOSAL APPROVED'">
@@ -28,7 +28,7 @@
 							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
 							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> {{notification.content}} </h4>
 							<p>
-								<a ng-click="goToTask(notification.projectId)" class="btn btn-info"> View Task </a>
+								<a ng-click="goToTask(notification.projectId)" class="btn btn-primary btn-xs pull-left margin-left-5"> View Task </a>
 							</p>
 						</div>
 						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'NEW INVERTION'">

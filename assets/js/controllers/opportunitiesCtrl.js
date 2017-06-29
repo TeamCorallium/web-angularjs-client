@@ -90,6 +90,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
 
                         for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {
                             if ($scope.allProjectsAbstracts[i].id == projectId) {
+                                investmentCapitalProject += $scope.allProjectsAbstracts[i].ownerInvestedCapital;
                                 coveredCapitalPercent = (investmentCapitalProject / parseFloat($scope.allProjectsAbstracts[i].totalCost)) * 100;
                                 $scope.allProjectsAbstracts[i].coveredCapital = coveredCapitalPercent;
                                 $scope.allProjectsAbstracts[i].iInverted = inverted;

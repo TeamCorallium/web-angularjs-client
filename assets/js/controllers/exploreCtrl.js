@@ -44,6 +44,7 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 category: $scope.allProjects[i].category,
                                 minNumInves: $scope.allProjects[i].minNumInves,
                                 maxNumInves: $scope.allProjects[i].maxNumInves,
+                                ownerInvestedCapital: parseFloat($scope.allProjects[i].ownerInvestedCapital),
                                 ownerName: '',
                                 ownerRaiting: '',
                                 coveredCapital: '',
@@ -79,6 +80,7 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
 
                         for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {
                             if ($scope.allProjectsAbstracts[i].id == projectId) {
+                                investmentCapitalProject += parseFloat($scope.allProjectsAbstracts[i].ownerInvestedCapital);
                                 coveredCapitalPercent = (investmentCapitalProject / parseFloat($scope.allProjectsAbstracts[i].totalCost)) * 100;
                                 $scope.allProjectsAbstracts[i].coveredCapital = coveredCapitalPercent;
                             }

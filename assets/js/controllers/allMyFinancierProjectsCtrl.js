@@ -23,6 +23,7 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
                                     id: $scope.allMyFincancierProjects[i].id,
                                     name: $scope.allMyFincancierProjects[i].projectName,
                                     description: $scope.allMyFincancierProjects[i].description,
+                                    ownerInvestedCapital: parseFloat($scope.allMyFincancierProjects[i].ownerInvestedCapital),
                                     balance: '',
                                 };
                                 $scope.allFinancierAbstracts.push(forumAbstract);
@@ -54,6 +55,7 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
 
                             for (var i=0; i<$scope.allFinancierAbstracts.length; i++) {
                                 if ($scope.allFinancierAbstracts[i].id == projectId) {
+                                    investmentCapitalProject += $scope.allFinancierAbstracts[i].ownerInvestedCapital;
                                     $scope.allFinancierAbstracts[i].balance = investmentCapitalProject;
                                 }
                             }

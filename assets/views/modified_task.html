@@ -63,18 +63,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <button ng-click="updateTask()" class="btn btn-primary btn-o back-step btn-wide pull-right">
-                                <i class="ti-arrow-circle-left"></i> Update task
-                            </button>
-                        </div>
-                    </div>
                 </fieldset>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-right-25">
-                <button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-folder">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-left-40 padding-right-40">
+                <button ui-sref="app.project.subproject_detail" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-folder">
                     <span>Back to my project</span>
+                </button>
+                <button ng-click="updateTask()" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-reload">
+                    <span>Update task</span>
                 </button>
             </div>
         </section>

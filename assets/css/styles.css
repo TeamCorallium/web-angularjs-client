@@ -2426,6 +2426,14 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
   padding-left: 30px !important;
 }
 
+.padding-left-35 {
+  padding-left: 35px !important;
+}
+
+.padding-left-40 {
+  padding-left: 40px !important;
+}
+
 .padding-right-0 {
   padding-right: 0px !important;
 }
@@ -2452,6 +2460,14 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
 
 .padding-right-30 {
   padding-right: 30px !important;
+}
+
+.padding-right-35 {
+  padding-right: 35px !important;
+}
+
+.padding-right-40 {
+  padding-right: 40px !important;
 }
 
 .margin-bottom-0 {

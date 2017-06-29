@@ -460,10 +460,16 @@
                                                         <hr class="tall">
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                                <span class="notification-author"><a>{{risk.name}}</a></span> <span class="pull-right">
+                                                                <span class="notification-author"><a>{{risk.name}}</a></span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview">{{ risk.description}}</span>
+                                                            </div>
+                                                            <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                                <span class="notification-preview"><strong>Probability: </strong>{{ risk.probability}} %</span>
+                                                            </div>
+                                                            <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
+                                                                <span class="notification-preview"><strong>Action to Mitigate: </strong>{{ risk.mitigate}}</span>
                                                             </div>
                                                         </div>
                                                     </li>

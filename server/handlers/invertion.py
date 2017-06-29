@@ -40,10 +40,15 @@ class InvertionHandler(tornado.web.RequestHandler):
         print(self.json_args)
         projectId = self.json_args['projectId']
         userId = self.json_args['userId']
-        invertions = table_invertion.search((where('projectId') == projectId) & (where('userId') == userId))
+        invertions = table_invertion.search(((where('projectId') == projectId) & (where('userId') == userId)) | 
+                                            ((where('projectId') == int(projectId)) & (where('userId') == int(userId))) | 
+                                            ((where('projectId') == int(projectId)) & (where('userId') == userId)) |
+                                            ((where('projectId') == projectId) & (where('userId') == int(userId))) )
+
         transactionAmount = self.json_args['amount']
 
         if len(invertions) != 0:
+            print("REPETIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
             id = invertions[0]['id'];
             amount = float(invertions[0]['amount']) + float(self.json_args['amount']) 
             table_invertion.update({'amount': amount}, eids=[id])

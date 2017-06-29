@@ -2,9 +2,9 @@
 
 app.factory('RestService', ['$http', '$q', function($http, $q) {
 
-    var uploadsUrl = 'http://localhost:8001/AngularJs-Admin/STANDARD/server/databases/uploads/';
+    var uploadsUrl = 'http://10.58.20.230:8001/AngularJs-Admin/STANDARD/server/databases/uploads/';
 
-    var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
+    var serverUrl = 'http://10.58.20.230:9090/CoralliumRestAPI/';
     // var serverUrl = 'http://localhost:9090/CoralliumRestAPI/';
 
     return {

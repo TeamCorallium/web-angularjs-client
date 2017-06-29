@@ -11962,3 +11962,8 @@ fieldset legend {
   position: relative !important;;
   top: 2px !important;;
 }
+
+.button_notification {
+  width: 116px !important;
+  text-align: center !important;
+}

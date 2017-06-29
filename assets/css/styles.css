@@ -3885,7 +3885,7 @@ a.text-light:hover {
 }
 
 .panel-bricky, .partition-bricky {
-  background-color: #ff8266;
+  background-color: #FF6C4D;
   position: relative;
   color: #ffffff;
 }
@@ -10504,7 +10504,7 @@ td.small-width {
   display: block !important;
 }
 .discussion .self .message-text {
-  background-color: #00d449;
+  background-color: #FF6839;
   color: #fff;
   padding-right: 22px;
   margin-right: 32px;

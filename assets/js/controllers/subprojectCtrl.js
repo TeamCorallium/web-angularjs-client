@@ -157,7 +157,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             };
 
             //begin Gantt
-
             $scope.ganttStart = function (containerName) {
                 var tasks = {
                     data: [],
@@ -237,7 +236,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     return false;
                 });
             };
-            // $scope.ganttStart();
+            $scope.ganttStart("gantt_hide");
 
             $scope.toggleMode = function (toggle) {
                 toggle.enabled = !toggle.enabled;

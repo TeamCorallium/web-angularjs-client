@@ -1,17 +1,17 @@
 {
   "dashboard": {
-    "WELCOME": "Welcome to Corallium"
+    "WELCOME": "Bienvenidos a Corallium"
   },
   "topbar": {
     "notifications": {
-    	"MAIN": "Notifies"
+      "MAIN": "Notificaciones"
     },
     "activities": {
-      "MAIN": "Activities"
+      "MAIN": "Actividades"
     },
     "user": {
-      "PROFILE": "My Profile",
-      "clogoUT" : "Log Out"
+      "PROFILE": "Mi Perfil",
+      "clogoUT" : "Salir"
     }
   },
   "offsidebar": {
@@ -37,27 +37,27 @@
   },
   "sidebar": {
     "heading": {
-      "NAVIGATION": "Main Navigation"
+      "NAVIGATION": "Navegación"
     },
     "search": {
-      "PLACEHOLDER": "Search..."
+      "PLACEHOLDER": "Buscar..."
     },
     "nav": {
-      "HOME": "Home",
-      "EXPLORE": "Explore",
-      "STATISTICS": "Statistics",
+      "HOME": "Página Principal",
+      "EXPLORE": "Explorar",
+      "STATISTICS": "Estadísticas",
       "FORUM": "Forums",
-      "FINANCE": "Finances"
+      "FINANCE": "Finanzas"
     }
   },
   "footer": {
     "copyright": {
-    	"MAIN": "Copyright",
-      	"MESSAGE": "All rights reserved"
+      "MAIN": "Copyright",
+        "MESSAGE": "All rights reserved"
     }
   },
   "setting": {
-  	"MAIN" : "Style Selector",
+    "MAIN" : "Style Selector",
     "FIXEDHEADER": "Fixed header",
     "FIXEDSIDEBAR": "Fixed sidebar",
     "CLOSEDSIDEBAR": "Closed sidebar",
@@ -65,10 +65,10 @@
   },
   "pages": {
     "profile": {
-      "TITLE": "User Profile"
+      "TITLE": "Perfil de Usuario"
     },
     "activities": {
-      "TITLE": "Activities"
-    }    
-  }
+      "TITLE": "Actividades"
+    } 
+  }  
 }

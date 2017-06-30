@@ -1,16 +1,21 @@
 {
   "dashboard": {
-    "WELCOME": "Welcome to Corallium"
+    "WELCOME": "Welcome to {{appName}}"
   },
   "topbar": {
-    "notifications": {
-    	"MAIN": "Notifies"
+    "messages": {
+      "MAIN": "Messages",
+        "HEADER": "Unread messages",
+        "SEEALL": "See All"
     },
     "activities": {
       "MAIN": "Activities"
     },
     "user": {
       "PROFILE": "My Profile",
+      "CALENDAR" : "My Calendar",
+      "MESSAGES" : "My Messages",
+      "LOCKSCREEN" : "Lock Screen",
       "clogoUT" : "Log Out"
     }
   },
@@ -37,7 +42,7 @@
   },
   "sidebar": {
     "heading": {
-      "NAVIGATION": "Main Navigation"
+      "NAVIGATION": "Main Navigation",
     },
     "search": {
       "PLACEHOLDER": "Search..."
@@ -52,23 +57,15 @@
   },
   "footer": {
     "copyright": {
-    	"MAIN": "Copyright",
-      	"MESSAGE": "All rights reserved"
+      "MAIN": "Copyright",
+        "MESSAGE": "All rights reserved"
     }
   },
   "setting": {
-  	"MAIN" : "Style Selector",
+    "MAIN" : "Style Selector",
     "FIXEDHEADER": "Fixed header",
     "FIXEDSIDEBAR": "Fixed sidebar",
     "CLOSEDSIDEBAR": "Closed sidebar",
     "FIXEDFOOTER": "Fixed footer"
-  },
-  "pages": {
-    "profile": {
-      "TITLE": "User Profile"
-    },
-    "activities": {
-      "TITLE": "Activities"
-    }    
   }
 }

@@ -22,6 +22,10 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                     .then(
                         function (data) {
                             $scope.currentProjectActive = data[0];
+
+                            if (!$scope.currentProjectActive.inverted){
+                                $state.go('app.allfinance');
+                            }
                         },
                         function (errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');
@@ -74,11 +78,14 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                 RestService.fetchUser(userId)
                     .then(
                         function (data) {
-                            var user = data[0]
+                            var user = data[0];
+
+
 
                             for (var i=0; i<$scope.listFinanceAbstract.length; i++) {
                                 if ($scope.listFinanceAbstract[i].id == userId) {
                                     $scope.listFinanceAbstract[i].name = user.fullName;
+                                    break;
                                 }
                             }
                         },

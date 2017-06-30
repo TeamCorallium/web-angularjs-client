@@ -19,15 +19,17 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
                             $scope.allMyFincancierProjects = data;
 
                             for (var i = 0; i < $scope.allMyFincancierProjects.length; i++) {
-                                var forumAbstract = {
-                                    id: $scope.allMyFincancierProjects[i].id,
-                                    name: $scope.allMyFincancierProjects[i].projectName,
-                                    description: $scope.allMyFincancierProjects[i].description,
-                                    ownerInvestedCapital: parseFloat($scope.allMyFincancierProjects[i].ownerInvestedCapital),
-                                    balance: '',
-                                };
-                                $scope.allFinancierAbstracts.push(forumAbstract);
-                                $scope.invertionsByProjectId($scope.allMyFincancierProjects[i].id);
+                                if ($scope.allMyFincancierProjects[i].inverted){
+                                    var forumAbstract = {
+                                        id: $scope.allMyFincancierProjects[i].id,
+                                        name: $scope.allMyFincancierProjects[i].projectName,
+                                        description: $scope.allMyFincancierProjects[i].description,
+                                        ownerInvestedCapital: parseFloat($scope.allMyFincancierProjects[i].ownerInvestedCapital),
+                                        balance: '',
+                                    };
+                                    $scope.allFinancierAbstracts.push(forumAbstract);
+                                    $scope.invertionsByProjectId($scope.allMyFincancierProjects[i].id);
+                                }
                             }
                         },
                         function (errResponse) {

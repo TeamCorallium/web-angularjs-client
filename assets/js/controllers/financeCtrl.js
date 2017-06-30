@@ -78,11 +78,14 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                 RestService.fetchUser(userId)
                     .then(
                         function (data) {
-                            var user = data[0]
+                            var user = data[0];
+
+
 
                             for (var i=0; i<$scope.listFinanceAbstract.length; i++) {
                                 if ($scope.listFinanceAbstract[i].id == userId) {
                                     $scope.listFinanceAbstract[i].name = user.fullName;
+                                    break;
                                 }
                             }
                         },

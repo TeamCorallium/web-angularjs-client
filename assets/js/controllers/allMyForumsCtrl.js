@@ -19,20 +19,22 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
 
                             for (var i=0; i<$scope.allMyForums.length; i++) {
 
-                                var abstractForum = {
-                                    projectId: '',
-                                    proposalsCount: '',
-                                    commentsCount: '',
-                                    projectName: '',
-                                    projectDescription: ''
-                                };
+                                if ($scope.allMyForums[i].inverted){
+                                    var abstractForum = {
+                                        projectId: '',
+                                        proposalsCount: '',
+                                        commentsCount: '',
+                                        projectName: '',
+                                        projectDescription: ''
+                                    };
 
-                                abstractForum.projectId = $scope.allMyForums[i].id;
-                                abstractForum.projectName = $scope.allMyForums[i].projectName;
-                                abstractForum.projectDescription = $scope.allMyForums[i].description;
-                                $scope.getProposalCount(abstractForum.projectId);
-                                $scope.getCommentsCount(abstractForum.projectId);
-                                $scope.allForumsAbstracts.push(abstractForum);
+                                    abstractForum.projectId = $scope.allMyForums[i].id;
+                                    abstractForum.projectName = $scope.allMyForums[i].projectName;
+                                    abstractForum.projectDescription = $scope.allMyForums[i].description;
+                                    $scope.getProposalCount(abstractForum.projectId);
+                                    $scope.getCommentsCount(abstractForum.projectId);
+                                    $scope.allForumsAbstracts.push(abstractForum);
+                                }
                             }
 
                         },

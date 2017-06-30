@@ -42,6 +42,10 @@ app.controller('ForumBaseCtrl', ["$scope", "$rootScope", "$state", "toaster", "W
                     .then(
                         function (data) {
                             $scope.currentForumActive = data[0];
+
+                            if (!$scope.currentForumActive.inverted){
+                                $state.go('app.forum.allforum');
+                            }
                         },
                         function (errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');

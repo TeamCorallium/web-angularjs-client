@@ -22,6 +22,10 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                     .then(
                         function (data) {
                             $scope.currentProjectActive = data[0];
+
+                            if (!$scope.currentProjectActive.inverted){
+                                $state.go('app.allfinance');
+                            }
                         },
                         function (errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');

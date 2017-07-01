@@ -11998,3 +11998,7 @@ fieldset legend {
   color: #13171d !important;
   font-weight: bold !important;
 }
+
+.cursor-none:hover{
+  cursor: default !important;
+}

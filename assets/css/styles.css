@@ -11867,10 +11867,22 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 /* Notification */
 /*--------------*/
 .notification-image{
-  float: left;
-  height: 100px;
-  margin-right: 5%;
-  width: 100px;
+  height: 80px !important;
+  margin-right: 5% !important;
+  width: 80px !important;
+}
+
+.notification-image-proposal{
+  float: right !important;
+  height: 60px !important;
+  width: 60px !important;
+}
+
+.invertion-image{
+  float: left !important;
+  height: 60px !important;
+  margin-right: 5% !important;
+  width: 60px !important;
 }
 
 .explore-user-image{
@@ -11888,6 +11900,13 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 
 .notification-time{
   float: right;
+  font-size: $font-size-extra-small;
+  font-style: italic;
+  font-weight: 600;
+  color: $darkGrey;
+}
+
+.notification-date-proposal{
   font-size: $font-size-extra-small;
   font-style: italic;
   font-weight: 600;

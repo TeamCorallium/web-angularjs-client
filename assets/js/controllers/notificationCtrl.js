@@ -25,6 +25,7 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
                             for (var i=0; i<$scope.notifications.length; i++) {
                                  var currentNotification = {
                                     userId: $scope.notifications[i].userId,
+                                    projectId: $scope.notifications[i].projectId,
                                     from: $scope.notifications[i].from,
                                     date: $scope.notifications[i].date,
                                     subject: $scope.notifications[i].subject,
@@ -37,9 +38,9 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
                                 $scope.notificationsAbstract.push(currentNotification);
 
                                 if (currentNotification.type == 'PROPOSAL APPROVED'){
-                                    $scope.notificationsAbstract[$scope.notificationsAbstract.length-1].avatar = 'assets/images/portfolio/image08.jpg';
+                                    $scope.notificationsAbstract[$scope.notificationsAbstract.length-1].avatar = 'assets/images/proposal_aproved.png';
                                 } else if (currentNotification.type == 'NEW INVERTION') {
-                                    $scope.notificationsAbstract[$scope.notificationsAbstract.length-1].avatar = 'assets/images/portfolio/image07.jpg';
+                                    $scope.notificationsAbstract[$scope.notificationsAbstract.length-1].avatar = 'assets/images/proposal_invertion.png';
                                 }
                             }
 

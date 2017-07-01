@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$state",
-    function ($scope, localStorageService, RestService,$state) {
+app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$state","toaster",
+    function ($scope, localStorageService, RestService,$state,toaster) {
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {

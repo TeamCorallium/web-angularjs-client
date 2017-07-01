@@ -27,11 +27,12 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
                                     userId: $scope.notifications[i].userId,
                                     projectId: $scope.notifications[i].projectId,
                                     from: $scope.notifications[i].from,
+                                    fromId: $scope.notifications[i].fromId,
                                     date: $scope.notifications[i].date,
                                     subject: $scope.notifications[i].subject,
                                     read: '',
                                     content: $scope.notifications[i].content,
-                                    avatar: '',
+                                    avatar: $scope.notifications[i].fromAvatar,
                                     type: $scope.notifications[i].type
                                 };
 
@@ -42,10 +43,6 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
                                 } else if (currentNotification.type == 'NEW INVERTION') {
                                     $scope.notificationsAbstract[$scope.notificationsAbstract.length-1].avatar = 'assets/images/proposal_invertion.png';
                                 }
-                            }
-
-                            if ($scope.notificationsAbstract.length > 0) {
-                                $scope.getAvatar($scope.notificationsAbstract[0].userId);
                             }
                         },
                         function (errResponse) {
@@ -95,7 +92,7 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
 
             if (ml < 60000) {
                 value = parseInt(ml/1000);
-                return value +' seconds';
+                return 'a few seconds ago';
             } else if (ml >= 60000 && ml < 3600000) {
                 value = parseInt(ml/60000);
                 if (value == 1 ) {
@@ -127,21 +124,12 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             }
         };
 
-        $scope.getAvatar = function (userId) {
-            RestService.fetchUser(userId)
-                .then(
-                    function(data) {
-                        var avatar = data[0].avatar;
-
-                        for (var i=0; i<$scope.notificationsAbstract.length; i++) {
-                            if ($scope.notificationsAbstract[i].type == 'NEW PROPOSAL') {
-                                $scope.notificationsAbstract[i].avatar = avatar;
-                            }
-                        }
-                    },
-                    function(errResponse) {
-                        console.log(errResponse);
-                    }
-                );
+        $scope.goToProfileView = function (userId) {
+            localStorageService.set('viewUserProfileId', userId);
+            if (localStorageService.get('currentUserId') == userId) {
+                $state.go('app.pages.user');
+            } else {
+                $state.go('app.pages.exploreuser');
+            }
         };
     }]);

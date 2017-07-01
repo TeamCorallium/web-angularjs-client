@@ -562,5 +562,14 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 }
             };
 
+            $scope.forumView = function () {
+                if ($scope.currentProjectActive.userId != localStorageService.get('currentUserId') &&
+                $scope.currentProjectActive.ownerInvestedCapital <= 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+
         }
     }]);

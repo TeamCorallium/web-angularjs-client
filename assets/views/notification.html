@@ -45,7 +45,7 @@
 									<span class="notification-date-proposal margin-right-10"> {{getProjectDate(notification.date)}}</span>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-									<h5 class="alert-heading margin-bottom-10">New proposal created by <a>{{notification.from}}</a></h5>
+									<h5 class="alert-heading margin-bottom-10">New proposal created by <a ng-click="goToProfileView(notification.fromId)">{{notification.from}}</a></h5>
 									<a ng-click="goToProposal(notification.projectId, notification.proposalId)" class="button_notification"> View proposal </a>
 								</div>
 							</div>

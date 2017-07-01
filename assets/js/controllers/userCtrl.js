@@ -9,12 +9,6 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             $state.go('app.login.signin');
         } else {
 
-            $scope.passwordStruct = {
-                oldPassword: '',
-                newPassword: '',
-                newPasswordAgain: ''
-            };
-
             $scope.noImage = false;
             $scope.obj = new Flow();
 
@@ -274,11 +268,17 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 $window.location.href = link;
             };
 
+            $scope.passwordStruct = {
+                oldPassword: '',
+                newPassword: '',
+                newPasswordAgain: ''
+            };
+
             $scope.changePassword = function () {
                 if ($scope.passwordStruct.oldPassword != '') {
                     if ( $scope.passwordStruct.newPassword != '') {
                         if ($scope.passwordStruct.newPasswordAgain != '') {
-                            if($scope.passwordStruct.newPassword != $scope.userInfo.password) {
+                            if($scope.passwordStruct.oldPassword != $scope.userInfo.password) {
                                 if ($scope.passwordStruct.newPassword == $scope.passwordStruct.newPasswordAgain) {
                                     $scope.userInfo.password = $scope.passwordStruct.newPassword;
                                     $scope.saveUserAcount();

@@ -11,34 +11,81 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
-					<li class="margin-bottom-15" ng-repeat="notification in notifications">
-						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'NEW PROPOSAL'">
-							<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>
-							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
-							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> New proposal created by {{notification.from}}</h4>
-							<h5 class="margin-bottom-10">
-								{{notification.content}}
-							</h5>
-							<p>
-								<a ng-click="goToProposal(notification.projectId, notification.proposalId)" class="btn btn-primary btn-xs pull-left margin-left-5 button_notification"> View proposal </a>
-							</p>
+					<li class="margin-bottom-15" ng-repeat="notification in notificationsAbstract">
+						<!--<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'NEW PROPOSAL'">-->
+						<!--<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>-->
+						<!--<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>-->
+						<!--<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> New proposal created by {{notification.from}}</h4>-->
+						<!--<h5 class="margin-bottom-10">-->
+						<!--{{notification.content}}-->
+						<!--</h5>-->
+						<!--<p>-->
+						<!--<a ng-click="goToProposal(notification.projectId, notification.proposalId)" class="btn btn-primary btn-xs pull-left margin-left-5 button_notification"> View proposal </a>-->
+						<!--</p>-->
+						<!--</div>-->
+						<!--<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'PROPOSAL APPROVED'">-->
+						<!--<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>-->
+						<!--<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>-->
+						<!--<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> {{notification.content}} </h4>-->
+						<!--<p>-->
+						<!--<a ng-click="goToProject(notification.projectId)" class="btn btn-primary btn-xs pull-left margin-left-5 button_notification"> View Project </a>-->
+						<!--</p>-->
+						<!--</div>-->
+						<!--<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'NEW INVERTION'">-->
+						<!--<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>-->
+						<!--<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>-->
+						<!--<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> {{notification.content}} </h4>-->
+						<!--<p>-->
+						<!--<a ng-click="goToFinance(notification.projectId)" class="btn btn-primary btn-xs pull-left margin-left-5 button_notification"> View Your Finances </a>-->
+						<!--</p>-->
+						<!--</div>-->
+						<div ng-show="notification.type == 'NEW PROPOSAL'" class="row">
+							<div class="col-sm-9 col-md-10 col-lg-10">
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-bottom-10">
+									<span class="notification-date-proposal margin-right-10"> {{getProjectDate(notification.date)}}</span>
+								</div>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+									<h5 class="alert-heading margin-bottom-10">New proposal created by <a ng-click="goToProfileView(notification.fromId)">{{notification.from}}</a></h5>
+									<a ng-click="goToProposal(notification.projectId, notification.proposalId)" class="button_notification"> View proposal </a>
+								</div>
+							</div>
+							<div class="col-sm-3 col-md-2 col-lg-2">
+								<img ng-src="{{notification.avatar}}" alt="" class="media-object img-circle notification-image-proposal pull-right">
+							</div>
 						</div>
-						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'PROPOSAL APPROVED'">
-							<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>
-							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
-							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> {{notification.content}} </h4>
-							<p>
-								<a ng-click="goToProject(notification.projectId)" class="btn btn-primary btn-xs pull-left margin-left-5 button_notification"> View Project </a>
-							</p>
+						<div ng-show="notification.type == 'PROPOSAL APPROVED'" class="row">
+							<div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+								<img ng-click="goToProject(notification.projectId)" ng-src="{{notification.avatar}}" alt="" class="media-object img-circle invertion-image">
+							</div>
+							<div class="col-xs-9 col-sm-10 col-md-11 col-lg-11 no-padding">
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+									<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
+								</div>
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-5">
+									<h5 class="col-sm-8 col-md-8 col-lg-8 margin-bottom-10 no-padding">{{notification.content}}</h5>
+									<a ng-click="goToProject(notification.projectId)" class="col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span class="pull-right">View Project</span>
+									</a>
+								</div>
+							</div>
 						</div>
-						<div class="alert alert-block alert-info fade in" ng-show="notification.type == 'NEW INVERTION'">
-							<button data-ct-dismiss="alert" class="close fa fa-times" type="button"></button>
-							<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
-							<h4 class="alert-heading margin-bottom-10"><i class="ti-info"></i> {{notification.content}} </h4>
-							<p>
-								<a ng-click="goToFinance(notification.projectId)" class="btn btn-primary btn-xs pull-left margin-left-5 button_notification"> View Your Finances </a>
-							</p>
+						<div ng-show="notification.type == 'NEW INVERTION'" class="row">
+							<div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+								<img ng-click="goToFinance(notification.projectId)" ng-src="{{notification.avatar}}" alt="" class="media-object img-circle invertion-image">
+							</div>
+							<div class="col-xs-9 col-sm-10 col-md-11 col-lg-11 no-padding">
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<span class="notification-time"> {{getProjectDate(notification.date)}}</span>
+								</div>
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-5">
+									<h5 class="col-sm-8 col-md-8 col-lg-8 margin-bottom-10 no-padding">{{notification.content}}</h5>
+									<a ng-click="goToFinance(notification.projectId)" class="col-sm-4 col-md-4 col-lg-4 no-padding">
+										<span class="pull-right">View Your Finances</span>
+									</a>
+								</div>
+							</div>
 						</div>
+						<hr class="tall">
 					</li>
 				</ul>
 			</div>

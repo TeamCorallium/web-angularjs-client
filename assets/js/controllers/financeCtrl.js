@@ -2,13 +2,13 @@
 /**
  * controller for User Projects
  */
-app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$state",
-    function ($scope, localStorageService, RestService,$state) {
+app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$state","toaster",
+    function ($scope, localStorageService, RestService,$state,toaster) {
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
             $scope.currentProjectActive = '';
-            $scope.investmentCapitalProject = '';
+            $scope.investmentCapitalProject = 0;
             $scope.listFinanceAbstract = [];
             $scope.balance = [];
             $scope.transactions = [];
@@ -23,8 +23,20 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                         function (data) {
                             $scope.currentProjectActive = data[0];
 
-                            if (!$scope.currentProjectActive.inverted){
-                                $state.go('app.allfinance');
+                            if ($scope.currentProjectActive.ownerInvestedCapital > 0) {
+                                var financeAbstract = {
+                                    id: $scope.currentProjectActive.userId,
+                                    name: '',
+                                    operation: 'income',
+                                    date: $scope.currentProjectActive.creationDate,
+                                    total: $scope.currentProjectActive.ownerInvestedCapital,
+                                    balance: $scope.currentProjectActive.ownerInvestedCapital
+                                };
+
+                                $scope.investmentCapitalProject += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
+                                $scope.income += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
+                                $scope.listFinanceAbstract.push(financeAbstract);
+                                $scope.getUserData($scope.currentProjectActive.userId);
                             }
                         },
                         function (errResponse) {
@@ -43,7 +55,6 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                             $scope.transactions = data;
 
                             for (var i = 0; i < $scope.transactions.length; i++) {
-
                                 if($scope.transactions[i].operation == 'income'){
                                     $scope.investmentCapitalProject += parseInt($scope.transactions[i].amount);
                                     $scope.income += parseInt($scope.transactions[i].amount);

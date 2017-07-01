@@ -276,7 +276,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                 RestService.updateUser($scope.currentUserActive)
                     .then(
                         function (data) {
-                            toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                            toaster.pop('success', 'Success', 'User updated correctly.');
                         },
                         function (errResponse) {
                             console.log(errResponse);

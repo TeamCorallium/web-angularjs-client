@@ -21,7 +21,7 @@
                     <label>Type</label>
                     <select ng-model="proposalType" ng-change="changeVisibilityItems()" class="cs-select cs-skin-slide">
                         <option disabled selected>Select Type</option>
-                        <option ng-if="$scope.currentForumActive.state == 1" value="Start Project">Start Project</option>
+                        <option ng-if="currentForumActive.state == 1" value="Start Project">Start Project</option>
                         <option value="Modified Task State">Modified Task State</option>
                         <option value="Modified Task Name">Modified Task Name</option>
                         <option value="Modified Task Description">Modified Task Description</option>

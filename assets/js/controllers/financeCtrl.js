@@ -23,10 +23,6 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                         function (data) {
                             $scope.currentProjectActive = data[0];
 
-                            if (!$scope.currentProjectActive.inverted && $scope.currentProjectActive.ownerId != localStorageService.get('currentUserId')){
-                                $state.go('app.allfinance');
-                            }
-
                             if ($scope.currentProjectActive.ownerInvestedCapital > 0) {
                                 var financeAbstract = {
                                     id: $scope.currentProjectActive.userId,

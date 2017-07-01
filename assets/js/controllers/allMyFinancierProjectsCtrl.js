@@ -8,27 +8,29 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
         if (!localStorageService.get('isLogged')) {
             $state.go('app.login.signin');
         } else {
-            $scope.allMyFincancierProjects = [];
+            $scope.allMyFinancierProjects = [];
             $scope.allFinancierAbstracts = [];
 
 
-            $scope.getAllMyFincancierProjects = function () {
+            $scope.getallMyFinancierProjects = function () {
                 RestService.fetchSimpleProjects(localStorageService.get('currentUserId'))
                     .then(
                         function (data) {
-                            $scope.allMyFincancierProjects = data;
+                            $scope.allMyFinancierProjects = data;
 
-                            for (var i = 0; i < $scope.allMyFincancierProjects.length; i++) {
-                                if ($scope.allMyFincancierProjects[i].inverted){
+                            for (var i = 0; i < $scope.allMyFinancierProjects.length; i++) {
+                                if ($scope.allMyFinancierProjects[i].inverted ||
+                                    ($scope.allMyFinancierProjects[i].userId == localStorageService.get('currentUserId') &&
+                                    $scope.allMyFinancierProjects[i].userId)){
                                     var forumAbstract = {
-                                        id: $scope.allMyFincancierProjects[i].id,
-                                        name: $scope.allMyFincancierProjects[i].projectName,
-                                        description: $scope.allMyFincancierProjects[i].description,
-                                        ownerInvestedCapital: parseFloat($scope.allMyFincancierProjects[i].ownerInvestedCapital),
+                                        id: $scope.allMyFinancierProjects[i].id,
+                                        name: $scope.allMyFinancierProjects[i].projectName,
+                                        description: $scope.allMyFinancierProjects[i].description,
+                                        ownerInvestedCapital: parseFloat($scope.allMyFinancierProjects[i].ownerInvestedCapital),
                                         balance: '',
                                     };
                                     $scope.allFinancierAbstracts.push(forumAbstract);
-                                    $scope.invertionsByProjectId($scope.allMyFincancierProjects[i].id);
+                                    $scope.invertionsByProjectId($scope.allMyFinancierProjects[i].id);
                                 }
                             }
                         },
@@ -39,7 +41,7 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
                     );
             };
 
-            $scope.getAllMyFincancierProjects();
+            $scope.getallMyFinancierProjects();
 
             $scope.invertions = [];
 

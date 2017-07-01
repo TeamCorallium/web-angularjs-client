@@ -13,16 +13,7 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
         });
 
         $scope.notifications = [];
-        $scope.currentNotification = {
-            userId: '',
-            from: '',
-            date: '',
-            subject: '',
-            read: '',
-            content: '',
-            avatar: 'assets/images/default-user.png',
-            type: ''
-        };
+        $scope.notificationsAbstract = [];
 
         $scope.getNotificationsByUserId = function () {
             if (localStorageService.get('currentUserId') != null) {
@@ -30,6 +21,31 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
                     .then(
                         function (data) {
                             $scope.notifications = data;
+
+                            for (var i=0; i<$scope.notifications.length; i++) {
+                                 var currentNotification = {
+                                    userId: $scope.notifications[i].userId,
+                                    from: $scope.notifications[i].from,
+                                    date: $scope.notifications[i].date,
+                                    subject: $scope.notifications[i].subject,
+                                    read: '',
+                                    content: $scope.notifications[i].content,
+                                    avatar: '',
+                                    type: $scope.notifications[i].type
+                                };
+
+                                $scope.notificationsAbstract.push(currentNotification);
+
+                                if (currentNotification.type == 'PROPOSAL APPROVED'){
+                                    $scope.notificationsAbstract[$scope.notificationsAbstract.length-1].avatar = 'assets/images/portfolio/image08.jpg';
+                                } else if (currentNotification.type == 'NEW INVERTION') {
+                                    $scope.notificationsAbstract[$scope.notificationsAbstract.length-1].avatar = 'assets/images/portfolio/image07.jpg';
+                                }
+                            }
+
+                            if ($scope.notificationsAbstract.length > 0) {
+                                $scope.getAvatar($scope.notificationsAbstract[0].userId);
+                            }
                         },
                         function (errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');
@@ -78,39 +94,53 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
 
             if (ml < 60000) {
                 value = parseInt(ml/1000);
-                return value +' seconds ago';
+                return value +' seconds';
             } else if (ml >= 60000 && ml < 3600000) {
                 value = parseInt(ml/60000);
                 if (value == 1 ) {
-                    return value +' minute ago';
+                    return value +' minute';
                 } else {
-
-                    return value + ' minutes ago';
+                    return value + ' minutes';
                 }
             } else if (ml >= 3600000 && ml < 86400000) {
                 value = parseInt(ml/3600000);
                 if (value == 1 ) {
-                    return value +' hour ago';
+                    return value +' hour';
                 } else {
-
-                    return value + ' hours ago';
+                    return value + ' hours';
                 }
             } else if (ml >= 86400000 && ml < 2592000000) {
                 value = parseInt(ml/86400000);
                 if (value == 1 ) {
-                    return value +' day ago';
+                    return value +' day';
                 } else {
-
-                    return value + ' days ago';
+                    return value + ' days';
                 }
             } else if (ml >= 2592000000){
                 value = parseInt(ml/2592000000);
                 if (value == 1 ) {
-                    return value +' month ago';
+                    return value +' month';
                 } else {
-
-                    return value + ' months ago';
+                    return value + ' months';
                 }
             }
+        };
+
+        $scope.getAvatar = function (userId) {
+            RestService.fetchUser(userId)
+                .then(
+                    function(data) {
+                        var avatar = data[0].avatar;
+
+                        for (var i=0; i<$scope.notificationsAbstract.length; i++) {
+                            if ($scope.notificationsAbstract[i].type == 'NEW PROPOSAL') {
+                                $scope.notificationsAbstract[i].avatar = avatar;
+                            }
+                        }
+                    },
+                    function(errResponse) {
+                        console.log(errResponse);
+                    }
+                );
         };
     }]);

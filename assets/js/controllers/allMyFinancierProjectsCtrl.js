@@ -21,7 +21,7 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
                             for (var i = 0; i < $scope.allMyFinancierProjects.length; i++) {
                                 if ($scope.allMyFinancierProjects[i].inverted ||
                                     ($scope.allMyFinancierProjects[i].userId == localStorageService.get('currentUserId') &&
-                                    $scope.allMyFinancierProjects[i].userId)) {
+                                    $scope.allMyFinancierProjects[i].ownerInvestedCapital > 0)) {
                                     var forumAbstract = {
                                         id: $scope.allMyFinancierProjects[i].id,
                                         name: $scope.allMyFinancierProjects[i].projectName,

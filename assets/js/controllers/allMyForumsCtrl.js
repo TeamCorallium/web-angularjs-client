@@ -21,7 +21,7 @@ app.controller('AllMyForumsCtrl', ["$scope", "$state", "toaster", "WebSocketServ
 
                                 if ($scope.allMyForums[i].inverted ||
                                     ($scope.allMyForums[i].userId == localStorageService.get('currentUserId') &&
-                                    $scope.allMyForums[i].userId)) {
+                                    $scope.allMyForums[i].ownerInvestedCapital > 0)) {
                                     var abstractForum = {
                                         projectId: '',
                                         proposalsCount: '',

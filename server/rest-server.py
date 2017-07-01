@@ -65,6 +65,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
             users = table_user.search(where('id') == int(self.id))
             fromName = users[0]['fullName']
+            fromId = users[0]['id']
+            fromAvatar = users[0]['avatar']
 
             interestedUserIds = []
             interestedUserIds.append(project['userId'])
@@ -75,8 +77,10 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
             notificationType = 'NEW PROPOSAL'
             for userId in interestedUserIds:
-                table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 'from': fromName, 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                            'subject': "Creation", 'content': "New proposal was created"})
+                table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': proposalId, 
+                                           'from': fromName, 'read': False, 'type': notificationType, 'fromId': fromId, 'fromAvatar':fromAvatar, 
+                                           'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                           'subject': "Creation", 'content': "New proposal was created"})
                 for c in clients:
                     if int(c.id) == int(userId):
                         c.connection.write_message("NOTIFICATION")

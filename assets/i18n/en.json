@@ -64,6 +64,13 @@
     "FIXEDFOOTER": "Fixed footer"
   },
   "pages": {
+    "home": {
+      "WELCOME": "Welcome to Corallium",
+      "MYPROYECTS": "My Proyects",
+      "CREATEPROYECT": "Create new proyect",
+      "OPPORTUNITIES": "Opportunities",
+      "VIEWMORE": "view more"
+    },
     "profile": {
       "TITLE": "User Profile"
     },

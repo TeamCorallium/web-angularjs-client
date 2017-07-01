@@ -232,10 +232,10 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
                                 $scope.addtasktoServer($scope.simpleProject.id);
                                 
                                 if (action == 'publish') {
-                                    toaster.pop('success', 'Good!!!', 'Project was created and publish correctly.');
+                                    toaster.pop('success', 'Success', 'Project was created and publish correctly.');
                                 }
                                 else {
-                                    toaster.pop('success', 'Good!!!', 'Project was saved correctly.');
+                                    toaster.pop('success', 'Success', 'Project was saved correctly.');
                                 }
                             }
                             $state.go('app.project.user_project');

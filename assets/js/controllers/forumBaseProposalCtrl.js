@@ -17,6 +17,8 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $scope.selectedTaskDuration = '';
             $scope.selectedTaskCost = '';
 
+            $scope.visibilityStartDate = false;
+
             $scope.getProjectById = function () {
                 RestService.fetchProjectById(localStorageService.get('currentProjectId'))
                     .then(
@@ -320,6 +322,15 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             $scope.currentTaskActive.duration = data[0].duration;
                             $scope.currentTaskActive.state = data[0].state;
 
+                            if ($scope.proposalType == 'Modified Task Start Date'){
+                                if ($scope.currentTaskActive.state == 1) {
+                                    $scope.visibilityStartDate = true;
+                                } else {
+                                    $scope.visibilityStartDate = false;
+                                    toaster.pop('error', 'Error', 'The task is active, you ca not change the start date.');
+                                }
+                            }
+
                             $scope.taskName = data[0].name;
                             $scope.taskDescription = data[0].description;
                             $scope.taskCost = data[0].cost;
@@ -364,10 +375,14 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         if ($scope.proposalType == 'Modified Task State') {
                             if ($scope.selectedTaskState != '') {
                                 if($scope.taskState != $scope.taskStateOld || $scope.taskState != '') {
-                                    currentProposalTemp.itemSubject = $scope.selectedTaskState.id;
-                                    currentProposalTemp.itemContent = $scope.taskState;
-                                    currentProposalTemp.currentContent = $scope.selectedTaskState.state;
-                                    $scope.listProposal.push(currentProposalTemp);
+                                    if ($scope.taskStateOld > 1 && $scope.taskState == 1) {
+                                        toaster.pop('error', 'Error', 'The task is active, you can not change the state to an earlier state.');
+                                    } else {
+                                        currentProposalTemp.itemSubject = $scope.selectedTaskState.id;
+                                        currentProposalTemp.itemContent = $scope.taskState;
+                                        currentProposalTemp.currentContent = $scope.selectedTaskState.state;
+                                        $scope.listProposal.push(currentProposalTemp);
+                                    }
                                 }else {
                                     toaster.pop('error', 'Error', 'Please change the task state.');
                                 }
@@ -442,10 +457,15 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         } else if ($scope.proposalType == 'Modified Task Start Date') {
                             if ($scope.selectedTaskStartDate != '') {
                                 if($scope.startDate != $scope.startDate || $scope.startDate != '') {
-                                    currentProposalTemp.itemSubject = $scope.selectedTaskStartDate.id;
-                                    currentProposalTemp.itemContent = $scope.startDate;
-                                    currentProposalTemp.currentContent = $scope.selectedTaskStartDate.startDate;
-                                    $scope.listProposal.push(currentProposalTemp);
+                                    var dateTemp = new Date();
+                                    if ($scope.startDate - dateTemp > 0){
+                                        currentProposalTemp.itemSubject = $scope.selectedTaskStartDate.id;
+                                        currentProposalTemp.itemContent = $scope.startDate;
+                                        currentProposalTemp.currentContent = $scope.selectedTaskStartDate.startDate;
+                                        $scope.listProposal.push(currentProposalTemp);
+                                    } else {
+                                        toaster.pop('error', 'Error', 'You can not select a date before today');
+                                    }
                                 }else {
                                     toaster.pop('error', 'Error', 'Please change the task start date.');
                                 }

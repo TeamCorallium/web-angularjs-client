@@ -181,7 +181,7 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
             RestService.updateUser($scope.owner)
                 .then(
                     function (data) {
-                        toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                        toaster.pop('success', 'Success', 'User updated correctly.');
 
                         $scope.getAllProjects();
                     },

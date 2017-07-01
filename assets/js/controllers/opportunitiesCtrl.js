@@ -185,7 +185,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
             RestService.updateUser($scope.owner)
                 .then(
                     function (data) {
-                        toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                        toaster.pop('success', 'Success', 'User updated correctly.');
 
                         $scope.getAllProjects();
                     },

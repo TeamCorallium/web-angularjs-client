@@ -172,7 +172,7 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                         function(data) {
                             $rootScope.user.avatar = $scope.userInfo.avatar;
                             $rootScope.user.name =  $scope.userInfo.email.split("@")[0];
-                            toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                            toaster.pop('success', 'Success', 'User updated correctly.');
                         },
                         function(errResponse) {
                             toaster.pop('error', 'Error', 'Server not available.');

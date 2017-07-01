@@ -96,7 +96,7 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                         RestService.deleteProject(projectId)
                             .then(
                                 function (data) {
-                                    // toaster.pop('success', 'Good!!!', 'Project deleted correctly.');
+                                    // toaster.pop('success', 'Success', 'Project deleted correctly.');
                                     $scope.getProjects();
                                     SweetAlert.swal({
                                         title: "Deleted!",

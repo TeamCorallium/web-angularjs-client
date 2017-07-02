@@ -66,8 +66,8 @@
   "pages": {
     "home": {
       "WELCOME": "Welcome to Corallium",
-      "MYPROYECTS": "My Proyects",
-      "CREATEPROYECT": "Create new proyect",
+      "MYPROYECTS": "My Projects",
+      "CREATEPROYECT": "Create new project",
       "OPPORTUNITIES": "Opportunities",
       "VIEWMORE": "view more"
     },

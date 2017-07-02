@@ -109,7 +109,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
             table_activity.insert({'userId': self.id, 'title': 'Vote', 'content': "Vote:" + vote['value'] + ' for ' + proposal['name'], 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
-            if proposal.state == 'publish':
+            if proposal['state'] == 'publish':
 
                 interestedUserIds = []
                 interestedUserIds.append(project['userId'])

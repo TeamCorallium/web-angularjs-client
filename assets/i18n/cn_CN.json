@@ -1,22 +1,17 @@
 {
   "dashboard": {
-    "WELCOME": "Welcome to {{appName}}"
+    "WELCOME": "歡迎來到 Corallium"
   },
   "topbar": {
-    "messages": {
-      "MAIN": "Messages",
-        "HEADER": "Unread messages",
-        "SEEALL": "See All"
+    "notifications": {
+      "MAIN": "通知"
     },
     "activities": {
-      "MAIN": "Activities"
+      "MAIN": "活動"
     },
     "user": {
-      "PROFILE": "My Profile",
-      "CALENDAR" : "My Calendar",
-      "MESSAGES" : "My Messages",
-      "LOCKSCREEN" : "Lock Screen",
-      "clogoUT" : "Log Out"
+      "PROFILE": "我的簡歷",
+      "clogoUT" : "登出"
     }
   },
   "offsidebar": {
@@ -42,17 +37,17 @@
   },
   "sidebar": {
     "heading": {
-      "NAVIGATION": "Main Navigation",
+      "NAVIGATION": "主導航"
     },
     "search": {
-      "PLACEHOLDER": "Search..."
+      "PLACEHOLDER": "搜索..."
     },
     "nav": {
-      "HOME": "Home",
-      "EXPLORE": "Explore",
-      "STATISTICS": "Statistics",
-      "FORUM": "Forums",
-      "FINANCE": "Finances"
+      "HOME": "家",
+      "EXPLORE": "探索",
+      "STATISTICS": "統計",
+      "FORUM": "論壇",
+      "FINANCE": "財政"
     }
   },
   "footer": {
@@ -67,5 +62,20 @@
     "FIXEDSIDEBAR": "Fixed sidebar",
     "CLOSEDSIDEBAR": "Closed sidebar",
     "FIXEDFOOTER": "Fixed footer"
+  },
+  "pages": {
+    "home": {
+      "WELCOME": "歡迎來到 Corallium",
+      "MYPROYECTS": "我的項目",
+      "CREATEPROYECT": "創建新項目",
+      "OPPORTUNITIES": "機會",
+      "VIEWMORE": "查看更多"
+    },
+    "profile": {
+      "TITLE": "用戶資料"
+    },
+    "activities": {
+      "TITLE": "活動"
+    }    
   }
 }

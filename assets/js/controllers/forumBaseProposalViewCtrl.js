@@ -30,7 +30,7 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                         function (data) {
                             $scope.currentForumActive = data[0];
 
-                            if (localStorageService.get('currentUserId') == $scope.currentForumActive.userId) {
+                            if (localStorageService.get('currentUserId') == $scope.currentForumActive.userId && $scope.currentForumActive.ownerInvestedCapital <= 0) {
                                 $state.go('app.forum.viewvotation');
                             }
                         },

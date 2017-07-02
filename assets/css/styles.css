@@ -4651,11 +4651,11 @@ a.text-light:hover {
 }
 
 .progress-bar-success {
-  background-color: #08B778;
+  background-color: #b9f6ca;
 }
 
 .progress-bar-info {
-  background-color: #e54823;
+  background-color: #e0e0e0;
 }
 
 .progress-bar-warning {
@@ -4663,7 +4663,7 @@ a.text-light:hover {
 }
 
 .progress-bar-danger {
-  background-color: #e02d2d;
+  background-color: #ff8a80;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -11867,10 +11867,22 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 /* Notification */
 /*--------------*/
 .notification-image{
-  float: left;
-  height: 100px;
-  margin-right: 5%;
-  width: 100px;
+  height: 80px !important;
+  margin-right: 5% !important;
+  width: 80px !important;
+}
+
+.notification-image-proposal{
+  float: right !important;
+  height: 60px !important;
+  width: 60px !important;
+}
+
+.invertion-image{
+  float: left !important;
+  height: 60px !important;
+  margin-right: 5% !important;
+  width: 60px !important;
 }
 
 .explore-user-image{
@@ -11888,6 +11900,13 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 
 .notification-time{
   float: right;
+  font-size: $font-size-extra-small;
+  font-style: italic;
+  font-weight: 600;
+  color: $darkGrey;
+}
+
+.notification-date-proposal{
   font-size: $font-size-extra-small;
   font-style: italic;
   font-weight: 600;
@@ -11961,4 +11980,25 @@ fieldset legend {
   font-size: 17px !important;;
   position: relative !important;;
   top: 2px !important;;
+}
+
+.button_notification {
+  width: 116px !important;
+  text-align: center !important;
+}
+
+.progress {
+  position: relative !important;
+}
+
+.progress span {
+  position: absolute !important;
+  display: block !important;
+  width: 100% !important;
+  color: #13171d !important;
+  font-weight: bold !important;
+}
+
+.cursor-none:hover{
+  cursor: default !important;
 }

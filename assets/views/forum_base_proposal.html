@@ -21,7 +21,7 @@
                     <label>Type</label>
                     <select ng-model="proposalType" ng-change="changeVisibilityItems()" class="cs-select cs-skin-slide">
                         <option disabled selected>Select Type</option>
-                        <option ng-show="currentForumActive.state == 1" value="Start Project">Start Project</option>
+                        <option ng-if="currentForumActive.state == 1" value="Start Project">Start Project</option>
                         <option value="Modified Task State">Modified Task State</option>
                         <option value="Modified Task Name">Modified Task Name</option>
                         <option value="Modified Task Description">Modified Task Description</option>
@@ -63,7 +63,7 @@
                     <select class="cs-select cs-skin-slide" ng-model="$parent.taskState" name="state">
                         <option ng-selected="" value="0" disabled selected>Select an state</option>
                         <option ng-selected="currentTaskActive.state == 1" value="1">In Preparation</option>
-                        <option ng-selected="currentTaskActive.state == 2" value="2">Active: On time</option>
+                        <option ng-selected="currentTaskActive.state == 2" value="2">Active</option>
                         <option ng-selected="currentTaskActive.state == 3" value="3">Active: On time</option>
                         <option ng-selected="currentTaskActive.state == 4" value="4">Active: Best than Expected</option>
                         <option ng-selected="currentTaskActive.state == 5" value="5">Active: Delayed</option>
@@ -162,7 +162,7 @@
 
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTaskStartDate != ''">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTaskStartDate != '' && visibilityStartDate">
                 <div class="form-group">
                     <label>Start Date</label>
                     <div class="input-group">

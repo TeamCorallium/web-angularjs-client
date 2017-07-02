@@ -192,7 +192,7 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
             
             print(invertions)
 
-            amount = 0;
+            amount = int(project['ownerInvestedCapital']);
             for invertion in invertions:
                 amount += int(invertion['amount'])
 
@@ -211,5 +211,20 @@ class SimpleProjectOpportunitiesHandler(tornado.web.RequestHandler):
             self.write(json.dumps(sortedOpportunities))
             print(sortedOpportunities)   
         else:
-            self.write(json.dumps(opportunities))
-            print(opportunities)        
+            users = table_user.search((where('id') == userId) | (where('id') == int(userId)))
+            follows = users[0]['projectsFollow']
+
+            opportunitiesFollowFirst = []
+
+            for opp in opportunities:
+                found = False
+                for foll in follows:
+                    if int(opp['id']) == int(foll):
+                        opportunitiesFollowFirst = [opp] + opportunitiesFollowFirst
+                        found = True
+                        break
+                if found == False:
+                    opportunitiesFollowFirst = opportunitiesFollowFirst + [opp]
+
+            self.write(json.dumps(opportunitiesFollowFirst))
+            print(opportunitiesFollowFirst)        

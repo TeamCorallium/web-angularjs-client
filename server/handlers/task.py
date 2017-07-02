@@ -38,7 +38,7 @@ class TaskHandler(tornado.web.RequestHandler):
         print(newTask)
         print(newTask['projectId'])
 
-        if len(table_task.search(where('id') == newTask['id'])) != 0:
+        if len(table_task.search((where('id') == newTask['id']) | (where('id') == int(newTask['id']) ))) != 0:
             # self.write('-1')
             id = newTask['id']
             table_task.update(newTask, eids=[int(id)])

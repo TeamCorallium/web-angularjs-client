@@ -164,11 +164,15 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
             return followFlag;
         };
 
-        $scope.updateUser = function () {
+        $scope.updateUser = function (name, flag) {
             RestService.updateUser($scope.owner)
                 .then(
                     function (data) {
-                        toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                        if (flag) {
+                            toaster.pop('success', 'Success', 'You are now follow the project '+name);
+                        } else {
+                            toaster.pop('success', 'Success', 'You are now unfollow the project '+name);
+                        }
                     },
                     function (errResponse) {
                         console.log(errResponse);
@@ -176,7 +180,7 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                 );
         };
 
-        $scope.follow = function (projectId) {
+        $scope.follow = function (projectId, name) {
 
             if (localStorageService.get('isLogged')) {
 
@@ -185,21 +189,21 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                 }
                 $scope.owner.projectsFollow.push(projectId);
 
-                $scope.updateUser();
+                $scope.updateUser(name,true);
             }
             else {
                 toaster.pop('error', 'Error!!!', 'Must be login first.');
             }
         };
 
-        $scope.unfollow = function (projectId) {
+        $scope.unfollow = function (projectId, name) {
             for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
                 if (projectId == $scope.owner.projectsFollow[i]) {
                     $scope.owner.projectsFollow.splice(i, 1);
                     break;
                 }
             }
-            $scope.updateUser();
+            $scope.updateUser(name,false);
         };
 
         $scope.getAllUsers = function () {

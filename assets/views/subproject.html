@@ -371,10 +371,10 @@
                                                                         <button ng-click="goToTask(task.id)" type="button" class="btn btn-warning btn-xs">
                                                                             <span class="ti-eye"></span> View
                                                                         </button>
-                                                                        <button ng-click="goToUpdateTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-success btn-xs">
+                                                                        <button ng-click="goToUpdateTask(task.id)" ng-show="(currentProjectActive.state == 1 || currentProjectActive.state == 0) && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-success btn-xs">
                                                                             <span class="ti-reload"></span> Update
                                                                         </button>
-                                                                        <button ng-click="deleteTask(task.id)" ng-show="currentProjectActive.state == 1 && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-danger btn-xs">
+                                                                        <button ng-click="deleteTask(task.id)" ng-show="(currentProjectActive.state == 1 || currentProjectActive.state == 0) && projectRole(currentProjectActive.userId) == 'Owner' && !currentProjectActive.inverted" type="button" class="btn btn-danger btn-xs">
                                                                             <span class="ti-trash"></span> Remove
                                                                         </button>
                                                                     </div>
@@ -388,6 +388,7 @@
                                                     <button class="btn" ng-click="toggleMode(this)">Zoom to Fit</button>
                                                 </div>
                                                 <div id="gantt_here"></div>
+                                                <div ng-show="tasksProject.length == -1" id="gantt_hide"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -419,7 +420,7 @@
                                                         <hr class="tall">
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                                <span class="notification-author"><a>{{reference.name}}</a></span>
+                                                                <span class="notification-author"><a class="cursor-none">{{reference.name}}</a></span>
                                                                 <span ng-hide="reference.file == ''" class="pull-right"><a ng-click="seeReference(reference.file)"> See reference</a></span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
@@ -460,7 +461,7 @@
                                                         <hr class="tall">
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                                <span class="notification-author"><a>{{risk.name}}</a></span>
+                                                                <span class="notification-author"><a class="cursor-none">{{risk.name}}</a></span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview">{{ risk.description}}</span>
@@ -497,7 +498,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" ng-show="currentProjectActive.inverted || (forumView())">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                     <button ui-sref="app.forum.base" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-comment-alt">
                                         <span>Go to forum</span>

@@ -145,7 +145,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                         RestService.deleteProject(projectId)
                             .then(
                                 function (data) {
-                                    // toaster.pop('success', 'Good!!!', 'Project deleted correctly.');
+                                    // toaster.pop('success', 'Success', 'Project deleted correctly.');
                                     $scope.getProjects();
                                     SweetAlert.swal({
                                         title: "Deleted!",
@@ -191,7 +191,7 @@ app.controller('CurrentUserProjects', ["$scope", "localStorageService", "RestSer
                 RestService.updateUser($scope.owner)
                     .then(
                         function (data) {
-                            toaster.pop('success', 'Good!!!', 'User updated correctly.');
+                            toaster.pop('success', 'Success', 'User updated correctly.');
                         },
                         function (errResponse) {
                             console.log(errResponse);

@@ -157,7 +157,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             };
 
             //begin Gantt
-
             $scope.ganttStart = function (containerName) {
                 var tasks = {
                     data: [],
@@ -237,7 +236,7 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     return false;
                 });
             };
-            // $scope.ganttStart();
+            $scope.ganttStart("gantt_hide");
 
             $scope.toggleMode = function (toggle) {
                 toggle.enabled = !toggle.enabled;
@@ -560,6 +559,15 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                     $state.go('app.inversion');
                 } else {
                     toaster.pop('error', 'Error', 'Please select the amount to invest.');
+                }
+            };
+
+            $scope.forumView = function () {
+                if ($scope.currentProjectActive.userId != localStorageService.get('currentUserId') &&
+                $scope.currentProjectActive.ownerInvestedCapital <= 0) {
+                    return true;
+                } else {
+                    return false;
                 }
             };
 

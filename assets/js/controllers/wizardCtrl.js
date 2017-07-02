@@ -546,6 +546,10 @@ app.controller('WizardCtrl', ["$scope", "$rootScope", "toaster", "localStorageSe
 
             var validateSteps = function (step, op) {
                 if (step == '1') {
+                    if (parseInt($scope.simpleProject.ownerInvestedCapital) > parseInt($scope.simpleProject.totalCost)) {
+                        toaster.pop('warning', 'Error', 'Total cost must be greater than owner invested capital.');
+                        return false;
+                    }
                     if (parseInt($scope.simpleProject.minimalCost) > parseInt($scope.simpleProject.totalCost)) {
                         toaster.pop('warning', 'Error', 'Total cost must be greater than minimal cost.');
                         return false;

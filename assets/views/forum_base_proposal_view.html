@@ -119,15 +119,15 @@
 						<div class="panel-body margin-top-15">
 							<div class="row">
 								<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>YES</strong></h5>
-								<uib-progressbar value="countVotes.yes" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="success">{{countVotes.yes}} %</uib-progressbar>
+								<uib-progressbar value="countVotes.yes" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="success">{{countVotes.yes | number: 2}} %</uib-progressbar>
 							</div>
 							<div class="row">
 								<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>NO</strong></h5>
-								<uib-progressbar value="countVotes.no" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="danger">{{countVotes.no}} %</uib-progressbar>
+								<uib-progressbar value="countVotes.no" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="danger">{{countVotes.no | number: 2}} %</uib-progressbar>
 							</div>
 							<div class="row">
 								<h5 class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>ABS</strong></h5>
-								<uib-progressbar value="countVotes.abs" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="info">{{countVotes.abs}} %</uib-progressbar>
+								<uib-progressbar value="countVotes.abs" max="100" class="progress-md col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding" type="info">{{countVotes.abs | number: 2}} %</uib-progressbar>
 							</div>
 						</div>
 					</fieldset>

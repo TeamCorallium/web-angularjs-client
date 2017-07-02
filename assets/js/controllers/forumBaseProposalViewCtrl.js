@@ -120,6 +120,9 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
 
                             if ($scope.currentForumActive.userId == localStorageService.get('currentUserId')) {
                                 $scope.investmentUserProject += parseFloat($scope.currentForumActive.ownerInvestedCapital);
+                            }
+
+                            if($scope.currentForumActive.ownerInvestedCapital > 0) {
                                 $scope.investmentProject += parseFloat($scope.currentForumActive.ownerInvestedCapital);
                             }
 

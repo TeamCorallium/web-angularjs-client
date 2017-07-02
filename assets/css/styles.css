@@ -10358,13 +10358,13 @@ td.small-width {
   position: relative;
 }
 .ltwt .ltwt_tweet:before {
-  content: "\e74b";
+  content: "\e645";
   font-family: 'themify';
-  font-size: 30px;
-  margin-left: -45px;
+  font-size: 24px;
+  margin-left: -40px;
   position: absolute;
   top: 6px;
-  color: #e54823;
+  color: #FF6839;
 }
 .ltwt .ltwt_tweet .ltwt_tweet_text {
   margin-bottom: 5px;
@@ -11997,4 +11997,8 @@ fieldset legend {
   width: 100% !important;
   color: #13171d !important;
   font-weight: bold !important;
+}
+
+.cursor-none:hover{
+  cursor: default !important;
 }

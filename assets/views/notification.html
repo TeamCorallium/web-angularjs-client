@@ -50,7 +50,7 @@
 								</div>
 							</div>
 							<div class="col-sm-3 col-md-2 col-lg-2">
-								<img ng-src="{{notification.avatar}}" alt="" class="media-object img-circle notification-image-proposal pull-right">
+								<img ng-click="goToProfileView(notification.fromId)" ng-src="{{notification.avatar}}" alt="" class="media-object img-circle notification-image-proposal pull-right">
 							</div>
 						</div>
 						<div ng-show="notification.type == 'PROPOSAL APPROVED'" class="row">

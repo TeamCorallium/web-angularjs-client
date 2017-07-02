@@ -272,11 +272,15 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                 return followFlag;
             };
 
-            $scope.updateUser = function () {
+            $scope.updateUser = function (flag) {
                 RestService.updateUser($scope.currentUserActive)
                     .then(
                         function (data) {
-                            toaster.pop('success', 'Success', 'User updated correctly.');
+                            if (flag) {
+                                toaster.pop('success', 'Success', 'You are now follow the project '+$scope.currentProjectActive.projectName);
+                            } else {
+                                toaster.pop('success', 'Success', 'You are now unfollow the project '+$scope.currentProjectActive.projectName);
+                            }
                         },
                         function (errResponse) {
                             console.log(errResponse);
@@ -293,7 +297,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                     }
                     $scope.currentUserActive.projectsFollow.push(projectId);
 
-                    $scope.updateUser();
+                    $scope.updateUser(true);
                 }
                 else {
                     toaster.pop('error', 'Error!!!', 'Must be login first.');
@@ -307,7 +311,7 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                         break;
                     }
                 }
-                $scope.updateUser();
+                $scope.updateUser(false);
             };
 
             $scope.seeReference = function (file) {

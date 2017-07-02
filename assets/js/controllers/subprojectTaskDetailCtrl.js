@@ -58,5 +58,14 @@ app.controller('SubprojectTaskDetailCtrl', ["$scope", "localStorageService", "Re
                 dat.setDate(dat.getDate() + duration);
                 return $scope.getProjectDate(dat);
             };
+
+            $scope.forumView = function () {
+                if ($scope.currentProjectActive.userId != localStorageService.get('currentUserId') &&
+                    $scope.currentProjectActive.ownerInvestedCapital <= 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
         }
     }]);

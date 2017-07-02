@@ -118,6 +118,11 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                         function (data) {
                             $scope.invertions = data;
 
+                            if ($scope.currentForumActive.userId == localStorageService.get('currentUserId')) {
+                                $scope.investmentUserProject += parseFloat($scope.currentForumActive.ownerInvestedCapital);
+                                $scope.investmentProject += parseFloat($scope.currentForumActive.ownerInvestedCapital);
+                            }
+
                             for (var i = 0; i < $scope.invertions.length; i++) {
                                 if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
                                     $scope.investmentUserProject = parseFloat($scope.invertions[i].amount);

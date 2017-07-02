@@ -30,6 +30,7 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
                                     fromId: $scope.notifications[i].fromId,
                                     date: $scope.notifications[i].date,
                                     subject: $scope.notifications[i].subject,
+                                    proposalId: $scope.notifications[i].proposalId,
                                     read: '',
                                     content: $scope.notifications[i].content,
                                     avatar: $scope.notifications[i].fromAvatar,

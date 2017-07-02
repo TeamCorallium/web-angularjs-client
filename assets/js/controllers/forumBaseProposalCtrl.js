@@ -369,7 +369,8 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             type: $scope.proposalType,
                             itemSubject: '',
                             itemContent: '',
-                            currentContent: ''
+                            currentContent: '',
+                            state: ''
                         };
 
                         if ($scope.proposalType == 'Modified Task State') {

@@ -55,8 +55,8 @@
 					</div>
 				</fieldset>
 			</div>
-			<hr class="tall" ng-show="allVotes.length > 0">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="allVotes.length > 0">
+			<hr class="tall" ng-show="allVoteAbstract.length > 0">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="allVoteAbstract.length > 0">
 				<table class="table table-striped" wt-responsive-table>
 					<thead>
 					<tr>
@@ -66,8 +66,8 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr ng-repeat="vote in allVotes">
-						<td> {{allUserName[$index]}} </td>
+					<tr ng-repeat="vote in allVoteAbstract">
+						<td> {{vote.name}} </td>
 						<td class="text-right"> {{showVoteValue(vote.value)}} </td>
 						<td class="text-right"> {{vote.percent | number: 2}} </td>
 					</tr>

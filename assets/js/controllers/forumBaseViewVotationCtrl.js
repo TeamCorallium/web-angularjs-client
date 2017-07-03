@@ -13,7 +13,7 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
             $scope.viewVoteResults = false;
             $scope.userVote = false;
             $scope.allVotes = [];
-            $scope.allUserName = [];
+            $scope.allVoteAbstract = [];
 
             $scope.countVotes = {
                 yes: 0,
@@ -47,6 +47,14 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                             $scope.calculateVotes();
 
                             for (var i = 0; i < $scope.allVotes.length; i++) {
+                                var voteAbstract = {
+                                    userId: $scope.allVotes[i].userId,
+                                    name: '',
+                                    value: $scope.allVotes[i].value,
+                                    percent: $scope.allVotes[i].percent
+                                };
+
+                                $scope.allVoteAbstract.push(voteAbstract);
                                 $scope.getUserName($scope.allVotes[i].userId);
                             }
                         },
@@ -95,7 +103,14 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                 RestService.fetchUser(userId)
                     .then(
                         function (data) {
-                            $scope.allUserName.push(data[0].fullName);
+                            var name = data[0].fullName;
+
+                            for (var i=0; i<$scope.allVoteAbstract.length; i++) {
+                                if ($scope.allVoteAbstract[i].userId == userId) {
+                                    $scope.allVoteAbstract[i].name = name;
+                                    break;
+                                }
+                            }
                         },
                         function (errResponse) {
                             console.log(errResponse);

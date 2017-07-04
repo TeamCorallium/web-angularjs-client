@@ -4,7 +4,7 @@
             <div class="col-sm-8">
                 <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
             </div>
-            <div ncy-breadcrumb></div>
+            <!--<div ncy-breadcrumb></div>-->
         </div>
     </section>
     <div class="container-fluid container-fullw bg-white">
@@ -404,7 +404,7 @@
                                                         <hr class="tall">
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                                <span class="notification-author"><a>{{reference.name}}</a></span>
+                                                                <span class="notification-author"><a class="cursor-none">{{reference.name}}</a></span>
                                                                 <span ng-hide="reference.file == ''" class="pull-right"><a ng-click="seeReference(reference.file)"> See reference</a></span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">

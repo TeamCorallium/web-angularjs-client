@@ -82,6 +82,12 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
             $state.go('app.finance');
         };
 
+        $scope.goToViewVotation = function (projectId, proposalId) {
+            localStorageService.set('currentProjectId', projectId);
+            localStorageService.set('currentProposalId', proposalId);
+            $state.go('app.forum.viewvotation');
+        };
+
         $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         $scope.getProjectDate = function (date) {

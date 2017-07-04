@@ -5,7 +5,7 @@
             <div class="col-sm-8">
                 <h1 class="mainTitle">{{currentProjectActive.projectName}}</h1>
             </div>
-            <div ncy-breadcrumb></div>
+            <!--<div ncy-breadcrumb></div>-->
         </div>
     </section>
     <div class="container-fluid container-fullw bg-white">
@@ -187,6 +187,12 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p>
+                                                            <strong>Covered Capital:</strong>
+                                                            {{coveredCapitalPercent | number: 2}} %
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
                                                             <strong>My Estimate Revenue: </strong>
                                                             {{currentProjectActive.revenueOwner}} %
@@ -196,14 +202,20 @@
                                                             {{estimateRevenueFinancier | number: 2}} $
                                                         </p>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12" ng-show="currentProjectActive.state > 1">
                                                         <p>
                                                             <strong>Execution Plan: </strong>
                                                         </p>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12" ng-show="currentProjectActive.state > 1">
                                                         <p>
                                                             <strong>Real Execution: </strong>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p>
+                                                            <strong>Total of Investors:</strong>
+                                                            {{invertions.length}}
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">

@@ -2,6 +2,16 @@
   "dashboard": {
     "WELCOME": "Bienvenidos a Corallium"
   },
+  "frontend": {
+    "menu": {
+      "HOME": "Página Principal",
+      "ABOUTUS": "Quienes somos",
+      "FAQ": "Preguntas frecuentes",
+      "CONTACTUS": "Contáctenos",
+      "EXPLORE": "Explorar",
+      "CREATEPROYECT": "Crear nuevo proyecto"
+    }
+  },  
   "topbar": {
     "notifications": {
       "MAIN": "Notificaciones"
@@ -12,7 +22,12 @@
     "user": {
       "PROFILE": "Mi Perfil",
       "clogoUT" : "Salir"
-    }
+    },
+    "language": {
+      "ENGLISH": "Inglés",
+      "SPANISH": "Español",
+      "CHINESE": "Chino"
+    }    
   },
   "offsidebar": {
     "chat": {

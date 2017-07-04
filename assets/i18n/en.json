@@ -2,6 +2,16 @@
   "dashboard": {
     "WELCOME": "Welcome to Corallium"
   },
+  "frontend": {
+    "menu": {
+      "HOME": "Home",
+      "ABOUTUS": "About Us",
+      "FAQ": "Faq",
+      "CONTACTUS": "Contact Us",
+      "EXPLORE": "Explore",
+      "CREATEPROYECT": "Create new project"
+    }
+  },
   "topbar": {
     "notifications": {
     	"MAIN": "Notifies"
@@ -12,6 +22,11 @@
     "user": {
       "PROFILE": "My Profile",
       "clogoUT" : "Log Out"
+    },
+    "language": {
+      "ENGLISH": "English",
+      "SPANISH": "Spanish",
+      "CHINESE": "Chinese"
     }
   },
   "offsidebar": {

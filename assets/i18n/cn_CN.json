@@ -2,6 +2,16 @@
   "dashboard": {
     "WELCOME": "歡迎來到 Corallium"
   },
+  "frontend": {
+    "menu": {
+      "HOME": "家园",
+      "ABOUTUS": "關於我們",
+      "FAQ": "常問問題",
+      "CONTACTUS": "聯繫我們",
+      "EXPLORE": "探索",
+      "CREATEPROYECT": "創建新項目"
+    }
+  },  
   "topbar": {
     "notifications": {
       "MAIN": "通知"
@@ -12,7 +22,12 @@
     "user": {
       "PROFILE": "我的簡歷",
       "clogoUT" : "登出"
-    }
+    },
+    "language": {
+      "ENGLISH": "英語",
+      "SPANISH": "西班牙語",
+      "CHINESE": "中文"
+    }    
   },
   "offsidebar": {
     "chat": {

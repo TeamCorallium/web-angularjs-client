@@ -2,7 +2,7 @@
 <!-- start: NAVBAR HEADER -->
 <div class="navbar-header">
 	<a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" ng-click="toggle('sidebar')" class="btn btn-navbar sidebar-toggle"> <i class="ti-align-justify"></i> </a>
-	<a class="navbar-brand" ui-sref="app.default"> <img ng-src="{{app.layout.clogo}}" alt="{{app.name}}"/> </a>
+	<a class="navbar-brand" href="http://localhost:8001/Front-End/HTML/index.html"> <img ng-src="{{app.layout.clogo}}" alt="{{app.name}}"/> </a>
 	<a href="#" class="sidebar-toggler pull-right visible-md visible-lg" ng-click="app.layout.isSidebarClosed = !app.layout.isSidebarClosed"> <i class="ti-align-justify"></i> </a>
 	<a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" ng-click="navbarCollapsed = !navbarCollapsed"> <span class="sr-only">Toggle navigation</span> <i class="ti-view-grid"></i> </a>
 <!-- 	<a ng-controller="NotificationCtrl" class="visible-xs-block pull-right margin-right-10" uib-dropdown-toggle ng-show="isLogged" ui-sref="app.notification">
@@ -34,11 +34,22 @@
 		<!-- end: ACTIVITIES DROPDOWN -->
 		<!-- start: LANGUAGE SWITCHER -->
 		<li class="dropdown" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged">
-			<a href class="dropdown-toggle" uib-dropdown-toggle> <i class="ti-world"></i> {{language.selected}} </a>
+			<a ng-if="language.selected == 'English'" href class="dropdown-toggle" uib-dropdown-toggle> <i class="ti-world"></i> <span translate="topbar.language.ENGLISH"></span> </a>
+			<a ng-if="language.selected == 'Spanish'" href class="dropdown-toggle" uib-dropdown-toggle> <i class="ti-world"></i> <span translate="topbar.language.SPANISH"></span> </a>
+			<a ng-if="language.selected == 'Chinese'" href class="dropdown-toggle" uib-dropdown-toggle> <i class="ti-world"></i> <span translate="topbar.language.CHINESE"></span> </a>
 			<ul role="menu" class="dropdown-menu dropdown-light fadeInUpShort">
-				<li ng-repeat="(localeId, langName) in language.available">
+<!-- 				<li ng-repeat="(localeId, langName) in language.available">
 					<a ng-click="language.set(localeId, $event)" href="#"> {{langName}} </a>
+				</li> -->
+				<li ng-click="language.set('en', $event)">
+					<a translate="topbar.language.ENGLISH"> English </a>
 				</li>
+				<li ng-click="language.set('es_ES', $event)">
+					<a translate="topbar.language.SPANISH"> Spanish </a>
+				</li>	
+				<li ng-click="language.set('cn_CN', $event)">
+					<a translate="topbar.language.CHINESE"> Chinese </a>
+				</li>													
 			</ul>
 		</li>
 		<!-- start: LANGUAGE SWITCHER -->

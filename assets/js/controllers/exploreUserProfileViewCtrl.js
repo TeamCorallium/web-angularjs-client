@@ -2,8 +2,8 @@
 /**
  * controller for User Projects
  */
-app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster",
-    function ($scope, localStorageService, RestService, $state, toaster) {
+app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "RestService", "$state", "toaster", "$window",
+    function ($scope, localStorageService, RestService, $state, toaster, $window) {
 
         $scope.noImage = false;
         $scope.allProjects = '';
@@ -160,6 +160,7 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
         $scope.getAllProjects();
 
         $scope.goToLink = function (link) {
-            $window.location.href = link;
+            // $window.location.href = link;
+            $window.open(link, '_blank');
         };
     }]);

@@ -265,7 +265,8 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
             $scope.mstep = 15;
 
             $scope.goToLink = function (link) {
-                $window.location.href = link;
+                // $window.location.href = link;
+                $window.open(link, '_blank');
             };
 
             $scope.passwordStruct = {

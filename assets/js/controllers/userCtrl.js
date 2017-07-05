@@ -52,22 +52,40 @@ app.controller('UserCtrl', ["$scope", "$state", "flowFactory", "RestService", "t
                 var dateTemp = new Date(date);
                 var today = new Date();
 
-                if(dateTemp.getMonth() == today.getMonth() && dateTemp.getDate() == today.getDate() && dateTemp.getFullYear() == today.getFullYear()){
-                    if(today.getHours() == dateTemp.getHours()) {
-                        if(today.getMinutes() == dateTemp.getMinutes()) {
-                            return 'a few seconds ago';
-                        } else {
-                            return today.getMinutes()-dateTemp.getMinutes() + " minutes ago";
-                        }
+                var ml = today.getTime() - dateTemp.getTime();
+                var value = 0;
+
+                if (ml < 60000) {
+                    value = parseInt(ml/1000);
+                    return 'a few seconds ago';
+                } else if (ml >= 60000 && ml < 3600000) {
+                    value = parseInt(ml/60000);
+                    if (value == 1 ) {
+                        return value +' minute';
                     } else {
-                        if (today.getHours()-dateTemp.getHours() > 1) {
-                            return today.getHours()-dateTemp.getHours() + " hours ago";
-                        } else  {
-                            return today.getHours()-dateTemp.getHours() + " hour ago";
-                        }
+                        return value + ' minutes';
                     }
-                } else {
-                    return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", "+ dateTemp.getFullYear();
+                } else if (ml >= 3600000 && ml < 86400000) {
+                    value = parseInt(ml/3600000);
+                    if (value == 1 ) {
+                        return value +' hour';
+                    } else {
+                        return value + ' hours';
+                    }
+                } else if (ml >= 86400000 && ml < 2592000000) {
+                    value = parseInt(ml/86400000);
+                    if (value == 1 ) {
+                        return value +' day';
+                    } else {
+                        return value + ' days';
+                    }
+                } else if (ml >= 2592000000){
+                    value = parseInt(ml/2592000000);
+                    if (value == 1 ) {
+                        return value +' month';
+                    } else {
+                        return value + ' months';
+                    }
                 }
             };
 

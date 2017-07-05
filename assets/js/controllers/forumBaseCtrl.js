@@ -202,5 +202,14 @@ app.controller('ForumBaseCtrl', ["$scope", "$rootScope", "$state", "toaster", "W
 
                 return name;
             };
+
+            $scope.goToProfileView = function (userId) {
+                localStorageService.set('viewUserProfileId', userId);
+                if (localStorageService.get('currentUserId') == userId) {
+                    $state.go('app.pages.user');
+                } else {
+                    $state.go('app.pages.exploreuser');
+                }
+            };
         }
     }]);

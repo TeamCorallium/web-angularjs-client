@@ -54,7 +54,7 @@
 								<li ng-repeat="comment in comments">
 									<div class="post-media post-comments margin-top-30">
 										<div class="media">
-											<a class="pull-left"> <img ng-src="{{comment.avatar}}" alt="" class="media-object img-circle"> </a>
+											<a class="pull-left" ng-click="goToProfileView(comment.userId)"> <img ng-src="{{comment.avatar}}" alt="" class="media-object img-circle"> </a>
 											<div class="media-body">
 												<h5 class="media-heading">{{comment.fullName}} </h5>
 												<p>

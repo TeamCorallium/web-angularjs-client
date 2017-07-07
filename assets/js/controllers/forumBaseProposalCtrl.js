@@ -393,10 +393,24 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                             if ($scope.taskStateOld > 1 && $scope.taskState <= 1) {
                                                 toaster.pop('error', 'Error', 'The task is active, you can not change the state to an earlier state.');
                                             } else {
-                                                currentProposalTemp.itemSubject = $scope.selectedTaskState.id;
-                                                currentProposalTemp.itemContent = $scope.taskState;
-                                                currentProposalTemp.currentContent = $scope.selectedTaskState.state;
-                                                $scope.listProposal.push(currentProposalTemp);
+                                                var flagState = false;
+                                                for (var i =0; i<$scope.listProposal.length; i++) {
+                                                    if (($scope.listProposal[i].itemSubject == $scope.selectedTaskState.id) &&
+                                                        ($scope.listProposal[i].itemContent == $scope.taskState) &&
+                                                        ($scope.listProposal[i].currentContent == $scope.selectedTaskState.state)) {
+                                                        flagState = true;
+                                                        break;
+                                                    }
+                                                }
+
+                                                if (!flagState){
+                                                    currentProposalTemp.itemSubject = $scope.selectedTaskState.id;
+                                                    currentProposalTemp.itemContent = $scope.taskState;
+                                                    currentProposalTemp.currentContent = $scope.selectedTaskState.state;
+                                                    $scope.listProposal.push(currentProposalTemp);
+                                                } else {
+                                                    toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                                }
                                             }
                                         } else {
                                             toaster.pop('error', 'Error', 'Change the task state.');
@@ -408,10 +422,24 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             } else if ($scope.proposalType == 'Modified Task Name') {
                                 if ($scope.selectedTaskName != '') {
                                     if ($scope.taskName != $scope.taskNameOld || $scope.taskName != '') {
-                                        currentProposalTemp.itemSubject = $scope.selectedTaskName.id;
-                                        currentProposalTemp.itemContent = $scope.taskName;
-                                        currentProposalTemp.currentContent = $scope.selectedTaskName.name;
-                                        $scope.listProposal.push(currentProposalTemp);
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskName.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.taskName) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskName.name)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskName.id;
+                                            currentProposalTemp.itemContent = $scope.taskName;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskName.name;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
                                     } else {
                                         toaster.pop('error', 'Error', 'Change the task name.');
                                     }
@@ -421,10 +449,24 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             } else if ($scope.proposalType == 'Modified Task Description') {
                                 if ($scope.selectedTaskDescription != '') {
                                     if ($scope.taskDescription != $scope.taskDescriptionOld || $scope.taskDescription != '') {
-                                        currentProposalTemp.itemSubject = $scope.selectedTaskDescription.id;
-                                        currentProposalTemp.itemContent = $scope.taskDescription;
-                                        currentProposalTemp.currentContent = $scope.selectedTaskDescription.description;
-                                        $scope.listProposal.push(currentProposalTemp);
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskDescription.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.taskDescription) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskDescription.description)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskDescription.id;
+                                            currentProposalTemp.itemContent = $scope.taskDescription;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskDescription.description;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
                                     } else {
                                         toaster.pop('error', 'Error', 'Change the task description.');
                                     }
@@ -434,10 +476,24 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             } else if ($scope.proposalType == 'Modified Task Cost') {
                                 if ($scope.selectedTaskCost != '') {
                                     if ($scope.taskCost != $scope.taskCostOld || $scope.taskCostOld != '') {
-                                        currentProposalTemp.itemSubject = $scope.selectedTaskCost.id;
-                                        currentProposalTemp.itemContent = $scope.taskCost;
-                                        currentProposalTemp.currentContent = $scope.selectedTaskCost.totalCost;
-                                        $scope.listProposal.push(currentProposalTemp);
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskCost.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.taskCost) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskCost.totalCost)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskCost.id;
+                                            currentProposalTemp.itemContent = $scope.taskCost;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskCost.totalCost;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
                                     } else {
                                         toaster.pop('error', 'Error', 'Change the task cost.');
                                     }
@@ -447,10 +503,24 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             } else if ($scope.proposalType == 'Modified Task Outcome') {
                                 if ($scope.selectedTaskOutcome != '') {
                                     if ($scope.outcome != $scope.outcomeOld || $scope.outcome != '') {
-                                        currentProposalTemp.itemSubject = $scope.selectedTaskOutcome.id;
-                                        currentProposalTemp.itemContent = $scope.outcome;
-                                        currentProposalTemp.currentContent = $scope.selectedTaskOutcome.outcome;
-                                        $scope.listProposal.push(currentProposalTemp);
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskOutcome.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.outcome) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskOutcome.outcome)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskOutcome.id;
+                                            currentProposalTemp.itemContent = $scope.outcome;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskOutcome.outcome;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
                                     } else {
                                         toaster.pop('error', 'Error', 'Change the task outcome.');
                                     }
@@ -460,10 +530,24 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             } else if ($scope.proposalType == 'Modified Task Duration') {
                                 if ($scope.selectedTaskDuration != '') {
                                     if ($scope.duration != $scope.durationOld || $scope.duration != '') {
-                                        currentProposalTemp.itemSubject = $scope.selectedTaskDuration.id;
-                                        currentProposalTemp.itemContent = $scope.duration;
-                                        currentProposalTemp.currentContent = $scope.selectedTaskDuration.duration;
-                                        $scope.listProposal.push(currentProposalTemp);
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskDuration.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.duration) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskDuration.duration)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskDuration.id;
+                                            currentProposalTemp.itemContent = $scope.duration;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskDuration.duration;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
                                     } else {
                                         toaster.pop('error', 'Error', 'Change the task duration.');
                                     }
@@ -475,10 +559,24 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                     if ($scope.startDate != $scope.startDate || $scope.startDate != '') {
                                         var dateTemp = new Date();
                                         if ($scope.startDate - dateTemp > 0) {
-                                            currentProposalTemp.itemSubject = $scope.selectedTaskStartDate.id;
-                                            currentProposalTemp.itemContent = $scope.startDate;
-                                            currentProposalTemp.currentContent = $scope.selectedTaskStartDate.startDate;
-                                            $scope.listProposal.push(currentProposalTemp);
+                                            var flagState = false;
+                                            for (var i =0; i<$scope.listProposal.length; i++) {
+                                                if (($scope.listProposal[i].itemSubject == $scope.selectedTaskStartDate.id) &&
+                                                    ($scope.listProposal[i].itemContent == $scope.startDate) &&
+                                                    ($scope.listProposal[i].currentContent == $scope.selectedTaskStartDate.startDate)) {
+                                                    flagState = true;
+                                                    break;
+                                                }
+                                            }
+
+                                            if (!flagState){
+                                                currentProposalTemp.itemSubject = $scope.selectedTaskStartDate.id;
+                                                currentProposalTemp.itemContent = $scope.startDate;
+                                                currentProposalTemp.currentContent = $scope.selectedTaskStartDate.startDate;
+                                                $scope.listProposal.push(currentProposalTemp);
+                                            } else {
+                                                toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                            }
                                         } else {
                                             toaster.pop('error', 'Error', 'You can not select a date before today');
                                         }
@@ -491,10 +589,24 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             } else if ($scope.proposalType == 'Start Project') {
 
                                 if ($scope.proposalContent != '') {
-                                    currentProposalTemp.itemSubject = '';
-                                    currentProposalTemp.itemContent = $scope.proposalContent;
-                                    currentProposalTemp.currentContent = '';
-                                    $scope.listProposal.push(currentProposalTemp);
+                                    var flagState = false;
+                                    for (var i =0; i<$scope.listProposal.length; i++) {
+                                        if (($scope.listProposal[i].itemSubject == '') &&
+                                            ($scope.listProposal[i].itemContent == $scope.proposalContent) &&
+                                            ($scope.listProposal[i].currentContent == '')) {
+                                            flagState = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!flagState){
+                                        currentProposalTemp.itemSubject = '';
+                                        currentProposalTemp.itemContent = $scope.proposalContent;
+                                        currentProposalTemp.currentContent = '';
+                                        $scope.listProposal.push(currentProposalTemp);
+                                    } else {
+                                        toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                    }
                                 } else {
                                     toaster.pop('error', 'Error', 'Set the proposal content.');
                                 }
@@ -527,7 +639,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             };
 
             $scope.deleteProposalTable = function (index) {
-              $scope.listProposal.splice(index,1);
+                $scope.listProposal.splice(index,1);
             };
         }
     }]);

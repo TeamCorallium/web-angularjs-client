@@ -227,9 +227,11 @@
                         <td ng-if="proposal.type != 'Start Project'"> Task: {{getTaskName(proposal.itemSubject)}} </td>
                         <td ng-if="proposal.type == 'Start Project'">  </td>
                         <td ng-if="proposal.type == 'Modified Task State'"> {{stateArray[proposal.currentContent]}} </td>
-                        <td ng-if="proposal.type != 'Modified Task State'"> {{proposal.currentContent}} </td>
+                        <td ng-if="((proposal.type != 'Modified Task State') && (proposal.type != 'Modified Task Start Date'))"> {{proposal.currentContent}} </td>
+                        <td ng-if="proposal.type == 'Modified Task Start Date'"> {{getProjectDate(proposal.currentContent)}} </td>
                         <td ng-if="proposal.type == 'Modified Task State'"> {{stateArray[proposal.itemContent]}} </td>
-                        <td ng-if="proposal.type != 'Modified Task State'"> {{proposal.itemContent}} </td>
+                        <td ng-if="((proposal.type != 'Modified Task State') && (proposal.type != 'Modified Task Start Date'))"> {{proposal.itemContent}} </td>
+                        <td ng-if="proposal.type == 'Modified Task Start Date'"> {{getProjectDate(proposal.itemContent)}} </td>
                         <td>
                             <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="deleteProposalTable($index)">
                                 <span class="glyphicon glyphicon-trash"></span> Remove

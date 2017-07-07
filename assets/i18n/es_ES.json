@@ -5,11 +5,13 @@
   "frontend": {
     "menu": {
       "HOME": "Página Principal",
-      "ABOUTUS": "Quienes somos",
+      "ABOUTUS": "Quiénes somos",
       "FAQ": "Preguntas frecuentes",
       "CONTACTUS": "Contáctenos",
       "EXPLORE": "Explorar",
-      "CREATEPROYECT": "Crear nuevo proyecto"
+      "CREATEPROYECT": "Crear nuevo proyecto",
+      "TEXT1": "Bring your ideas to live",
+      "TEXT2": "Raise capital or join the world’s largest network of professional investors. Participate to support the needed change to a sustainable and better world"
     }
   },  
   "topbar": {

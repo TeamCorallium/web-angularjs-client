@@ -107,7 +107,15 @@ class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
     def get(self, projectId):
         print('SimpleProjectById:DELETE!!!')
 
+        tasks = table_task.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+
+        tasksIds = []
+        for task in tasks:
+            tasksIds.append(int(task['id']))
+
         table_simple_project.remove(eids=[int(projectId)])
+        table_task.remove(eids=tasksIds)
+
         self.write(str(projectId))
 
 class AllProjectsExceptIdHandler(tornado.web.RequestHandler):

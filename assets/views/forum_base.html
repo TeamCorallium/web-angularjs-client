@@ -18,7 +18,7 @@
 								<li ng-repeat="proposal in proposalsProject">
 									<div class="post-media post-comments margin-top-30">
 										<div class="media">
-											<a class="pull-left"> <img ng-src="{{proposal.avatar}}" alt="" class="media-object img-circle"> </a>
+											<a class="pull-left" ng-click="goToProfileView(proposal.proposalOwnerId)"> <img ng-src="{{proposal.avatar}}" alt="" class="media-object img-circle"> </a>
 											<div class="media-body">
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 													<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>

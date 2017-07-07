@@ -373,7 +373,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         var todayProposalTemp = new Date();
 
                         if(dateProposalTemp - todayProposalTemp <= 0) {
-                            toaster.pop('error', 'Error', 'You can not select a date before today');
+                            toaster.pop('error', 'Error', 'You can not select a death line date before today');
                         } else {
 
                             var currentProposalTemp = {
@@ -386,17 +386,21 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
                             if ($scope.proposalType == 'Modified Task State') {
                                 if ($scope.selectedTaskState != '') {
-                                    if ($scope.taskState != $scope.taskStateOld && $scope.taskState != '') {
-                                        if ($scope.taskStateOld > 1 && $scope.taskState <= 1) {
-                                            toaster.pop('error', 'Error', 'The task is active, you can not change the state to an earlier state.');
-                                        } else {
-                                            currentProposalTemp.itemSubject = $scope.selectedTaskState.id;
-                                            currentProposalTemp.itemContent = $scope.taskState;
-                                            currentProposalTemp.currentContent = $scope.selectedTaskState.state;
-                                            $scope.listProposal.push(currentProposalTemp);
-                                        }
+                                    if ($scope.taskState == 6) {
+                                        toaster.pop('error', 'Error', 'The task is finished, you can not change its status');
                                     } else {
-                                        toaster.pop('error', 'Error', 'Change the task state.');
+                                        if ($scope.taskState != $scope.taskStateOld && $scope.taskState != '') {
+                                            if ($scope.taskStateOld > 1 && $scope.taskState <= 1) {
+                                                toaster.pop('error', 'Error', 'The task is active, you can not change the state to an earlier state.');
+                                            } else {
+                                                currentProposalTemp.itemSubject = $scope.selectedTaskState.id;
+                                                currentProposalTemp.itemContent = $scope.taskState;
+                                                currentProposalTemp.currentContent = $scope.selectedTaskState.state;
+                                                $scope.listProposal.push(currentProposalTemp);
+                                            }
+                                        } else {
+                                            toaster.pop('error', 'Error', 'Change the task state.');
+                                        }
                                     }
                                 } else {
                                     toaster.pop('error', 'Error', 'Select any task.');
@@ -520,6 +524,10 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         }
                     }
                 }
+            };
+
+            $scope.deleteProposalTable = function (index) {
+              $scope.listProposal.splice(index,1);
             };
         }
     }]);

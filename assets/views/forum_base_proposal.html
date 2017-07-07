@@ -218,6 +218,7 @@
                         <th> Item Subject </th>
                         <th> Current Content </th>
                         <th> Proposal Content </th>
+                        <th> </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -229,6 +230,11 @@
                         <td ng-if="proposal.type != 'Modified Task State'"> {{proposal.currentContent}} </td>
                         <td ng-if="proposal.type == 'Modified Task State'"> {{stateArray[proposal.itemContent]}} </td>
                         <td ng-if="proposal.type != 'Modified Task State'"> {{proposal.itemContent}} </td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="deleteProposalTable($index)">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

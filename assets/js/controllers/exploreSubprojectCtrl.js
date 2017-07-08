@@ -127,7 +127,8 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
         };
 
         $scope.seeReference = function (file) {
-            $window.location.href = file;
+            // $window.location.href = file;
+            $window.open(file, '_blank');
         };
 
         $scope.coveredCapital = function () {

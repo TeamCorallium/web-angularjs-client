@@ -10,7 +10,7 @@
 	</section>
 	<div class="container-fluid container-fullw bg-white">
 		<div class="container">
-			<uib-tabset class="tabbable">
+			<uib-tabset class="tabbable" ng-show="currentForumActive.inverted">
 				<uib-tab heading="Proposal">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -47,6 +47,53 @@
 						</a>
 					</div>
 				</uib-tab>
+				<uib-tab heading="Comments" active="editActive">
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="list-unstyled">
+								<li ng-repeat="comment in comments">
+									<div class="post-media post-comments margin-top-30">
+										<div class="media">
+											<a class="pull-left" ng-click="goToProfileView(comment.userId)"> <img ng-src="{{comment.avatar}}" alt="" class="media-object img-circle"> </a>
+											<div class="media-body">
+												<h5 class="media-heading">{{comment.fullName}} </h5>
+												<p>
+													{{comment.value}}
+												</p>
+												<span class="date">{{getProjectDate(comment.creationDate)}}</span>
+												<hr>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-12">
+							<div class="post-block post-leave-comment">
+								<h3>Leave a comment</h3>
+								<form action="" type="post">
+									<div class="row">
+										<div class="form-group">
+											<div class="col-md-12">
+												<label> Comment * </label>
+												<textarea ng-model="comment.value" maxlength="5000" rows="10" class="form-control"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<a ng-click="createComment()" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-comment-alt margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
+												<span>Post Comment</span>
+											</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</uib-tab>
+			</uib-tabset>
+			<uib-tabset class="tabbable" ng-show="!currentForumActive.inverted">
 				<uib-tab heading="Comments" active="editActive">
 					<div class="row">
 						<div class="col-md-12">

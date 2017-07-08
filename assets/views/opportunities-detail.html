@@ -114,7 +114,7 @@
                                         <p class="taller"> <strong>Description</strong></p>
                                         <p class="taller margin-bottom-25"> {{currentProjectActive.description}}</p>
                                     </div>
-                                    <p class="taller margin-bottom-25"> <strong>Duration:</strong> {{getDuration()}}</p>
+                                    <p class="taller margin-bottom-25"> <strong>Duration:</strong> {{getDuration(currentProjectActive.estimateDuration)}}</p>
                                     <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
@@ -359,7 +359,7 @@
                                                                 </div>
                                                                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 no-padding margin-top-10">
                                                             <span><i class="ti-timer"></i>
-                                                                <strong> Duration:</strong>  {{task.duration}} <strong> Days</strong>
+                                                                <strong> Duration:</strong>  {{getDuration(task.duration)}}
                                                             </span>
                                                                 </div>
                                                                 <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">

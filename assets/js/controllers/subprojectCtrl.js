@@ -453,9 +453,9 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 });
             };
 
-            $scope.getDuration =  function () {
-                var weeks = parseInt($scope.currentProjectActive.estimateDuration / 7);
-                var days = parseInt($scope.currentProjectActive.estimateDuration % 7);
+            $scope.getDuration =  function (duration) {
+                var weeks = parseInt(duration / 7);
+                var days = parseInt(duration % 7);
 
                 var text = '';
 

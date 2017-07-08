@@ -12033,6 +12033,19 @@ fieldset legend {
   -ms-transform: translate(-95%, -50%)
 }
 
+.middle_forum_proposal {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 40%;
+  margin-left: -5.5% !important;
+  width: 80px !important;
+  text-align: center !important;
+  font-weight: bold;
+  transform: translate(-95%, -50%);
+  -ms-transform: translate(-95%, -50%)
+}
+
 .image {
   opacity: 1 !important;
   display: block !important;
@@ -12049,5 +12062,9 @@ fieldset legend {
 }
 
 .notifies_image:hover .middle_vote {
+  opacity: 1 !important;
+}
+
+.notifies_image:hover .middle_forum_proposal {
   opacity: 1 !important;
 }

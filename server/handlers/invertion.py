@@ -66,7 +66,7 @@ class InvertionHandler(tornado.web.RequestHandler):
 
         table_simple_project.update({'inverted': True}, eids=[int(projectId)])
 
-        table_activity.insert({'userId': userId, 'title': 'Invertion', 
+        table_activity.insert({'userId': userId, 'title': 'Invertion', 'type': 'Invertion',
                                'content': "You made an invertion", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
         projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))

@@ -8,10 +8,25 @@
       "ABOUTUS": "關於我們",
       "FAQ": "常問問題",
       "CONTACTUS": "聯繫我們",
-      "EXPLORE": "探索",
-      "CREATEPROYECT": "創建新項目"
+      "EXPLORE": "探索"
+    },
+    "home": {
+      "CREATEPROYECT": "創建新項目",
+      "TEXT1": "帶你的想法生活",
+      "TEXT2": "籌集資金或加入世界上最大的專業投資者網絡",
+      "TEXT3": "參與支持可持續和更美好的世界所需要的變革"       
+    },
+    "aboutus": {
+      "TITLE": "我们是谁",
+      "DESCRIPTION": "在农业和其他启动启动平台中，最大和最受欢迎的企业家之，每个人都可以在每一个能力和价值观的范围内参与，以支持可持续和更美好的世界所需的变革"
+    },
+    "faq": {
+
+    },
+    "contactus": {
+
     }
-  },  
+  },
   "topbar": {
     "notifications": {
       "MAIN": "通知"

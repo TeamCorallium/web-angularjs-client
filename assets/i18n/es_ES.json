@@ -5,11 +5,26 @@
   "frontend": {
     "menu": {
       "HOME": "Página Principal",
-      "ABOUTUS": "Quienes somos",
+      "ABOUTUS": "Quiénes somos",
       "FAQ": "Preguntas frecuentes",
       "CONTACTUS": "Contáctenos",
-      "EXPLORE": "Explorar",
-      "CREATEPROYECT": "Crear nuevo proyecto"
+      "EXPLORE": "Explorar"  
+    },
+    "home": {
+      "CREATEPROYECT": "Crear nuevo proyecto",
+      "TEXT1": "Dale vida a tus ideas",
+      "TEXT2": "Reune capital o únete a la red de inversores profesionales más grande del mundo",
+      "TEXT3": "Participa y apoya el cambio necesario a un mundo sostenible y mejor"       
+    },
+    "aboutus": {
+      "TITLE": "Quiénes somos",
+      "DESCRIPTION": "Una de las más grandes y populares plataformas para emprendedores en el área de la agricultura y otros sectores, en la que todos pueden participar en la medida las capacidades y valores de cada cual, para apoyar el cambio necesario a un mundo sostenible y mejor"
+    },
+    "faq": {
+
+    },
+    "contactus": {
+
     }
   },  
   "topbar": {

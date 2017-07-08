@@ -131,10 +131,6 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
             $window.open(file, '_blank');
         };
 
-        $scope.coveredCapital = function () {
-            $scope.coveredCapitalPercent = ($scope.investmentCapitalProject / parseFloat($scope.currentProjectActive.totalCost)) * 100;
-        };
-
         $scope.invertionByProjectId = function () {
             RestService.fetchInvertionByProjectId(localStorageService.get('currentProjectId'))
                 .then(
@@ -145,6 +141,8 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
                             $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
                         }
 
+                        $scope.investmentCapitalProject += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
+
                         $scope.coveredCapital();
                     },
                     function (errResponse) {
@@ -154,4 +152,8 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
         };
 
         $scope.invertionByProjectId();
+
+        $scope.coveredCapital = function () {
+            $scope.coveredCapitalPercent = parseFloat(($scope.investmentCapitalProject / parseFloat($scope.currentProjectActive.totalCost)) * 100);
+        };
     }]);

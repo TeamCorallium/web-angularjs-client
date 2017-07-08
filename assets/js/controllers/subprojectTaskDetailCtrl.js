@@ -67,5 +67,37 @@ app.controller('SubprojectTaskDetailCtrl', ["$scope", "localStorageService", "Re
                     return false;
                 }
             };
+
+            $scope.getDuration =  function (duration) {
+                var weeks = parseInt(duration / 7);
+                var days = parseInt(duration % 7);
+
+                var text = '';
+
+                if (weeks > 0) {
+                    if (weeks == 1) {
+                        text = weeks + " week";
+                    } else {
+                        text = weeks + " weeks";
+                    }
+
+                    if (days!=0) {
+                        text+= " and ";
+                        if (days == 1) {
+                            text+= days + " day"
+                        } else {
+                            text+= days + " days"
+                        }
+                    }
+                } else {
+                    if (days == 1) {
+                        text = days + " day"
+                    } else {
+                        text = days + " days"
+                    }
+                }
+
+                return text;
+            };
         }
     }]);

@@ -35,7 +35,7 @@
                                                     <i class="fa fa-calendar"></i> <strong>Proposed Finishing:</strong> {{proposedFinished(currentTaskActive.startDate, currentTaskActive.duration)}}
                                                 </li>
                                                 <li>
-                                                    <i class="fa fa-calendar"></i> <strong>Date:</strong> {{getTodayDate()}}
+                                                    <i class="fa fa-calendar"></i> <strong>Today:</strong> {{getTodayDate()}}
                                                 </li>
                                             </ul>
                                         </div>
@@ -106,12 +106,12 @@
                                                         <ul class="portfolio-details list-unstyled">
                                                             <li>
                                                                 <p>
-                                                                    <strong>Estimate Cost:</strong> {{currentTaskActive.cost}} $
+                                                                    <strong>Cost:</strong> {{currentTaskActive.cost}} $
                                                                 </p>
                                                             </li>
                                                             <li>
                                                                 <p class="margin-top-15">
-                                                                    <strong>Estimate Duration:</strong> {{currentTaskActive.duration}}
+                                                                    <strong>Duration:</strong> {{getDuration(currentTaskActive.duration)}}
                                                                     <strong>days</strong>
                                                                 </p>
                                                             </li>

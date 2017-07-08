@@ -94,9 +94,9 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
             $state.go('app.pages.exploreuser');
         };
 
-        $scope.getDuration =  function () {
-            var weeks = parseInt($scope.currentProjectActive.estimateDuration / 7);
-            var days = parseInt($scope.currentProjectActive.estimateDuration % 7);
+        $scope.getDuration =  function (duration) {
+            var weeks = parseInt(duration / 7);
+            var days = parseInt(duration % 7);
 
             var text = '';
 
@@ -127,11 +127,8 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
         };
 
         $scope.seeReference = function (file) {
-            $window.location.href = file;
-        };
-
-        $scope.coveredCapital = function () {
-            $scope.coveredCapitalPercent = ($scope.investmentCapitalProject / parseFloat($scope.currentProjectActive.totalCost)) * 100;
+            // $window.location.href = file;
+            $window.open(file, '_blank');
         };
 
         $scope.invertionByProjectId = function () {
@@ -144,6 +141,8 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
                             $scope.investmentCapitalProject += parseFloat($scope.invertions[i].amount);
                         }
 
+                        $scope.investmentCapitalProject += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
+
                         $scope.coveredCapital();
                     },
                     function (errResponse) {
@@ -153,4 +152,8 @@ app.controller('ExploreSubprojectCtrl', ["$scope", "localStorageService", "RestS
         };
 
         $scope.invertionByProjectId();
+
+        $scope.coveredCapital = function () {
+            $scope.coveredCapitalPercent = parseFloat(($scope.investmentCapitalProject / parseFloat($scope.currentProjectActive.totalCost)) * 100);
+        };
     }]);

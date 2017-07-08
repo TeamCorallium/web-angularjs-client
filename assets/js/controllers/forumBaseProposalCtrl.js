@@ -480,7 +480,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                         for (var i =0; i<$scope.listProposal.length; i++) {
                                             if (($scope.listProposal[i].itemSubject == $scope.selectedTaskCost.id) &&
                                                 ($scope.listProposal[i].itemContent == $scope.taskCost) &&
-                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskCost.totalCost)) {
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskCost.cost)) {
                                                 flagState = true;
                                                 break;
                                             }
@@ -489,7 +489,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                         if (!flagState){
                                             currentProposalTemp.itemSubject = $scope.selectedTaskCost.id;
                                             currentProposalTemp.itemContent = $scope.taskCost;
-                                            currentProposalTemp.currentContent = $scope.selectedTaskCost.totalCost;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskCost.cost;
                                             $scope.listProposal.push(currentProposalTemp);
                                         } else {
                                             toaster.pop('error', 'Error', 'A similar proposal already exists.');

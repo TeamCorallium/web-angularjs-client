@@ -35,13 +35,13 @@
                                                     <i class="fa fa-calendar"></i> <strong>Proposed Finishing:</strong> {{proposedFinished(currentTaskActive.startDate, currentTaskActive.duration)}}
                                                 </li>
                                                 <li>
-                                                    <i class="fa fa-calendar"></i> <strong>Date:</strong> {{getTodayDate()}}
+                                                    <i class="fa fa-calendar"></i> <strong>Today:</strong> {{getTodayDate()}}
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 margin-top-15">
+                                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 margin-top-15" ng-show="currentTaskActive.state > 1">
                                     <p><strong>Financial Execution: </strong></p>
                                     <p><strong>Phisical Execution: </strong></p>
                                 </div>
@@ -106,13 +106,12 @@
                                                         <ul class="portfolio-details list-unstyled">
                                                             <li>
                                                                 <p>
-                                                                    <strong>Estimate Cost:</strong> {{currentTaskActive.cost}} $
+                                                                    <strong>Cost:</strong> {{currentTaskActive.cost}} $
                                                                 </p>
                                                             </li>
                                                             <li>
                                                                 <p class="margin-top-15">
-                                                                    <strong>Estimate Duration:</strong> {{currentTaskActive.duration}}
-                                                                    <strong>days</strong>
+                                                                    <strong>Duration:</strong> {{getDuration(currentTaskActive.duration)}}
                                                                 </p>
                                                             </li>
                                                         </ul>

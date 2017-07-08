@@ -222,9 +222,9 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
                 $state.go('app.pages.exploreuser');
             };
 
-            $scope.getDuration =  function () {
-                var weeks = parseInt($scope.currentProjectActive.estimateDuration / 7);
-                var days = parseInt($scope.currentProjectActive.estimateDuration % 7);
+            $scope.getDuration =  function (duration) {
+                var weeks = parseInt(duration / 7);
+                var days = parseInt(duration % 7);
 
                 var text = '';
 
@@ -315,7 +315,8 @@ app.controller('OpportunitiesDetailCtrl', ["$scope", "localStorageService", "Res
             };
 
             $scope.seeReference = function (file) {
-                $window.location.href = file;
+                // $window.location.href = file;
+                $window.open(file, '_blank');
             };
         }
     }]);

@@ -569,5 +569,9 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 }
             };
 
+            $scope.updateProject = function(projectId) {
+                localStorageService.set('currentProjectId', projectId);
+                $state.go('app.project.wizard');
+            };
         }
     }]);

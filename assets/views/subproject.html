@@ -557,6 +557,16 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="row" ng-show="((!currentProjectActive.inverted) && (projectRole(currentProjectActive.userId) == 'Owner'))">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <button ui-sref="app.project.user_project" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-arrow-left">
+                                        <span>Back</span>
+                                    </button>
+                                    <button ng-click="updateProject(currentProjectActive.id)" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-reload">
+                                        <span>Update</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>

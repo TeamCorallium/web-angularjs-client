@@ -99,9 +99,6 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
                 if (localStorageService.get('currentUserId') == userId) {
                     return 'Owner';
                 }
-                else {
-                    return 'Financier';
-                }
             };
 
             $scope.invertionByProjectId = function () {

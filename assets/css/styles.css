@@ -12002,3 +12002,7 @@ fieldset legend {
 .cursor-none:hover{
   cursor: default !important;
 }
+
+.cursor-text:hover{
+  cursor: text !important;
+}

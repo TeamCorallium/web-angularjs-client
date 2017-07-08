@@ -14,7 +14,7 @@
 					<div class="spine"></div>
 					<ul class="columns" ng-controller="PagesTimelineCtrl">
 						<li ng-repeat="activity in allActivities">
-							<div class="timeline_element partition-white" ng-show="$index % 4 == 0">
+							<div class="timeline_element partition-white">
 								<div class="timeline_date">
 									<div>
 										<div class="inline-block">
@@ -27,67 +27,12 @@
 									</div>
 								</div>
 								<div class="timeline_title">
-									<i class="fa fa-check fa-2x pull-left fa-border"></i>
-									<h4 class="light-text no-margin padding-5">{{activity.title}}</h4>
-								</div>
-								<div class="timeline_content">
-									{{activity.content}}
-								</div>
-							</div>
-							<div class="timeline_element partition-primary" ng-show="$index % 4 == 1">
-								<div class="timeline_date">
-									<div>
-										<div class="inline-block">
-											<span class="day text-bold">{{getActivityDay(activity.date)}}</span>
-										</div>
-										<div class="inline-block">
-											<span class="block week-day text-extra-large">{{dayArray[getActivityWeekDay(activity.date)]}}</span>
-											<span class="block month text-large text-light">{{getMonth(activity.date)}} {{getYear(activity.date)}}</span>
-										</div>
-									</div>
-								</div>
-								<div class="timeline_title">
-									<i class="fa fa-check fa-2x pull-left fa-border"></i>
-									<h4 class="light-text no-margin padding-5">{{activity.title}}</h4>
-								</div>
-								<div class="timeline_content">
-									{{activity.content}}
-								</div>
-							</div>
-							<div class="timeline_element partition-primary" ng-show="$index % 4 == 2">
-								<div class="timeline_date">
-									<div>
-										<div class="inline-block">
-											<span class="day text-bold">{{getActivityDay(activity.date)}}</span>
-										</div>
-										<div class="inline-block">
-											<span class="block week-day text-extra-large">{{dayArray[getActivityWeekDay(activity.date)]}}</span>
-											<span class="block month text-large text-light">{{getMonth(activity.date)}} {{getYear(activity.date)}}</span>
-										</div>
-									</div>
-								</div>
-								<div class="timeline_title">
-									<i class="fa fa-check fa-2x pull-left fa-border"></i>
-									<h4 class="light-text no-margin padding-5">{{activity.title}}</h4>
-								</div>
-								<div class="timeline_content">
-									{{activity.content}}
-								</div>
-							</div>
-							<div class="timeline_element partition-bricky" ng-show="$index % 4 == 3">
-								<div class="timeline_date">
-									<div>
-										<div class="inline-block">
-											<span class="day text-bold">{{getActivityDay(activity.date)}}</span>
-										</div>
-										<div class="inline-block">
-											<span class="block week-day text-extra-large">{{dayArray[getActivityWeekDay(activity.date)]}}</span>
-											<span class="block month text-large text-light">{{getMonth(activity.date)}} {{getYear(activity.date)}}</span>
-										</div>
-									</div>
-								</div>
-								<div class="timeline_title">
-									<i class="fa fa-check fa-2x pull-left fa-border"></i>
+									<img ng-if="activity.type == 'CreateProposal'" ng-src="assets/images/proposal_aproved.png" class="media-object img-circle invertion-image">
+									<img ng-if="activity.type == 'NewProject'" ng-src="assets/images/create_project.png" class="media-object img-circle invertion-image">
+									<img ng-if="activity.type == 'Invertion'" ng-src="assets/images/proposal_invertion.png" class="media-object img-circle invertion-image">
+									<img ng-if="activity.type == 'NewComment'" ng-src="assets/images/comment.png" class="media-object img-circle invertion-image">
+									<img ng-if="activity.type == 'Vote'" ng-src="assets/images/vote.png" class="media-object img-circle invertion-image">
+									<img ng-if="activity.type == 'DeleteProject'" ng-src="assets/images/delete_project.png" class="media-object img-circle invertion-image">
 									<h4 class="light-text no-margin padding-5">{{activity.title}}</h4>
 								</div>
 								<div class="timeline_content">

@@ -106,13 +106,12 @@
                                                         <ul class="portfolio-details list-unstyled">
                                                             <li>
                                                                 <p>
-                                                                    <strong>Estimate Cost:</strong> {{currentTaskActive.cost}} $
+                                                                    <strong>Cost:</strong> {{currentTaskActive.cost}} $
                                                                 </p>
                                                             </li>
                                                             <li>
                                                                 <p class="margin-top-15">
-                                                                    <strong>Estimate Duration:</strong> {{currentTaskActive.duration}}
-                                                                    <strong>days</strong>
+                                                                    <strong>Duration:</strong> {{getDuration(currentTaskActive.duration)}}
                                                                 </p>
                                                             </li>
                                                         </ul>

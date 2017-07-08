@@ -105,10 +105,10 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
                         $state.go('app.forum.base');
                     } else {
-                        toaster.pop('error', 'Error', 'Please select proposal type.');
+                        toaster.pop('error', 'Error', 'Select proposal type.');
                     }
                 } else {
-                    toaster.pop('error', 'Error', 'Please introduce proposal title.');
+                    toaster.pop('error', 'Error', 'Introduce proposal title.');
                 }
             };
 
@@ -279,8 +279,10 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                 }
             };
 
+            $scope.selectedTaskStateFlag = 0;
+
             $scope.taskChangeComboState = function () {
-                $scope.taskChange($scope.selectedTaskState.id);
+                $scope.selectedTaskStateFlag++;
             };
 
             $scope.taskChangeComboName = function () {
@@ -337,6 +339,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                             $scope.outcome = data[0].outcome;
                             $scope.duration = data[0].duration;
                             $scope.startDate = new Date(data[0].startDate);
+                            $scope.taskState = data[0].state;
 
                             $scope.taskNameOld = data[0].name;
                             $scope.taskStateOld = data[0].state;
@@ -365,130 +368,255 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
             $scope.addProposal = function () {
                 if ($scope.proposalTitle != ''){
                     if ($scope.proposalType != '') {
-                        var currentProposalTemp = {
-                            type: $scope.proposalType,
-                            itemSubject: '',
-                            itemContent: '',
-                            currentContent: '',
-                            state: ''
-                        };
 
-                        if ($scope.proposalType == 'Modified Task State') {
-                            if ($scope.selectedTaskState != '') {
-                                if($scope.taskState != $scope.taskStateOld || $scope.taskState != '') {
-                                    if ($scope.taskStateOld > 1 && $scope.taskState == 1) {
-                                        toaster.pop('error', 'Error', 'The task is active, you can not change the state to an earlier state.');
-                                    } else {
-                                        currentProposalTemp.itemSubject = $scope.selectedTaskState.id;
-                                        currentProposalTemp.itemContent = $scope.taskState;
-                                        currentProposalTemp.currentContent = $scope.selectedTaskState.state;
-                                        $scope.listProposal.push(currentProposalTemp);
-                                    }
-                                }else {
-                                    toaster.pop('error', 'Error', 'Please change the task state.');
-                                }
-                            } else {
-                                toaster.pop('error', 'Error', 'Please, select any task.');
-                            }
-                        } else if ($scope.proposalType == 'Modified Task Name') {
-                            if ($scope.selectedTaskName != '') {
-                                if($scope.taskName != $scope.taskNameOld || $scope.taskName != '') {
-                                    currentProposalTemp.itemSubject = $scope.selectedTaskName.id;
-                                    currentProposalTemp.itemContent = $scope.taskName;
-                                    currentProposalTemp.currentContent = $scope.selectedTaskName.name;
-                                    $scope.listProposal.push(currentProposalTemp);
-                                }else {
-                                    toaster.pop('error', 'Error', 'Please change the task name.');
-                                }
-                            } else {
-                                toaster.pop('error', 'Error', 'Please, select any task.');
-                            }
-                        } else if ($scope.proposalType == 'Modified Task Description') {
-                            if ($scope.selectedTaskDescription != '') {
-                                if($scope.taskDescription != $scope.taskDescriptionOld || $scope.taskDescription != '') {
-                                    currentProposalTemp.itemSubject = $scope.selectedTaskDescription.id;
-                                    currentProposalTemp.itemContent = $scope.taskDescription;
-                                    currentProposalTemp.currentContent = $scope.selectedTaskDescription.description;
-                                    $scope.listProposal.push(currentProposalTemp);
-                                }else {
-                                    toaster.pop('error', 'Error', 'Please change the task description.');
-                                }
-                            } else {
-                                toaster.pop('error', 'Error', 'Please, select any task.');
-                            }
-                        } else if ($scope.proposalType == 'Modified Task Cost') {
-                            if ($scope.selectedTaskCost != '') {
-                                if($scope.taskCost != $scope.taskCostOld || $scope.taskCostOld != '') {
-                                    currentProposalTemp.itemSubject = $scope.selectedTaskCost.id;
-                                    currentProposalTemp.itemContent = $scope.taskCost;
-                                    currentProposalTemp.currentContent = $scope.selectedTaskCost.totalCost;
-                                    $scope.listProposal.push(currentProposalTemp);
-                                }else {
-                                    toaster.pop('error', 'Error', 'Please change the task cost.');
-                                }
-                            } else {
-                                toaster.pop('error', 'Error', 'Please, select any task.');
-                            }
-                        } else if ($scope.proposalType == 'Modified Task Outcome') {
-                            if ($scope.selectedTaskOutcome != '') {
-                                if($scope.outcome != $scope.outcomeOld || $scope.outcome != '') {
-                                    currentProposalTemp.itemSubject = $scope.selectedTaskOutcome.id;
-                                    currentProposalTemp.itemContent = $scope.outcome;
-                                    currentProposalTemp.currentContent = $scope.selectedTaskOutcome.outcome;
-                                    $scope.listProposal.push(currentProposalTemp);
-                                }else {
-                                    toaster.pop('error', 'Error', 'Please change the task outcome.');
-                                }
-                            } else {
-                                toaster.pop('error', 'Error', 'Please, select any task.');
-                            }
-                        } else if ($scope.proposalType == 'Modified Task Duration') {
-                            if ($scope.selectedTaskDuration != '') {
-                                if($scope.duration != $scope.durationOld || $scope.duration != '') {
-                                    currentProposalTemp.itemSubject = $scope.selectedTaskDuration.id;
-                                    currentProposalTemp.itemContent = $scope.duration;
-                                    currentProposalTemp.currentContent = $scope.selectedTaskDuration.duration;
-                                    $scope.listProposal.push(currentProposalTemp);
-                                }else {
-                                    toaster.pop('error', 'Error', 'Please change the task duration.');
-                                }
-                            } else {
-                                toaster.pop('error', 'Error', 'Please, select any task.');
-                            }
-                        } else if ($scope.proposalType == 'Modified Task Start Date') {
-                            if ($scope.selectedTaskStartDate != '') {
-                                if($scope.startDate != $scope.startDate || $scope.startDate != '') {
-                                    var dateTemp = new Date();
-                                    if ($scope.startDate - dateTemp > 0){
-                                        currentProposalTemp.itemSubject = $scope.selectedTaskStartDate.id;
-                                        currentProposalTemp.itemContent = $scope.startDate;
-                                        currentProposalTemp.currentContent = $scope.selectedTaskStartDate.startDate;
-                                        $scope.listProposal.push(currentProposalTemp);
-                                    } else {
-                                        toaster.pop('error', 'Error', 'You can not select a date before today');
-                                    }
-                                }else {
-                                    toaster.pop('error', 'Error', 'Please change the task start date.');
-                                }
-                            } else {
-                                toaster.pop('error', 'Error', 'Please, select any task.');
-                            }
-                        } else if ($scope.proposalType == 'Start Project') {
+                        var dateProposalTemp = new Date($scope.deathLine);
+                        var todayProposalTemp = new Date();
 
-                            if($scope.proposalContent != '') {
-                                currentProposalTemp.itemSubject = '';
-                                currentProposalTemp.itemContent = $scope.proposalContent;
-                                currentProposalTemp.currentContent = '';
-                                $scope.listProposal.push(currentProposalTemp);
-                            }else {
-                                toaster.pop('error', 'Error', 'Please change the proposal content.');
+                        if(dateProposalTemp - todayProposalTemp <= 0) {
+                            toaster.pop('error', 'Error', 'You can not select a death line date before today');
+                        } else {
+
+                            var currentProposalTemp = {
+                                type: $scope.proposalType,
+                                itemSubject: '',
+                                itemContent: '',
+                                currentContent: '',
+                                state: ''
+                            };
+
+                            if ($scope.proposalType == 'Modified Task State') {
+                                if ($scope.selectedTaskState != '') {
+                                    if ($scope.taskState == 6) {
+                                        toaster.pop('error', 'Error', 'The task is finished, you can not change its status');
+                                    } else {
+                                        if ($scope.taskState != $scope.taskStateOld && $scope.taskState != '') {
+                                            if ($scope.taskStateOld > 1 && $scope.taskState <= 1) {
+                                                toaster.pop('error', 'Error', 'The task is active, you can not change the state to an earlier state.');
+                                            } else {
+                                                var flagState = false;
+                                                for (var i =0; i<$scope.listProposal.length; i++) {
+                                                    if (($scope.listProposal[i].itemSubject == $scope.selectedTaskState.id) &&
+                                                        ($scope.listProposal[i].itemContent == $scope.taskState) &&
+                                                        ($scope.listProposal[i].currentContent == $scope.selectedTaskState.state)) {
+                                                        flagState = true;
+                                                        break;
+                                                    }
+                                                }
+
+                                                if (!flagState){
+                                                    currentProposalTemp.itemSubject = $scope.selectedTaskState.id;
+                                                    currentProposalTemp.itemContent = $scope.taskState;
+                                                    currentProposalTemp.currentContent = $scope.selectedTaskState.state;
+                                                    $scope.listProposal.push(currentProposalTemp);
+                                                } else {
+                                                    toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                                }
+                                            }
+                                        } else {
+                                            toaster.pop('error', 'Error', 'Change the task state.');
+                                        }
+                                    }
+                                } else {
+                                    toaster.pop('error', 'Error', 'Select any task.');
+                                }
+                            } else if ($scope.proposalType == 'Modified Task Name') {
+                                if ($scope.selectedTaskName != '') {
+                                    if ($scope.taskName != $scope.taskNameOld || $scope.taskName != '') {
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskName.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.taskName) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskName.name)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskName.id;
+                                            currentProposalTemp.itemContent = $scope.taskName;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskName.name;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
+                                    } else {
+                                        toaster.pop('error', 'Error', 'Change the task name.');
+                                    }
+                                } else {
+                                    toaster.pop('error', 'Error', 'Select any task.');
+                                }
+                            } else if ($scope.proposalType == 'Modified Task Description') {
+                                if ($scope.selectedTaskDescription != '') {
+                                    if ($scope.taskDescription != $scope.taskDescriptionOld || $scope.taskDescription != '') {
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskDescription.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.taskDescription) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskDescription.description)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskDescription.id;
+                                            currentProposalTemp.itemContent = $scope.taskDescription;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskDescription.description;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
+                                    } else {
+                                        toaster.pop('error', 'Error', 'Change the task description.');
+                                    }
+                                } else {
+                                    toaster.pop('error', 'Error', 'Select any task.');
+                                }
+                            } else if ($scope.proposalType == 'Modified Task Cost') {
+                                if ($scope.selectedTaskCost != '') {
+                                    if ($scope.taskCost != $scope.taskCostOld || $scope.taskCostOld != '') {
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskCost.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.taskCost) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskCost.totalCost)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskCost.id;
+                                            currentProposalTemp.itemContent = $scope.taskCost;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskCost.totalCost;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
+                                    } else {
+                                        toaster.pop('error', 'Error', 'Change the task cost.');
+                                    }
+                                } else {
+                                    toaster.pop('error', 'Error', 'Select any task.');
+                                }
+                            } else if ($scope.proposalType == 'Modified Task Outcome') {
+                                if ($scope.selectedTaskOutcome != '') {
+                                    if ($scope.outcome != $scope.outcomeOld || $scope.outcome != '') {
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskOutcome.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.outcome) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskOutcome.outcome)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskOutcome.id;
+                                            currentProposalTemp.itemContent = $scope.outcome;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskOutcome.outcome;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
+                                    } else {
+                                        toaster.pop('error', 'Error', 'Change the task outcome.');
+                                    }
+                                } else {
+                                    toaster.pop('error', 'Error', 'Select any task.');
+                                }
+                            } else if ($scope.proposalType == 'Modified Task Duration') {
+                                if ($scope.selectedTaskDuration != '') {
+                                    if ($scope.duration != $scope.durationOld || $scope.duration != '') {
+                                        var flagState = false;
+                                        for (var i =0; i<$scope.listProposal.length; i++) {
+                                            if (($scope.listProposal[i].itemSubject == $scope.selectedTaskDuration.id) &&
+                                                ($scope.listProposal[i].itemContent == $scope.duration) &&
+                                                ($scope.listProposal[i].currentContent == $scope.selectedTaskDuration.duration)) {
+                                                flagState = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!flagState){
+                                            currentProposalTemp.itemSubject = $scope.selectedTaskDuration.id;
+                                            currentProposalTemp.itemContent = $scope.duration;
+                                            currentProposalTemp.currentContent = $scope.selectedTaskDuration.duration;
+                                            $scope.listProposal.push(currentProposalTemp);
+                                        } else {
+                                            toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                        }
+                                    } else {
+                                        toaster.pop('error', 'Error', 'Change the task duration.');
+                                    }
+                                } else {
+                                    toaster.pop('error', 'Error', 'Select any task.');
+                                }
+                            } else if ($scope.proposalType == 'Modified Task Start Date') {
+                                if ($scope.selectedTaskStartDate != '') {
+                                    if ($scope.startDate != $scope.startDate || $scope.startDate != '') {
+                                        var dateTemp = new Date();
+                                        if ($scope.startDate - dateTemp > 0) {
+                                            var flagState = false;
+                                            for (var i =0; i<$scope.listProposal.length; i++) {
+                                                if (($scope.listProposal[i].itemSubject == $scope.selectedTaskStartDate.id) &&
+                                                    ($scope.listProposal[i].itemContent == $scope.startDate) &&
+                                                    ($scope.listProposal[i].currentContent == $scope.selectedTaskStartDate.startDate)) {
+                                                    flagState = true;
+                                                    break;
+                                                }
+                                            }
+
+                                            if (!flagState){
+                                                currentProposalTemp.itemSubject = $scope.selectedTaskStartDate.id;
+                                                currentProposalTemp.itemContent = $scope.startDate;
+                                                currentProposalTemp.currentContent = $scope.selectedTaskStartDate.startDate;
+                                                $scope.listProposal.push(currentProposalTemp);
+                                            } else {
+                                                toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                            }
+                                        } else {
+                                            toaster.pop('error', 'Error', 'You can not select a date before today');
+                                        }
+                                    } else {
+                                        toaster.pop('error', 'Error', 'Change the task start date.');
+                                    }
+                                } else {
+                                    toaster.pop('error', 'Error', 'Select any task.');
+                                }
+                            } else if ($scope.proposalType == 'Start Project') {
+
+                                if ($scope.proposalContent != '') {
+                                    var flagState = false;
+                                    for (var i =0; i<$scope.listProposal.length; i++) {
+                                        if (($scope.listProposal[i].itemSubject == '') &&
+                                            ($scope.listProposal[i].itemContent == $scope.proposalContent) &&
+                                            ($scope.listProposal[i].currentContent == '')) {
+                                            flagState = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!flagState){
+                                        currentProposalTemp.itemSubject = '';
+                                        currentProposalTemp.itemContent = $scope.proposalContent;
+                                        currentProposalTemp.currentContent = '';
+                                        $scope.listProposal.push(currentProposalTemp);
+                                    } else {
+                                        toaster.pop('error', 'Error', 'A similar proposal already exists.');
+                                    }
+                                } else {
+                                    toaster.pop('error', 'Error', 'Set the proposal content.');
+                                }
                             }
                         }
                     } else {
-                        toaster.pop('error', 'Error', 'Please select the proposal type.');
+                        toaster.pop('error', 'Error', 'Select the proposal type.');
                     }
                 } else {
-                    toaster.pop('error', 'Error', 'Please introduce the proposal title.');
+                    toaster.pop('error', 'Error', 'Introduce the proposal title.');
                 }
             };
 
@@ -508,6 +636,10 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                         }
                     }
                 }
+            };
+
+            $scope.deleteProposalTable = function (index) {
+                $scope.listProposal.splice(index,1);
             };
         }
     }]);

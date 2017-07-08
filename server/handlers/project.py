@@ -67,7 +67,7 @@ class SimpleProjectHandler(tornado.web.RequestHandler):
             self.write(str(id))
             activityContent = 'You created a new project'
 
-        table_activity.insert({'userId': newProject['userId'], 'title': 'Project', 'content': activityContent, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+        table_activity.insert({'userId': newProject['userId'], 'title': 'Project', 'type': 'NewProject', 'content': activityContent, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
 class SimpleProjectByIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
@@ -109,6 +109,9 @@ class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
 
         tasks = table_task.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
 
+        projects = table_simple_project.search((where('id') == projectId) | (where('id') == int(projectId)))
+        userId = projects[0]['userId']
+
         tasksIds = []
         for task in tasks:
             tasksIds.append(int(task['id']))
@@ -117,6 +120,7 @@ class SimpleProjectDeleteHandler(tornado.web.RequestHandler):
         table_task.remove(eids=tasksIds)
 
         self.write(str(projectId))
+        table_activity.insert({'userId': userId, 'title': 'Delete Project', 'type': 'DeleteProject', 'content': "Project deleted", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
 class AllProjectsExceptIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

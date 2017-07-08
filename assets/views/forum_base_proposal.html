@@ -29,7 +29,7 @@
                         <option value="Modified Task Outcome">Modified Task Outcome</option>
                         <option value="Modified Task Start Date">Modified Task Start Date</option>
                         <option value="Modified Task Duration">Modified Task Duration</option>
-                        <option value="Close Projecs">Close Project</option>
+                        <!--<option value="Close Projecs">Close Project</option>-->
                     </select>
                 </div>
             </div>
@@ -57,17 +57,31 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="selectedTaskState != ''">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="((selectedTaskStateFlag % 2 == 0) && (selectedTaskState != ''))">
                 <div class="form-group">
                     <label>State</label>
                     <select class="cs-select cs-skin-slide" ng-model="$parent.taskState" name="state">
                         <option ng-selected="" value="0" disabled selected>Select an state</option>
-                        <option ng-selected="currentTaskActive.state == 1" value="1">In Preparation</option>
-                        <option ng-selected="currentTaskActive.state == 2" value="2">Active</option>
-                        <option ng-selected="currentTaskActive.state == 3" value="3">Active: On time</option>
-                        <option ng-selected="currentTaskActive.state == 4" value="4">Active: Best than Expected</option>
-                        <option ng-selected="currentTaskActive.state == 5" value="5">Active: Delayed</option>
-                        <option ng-selected="currentTaskActive.state == 6" value="6">Finished</option>
+                        <option ng-selected="selectedTaskState.state == 1" value="1">In Preparation</option>
+                        <option ng-selected="selectedTaskState.state == 2" value="2">Active</option>
+                        <option ng-selected="selectedTaskState.state == 3" value="3">Active: On time</option>
+                        <option ng-selected="selectedTaskState.state == 4" value="4">Active: Best than Expected</option>
+                        <option ng-selected="selectedTaskState.state == 5" value="5">Active: Delayed</option>
+                        <option ng-selected="selectedTaskState.state == 6" value="6">Finished</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-if="((selectedTaskStateFlag % 2 == 1) && (selectedTaskState != ''))">
+                <div class="form-group">
+                    <label>State</label>
+                    <select class="cs-select cs-skin-slide" ng-model="$parent.taskState" name="state">
+                        <option ng-selected="" value="0" disabled selected>Select an state</option>
+                        <option ng-selected="selectedTaskState.state == 1" value="1">In Preparation</option>
+                        <option ng-selected="selectedTaskState.state == 2" value="2">Active</option>
+                        <option ng-selected="selectedTaskState.state == 3" value="3">Active: On time</option>
+                        <option ng-selected="selectedTaskState.state == 4" value="4">Active: Best than Expected</option>
+                        <option ng-selected="selectedTaskState.state == 5" value="5">Active: Delayed</option>
+                        <option ng-selected="selectedTaskState.state == 6" value="6">Finished</option>
                     </select>
                 </div>
             </div>
@@ -204,6 +218,7 @@
                         <th> Item Subject </th>
                         <th> Current Content </th>
                         <th> Proposal Content </th>
+                        <th> </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -212,9 +227,16 @@
                         <td ng-if="proposal.type != 'Start Project'"> Task: {{getTaskName(proposal.itemSubject)}} </td>
                         <td ng-if="proposal.type == 'Start Project'">  </td>
                         <td ng-if="proposal.type == 'Modified Task State'"> {{stateArray[proposal.currentContent]}} </td>
-                        <td ng-if="proposal.type != 'Modified Task State'"> {{proposal.currentContent}} </td>
+                        <td ng-if="((proposal.type != 'Modified Task State') && (proposal.type != 'Modified Task Start Date'))"> {{proposal.currentContent}} </td>
+                        <td ng-if="proposal.type == 'Modified Task Start Date'"> {{getProjectDate(proposal.currentContent)}} </td>
                         <td ng-if="proposal.type == 'Modified Task State'"> {{stateArray[proposal.itemContent]}} </td>
-                        <td ng-if="proposal.type != 'Modified Task State'"> {{proposal.itemContent}} </td>
+                        <td ng-if="((proposal.type != 'Modified Task State') && (proposal.type != 'Modified Task Start Date'))"> {{proposal.itemContent}} </td>
+                        <td ng-if="proposal.type == 'Modified Task Start Date'"> {{getProjectDate(proposal.itemContent)}} </td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="deleteProposalTable($index)">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

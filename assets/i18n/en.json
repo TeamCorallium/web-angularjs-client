@@ -8,10 +8,24 @@
       "ABOUTUS": "About Us",
       "FAQ": "Faq",
       "CONTACTUS": "Contact Us",
-      "EXPLORE": "Explore",
+      "EXPLORE": "Explore"     
+    },
+    "home": {
       "CREATEPROYECT": "Create new project",
       "TEXT1": "Bring your ideas to live",
-      "TEXT2": "Raise capital or join the world’s largest network of professional investors. Participate to support the needed change to a sustainable and better world"      
+      "TEXT2": "Raise capital or join the world’s largest network of professional investors",
+      "TEXT3": "Participate to support the needed change to a sustainable and better world"       
+    },
+    "aboutus": {
+      "TITLE": "About Us",
+      "DESCRIPTION": "One of the biggest and popular Agripreneurship and other Startup enabler platform in which everybody can participate to the extent of each one capability and values to support the needed change to a sustainable and better world"
+    },
+    "faq": {
+
+    },
+    "contactus": {
+      "TITLE": "Contact Us",
+      
     }
   },
   "topbar": {

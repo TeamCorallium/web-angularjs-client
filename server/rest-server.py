@@ -85,7 +85,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                     if int(c.id) == int(userId):
                         c.connection.write_message("NOTIFICATION")
 
-            table_activity.insert({'userId': self.id, 'title': 'Proposal', 'content': "Create a proposal", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+            table_activity.insert({'userId': self.id, 'title': 'Proposal', 'type': 'CreateProposal', 'content': "Create a proposal", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
             print(interestedUserIds)
 
@@ -109,7 +109,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             proposals = table_proposal.search((where('id') == proposalId) | (where('id') == int(proposalId)))
             proposal = proposals[0]
 
-            table_activity.insert({'userId': self.id, 'title': 'Vote', 'content': "Vote:" + vote['value'] + ' for ' + proposal['name'], 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+            table_activity.insert({'userId': self.id, 'title': 'Vote', 'type':'Vote', 'content': "Vote:" + vote['value'] + ' for ' + proposal['name'], 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
             interestedUserIds = []
             interestedUserIds.append(project['userId'])
@@ -188,7 +188,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
         if self.json_args['type'] == 'COMMENT':
             table_comment.insert(self.json_args['value'])
-            table_activity.insert({'userId': self.id, 'title': 'Comment', 'content': "New comment", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+            table_activity.insert({'userId': self.id, 'title': 'Comment', 'type': 'NewComment', 'content': "New comment", 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
     def on_close(self):
         print('WebSocketHandler:on_close')

@@ -8,23 +8,62 @@
       "ABOUTUS": "About Us",
       "FAQ": "Faq",
       "CONTACTUS": "Contact Us",
-      "EXPLORE": "Explore"     
+      "EXPLORE": "Explore"   
     },
+    "footer": {
+      "copyright": {
+        "MAIN": "Copyright",
+        "MESSAGE": "by Corallium. All Rights Reserved."
+      }
+    }, 
     "home": {
       "CREATEPROYECT": "Create new project",
       "TEXT1": "Bring your ideas to live",
       "TEXT2": "Raise capital or join the world’s largest network of professional investors",
-      "TEXT3": "Participate to support the needed change to a sustainable and better world"       
+      "TEXT3": "Participate to support the needed change to a sustainable and better world",
+      "NEWSTITLE": "Take a look at some of our news",
+      "NEWSDESC": "Information related to the activity within the system",
+      "NEWS1TITLE": "News 1",
+      "NEWS1DESC": "News 1 Description",
+      "NEWS2TITLE": "News 2",
+      "NEWS2DESC": "News 2 Description",
+      "NEWS3TITLE": "News 3",
+      "NEWS3DESC": "News 3 Description",
+      "NEWS4TITLE": "News 4",
+      "NEWS4DESC": "News 4 Description",
+      "NEWS5TITLE": "News 5",
+      "NEWS5DESC": "News 5 Description",
+      "NEWS6TITLE": "News 6",
+      "NEWS6DESC": "News 6 Description",
+      "GEN1":"Create charitable projects",
+      "GEN1DESC": "You ca use the platform for charitable causes. Donate your money for a good cause",
+      "GEN2":"Impact on social projects",
+      "GEN2DESC": "In our projects we value measurable impact and sustainability",
+      "GEN3":"Teamwork",
+      "GEN3DESC": "Efficient and effective teamwork in the industry of moving people is paramount to success",
+      "GEN4":"Track your projects",
+      "GEN4DESC": "We will also help to track the lifecycle of their projects. This can not be done in other crowdfunding platforms",
+      "GEN5":"Real time communication",
+      "GEN5DESC": "We offer you chat and forum tools to stakeholders's real time communications",
+      "GEN6":"Investment opportunities",
+      "GEN6DESC": "Invest your money well. You can see the estimated revenue for all published projects",
+      "STATISTICS1": "Registered Investors",
+      "STATISTICS2": "Annual Projects",
+      "STATISTICS3": "Average Profit Markup",
+      "STATISTICS4": "New Users Per Year",
+      "LINK": "More than 100+ opportunities to invest your money"
     },
     "aboutus": {
       "TITLE": "About Us",
       "DESCRIPTION": "One of the biggest and popular Agripreneurship and other Startup enabler platform in which everybody can participate to the extent of each one capability and values to support the needed change to a sustainable and better world"
     },
     "faq": {
-
+      "TITLE": "FAQ",
+      "DESCRIPTION": "List of questions and answers relating to why and how to use Corallium system"
     },
     "contactus": {
-      "TITLE": "Contact Us"
+      "TITLE": "Contact Us",
+      "DESCRIPTION": "Ways to communicate with the project development team"
     }
   },
   "topbar": {
@@ -83,7 +122,7 @@
   "footer": {
     "copyright": {
     	"MAIN": "Copyright",
-      	"MESSAGE": "All rights reserved"
+      "MESSAGE": "All rights reserved"
     }
   },
   "setting": {
@@ -94,18 +133,108 @@
     "FIXEDFOOTER": "Fixed footer"
   },
   "pages": {
+    "BACK": "Back",
+    "READMORE": "Read More",
+    "FOLLOW": "Follow",
+    "FOLLOWING": "Following",    
+    "GOTOPROJECT": "Go to project",
+    "GOTOFORUM": "Go to forum",
+    "ORDERBY": "Order By",
+    "RAITING": "Raiting",
+    "DEATHLINE": "Deathline",
+    "TOTALCOST": "Total Cost",
+    "TOTALREVENUE": "Total Revenue",
+    "DESCRIPTION": "Description",
+    "STATE": "State",
+    "OWNER": "Owner",
+    "OWNERRATING": "Owner Raiting",
+    "COVEREDCAPITAL": "Covered Capital",
+    "SECTOR": "Sector",
+    "CATEGORY": "Category",
+    "EMAIL": "Email",
+    "GENDER": "Gender",
+    "MALE": "Male",
+    "FEMALE": "Female",
     "home": {
       "WELCOME": "Welcome to Corallium",
       "MYPROYECTS": "My Projects",
+      "MYPROYECTSDESC": "Visit projects where you are directly involved as owner or financier",
       "CREATEPROYECT": "Create new project",
+      "CREATEPROYECTDESC": "To create new project you need to be signed in as owner user",
       "OPPORTUNITIES": "Opportunities",
-      "VIEWMORE": "view more"
+      "OPPORTUNITIESDESC": "Look for project opportunities to invest your money well",
+      "VIEWMORE": "view more",
+      "NEWSTITLE": "Take a look at some of our news",
+      "NEWS1TITLE": "News 1",
+      "NEWS1DESC": "News 1 Description",
+      "NEWS2TITLE": "News 2",
+      "NEWS2DESC": "News 2 Description",
+      "NEWS3TITLE": "News 3",
+      "NEWS3DESC": "News 3 Description",
+      "NEWS4TITLE": "News 4",
+      "NEWS4DESC": "News 4 Description",
+      "NEWS5TITLE": "News 5",
+      "NEWS5DESC": "News 5 Description",
+      "NEWS6TITLE": "News 6",
+      "NEWS6DESC": "News 6 Description"
     },
     "profile": {
       "TITLE": "User Profile"
     },
     "activities": {
       "TITLE": "Activities"
-    }    
+    },
+    "explore": {
+      "TITLE": "Projects showcases",
+      "TITLEDESC": "Browse popular projects based on the topic that interests you most",
+      "USERS": "Users",
+      "PROJECTS": "Projects",
+      "VIEWPROFILE": "View Profile"
+    },
+    "notifications": {
+      "TITLE": "Notifications"
+    },
+    "statistics": {
+      "TITLE": "Statistics"
+    },
+    "forums": {
+      "LISTTITLE": "My Forums",
+      "PROPOSAL": "Proposals",
+      "COMMENT": "Comments"
+    },
+    "finances": {
+      "TITLE": "Finances"
+    },
+    "myprojects": {
+      "TITLE": "Statistics"
+    },
+    "opportunities": {
+      "TITLE": "Opportunities"
+    },
+    "create": {
+      "TITLE": "Create new project",
+      "TITLEDESC": "You can create two kind of projects, simple and complex.",
+      "SIMPLE": "Simple project",
+      "COMPLEX": "Complex project",
+      "SIMPLEDESC": "",
+      "COMPLEXDESC": "",
+      "CREATE": "Create"
+    },
+    "wizard": {
+      "TITLE": "Opportunities"
+    },
+    "login": {
+      "LOGIN": "Log In",
+      "SIGNUP": "Sign Up",
+      "TEXT1": "Sign in to your account",
+      "TEXT2": "Please enter your email and password to log in.",
+      "TEXT3": "Keep me signed in",
+      "TEXT4": "Don't have an account yet?",
+      "TEXT5": "Create an account",
+      "TEXT6": "Enter your personal details below",
+      "TEXT7": "Enter your account details below",
+      "TEXT8": "I agree",
+      "TEXT9": "Already have an account?"
+    }           
   }
 }

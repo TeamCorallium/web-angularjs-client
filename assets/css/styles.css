@@ -11880,9 +11880,9 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 
 .invertion-image{
   float: left !important;
-  height: 60px !important;
+  height: 80px !important;
   margin-right: 5% !important;
-  width: 60px !important;
+  width: 80px !important;
 }
 
 .explore-user-image{
@@ -12005,4 +12005,66 @@ fieldset legend {
 
 .cursor-text:hover{
   cursor: text !important;
+}
+
+.middle_vote {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  margin-left: -8% !important;
+  width: 80px !important;
+  text-align: center !important;
+  font-weight: bold;
+  transform: translate(-95%, -50%);
+  -ms-transform: translate(-95%, -50%)
+}
+
+.middle_proposal {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  margin-left: -5% !important;
+  width: 80px !important;
+  text-align: center !important;
+  font-weight: bold;
+  transform: translate(-95%, -50%);
+  -ms-transform: translate(-95%, -50%)
+}
+
+.middle_forum_proposal {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 40%;
+  margin-left: -5.5% !important;
+  width: 80px !important;
+  text-align: center !important;
+  font-weight: bold;
+  transform: translate(-95%, -50%);
+  -ms-transform: translate(-95%, -50%)
+}
+
+.image {
+  opacity: 1 !important;
+  display: block !important;
+  transition: .5s ease !important;
+  backface-visibility: hidden !important;
+}
+
+.notifies_image:hover .image {
+  opacity: 0.2 !important;
+}
+
+.notifies_image:hover .middle_proposal {
+  opacity: 1 !important;
+}
+
+.notifies_image:hover .middle_vote {
+  opacity: 1 !important;
+}
+
+.notifies_image:hover .middle_forum_proposal {
+  opacity: 1 !important;
 }

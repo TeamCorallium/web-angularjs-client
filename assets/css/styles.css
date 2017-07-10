@@ -194,7 +194,8 @@ button {
 }
 
 a {
-  color: #ff6839;
+  /*color: #ff6839;*/
+  color: #636363;
 }
 a:hover, a:focus, a:active {
   color: #f45700;
@@ -12098,7 +12099,7 @@ fieldset legend {
 }
 
 .cl-effectByMe-16 a::before{
-  color: #007aff;
+  color: #ff6839;
   font-size: 15px;
   content: attr(data-hover);
   position: absolute;
@@ -12114,7 +12115,7 @@ fieldset legend {
 }
 
 .cl-effectByMeSameText-16 a::before{
-  color: #007aff;
+  color: #ff6839;
   content: attr(data-hover);
   position: absolute;
   opacity: 0;

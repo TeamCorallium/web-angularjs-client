@@ -98,6 +98,8 @@ app.controller('SubprojectCtrl', ["$scope", "localStorageService", "RestService"
             $scope.projectRole = function (userId) {
                 if (localStorageService.get('currentUserId') == userId) {
                     return 'Owner';
+                } else {
+                    return 'Financier';
                 }
             };
 

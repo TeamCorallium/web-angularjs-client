@@ -98,23 +98,23 @@
                                             <div class="col-md-12">
                                                 <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right margin-top-15">
                                                     <li class="pull-right">
-                                                        <i class="fa fa-calendar"></i> <strong>Creation Date:</strong> {{getDateProject(currentProjectActive.creationDate)}}
+                                                        <i class="fa fa-calendar"></i> Creation Date: {{getDateProject(currentProjectActive.creationDate)}}
                                                     </li>
                                                 </ul>
-                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15"><strong>State:</strong> {{stateArray[currentProjectActive.state]}}</p>
+                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15"><strong>State: </strong>{{stateArray[currentProjectActive.state]}}</p>
                                             </div>
                                         </div>
                                         <div class="row margin-top-15" ng-show="projectRole(owner.id) == 'Financier'">
                                             <div class="col-md-12 links cl-effectByMeSameText-16">
-                                                <p><strong>Owner:</strong> <a ng-click="goToExploreUserProfile(owner.id)" data-hover="{{owner.fullName}}">{{owner.fullName}}</a></p>
+                                                <p>Owner: <a ng-click="goToExploreUserProfile(owner.id)" data-hover="{{owner.fullName}}">{{owner.fullName}}</a></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row col-md-12">
-                                        <p class="taller"> <strong>Description</strong> </p>
+                                        <p class="taller"><strong>Description</strong></p>
                                         <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
                                     </div>
-                                    <p class="taller margin-bottom-25"> <strong>Duration:</strong> {{getDuration(currentProjectActive.estimateDuration)}}</p>
+                                    <p class="taller margin-bottom-25"><strong>Duration:</strong> {{getDuration(currentProjectActive.estimateDuration)}}</p>
                                     <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>

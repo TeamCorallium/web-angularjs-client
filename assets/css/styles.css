@@ -12153,3 +12153,7 @@ fieldset legend {
 .background-none{
   background: rgba(0, 0, 0, 0.0) !important;
 }
+
+.hover-notification:hover{
+  font-size: 15px !important;
+}

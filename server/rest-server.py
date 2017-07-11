@@ -147,7 +147,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                                     taskId = prop['itemSubject']
                                     tasks = table_task.search((where('id') == taskId) | (where('id') == int(taskId)))
                                     taskCost = tasks[0]['cost']
-                                    table_transaction.insert({'userId': userId, 'projectId': projectId, 
+                                    table_transaction.insert({'userId': ownerId, 'projectId': projectId, 
                                                               'amount': taskCost, 'operation': 'outcome', 
                                                               'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
                             if prop['type'] == 'Modified Task Name': 

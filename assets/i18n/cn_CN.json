@@ -10,21 +10,60 @@
       "CONTACTUS": "聯繫我們",
       "EXPLORE": "探索"
     },
+    "footer": {
+      "copyright": {
+        "MAIN": "版权",
+        "MESSAGE": "由Corallium. 版权所有."
+      }
+    },
     "home": {
       "CREATEPROYECT": "創建新項目",
       "TEXT1": "帶你的想法生活",
       "TEXT2": "籌集資金或加入世界上最大的專業投資者網絡",
-      "TEXT3": "參與支持可持續和更美好的世界所需要的變革"       
+      "TEXT3": "參與支持可持續和更美好的世界所需要的變革",
+      "NEWSTITLE": "看看我们的一些消息",
+      "NEWSDESC": "与系统内活动有关的信息",
+      "NEWS1TITLE": "新闻1",
+      "NEWS1DESC": "新闻1说明",
+      "NEWS2TITLE": "新闻2",
+      "NEWS2DESC": "新闻2说明",
+      "NEWS3TITLE": "新闻3",
+      "NEWS3DESC": "新闻3说明",
+      "NEWS4TITLE": "新闻4",
+      "NEWS4DESC": "新闻4说明",
+      "NEWS5TITLE": "新闻5",
+      "NEWS5DESC": "新闻5说明",
+      "NEWS6TITLE": "新闻6",
+      "NEWS6DESC": "新闻6说明",
+      "GEN1":"创建慈善项目",
+      "GEN1DESC": "你可以使用这个平台来做慈善事业。 捐出你的钱是一个很好的事业",
+      "GEN2":"对社会工程的影响",
+      "GEN2DESC": "在我们的项目中，我们重视可衡量的影响和可持续性",
+      "GEN3":"团队合作",
+      "GEN3DESC": "移动人员行业中高效有效的团队合作至关重要",
+      "GEN4":"跟踪你的项目",
+      "GEN4DESC": "我们还将帮助跟踪他们的项目的生命周期。 这在其他众筹平台上是无法做到的",
+      "GEN5":"实时通讯",
+      "GEN5DESC": "我们为您提供聊天和论坛工具，帮助利益相关方实时沟通",
+      "GEN6":"各种机会",
+      "GEN6DESC": "投资你的钱好 您可以看到所有已发布项目的估计收入",
+      "STATISTICS1": "注册投资者",
+      "STATISTICS2": "年度项目",
+      "STATISTICS3": "平均利润标记",
+      "STATISTICS4": "每年新用户",
+      "LINK": "超过100多种机会投资您的钱"           
     },
     "aboutus": {
       "TITLE": "我们是谁",
       "DESCRIPTION": "在农业和其他启动启动平台中，最大和最受欢迎的企业家之，每个人都可以在每一个能力和价值观的范围内参与，以支持可持续和更美好的世界所需的变革"
     },
     "faq": {
-
+      "TITLE": "常问问题",
+      "DESCRIPTION": "有关为什么和如何使用Corallium系统的问题和答案列表"
     },
     "contactus": {
-
+      "TITLE": "联系我们",
+      "DESCRIPTION": "与项目开发团队沟通的方式"
     }
   },
   "topbar": {
@@ -82,8 +121,8 @@
   },
   "footer": {
     "copyright": {
-      "MAIN": "Copyright",
-        "MESSAGE": "All rights reserved"
+      "MAIN": "版权",
+      "MESSAGE": "版权所有"
     }
   },
   "setting": {
@@ -106,6 +145,48 @@
     },
     "activities": {
       "TITLE": "活動"
-    }    
+    },
+    "explore": {
+      "TITLE": "Projects showcases",
+      "TITLEDESC": "Browse popular projects based on the topic that interests you most",
+      "USERS": "Users",
+      "PROJECTS": "活動"
+    },
+    "notifications": {
+      "TITLE": "Notifications"
+    },
+    "statistics": {
+      "TITLE": "Statistics"
+    },
+    "forums": {
+      "LISTTITLE": "My Forums",
+      "PROPOSAL": "Proposals",
+      "COMMENT": "Comments"
+    },
+    "finances": {
+      "TITLE": "Finances"
+    },
+    "myprojects": {
+      "TITLE": "Statistics"
+    },
+    "opportunities": {
+      "TITLE": "Opportunities"
+    },
+    "create": {
+      "TITLE": "Create new project",
+      "TITLEDESC": "You can create two kind of projects, simple and complex.",
+      "SIMPLE": "Simple project",
+      "COMPLEX": "Complex project",
+      "SIMPLEDESC": "",
+      "COMPLEXDESC": "",
+      "CREATE": "Create"
+    },
+    "wizard": {
+      "TITLE": "Opportunities"
+    },
+    "login": {
+      "LOGIN": "登录",
+      "SIGNUP": "注册"
+    }                   
   }
 }

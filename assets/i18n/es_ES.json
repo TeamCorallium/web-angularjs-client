@@ -10,21 +10,60 @@
       "CONTACTUS": "Contáctenos",
       "EXPLORE": "Explorar"  
     },
+    "footer": {
+      "copyright": {
+        "MAIN": "Derechos de autor",
+        "MESSAGE": "para Corallium. Todos los Derechos Reservados."
+      }
+    },
     "home": {
       "CREATEPROYECT": "Crear nuevo proyecto",
       "TEXT1": "Dale vida a tus ideas",
       "TEXT2": "Reune capital o únete a la red de inversores profesionales más grande del mundo",
-      "TEXT3": "Participa y apoya el cambio necesario a un mundo sostenible y mejor"       
+      "TEXT3": "Participa y apoya el cambio necesario a un mundo sostenible y mejor",
+      "NEWSTITLE": "Algunas noticias relevantes",
+      "NEWSDESC": "Informaciones relacionadas con la actividad dentro del sistema",
+      "NEWS1TITLE": "Noticia 1",
+      "NEWS1DESC": "Descripción de la noticia 1",
+      "NEWS2TITLE": "Noticia 2",
+      "NEWS2DESC": "Descripción de la noticia 2",
+      "NEWS3TITLE": "Noticia 3",
+      "NEWS3DESC": "Descripción de la noticia 3",
+      "NEWS4TITLE": "Noticia 4",
+      "NEWS4DESC": "Descripción de la noticia 4",
+      "NEWS5TITLE": "Noticia 5",
+      "NEWS5DESC": "Descripción de la noticia 5",
+      "NEWS6TITLE": "Noticia 6",
+      "NEWS6DESC": "Descripción de la noticia 6",
+      "GEN1":"Proyectos benéficos",
+      "GEN1DESC": "Usted puede usar la plataforma para crear proyectos benéficos. Done su dinero para una buena causa",
+      "GEN2": "Proyectos con imparto social",
+      "GEN2DESC": "En nuestros proyectos valoramos mucho el impacto social y la sostenibilidad",
+      "GEN3":"Trabajo en equipo",
+      "GEN3DESC": "El trabajo en equipo eficiente y eficaz en la industria es primordial para alcanzar el éxito",
+      "GEN4":"Seguimiento de sus proyectos",
+      "GEN4DESC": "El sistema ayuda con el seguimiento del desarrollo del proyecto. Plataformas similares no ofrecen esta funcionalidad",
+      "GEN5":"Comunicaciones en tiempo real",
+      "GEN5DESC": "La plataforma cuenta con herramientas de chat y forums para la comunicación en tiempo real de los involucrados en proyectos comunes",
+      "GEN6":"Oportunidades de inversión",
+      "GEN6DESC": "Invierta bien su dinero. Cada proyecto brinda información sobre las ganancias esperadas",
+      "STATISTICS1": "Inversionistas registrados",
+      "STATISTICS2": "Proyectos anuales",
+      "STATISTICS3": "Margen de beneficio promedio",
+      "STATISTICS4": "Nuevos usuarios por año",
+      "LINK": "Más de 100+ oportunidades para para invertir su dinero"          
     },
     "aboutus": {
       "TITLE": "Quiénes somos",
       "DESCRIPTION": "Una de las más grandes y populares plataformas para emprendedores en el área de la agricultura y otros sectores, en la que todos pueden participar en la medida las capacidades y valores de cada cual, para apoyar el cambio necesario a un mundo sostenible y mejor"
     },
     "faq": {
-
+      "TITLE": "Preguntas frecuentes",
+      "DESCRIPTION": "Listado de preguntas y respuestas relacionadas con el por qué y el cómo usar la plataforma Corallium"
     },
     "contactus": {
-
+      "TITLE": "Contáctenos",
+      "DESCRIPTION": "Vías para la comunicación con el equipo de desarrollo"
     }
   },  
   "topbar": {
@@ -82,8 +121,8 @@
   },
   "footer": {
     "copyright": {
-      "MAIN": "Copyright",
-        "MESSAGE": "All rights reserved"
+      "MAIN": "Derechos de autor",
+      "MESSAGE": "Todos los Derechos Reservados"
     }
   },
   "setting": {
@@ -94,6 +133,28 @@
     "FIXEDFOOTER": "Fixed footer"
   },
   "pages": {
+    "BACK": "Atrás",
+    "READMORE": "Leer más",
+    "FOLLOW": "Seguir",
+    "FOLLOWING": "Siguiendo",
+    "GOTOPROJECT": "Ir al Proyecto",
+    "GOTOFORUM": "Ir al Forum",
+    "ORDERBY": "Ordenar Por",
+    "RAITING": "Puntuación",
+    "DEATHLINE": "Fecha Límite",
+    "TOTALCOST": "Costo Total",
+    "TOTALREVENUE": "Ganancia Total", 
+    "DESCRIPTION": "Descripción",
+    "STATE": "Estado",
+    "OWNER": "Propietario",
+    "OWNERRATING": "Puntuación del Propietario",
+    "COVEREDCAPITAL": "Capital Cubierto",
+    "SECTOR": "Sector",
+    "CATEGORY": "Categoría",
+    "EMAIL": "Correo",
+    "GENDER": "Género",
+    "MALE": "Masculino",
+    "FEMALE": "Femenino",         
     "home": {
       "WELCOME": "Bienvenidos a Corallium",
       "MYPROYECTS": "Mis Proyectos",
@@ -106,6 +167,57 @@
     },
     "activities": {
       "TITLE": "Actividades"
-    } 
+    },
+    "explore": {
+      "TITLE": "Proyectos",
+      "TITLEDESC": "Busque proyectos de acuerdo a los criterios de su preferencia",
+      "USERS": "Usuarios",
+      "PROJECTS": "Proyectos"
+    },
+    "notifications": {
+      "TITLE": "Notificaciones"
+    },
+    "statistics": {
+      "TITLE": "Estadísticas"
+    },
+    "forums": {
+      "LISTTITLE": "Mis Forums",
+      "PROPOSAL": "Propuestas",
+      "COMMENT": "Comentarios"
+    },
+    "finances": {
+      "TITLE": "Finanzas"
+    },
+    "myprojects": {
+      "TITLE": "Statistics"
+    },
+    "opportunities": {
+      "TITLE": "Opportunities"
+    },
+    "create": {
+      "TITLE": "Crear un nuevo proyecto",
+      "TITLEDESC": "Puede crear dos tipos de proyectos, simples o complejos.",
+      "SIMPLE": "Proyecto simple",
+      "COMPLEX": "Proyecto complejo",
+      "SIMPLEDESC": "",
+      "COMPLEXDESC": "",
+      "CREATE": "Crear"
+    },
+    "wizard": {
+      "TITLE": "Opportunities"
+    },
+    "login": {
+      "LOGIN": "Iniciar Sesión",
+      "SIGNUP": "Registrarse",
+      "TEXT1": "Inicie una sesión con su cuenta",
+      "TEXT2": "Por favor, introduzca sus credenciales.",
+      "TEXT3": "Mantener la sesión abierta",
+      "TEXT4": "¿Todavía no tiene cuenta?",
+      "TEXT5": "Crear una nueva",
+      "TEXT6": "Introduzca sus datos personales",
+      "TEXT7": "Introduzca los detalles de su cuenta",
+      "TEXT8": "Estoy de acuerdo",
+      "TEXT9": "¿Ya tiene una cuenta?"
+    }          
   }  
 }

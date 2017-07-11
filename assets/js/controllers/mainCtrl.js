@@ -120,6 +120,8 @@ function($rootScope, $scope, $state, $translate, $localStorage, $window, $docume
 			$translate.use(localeId);
 			$scope.language.selected = $scope.language.available[localeId];
 			$scope.language.listIsOpen = !$scope.language.listIsOpen;
+
+			$state.reload();
 		}
 	};
 

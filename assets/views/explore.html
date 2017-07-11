@@ -1,8 +1,8 @@
 <section id="page-title">
 	<div class="row">
 		<div class="col-sm-8">
-			<h1 class="mainTitle">Projects showcases</h1>
-			<span class="mainDescription">Browse popular projects based on the topic that interests you most.</span>
+			<h1 class="mainTitle"><span class="title" translate="pages.explore.TITLE"> </h1>
+			<span class="mainDescription" translate="pages.explore.TITLEDESC"></span>
 		</div>
 		<!--<div ncy-breadcrumb></div>-->
 	</div>
@@ -11,25 +11,28 @@
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-bottom-15" ng-show="selectedTabProjects" >
 		<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right no-padding">
 			<select ng-change="getAllProjects()" ng-model="filter" class="cs-select cs-skin-elastic border-combo-projects">
-				<option value="" disabled selected>Order By</option>
-				<option value="totalCost">Total Cost</option>
-				<option value="totalRevenue">Total Revenue</option>
-				<option value="deathLine">Deathline</option>
+				<option translate="pages.ORDERBY" value="" disabled selected></option>
+				<option translate="pages.TOTALCOST" value="totalCost"></option>
+				<option translate="pages.TOTALREVENUE" value="totalRevenue"></option>
+				<option translate="pages.DEATHLINE" value="deathLine"></option>
 			</select>
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-bottom-15" ng-hide="selectedTabProjects">
 		<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right no-padding">
 			<select ng-change="getAllProjects()" ng-model="filter" class="cs-select cs-skin-elastic border-combo-projects">
-				<option value="" disabled selected>Order By</option>
-				<option value="Raiting">Raiting</option>
-				<option value="Projects">Projects</option>
+				<option translate="pages.ORDERBY" value="" disabled selected></option>
+				<option translate="pages.RAITING" value="Raiting"></option>
+				<option translate="pages.explore.PROJECTS" value="Projects"></option>
 			</select>
 		</div>
 	</div>
 	<div class="container no-padding">
 		<uib-tabset class="tabbable">
-			<uib-tab heading="Projects" select="tabSelectedProjects()">
+			<uib-tab select="tabSelectedProjects()">
+				<uib-tab-heading>
+					<span translate="pages.explore.PROJECTS"></span>
+				</uib-tab-heading>
 				<div class="blog-posts">
 					<ul class="list-unstyled">
 						<li class="margin-bottom-15" ng-repeat="project in allProjectsAbstracts">
@@ -46,57 +49,57 @@
 									</div>
 									<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
 										<span class="notification-preview">
-											<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
+											<strong translate="pages.DESCRIPTION"></strong><strong>:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
 										</span>
 									</div>
 									<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-pencil-alt"></i>
-												<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
+												<strong translate="pages.TOTALCOST"></strong><strong>:</strong>  {{project.totalCost | number: 2}} $
 											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-wallet"></i>
-												<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
+												<strong translate="pages.TOTALREVENUE"></strong><strong>:</strong>  {{project.totalRevenue | number: 2}} $
 											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-stats-up"></i>
-												<strong> State:</strong>  {{stateArray[project.state]}}
+												<strong translate="pages.STATE"></strong><strong>:</strong>  {{stateArray[project.state]}}
 											</span>
 										</div>
 									</div>
 									<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-calendar"></i>
-												<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
+												<strong translate="pages.DEATHLINE"></strong><strong>:</strong>  {{getProjectDate(project.deathLine)}}
 											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding links cl-effectByMeSameText-16">
 											<span><i class="ti-id-badge"></i>
-												<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)" data-hover="{{project.ownerName}}">{{project.ownerName}}</a>
+												<strong translate="pages.OWNER"></strong><strong>:</strong> <a ng-click="viewProfile(project.ownerId)" data-hover="{{project.ownerName}}">{{project.ownerName}}</a>
 											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-menu"></i>
-												<strong> Owner Raiting:</strong>
+												<strong translate="pages.OWNERRATING"></strong><strong>:</strong>
 											</span>
 										</div>
 									</div>
 									<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 										<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-bar-chart"></i>
-												<strong> Covered Capital:</strong>  {{project.coveredCapital | number: 2}} %
+												<strong translate="pages.COVEREDCAPITAL"></strong><strong>:</strong>  {{project.coveredCapital | number: 2}} %
 											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-widget"></i>
-												<strong> Sector:</strong> {{sectorArray[project.sector]}}
+												<strong translate="pages.SECTOR"></strong><strong>:</strong> {{sectorArray[project.sector]}}
 											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class=" ti-view-list-alt"></i>
-												<strong> Category:</strong> {{categoryArray[project.category]}}
+												<strong translate="pages.CATEGORY"></strong><strong>:</strong> {{categoryArray[project.category]}}
 											</span>
 										</div>
 									</div>
@@ -105,15 +108,15 @@
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
 										<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
 												ng-click="goToExploreProject(project.id)">
-											<span class="fa fa-angle-right"></span> Read more
+											<span class="fa fa-angle-right"></span> <span translate="pages.READMORE"></span>
 										</button>
 										<button ng-click="follow(project.id, project.name)" ng-hide="isFollowProject(project.id) || (!logged)"
 												type="button" class="btn btn-success btn-xs pull-right margin-left-5">
-											<span class="ti-thumb-up"></span> Follow
+											<span class="ti-thumb-up"></span> <span translate="pages.FOLLOW"></span>
 										</button>
 										<button ng-click="unfollow(project.id, project.name)" ng-show="isFollowProject(project.id) && (logged)"
 												type="button" class="btn btn-success btn-xs pull-right margin-left-5">
-											<span class="ti-thumb-down"></span> Following
+											<span class="ti-thumb-down"></span> <span translate="pages.FOLLOWING"></span>
 										</button>
 									</div>
 								</div>
@@ -123,6 +126,9 @@
 				</div>
 			</uib-tab>
 			<uib-tab heading="Users" select="tabSelectedUser()">
+				<uib-tab-heading>
+					<span translate="pages.explore.USERS"></span>
+				</uib-tab-heading>
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="user in listAllUserAbstracts">
 						<hr class="tall">
@@ -134,21 +140,21 @@
 								<span class="notification-author"><a ng-click="viewProfile(user.id)" data-hover="{{user.name}}"> {{user.name}} </a></span>
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-								<label><strong>Email:</strong></label>
+								<label><strong translate="pages.EMAIL"></strong><strong>:</strong></label>
 								<span> {{user.email}} </span>
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-								<label><strong>Raiting:</strong></label>
+								<label><strong translate="pages.RAITING"></strong><strong>:</strong></label>
 								<span></span>
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-								<label><strong>Projects:</strong></label>
+								<label><strong translate="pages.explore.PROJECTS"></strong><strong>:</strong></label>
 								<span>{{user.countProjects}}</span>
 							</div>
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
 									<button type="button" class="btn btn-primary btn-xs pull-right" ng-click="viewProfile(user.id)">
-										<span class="glyphicon glyphicon-upload"></span> View Profile
+										<span class="glyphicon glyphicon-upload"></span> <span translate="pages.explore.VIEWPROFILE"></span>
 									</button>
 								</div>
 							</div>

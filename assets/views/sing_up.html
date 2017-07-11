@@ -4,31 +4,31 @@
 		<form class="form-register">
 			<fieldset>
 				<legend>
-					Sign Up
+					<span translate="pages.login.SIGNUP"></span>
 				</legend>
 				<p>
-					Enter your personal details below:
+					<span translate="pages.login.TEXT6"></span>
 				</p>
 				<div class="form-group">
 					<input type="text" ng-model="user.fullName" class="form-control" name="full_name" placeholder="Full Name" required="required">
 				</div>
 				<div class="form-group">
 					<label class="block">
-						Gender
+						<span translate="pages.GENDER"></span>
 					</label>
 					<div class="clip-radio radio-primary">
 						<input type="radio" id="rg-female" name="gender" value="female" ng-model="user.gender">
 						<label for="rg-female">
-							Female
+							<span translate="pages.FEMALE"></span>
 						</label>
 						<input type="radio" id="rg-male" name="gender" value="male" ng-model="user.gender">
 						<label for="rg-male">
-							Male
+							<span translate="pages.MALE"></span>
 						</label>
 					</div>
 				</div>
 				<p>
-					Enter your account details below:
+					<span translate="pages.login.TEXT7"></span>
 				</p>
 				<div class="form-group">
 						<span class="input-icon">
@@ -49,19 +49,19 @@
 					<div class="checkbox clip-check check-primary">
 						<input type="checkbox" id="agree" value="agree" ng-model="term_check">
 						<label for="agree">
-							I agree
+							<span translate="pages.login.TEXT8"></span>
 						</label>
 					</div>
 				</div>
 				<div class="form-actions">
 					<p>
-						Already have an account?
+						<span translate="pages.login.TEXT9"></span>
 						<a ui-sref="app.login.signin">
-							Log-in
+							<span translate="pages.login.LOGIN"></span>
 						</a>
 					</p>
 					<button type="submit" class="btn btn-primary pull-right" ng-click="signup()">
-						Submit <i class="ti-arrow-circle-right"></i>
+						<span translate="pages.login.SIGNUP"></span> <i class="ti-arrow-circle-right"></i>
 					</button>
 				</div>
 			</fieldset>

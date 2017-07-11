@@ -109,7 +109,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             proposals = table_proposal.search((where('id') == proposalId) | (where('id') == int(proposalId)))
             proposal = proposals[0]
 
-            table_activity.insert({'userId': self.id, 'title': 'Vote', 'type':'Vote', 'content': "Vote:" + vote['value'] + ' for ' + proposal['name'], 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
+            table_activity.insert({'userId': self.id, 'title': 'Vote', 'type':'Vote', 'content': "You vote: " + vote['value'] + ' for ' + proposal['name'], 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")})
 
             interestedUserIds = []
             interestedUserIds.append(project['userId'])

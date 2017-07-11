@@ -154,7 +154,14 @@
     "EMAIL": "Correo",
     "GENDER": "Género",
     "MALE": "Masculino",
-    "FEMALE": "Femenino",         
+    "FEMALE": "Femenino", 
+    "INCOME": "Entrada",
+    "OUTCOME": "Salida",
+    "BALANCE": "Balance",
+    "NAME": "Nombre",
+    "OPERATION": "Operación",
+    "DATE": "Fecha",
+    "AMOUNT": "Cantidad",            
     "home": {
       "WELCOME": "Bienvenidos a Corallium",
       "MYPROYECTS": "Mis Proyectos",
@@ -186,13 +193,14 @@
       "COMMENT": "Comentarios"
     },
     "finances": {
-      "TITLE": "Finanzas"
+      "TITLE": "Finanzas",
+      "OVERVIEW": "Descripción de la cuenta"
     },
     "myprojects": {
-      "TITLE": "Statistics"
+      "TITLE": "Mis Proyectos"
     },
     "opportunities": {
-      "TITLE": "Opportunities"
+      "TITLE": "Oportunidades de inversión"
     },
     "create": {
       "TITLE": "Crear un nuevo proyecto",

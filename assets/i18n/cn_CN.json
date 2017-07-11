@@ -133,12 +133,54 @@
     "FIXEDFOOTER": "Fixed footer"
   },
   "pages": {
+    "BACK": "Back",
+    "READMORE": "Read More",
+    "FOLLOW": "Follow",
+    "FOLLOWING": "Following",    
+    "GOTOPROJECT": "Go to project",
+    "GOTOFORUM": "Go to forum",
+    "ORDERBY": "Order By",
+    "RAITING": "Raiting",
+    "DEATHLINE": "Deathline",
+    "TOTALCOST": "Total Cost",
+    "TOTALREVENUE": "Total Revenue",
+    "DESCRIPTION": "Description",
+    "STATE": "State",
+    "OWNER": "Owner",
+    "OWNERRATING": "Owner Raiting",
+    "COVEREDCAPITAL": "Covered Capital",
+    "SECTOR": "Sector",
+    "CATEGORY": "Category",
+    "EMAIL": "Email",
+    "GENDER": "Gender",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "INCOME": "Income",
+    "OUTCOME": "Outcome",
+    "BALANCE": "Balance",
+    "NAME": "Name",
+    "OPERATION": "Operation",
+    "DATE": "Date",
+    "AMOUNT": "Amount",    
     "home": {
       "WELCOME": "歡迎來到 Corallium",
       "MYPROYECTS": "我的項目",
       "CREATEPROYECT": "創建新項目",
       "OPPORTUNITIES": "機會",
-      "VIEWMORE": "查看更多"
+      "VIEWMORE": "查看更多",
+      "NEWSTITLE": "Take a look at some of our news",
+      "NEWS1TITLE": "News 1",
+      "NEWS1DESC": "News 1 Description",
+      "NEWS2TITLE": "News 2",
+      "NEWS2DESC": "News 2 Description",
+      "NEWS3TITLE": "News 3",
+      "NEWS3DESC": "News 3 Description",
+      "NEWS4TITLE": "News 4",
+      "NEWS4DESC": "News 4 Description",
+      "NEWS5TITLE": "News 5",
+      "NEWS5DESC": "News 5 Description",
+      "NEWS6TITLE": "News 6",
+      "NEWS6DESC": "News 6 Description"      
     },
     "profile": {
       "TITLE": "用戶資料"
@@ -150,7 +192,8 @@
       "TITLE": "Projects showcases",
       "TITLEDESC": "Browse popular projects based on the topic that interests you most",
       "USERS": "Users",
-      "PROJECTS": "活動"
+      "PROJECTS": "活動",
+      "VIEWPROFILE": "View Profile"      
     },
     "notifications": {
       "TITLE": "Notifications"
@@ -164,13 +207,14 @@
       "COMMENT": "Comments"
     },
     "finances": {
-      "TITLE": "Finances"
+      "TITLE": "财政",
+      "OVERVIEW": "账户信息"      
     },
     "myprojects": {
-      "TITLE": "Statistics"
+      "TITLE": ""
     },
     "opportunities": {
-      "TITLE": "Opportunities"
+      "TITLE": ""
     },
     "create": {
       "TITLE": "Create new project",

@@ -155,6 +155,13 @@
     "GENDER": "Gender",
     "MALE": "Male",
     "FEMALE": "Female",
+    "INCOME": "Income",
+    "OUTCOME": "Outcome",
+    "BALANCE": "Balance",
+    "NAME": "Name",
+    "OPERATION": "Operation",
+    "DATE": "Date",
+    "AMOUNT": "Amount",
     "home": {
       "WELCOME": "Welcome to Corallium",
       "MYPROYECTS": "My Projects",
@@ -203,7 +210,8 @@
       "COMMENT": "Comments"
     },
     "finances": {
-      "TITLE": "Finances"
+      "TITLE": "Finances",
+      "OVERVIEW": "Account Overview"
     },
     "myprojects": {
       "TITLE": "Statistics"

@@ -2,7 +2,7 @@
 <section id="page-title">
 	<div class="row">
 		<div class="col-sm-8">
-			<h1 class="mainTitle">Finance</h1>
+			<h1 class="mainTitle"><span translate="pages.finances.TITLE"></span></h1>
 		</div>
 		<!--<div ncy-breadcrumb></div>-->
 	</div>
@@ -18,18 +18,18 @@
 							<span class="notification-author">
 								<a ng-click="goToFinancierProject(financierProject.id)"> {{financierProject.name}} </a>
 							</span>
-							<span class="notification-preview margin-top-10"><strong>Description:</strong> {{financierProject.description | htmlToPlaintext | words:40 :true}} </span>
+							<span class="notification-preview margin-top-10"><strong translate="pages.DESCRIPTION"></strong><strong>:</strong> {{financierProject.description | htmlToPlaintext | words:40 :true}} </span>
 						</div>
 						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 no-padding margin-top-10">
 								<span><i class="ti-clipboard"></i>
-									<strong> Balance:</strong>  {{financierProject.balance}} $
+									<strong translate="pages.BALANCE"></strong><strong>:</strong>  {{financierProject.balance}} $
 								</span>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin-top-10 no-padding">
 								<button type="button" class="btn btn-primary btn-xs pull-right"
 										ng-click="goToFinancierProject(financierProject.id)">
-									<span class="fa fa-angle-right"></span> Read more
+									<span class="fa fa-angle-right"></span> <span translate="pages.READMORE"></span>
 								</button>
 							</div>
 						</div>

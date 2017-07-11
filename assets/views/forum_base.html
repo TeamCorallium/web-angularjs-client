@@ -23,8 +23,8 @@
 												<span class="middle_forum_proposal">View profile</span>
 											</a>
 											<div class="media-body">
-												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 links cl-effectByMeSameText-16">
-													<a class="notification-author" ng-click="goToProposalById(proposal.id)" data-hover="{{proposal.name}}">{{proposal.name}}</a>
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>
 													<span class="notification-time">{{getProjectDate(proposal.deathLine)}}</span>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -58,8 +58,8 @@
 												<img ng-src="{{comment.avatar}}" class="media-object img-circle invertion-image image">
 												<span class="middle_forum_comment">View profile</span>
 											</a>
-											<div class="media-body links cl-effectByMeSameText-16">
-												<a ng-click="goToProfileView(comment.userId)" class="media-heading" data-hover="{{comment.fullName}}">{{comment.fullName}} </a>
+											<div class="media-body">
+												<a ng-click="goToProfileView(comment.userId)" class="media-heading">{{comment.fullName}} </a>
 												<p>
 													{{comment.value}}
 												</p>

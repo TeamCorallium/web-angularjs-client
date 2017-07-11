@@ -12092,53 +12092,53 @@ fieldset legend {
 /*}*/
 
 /* Effect 16 Best: fall down */
-.cl-effectByMe-16 a,
-.cl-effectByMeSameText-16 a {
-  /*color: #636363;*/
-  text-shadow: 0 0 1px rgba(111, 134, 134, 0.3);
-}
+/*.cl-effectByMe-16 a,*/
+/*.cl-effectByMeSameText-16 a {*/
+  /*!*color: #636363;*!*/
+  /*text-shadow: 0 0 1px rgba(111, 134, 134, 0.3);*/
+/*}*/
 
-.cl-effectByMe-16 a::before{
-  color: #ff6839;
-  font-size: 15px;
-  content: attr(data-hover);
-  position: absolute;
-  opacity: 0;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
-  -webkit-transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);
-  -moz-transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);
-  transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);
-  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
-  transition: transform 0.3s, opacity 0.3s;
-  pointer-events: none;
-}
+/*.cl-effectByMe-16 a::before{*/
+  /*color: #ff6839;*/
+  /*font-size: 15px;*/
+  /*content: attr(data-hover);*/
+  /*position: absolute;*/
+  /*opacity: 0;*/
+  /*text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);*/
+  /*-webkit-transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);*/
+  /*-moz-transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);*/
+  /*transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);*/
+  /*-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;*/
+  /*-moz-transition: -moz-transform 0.3s, opacity 0.3s;*/
+  /*transition: transform 0.3s, opacity 0.3s;*/
+  /*pointer-events: none;*/
+/*}*/
 
-.cl-effectByMeSameText-16 a::before{
-  color: #ff6839;
-  content: attr(data-hover);
-  position: absolute;
-  opacity: 0;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
-  -webkit-transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);
-  -moz-transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);
-  transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);
-  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
-  transition: transform 0.3s, opacity 0.3s;
-  pointer-events: none;
-}
+/*.cl-effectByMeSameText-16 a::before{*/
+  /*color: #ff6839;*/
+  /*content: attr(data-hover);*/
+  /*position: absolute;*/
+  /*opacity: 0;*/
+  /*text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);*/
+  /*-webkit-transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);*/
+  /*-moz-transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);*/
+  /*transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);*/
+  /*-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;*/
+  /*-moz-transition: -moz-transform 0.3s, opacity 0.3s;*/
+  /*transition: transform 0.3s, opacity 0.3s;*/
+  /*pointer-events: none;*/
+/*}*/
 
-.cl-effectByMe-16 a:hover::before,
-.cl-effectByMe-16 a:focus::before,
-.cl-effectByMeSameText-16 a:hover::before,
-.cl-effectByMeSameText-16 a:focus::before{
-  -webkit-transform: scale(1) translateX(0px) translateY(0px) rotate(0deg);
-  -moz-transform: scale(1) translateX(0px) translateY(0px) rotate(0deg);
-  transform: scale(1) translateX(0px) translateY(0px) rotate(0deg);
-  opacity: 1;
-}
+/*.cl-effectByMe-16 a:hover::before,*/
+/*.cl-effectByMe-16 a:focus::before,*/
+/*.cl-effectByMeSameText-16 a:hover::before,*/
+/*.cl-effectByMeSameText-16 a:focus::before{*/
+  /*-webkit-transform: scale(1) translateX(0px) translateY(0px) rotate(0deg);*/
+  /*-moz-transform: scale(1) translateX(0px) translateY(0px) rotate(0deg);*/
+  /*transform: scale(1) translateX(0px) translateY(0px) rotate(0deg);*/
+  /*opacity: 1;*/
+/*}*/
 
-.cl-effectByMe-16 a:hover {
-  font-size: 15px;
-}
+/*.cl-effectByMe-16 a:hover {*/
+  /*font-size: 15px;*/
+/*}*/

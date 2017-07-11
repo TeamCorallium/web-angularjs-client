@@ -12,9 +12,9 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="forum in allForumsAbstracts">
-						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-bottom-10 links cl-effectByMeSameText-16">
+						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-bottom-10">
 							<hr class="tall">
-							<span class="notification-author"><a ng-click="goToForum(forum.projectId)" data-hover="{{forum.projectName}}"> {{forum.projectName}} </a></span>
+							<span class="notification-author"><a ng-click="goToForum(forum.projectId)"> {{forum.projectName}} </a></span>
 							<span class="notification-preview margin-top-10"><strong>Description:</strong> {{forum.projectDescription | htmlToPlaintext | words:40 :true}} </span>
 						</div>
 						<div class="thread-content col-xs-12 col-sm-12col-md-12 col-lg-12">

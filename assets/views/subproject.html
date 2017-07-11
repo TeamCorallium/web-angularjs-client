@@ -98,23 +98,23 @@
                                             <div class="col-md-12">
                                                 <ul class="list-unstyled col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding pull-right margin-top-15">
                                                     <li class="pull-right">
-                                                        <i class="fa fa-calendar"></i> <strong>Creation Date:</strong> {{getDateProject(currentProjectActive.creationDate)}}
+                                                        <i class="fa fa-calendar"></i> Creation Date: {{getDateProject(currentProjectActive.creationDate)}}
                                                     </li>
                                                 </ul>
-                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15"><strong>State:</strong> {{stateArray[currentProjectActive.state]}}</p>
+                                                <p class="taller col-xs-12 col-sm-12 col-md-12 col-lg-6 no-padding margin-top-15"><strong>State: </strong>{{stateArray[currentProjectActive.state]}}</p>
                                             </div>
                                         </div>
                                         <div class="row margin-top-15" ng-show="projectRole(owner.id) == 'Financier'">
-                                            <div class="col-md-12 links cl-effectByMeSameText-16">
-                                                <p><strong>Owner:</strong> <a ng-click="goToExploreUserProfile(owner.id)" data-hover="{{owner.fullName}}">{{owner.fullName}}</a></p>
+                                            <div class="col-md-12">
+                                                <p>Owner: <a ng-click="goToExploreUserProfile(owner.id)">{{owner.fullName}}</a></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row col-md-12">
-                                        <p class="taller"> <strong>Description</strong> </p>
+                                        <p class="taller"><strong>Description</strong></p>
                                         <p class="taller margin-bottom-25"> {{currentProjectActive.description}} </p>
                                     </div>
-                                    <p class="taller margin-bottom-25"> <strong>Duration:</strong> {{getDuration(currentProjectActive.estimateDuration)}}</p>
+                                    <p class="taller margin-bottom-25"><strong>Duration:</strong> {{getDuration(currentProjectActive.estimateDuration)}}</p>
                                     <ul class="portfolio-details list-unstyled list-inline margin-top-25 margin-bottom-25">
                                         <li>
                                             <p>
@@ -388,8 +388,8 @@
                                                     <li class="margin-bottom-15" ng-repeat="task in tasksProject">
                                                         <hr class="tall">
                                                         <div class="clearfix">
-                                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding cl-effectByMeSameText-16">
-                                                                <span class="notification-author"><a ng-click="goToTask(task.id)" data-hover="{{task.name}}">{{task.name}}</a></span>
+                                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                                                                <span class="notification-author"><a ng-click="goToTask(task.id)">{{task.name}}</a></span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview">{{ task.description | htmlToPlaintext | words:40 :true }}</span>
@@ -468,9 +468,11 @@
                                                     <li class="margin-bottom-15" ng-repeat="reference in currentProjectActive.references">
                                                         <hr class="tall">
                                                         <div class="clearfix">
-                                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding cl-effectByMeSameText-16">
-                                                                <span class="notification-author"><a class="cursor-none">{{reference.name}}</a></span>
-                                                                <span ng-hide="reference.file == ''" class="pull-right"><a ng-click="seeReference(reference.file)" data-hover="See reference"> See reference</a></span>
+                                                            <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                                                                <span class="notification-author">{{reference.name}}</span>
+                                                                <span ng-hide="reference.file == ''" class="pull-right">
+                                                                    <a ng-click="seeReference(reference.file)"> See reference</a>
+                                                                </span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview">{{ reference.description}}</span>
@@ -510,10 +512,10 @@
                                                         <hr class="tall">
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                                <span class="notification-author"><a class="cursor-none">{{risk.name}}</a></span>
+                                                                <span class="notification-author">{{risk.name}}</span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
-                                                                <span class="notification-preview">{{ risk.description}}</span>
+                                                                <span class="notification-preview">{{risk.description}}</span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview"><strong>Probability: </strong>{{ risk.probability}} %</span>

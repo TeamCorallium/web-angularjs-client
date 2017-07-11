@@ -13,9 +13,11 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
 					<li class="margin-bottom-15" ng-repeat="financierProject in allFinancierAbstracts">
-						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding links cl-effectByMeSameText-16">
 							<hr class="tall">
-							<span class="notification-author"><a ng-click="goToFinancierProject(financierProject.id)"> {{financierProject.name}} </a></span>
+							<span class="notification-author">
+								<a ng-click="goToFinancierProject(financierProject.id)" data-hover="{{financierProject.name}}"> {{financierProject.name}} </a>
+							</span>
 							<span class="notification-preview margin-top-10"><strong>Description:</strong> {{financierProject.description | htmlToPlaintext | words:40 :true}} </span>
 						</div>
 						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">

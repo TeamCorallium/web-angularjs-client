@@ -17,9 +17,11 @@
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-bottom-10">
 									<span class="notification-date-proposal margin-right-10"> {{getProjectDate(notification.date)}}</span>
 								</div>
-								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-									<h5 class="alert-heading margin-bottom-10">New proposal created by <a ng-click="goToProfileView(notification.fromId)">{{notification.from}}</a></h5>
-									<a ng-click="goToProposal(notification.projectId, notification.proposalId)" class="button_notification"> View proposal </a>
+								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding links cl-effectByMe-16">
+									<h5 class="alert-heading margin-bottom-10">New proposal created by
+										<a ng-click="goToProfileView(notification.fromId)" data-hover="{{notification.from}}">{{notification.from}}</a>
+									</h5>
+									<a ng-click="goToProposal(notification.projectId, notification.proposalId)" data-hover="View proposal"> View proposal </a>
 								</div>
 							</div>
 							<div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
@@ -40,10 +42,10 @@
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
 									<span class="notification-time margin-right-10"> {{getProjectDate(notification.date)}}</span>
 								</div>
-								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-5">
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-5 links cl-effectByMe-16">
 									<h5 class="col-sm-8 col-md-8 col-lg-8 margin-bottom-10 no-padding">{{notification.content}}</h5>
 									<a ng-click="goToProject(notification.projectId)" class="col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span class="pull-right">View Project</span>
+										<span class="pull-right" data-hover="View Project">View Project</span>
 									</a>
 								</div>
 							</div>
@@ -59,10 +61,10 @@
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
 									<span class="notification-time"> {{getProjectDate(notification.date)}}</span>
 								</div>
-								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-5">
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-5 links cl-effectByMe-16">
 									<h5 class="col-sm-8 col-md-8 col-lg-8 margin-bottom-10 no-padding">{{notification.content}}</h5>
-									<a ng-click="goToFinance(notification.projectId)" class="col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span class="pull-right">View your finances</span>
+									<a ng-click="goToFinance(notification.projectId)" class="col-sm-4 col-md-4 col-lg-4 no-padding text-right" data-hover="View your finances">
+										View your finances
 									</a>
 								</div>
 							</div>
@@ -78,10 +80,13 @@
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
 									<span class="notification-time"> {{getProjectDate(notification.date)}}</span>
 								</div>
-								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-5">
-									<h5 class="col-sm-8 col-md-8 col-lg-8 margin-bottom-10 no-padding">{{notification.content}} by <a ng-click="goToProfileView(notification.fromId)">{{notification.from}}</a></h5>
-									<a ng-click="goToViewVotation(notification.projectId, notification.proposalId)" class="col-sm-4 col-md-4 col-lg-4 no-padding">
-										<span class="pull-right">View vote</span>
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-top-5 links cl-effectByMe-16">
+									<h5 class="col-sm-8 col-md-8 col-lg-8 margin-bottom-10 no-padding">{{notification.content}} by
+										<a ng-click="goToProfileView(notification.fromId)" data-hover="{{notification.from}}">{{notification.from}}</a>
+									</h5>
+									<a ng-click="goToViewVotation(notification.projectId, notification.proposalId)"
+									   class="col-sm-4 col-md-4 col-lg-4 no-padding text-right" data-hover="View vote">
+										View vote
 									</a>
 								</div>
 							</div>

@@ -80,6 +80,7 @@ app.constant('JS_REQUIRES', {
         'pagesTimelineCtrl': 'assets/js/controllers/pagesTimelineCtrl.js',
         'signInCtrl': 'assets/js/controllers/signInCtrl.js',
         'modifiedTaskCtrl': 'assets/js/controllers/modifiedTaskCtrl.js',
+        'projectCreateCtrl': 'assets/js/controllers/projectCreateCtrl.js',
         'financeCtrl': 'assets/js/controllers/financeCtrl.js',
         'topNavBarCtrl': 'assets/js/controllers/topNavBarCtrl.js',
         'signUpCtrl': 'assets/js/controllers/signUpCtrl.js',

@@ -126,7 +126,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             title: 'Create Project',
             ncyBreadcrumb: {
                 label: 'Create Project'
-            }
+            },
+            resolve: loadSequence('projectCreateCtrl')
         }).state('app.project.create_complex', {
             url: '/createcomplex',
             templateUrl: "assets/views/project_create_complex.html",

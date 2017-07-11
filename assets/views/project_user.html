@@ -19,8 +19,8 @@
 									  class="img-responsive img-rounded notification-image">
 							</div>
 							<div class="col-sm-10 col-md-10 col-lg-10">
-								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding">
-									<span class="notification-author"><a ng-click="goToProject(project.id)"> {{project.name}} </a></span>
+								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding cl-effectByMeSameText-16">
+									<span class="notification-author"><a ng-click="goToProject(project.id)" data-hover="{{project.name}}"> {{project.name}} </a></span>
 									<span class="notification-time"> {{getProjectDate(project.creationDate)}}</span>
 								</div>
 								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
@@ -73,9 +73,9 @@
 											<strong> Category:</strong> {{categoryArray[project.category]}}
 										</span>
 									</div>
-									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding" ng-show="projectRole(project.ownerId) != 'Owner'">
+									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding cl-effectByMeSameText-16" ng-show="projectRole(project.ownerId) != 'Owner'">
 										<span><i class="ti-id-badge"></i>
-											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)"> {{project.ownerName}}</a>
+											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)" data-hover="{{project.ownerName}}"> {{project.ownerName}}</a>
 										</span>
 									</div>
 								</div>

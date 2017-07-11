@@ -23,15 +23,12 @@
 												<span class="middle_forum_proposal">View profile</span>
 											</a>
 											<div class="media-body">
-												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-													<a class="notification-author" ng-click="goToProposalById(proposal.id)">{{proposal.name}}</a>
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 links cl-effectByMeSameText-16">
+													<a class="notification-author" ng-click="goToProposalById(proposal.id)" data-hover="{{proposal.name}}">{{proposal.name}}</a>
 													<span class="notification-time">{{getProjectDate(proposal.deathLine)}}</span>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-													<span>
-														<strong> Number of changes: </strong>
-														{{proposal.proposalList.length}}
-													</span>
+													<span>Number of changes: {{proposal.proposalList.length}}</span>
 												</div>
 												<button ng-click="goToProposalById(proposal.id)" type="button" class="btn btn-primary btn-xs pull-right margin-top-10">
 													<span class="ti-eye"></span> View Proposal
@@ -59,18 +56,18 @@
 										<div class="media">
 											<a ng-click="goToProfileView(comment.userId)" class="notifies_image">
 												<img ng-src="{{comment.avatar}}" class="media-object img-circle invertion-image image">
-												<span class="middle_forum_proposal">View profile</span>
+												<span class="middle_forum_comment">View profile</span>
 											</a>
-											<div class="media-body">
-												<h5 class="media-heading">{{comment.fullName}} </h5>
+											<div class="media-body links cl-effectByMeSameText-16">
+												<a ng-click="goToProfileView(comment.userId)" class="media-heading" data-hover="{{comment.fullName}}">{{comment.fullName}} </a>
 												<p>
 													{{comment.value}}
 												</p>
-												<span class="date">{{getProjectDate(comment.creationDate)}}</span>
-												<hr>
+												<span class="notification-time">{{getProjectDate(comment.creationDate)}}</span>
 											</div>
 										</div>
 									</div>
+									<hr class="tall">
 								</li>
 							</ul>
 						</div>
@@ -107,7 +104,9 @@
 								<li ng-repeat="comment in comments">
 									<div class="post-media post-comments margin-top-30">
 										<div class="media">
-											<a class="pull-left" ng-click="goToProfileView(comment.userId)"> <img ng-src="{{comment.avatar}}" alt="" class="media-object img-circle"> </a>
+											<a class="pull-left" ng-click="goToProfileView(comment.userId)">
+												<img ng-src="{{comment.avatar}}" alt="" class="media-object img-circle">
+											</a>
 											<div class="media-body">
 												<h5 class="media-heading">{{comment.fullName}} </h5>
 												<p>

@@ -2,7 +2,7 @@
 	<section id="page-title">
 		<div class="row">
 			<div class="col-sm-8">
-				<h1 class="mainTitle">FINANCES</h1>
+				<h1 class="mainTitle"><span translate="pages.finances.TITLE"></span></h1>
 				<span class="mainDescription">{{currentProjectActive.projectName}}</span>
 			</div>
 			<!--<div ncy-breadcrumb></div>-->
@@ -17,17 +17,17 @@
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-bottom-15">
 								<fieldset>
 									<legend>
-										Account Overview
+										<span translate="pages.finances.OVERVIEW"></span>
 									</legend>
 									<div class="row col-xs-12 col-sm-3 col-md-3 col-lg-3">
-										<i class="ti-receipt"></i><span class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong>Income:</strong></span><span class="pull-right">{{income}} $</span>
+										<i class="ti-receipt"></i><span class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong translate="pages.INCOME"></strong><strong>:</strong></span><span class="pull-right">{{income}} $</span>
 									</div>
 									<div class="row col-xs-12 col-sm-3 col-sm-offset-1 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1">
-										<i class="ti-archive"></i><span class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong>Outcome:</strong></span><span class="pull-right">{{outcome}} $</span>
+										<i class="ti-archive"></i><span class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong translate="pages.OUTCOME"></strong><strong>:</strong></span><span class="pull-right">{{outcome}} $</span>
 									</div>
 									<hr class="tall col-xs-10 visible-xs hidden-sm hidden-md hidden-lg">
 									<div class="row col-xs-12 col-sm-3 col-sm-offset-1 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1">
-										<i class="ti-clipboard"></i><span class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong>Balance:</strong></span><span class="pull-right">{{investmentCapitalProject}} $</span>
+										<i class="ti-clipboard"></i><span class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"><strong translate="pages.BALANCE"></strong><strong>:</strong></span><span class="pull-right">{{investmentCapitalProject}} $</span>
 									</div>
 								</fieldset>
 							</div>
@@ -35,11 +35,11 @@
 								<table class="table table-striped" wt-responsive-table>
 									<thead>
 									<tr>
-										<th> Name </th>
-										<th> Operation </th>
-										<th> Date </th>
-										<th class="text-right"> Amount </th>
-										<th class="text-right"> Balance </th>
+										<th><span translate="pages.NAME"></span> </th>
+										<th><span translate="pages.OPERATION"> </th>
+										<th><span translate="pages.DATE"> Date </th>
+										<th class="text-right"><span translate="pages.AMOUNT"> </th>
+										<th class="text-right"><span translate="pages.BALANCE"> </th>
 									</tr>
 									</thead>
 									<tbody>
@@ -57,10 +57,10 @@
 						<div class="row">
 							<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-top-15">
 								<button ui-sref="app.allfinance" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-arrow-left">
-									<span>Back</span>
+									<span translate="pages.BACK"></span>
 								</button>
 								<button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-folder">
-									<span>Go to project</span>
+									<span translate="pages.GOTOPROJECT"></span>
 								</button>
 							</div>
 						</div>

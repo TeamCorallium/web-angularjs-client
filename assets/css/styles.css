@@ -12142,3 +12142,18 @@ fieldset legend {
 /*.cl-effectByMe-16 a:hover {*/
   /*font-size: 15px;*/
 /*}*/
+
+@media (max-width: 767px) {
+  .margin-xs-15 {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+  }
+}
+
+.background-none{
+  background: rgba(0, 0, 0, 0.0) !important;
+}
+
+.hover-notification:hover{
+  font-size: 15px !important;
+}

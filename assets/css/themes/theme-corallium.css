@@ -106,7 +106,7 @@ header .navbar-collapse .navbar-right .dot-badge {
   }
   header .navbar-collapse .navbar-right .current-user a i {
     color: #ffffff !important;
-    background: rgba(0, 122, 255, 0.3);
+    background: #ff6839 none repeat scroll 0 0;
   }
 }
 header .dropdown-off-sidebar {

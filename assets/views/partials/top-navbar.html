@@ -55,8 +55,12 @@
 		<!-- start: LANGUAGE SWITCHER -->
 		<!-- start: USER OPTIONS DROPDOWN -->
 		<li class="dropdown current-user" uib-dropdown on-toggle="toggled(open)" ng-show="isLogged" >
-			<a href class="dropdown-toggle" uib-dropdown-toggle> <img ng-src="{{user.avatar}}" alt="">
-				<span class="username"> {{user.name}} <i class="ti-angle-down"></i></i></span> </a>
+			<a class="dropdown-toggle" uib-dropdown-toggle>
+				<img ng-src="{{user.avatar}}" alt="">
+				<span class="username"> {{user.name}}
+					<i class="ti-angle-down background-none"></i></i>
+				</span>
+			</a>
 			<ul class="dropdown-menu dropdown-light">
 				<li ng-click="navbarCollapsed = true">
 					<a ui-sref="app.pages.user" translate="topbar.user.PROFILE"> My Profile </a>

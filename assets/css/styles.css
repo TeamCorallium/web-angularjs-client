@@ -12146,6 +12146,10 @@ fieldset legend {
 @media (max-width: 767px) {
   .margin-xs-15 {
     margin-top: 15px !important;
+    margin-bottom: 15px !important;
   }
 }
+
+.background-none{
+  background: rgba(0, 0, 0, 0.0) !important;
 }

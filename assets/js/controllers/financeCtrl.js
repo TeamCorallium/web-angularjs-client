@@ -25,7 +25,8 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
 
                             if ($scope.currentProjectActive.ownerInvestedCapital > 0) {
                                 var financeAbstract = {
-                                    id: $scope.currentProjectActive.userId,
+                                    id: $scope.listFinanceAbstract.length,
+                                    userId: $scope.currentProjectActive.userId,
                                     name: '',
                                     operation: 'income',
                                     date: $scope.currentProjectActive.creationDate,
@@ -36,7 +37,8 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                                 $scope.investmentCapitalProject += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
                                 $scope.income += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
                                 $scope.listFinanceAbstract.push(financeAbstract);
-                                $scope.getUserData($scope.currentProjectActive.userId);
+                                console.log($scope.currentProjectActive.userId + " userId");
+                                $scope.getUserData(financeAbstract.userId, financeAbstract.id);
                             }
                         },
                         function (errResponse) {
@@ -64,7 +66,8 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                                 }
 
                                 var financeAbstract = {
-                                    id: $scope.transactions[i].userId,
+                                    id: $scope.listFinanceAbstract.length,
+                                    userId: $scope.transactions[i].userId,
                                     name: '',
                                     operation: $scope.transactions[i].operation,
                                     date: $scope.transactions[i].date,
@@ -73,7 +76,7 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                                 };
 
                                 $scope.listFinanceAbstract.push(financeAbstract);
-                                $scope.getUserData($scope.transactions[i].userId);
+                                $scope.getUserData(financeAbstract.userId, financeAbstract.id);
                             }
                         },
                         function (errResponse) {
@@ -85,14 +88,16 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
 
             $scope.invertionsByProjectId();
 
-            $scope.getUserData = function (userId) {
+            $scope.getUserData = function (userId, id) {
                 RestService.fetchUser(userId)
                     .then(
                         function (data) {
                             var user = data[0];
 
+                            console.log(user.fullName + " fullName " + userId);
+
                             for (var i=0; i<$scope.listFinanceAbstract.length; i++) {
-                                if ($scope.listFinanceAbstract[i].id == userId) {
+                                if ($scope.listFinanceAbstract[i].id == id) {
                                     $scope.listFinanceAbstract[i].name = user.fullName;
                                     break;
                                 }

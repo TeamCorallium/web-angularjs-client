@@ -43,18 +43,22 @@ app.controller('AllMyFinancierProjectsCtrl', ["$scope", "$state", "toaster", "We
 
             $scope.getallMyFinancierProjects();
 
-            $scope.invertions = [];
+            $scope.transactions = [];
 
             $scope.invertionsByProjectId = function (projectId) {
-                RestService.fetchInvertionByProjectId(projectId)
+                RestService.fetchTransactionsByProjectId(projectId)
                     .then(
                         function (data) {
-                            $scope.invertions = data;
+                            $scope.transactions = data;
 
                             var investmentCapitalProject = 0;
 
-                            for (var i = 0; i < $scope.invertions.length; i++) {
-                                investmentCapitalProject += parseInt($scope.invertions[i].amount);
+                            for (var i = 0; i < $scope.transactions.length; i++) {
+                                if ($scope.transactions[i].operation == 'income') {
+                                    investmentCapitalProject += parseFloat($scope.transactions[i].amount);
+                                } else {
+                                    investmentCapitalProject -= parseFloat($scope.transactions[i].amount);                                    
+                                }
                             }
 
                             for (var i=0; i<$scope.allFinancierAbstracts.length; i++) {

@@ -469,8 +469,10 @@
                                                         <hr class="tall">
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                                <span class="notification-author"><a class="cursor-none">{{reference.name}}</a></span>
-                                                                <span ng-hide="reference.file == ''" class="pull-right"><a ng-click="seeReference(reference.file)"> See reference</a></span>
+                                                                <span class="notification-author">{{reference.name}}</span>
+                                                                <span ng-hide="reference.file == ''" class="pull-right">
+                                                                    <a ng-click="seeReference(reference.file)"> See reference</a>
+                                                                </span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview">{{ reference.description}}</span>
@@ -510,10 +512,10 @@
                                                         <hr class="tall">
                                                         <div class="clearfix">
                                                             <div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                                                                <span class="notification-author"><a class="cursor-none">{{risk.name}}</a></span>
+                                                                <span class="notification-author">{{risk.name}}</span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
-                                                                <span class="notification-preview">{{ risk.description}}</span>
+                                                                <span class="notification-preview">{{risk.description}}</span>
                                                             </div>
                                                             <div class="thread-content col-sm-12 col-md-12 col-lg-12 col-xs-12 margin-top-10 no-padding">
                                                                 <span class="notification-preview"><strong>Probability: </strong>{{ risk.probability}} %</span>

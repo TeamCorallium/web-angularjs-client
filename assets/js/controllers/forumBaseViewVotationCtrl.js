@@ -75,7 +75,8 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                 projectId: '',
                 proposalOwnerId: '',
                 state: '',
-                deathLine: ''
+                deathLine: '',
+                proposalList: ''
             };
 
             $scope.getProposalById = function () {

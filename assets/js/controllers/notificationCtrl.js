@@ -37,6 +37,9 @@ app.controller('NotificationCtrl', ["$scope", "$rootScope", "localStorageService
                                     type: $scope.notifications[i].type
                                 };
 
+                                 if (currentNotification.avatar == '') {
+                                     currentNotification.avatar = 'assets/images/default-user.png';
+                                 }
                                 $scope.notificationsAbstract.push(currentNotification);
 
                                 if (currentNotification.type == 'PROPOSAL APPROVED'){

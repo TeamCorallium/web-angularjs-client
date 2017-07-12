@@ -88,7 +88,38 @@ app.controller('ForumBaseCtrl', ["$scope", "$rootScope", "$state", "toaster", "W
 
             $scope.goToProposalById = function (proposalId) {
                 localStorageService.set('currentProposalId', proposalId);
-                $state.go('app.forum.proposalview');
+
+                for (var i=0; i<$scope.proposalsProject.length; i++) {
+                    if ($scope.proposalsProject[i].id == proposalId) {
+                        $scope.getVoteByProposalId(proposalId);
+                    }
+                }
+            };
+
+            $scope.getVoteByProposalId = function () {
+                RestService.fetchAllVoteByProposalId(localStorageService.get('currentProposalId'))
+                    .then(
+                        function (data) {
+                            $scope.allVotes = data;
+
+                            var flag = false;
+                            for (var i = 0; i < $scope.allVotes.length; i++) {
+                                if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {
+                                    flag = true;
+                                    break;
+                                }
+                            }
+
+                            if (flag) {
+                                $state.go('app.forum.viewvotation');
+                            } else {
+                                $state.go('app.forum.proposalview');
+                            }
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
             };
 
             $scope.getAllComments = function () {

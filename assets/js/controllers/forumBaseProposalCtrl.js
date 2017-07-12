@@ -283,6 +283,7 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
 
             $scope.taskChangeComboState = function () {
                 $scope.selectedTaskStateFlag++;
+                $scope.taskChange($scope.selectedTaskState.id);
             };
 
             $scope.taskChangeComboName = function () {
@@ -387,7 +388,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                                 var flagState = false;
                                                 for (var i =0; i<$scope.listProposal.length; i++) {
                                                     if (($scope.listProposal[i].itemSubject == $scope.selectedTaskState.id) &&
-                                                        ($scope.listProposal[i].itemContent == $scope.taskState) &&
                                                         ($scope.listProposal[i].currentContent == $scope.selectedTaskState.state)) {
                                                         flagState = true;
                                                         break;
@@ -417,7 +417,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                         var flagState = false;
                                         for (var i =0; i<$scope.listProposal.length; i++) {
                                             if (($scope.listProposal[i].itemSubject == $scope.selectedTaskName.id) &&
-                                                ($scope.listProposal[i].itemContent == $scope.taskName) &&
                                                 ($scope.listProposal[i].currentContent == $scope.selectedTaskName.name)) {
                                                 flagState = true;
                                                 break;
@@ -444,7 +443,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                         var flagState = false;
                                         for (var i =0; i<$scope.listProposal.length; i++) {
                                             if (($scope.listProposal[i].itemSubject == $scope.selectedTaskDescription.id) &&
-                                                ($scope.listProposal[i].itemContent == $scope.taskDescription) &&
                                                 ($scope.listProposal[i].currentContent == $scope.selectedTaskDescription.description)) {
                                                 flagState = true;
                                                 break;
@@ -471,7 +469,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                         var flagState = false;
                                         for (var i =0; i<$scope.listProposal.length; i++) {
                                             if (($scope.listProposal[i].itemSubject == $scope.selectedTaskCost.id) &&
-                                                ($scope.listProposal[i].itemContent == $scope.taskCost) &&
                                                 ($scope.listProposal[i].currentContent == $scope.selectedTaskCost.cost)) {
                                                 flagState = true;
                                                 break;
@@ -498,7 +495,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                         var flagState = false;
                                         for (var i =0; i<$scope.listProposal.length; i++) {
                                             if (($scope.listProposal[i].itemSubject == $scope.selectedTaskOutcome.id) &&
-                                                ($scope.listProposal[i].itemContent == $scope.outcome) &&
                                                 ($scope.listProposal[i].currentContent == $scope.selectedTaskOutcome.outcome)) {
                                                 flagState = true;
                                                 break;
@@ -525,7 +521,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                         var flagState = false;
                                         for (var i =0; i<$scope.listProposal.length; i++) {
                                             if (($scope.listProposal[i].itemSubject == $scope.selectedTaskDuration.id) &&
-                                                ($scope.listProposal[i].itemContent == $scope.duration) &&
                                                 ($scope.listProposal[i].currentContent == $scope.selectedTaskDuration.duration)) {
                                                 flagState = true;
                                                 break;
@@ -554,7 +549,6 @@ app.controller('ForumBaseProposalCtrl', ["$scope", "$state", "toaster", "WebSock
                                             var flagState = false;
                                             for (var i =0; i<$scope.listProposal.length; i++) {
                                                 if (($scope.listProposal[i].itemSubject == $scope.selectedTaskStartDate.id) &&
-                                                    ($scope.listProposal[i].itemContent == $scope.startDate) &&
                                                     ($scope.listProposal[i].currentContent == $scope.selectedTaskStartDate.startDate)) {
                                                     flagState = true;
                                                     break;

@@ -16,19 +16,11 @@
 				<p class="pull-right"><strong>Deathline: </strong> {{getProjectDate(currentProposalView.deathLine)}} </p>
 			</div>
 		</div>
-		<div class="row" ng-show="currentProposalView.type == 'Modified Task State' || currentProposalView.type == 'Modified Task Duration' ||
-									 currentProposalView.type == 'Modified Task Name' || currentProposalView.type == 'Modified Task Description' ||
-									 currentProposalView.type == 'Modified Task Outcome' || currentProposalView.type == 'Modified Task Start Date' ||
-									 currentProposalView.type == 'Modified Task Cost'">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<p><strong>Task Name: </strong> {{currentTaskProposalView.name}} </p>
-			</div>
-		</div>
 		<hr class="tall">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="list-unstyled">
-					<li ng-repeat="proposal in currentProposalView.proposalList">
+					<li ng-repeat="proposal in proposalAbstractView">
 						<fieldset>
 							<legend><p><strong>Proposal Type: </strong> {{proposal.type}}</p></legend>
 
@@ -37,7 +29,7 @@
 									 proposal.type == 'Modified Task Outcome' || proposal.type == 'Modified Task Start Date' ||
 									 proposal.type == 'Modified Task Cost'">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-									<p><strong>Task Name: </strong> {{currentTaskProposalView[$index].name}} </p>
+									<p><strong>Task Name: </strong> {{proposal.name}} </p>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="proposal.type == 'Modified Task State'">
 									<p><strong>Current State: </strong> {{stateArray[proposal.currentContent]}} </p>

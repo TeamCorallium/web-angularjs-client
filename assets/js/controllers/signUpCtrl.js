@@ -27,7 +27,8 @@ app.controller('SignUpCtrl', ["$scope", "$state", "flowFactory", "RestService", 
             industries: '',
             skills: '',
             experiencies: '',
-            previusWorks: ''
+            previusWorks: '',
+            rating: 'flyweight'
         };
 
         $scope.password_again = '';

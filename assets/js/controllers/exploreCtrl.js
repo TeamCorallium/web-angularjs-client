@@ -46,6 +46,7 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 maxNumInves: $scope.allProjects[i].maxNumInves,
                                 ownerInvestedCapital: parseFloat($scope.allProjects[i].ownerInvestedCapital),
                                 ownerName: '',
+                                ownerRating: '',
                                 ownerRaiting: '',
                                 coveredCapital: '',
                                 isFollow: '',
@@ -111,10 +112,12 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                 .then(
                     function (data) {
                         var name = data[0].fullName;
+                        var rating = data[0].rating;
 
                         for (var i=0 ; i<$scope.allProjectsAbstracts.length; i++) {
                             if ($scope.allProjectsAbstracts[i].ownerId == userId) {
                                 $scope.allProjectsAbstracts[i].ownerName = name;
+                                $scope.allProjectsAbstracts[i].ownerRating = rating;
                             }
                         }
                     },

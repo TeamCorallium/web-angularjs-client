@@ -220,6 +220,10 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 countProjects: '',
                                 avatar: $scope.listAllUser[i].avatar
                             };
+
+                            if (usersAbstract.avatar == '') {
+                                usersAbstract.avatar = 'assets/images/default-user.png';
+                            }
                             $scope.listAllUserAbstracts.push(usersAbstract);
                             $scope.getProjectByUserId($scope.listAllUser[i].id);
                         }

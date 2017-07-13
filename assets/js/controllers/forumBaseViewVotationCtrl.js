@@ -9,7 +9,6 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
             $state.go('app.login.signin');
         } else {
             $scope.currentForumActive = '';
-            $scope.currentTaskProposalView = '';
             $scope.viewVoteResults = false;
             $scope.userVote = false;
             $scope.allVotes = [];
@@ -75,8 +74,11 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                 projectId: '',
                 proposalOwnerId: '',
                 state: '',
-                deathLine: ''
+                deathLine: '',
+                proposalList: ''
             };
+
+            $scope.proposalAbstractView = [];
 
             $scope.getProposalById = function () {
                 RestService.fetchProposalById(localStorageService.get('currentProposalId'))
@@ -84,11 +86,22 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                         function (data) {
                             $scope.currentProposalView = data[0];
 
-                            if ($scope.currentProposalView.type == 'Modified Task State' || $scope.currentProposalView.type == 'Modified Task Duration' ||
-                                $scope.currentProposalView.type == 'Modified Task Name' || $scope.currentProposalView.type == 'Modified Task Description' ||
-                                $scope.currentProposalView.type == 'Modified Task Outcome' || $scope.currentProposalView.type == 'Modified Task Start Date' ||
-                                $scope.currentProposalView.type == 'Modified Task Cost') {
-                                $scope.getTaskByTaskId($scope.currentProposalView.itemSubject);
+                            for (var i=0; i<$scope.currentProposalView.proposalList.length; i++) {
+
+                                var currentProposalViewAbstract = {
+                                    id: $scope.proposalAbstractView.length+1,
+                                    name: '',
+                                    type: $scope.currentProposalView.proposalList[i].type,
+                                    currentContent: $scope.currentProposalView.proposalList[i].currentContent,
+                                    itemSubject: $scope.currentProposalView.proposalList[i].itemSubject,
+                                    itemContent: $scope.currentProposalView.proposalList[i].itemContent
+                                };
+
+                                $scope.proposalAbstractView.push(currentProposalViewAbstract);
+
+                                if ($scope.currentProposalView.proposalList[i].type != 'Start Project') {
+                                    $scope.getTaskByTaskId($scope.currentProposalView.proposalList[i].itemSubject);
+                                }
                             }
                         },
                         function (errResponse) {
@@ -98,6 +111,23 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
             };
 
             $scope.getProposalById();
+
+            $scope.getTaskByTaskId = function (taskId) {
+                RestService.fetchTaskByTaskId(taskId)
+                    .then(
+                        function (data) {
+
+                            for (var i=0; i<$scope.proposalAbstractView.length; i++) {
+                                if ($scope.proposalAbstractView[i].itemSubject == taskId) {
+                                    $scope.proposalAbstractView[i].name = data[0].name;
+                                }
+                            }
+                        },
+                        function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    );
+            };
 
             $scope.getUserName = function (userId) {
                 RestService.fetchUser(userId)
@@ -128,18 +158,6 @@ app.controller('ForumBaseViewVotationCtrl', ["$scope", "$state", "toaster", "Web
                         $scope.countVotes.abs += $scope.allVotes[i].percent;
                     }
                 }
-            };
-
-            $scope.getTaskByTaskId = function (taskId) {
-                RestService.fetchTaskByTaskId(taskId)
-                    .then(
-                        function (data) {
-                            $scope.currentTaskProposalView = data[0];
-                        },
-                        function (errResponse) {
-                            console.log(errResponse);
-                        }
-                    );
             };
 
             $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

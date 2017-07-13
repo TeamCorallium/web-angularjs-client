@@ -37,7 +37,6 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                                 $scope.investmentCapitalProject += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
                                 $scope.income += parseFloat($scope.currentProjectActive.ownerInvestedCapital);
                                 $scope.listFinanceAbstract.push(financeAbstract);
-                                console.log($scope.currentProjectActive.userId + " userId");
                                 $scope.getUserData(financeAbstract.userId, financeAbstract.id);
                             }
                         },
@@ -93,8 +92,6 @@ app.controller('FinanceCtrl', ["$scope", "localStorageService", "RestService","$
                     .then(
                         function (data) {
                             var user = data[0];
-
-                            console.log(user.fullName + " fullName " + userId);
 
                             for (var i=0; i<$scope.listFinanceAbstract.length; i++) {
                                 if ($scope.listFinanceAbstract[i].id == id) {

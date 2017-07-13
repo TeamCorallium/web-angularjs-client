@@ -9,7 +9,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             $state.go('app.login.signin');
         } else {
             $scope.currentForumActive = '';
-            $scope.currentTaskProposalView = [];
             $scope.viewVoteResults = false;
             $scope.allVotes = [];
             $scope.percent = 0;
@@ -50,12 +49,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                             $scope.allVotes = data;
 
                             $scope.calculateVotes();
-
-                            for (var i = 0; i < $scope.allVotes.length; i++) {
-                                if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {
-                                    $state.go('app.forum.viewvotation');
-                                }
-                            }
                         },
                         function (errResponse) {
                             console.log(errResponse);
@@ -64,6 +57,18 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
             };
 
             $scope.getVoteByProposalId();
+
+            $scope.calculateVotes = function () {
+                for (var i = 0; i < $scope.allVotes.length; i++) {
+                    if ($scope.allVotes[i].value == 'yes') {
+                        $scope.countVotes.yes += $scope.allVotes[i].percent;
+                    } else if ($scope.allVotes[i].value == 'no') {
+                        $scope.countVotes.no += $scope.allVotes[i].percent;
+                    } else {
+                        $scope.countVotes.abs += $scope.allVotes[i].percent;
+                    }
+                }
+            };
 
             //Actual proposal for proposal view
             $scope.currentProposalView = {
@@ -74,8 +79,11 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 projectId: '',
                 proposalOwnerId: '',
                 state: '',
-                deathLine: ''
+                deathLine: '',
+                proposalList: ''
             };
+
+            $scope.proposalAbstractView = [];
 
             $scope.getProposalById = function () {
                 RestService.fetchProposalById(localStorageService.get('currentProposalId'))
@@ -85,10 +93,19 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
 
                             for (var i=0; i<$scope.currentProposalView.proposalList.length; i++) {
 
+                                var currentProposalViewAbstract = {
+                                    id: $scope.proposalAbstractView.length+1,
+                                    name: '',
+                                    type: $scope.currentProposalView.proposalList[i].type,
+                                    currentContent: $scope.currentProposalView.proposalList[i].currentContent,
+                                    itemSubject: $scope.currentProposalView.proposalList[i].itemSubject,
+                                    itemContent: $scope.currentProposalView.proposalList[i].itemContent
+                                };
+
+                                $scope.proposalAbstractView.push(currentProposalViewAbstract);
+
                                 if ($scope.currentProposalView.proposalList[i].type != 'Start Project') {
                                     $scope.getTaskByTaskId($scope.currentProposalView.proposalList[i].itemSubject);
-                                } else {
-                                    $scope.currentTaskProposalView.push('');
                                 }
                             }
                         },
@@ -104,7 +121,13 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 RestService.fetchTaskByTaskId(taskId)
                     .then(
                         function (data) {
-                            $scope.currentTaskProposalView.push(data[0]);
+
+                            for (var i=0; i<$scope.proposalAbstractView.length; i++) {
+                                if ($scope.proposalAbstractView[i].itemSubject == taskId) {
+                                    $scope.proposalAbstractView[i].name = data[0].name;
+                                }
+                            }
+
                         },
                         function (errResponse) {
                             console.log(errResponse);
@@ -184,16 +207,5 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                 $state.go('app.forum.viewvotation');
             };
 
-            $scope.calculateVotes = function () {
-                for (var i = 0; i < $scope.allVotes.length; i++) {
-                    if ($scope.allVotes[i].value == 'yes') {
-                        $scope.countVotes.yes += $scope.allVotes[i].percent;
-                    } else if ($scope.allVotes[i].value == 'no') {
-                        $scope.countVotes.no += $scope.allVotes[i].percent;
-                    } else {
-                        $scope.countVotes.abs += $scope.allVotes[i].percent;
-                    }
-                }
-            };
         }
     }]);

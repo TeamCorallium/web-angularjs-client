@@ -50,7 +50,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                                 maxNumInves: $scope.allProjects[i].maxNumInves,
                                 ownerInvestedCapital: parseFloat($scope.allProjects[i].ownerInvestedCapital),
                                 ownerName: '',
-                                ownerRaiting: '',
+                                ownerRating: '',
                                 coveredCapital: '',
                                 isFollow: '',
                                 iInverted: ''
@@ -138,10 +138,12 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                 .then(
                     function (data) {
                         var name = data[0].fullName;
+                        var rating = data[0].rating;
 
                         for (var i=0 ; i<$scope.allProjectsAbstracts.length; i++) {
                             if ($scope.allProjectsAbstracts[i].ownerId == userId) {
                                 $scope.allProjectsAbstracts[i].ownerName = name;
+                                $scope.allProjectsAbstracts[i].ownerRating = rating;
                             }
                         }
                     },

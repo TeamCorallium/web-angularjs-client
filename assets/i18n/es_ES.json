@@ -242,6 +242,9 @@
       "TEXT7": "Introduzca los detalles de su cuenta",
       "TEXT8": "Estoy de acuerdo",
       "TEXT9": "¿Ya tiene una cuenta?"
-    }          
+    },
+    "notifications": {
+      "TITLE": "Notificaciones"
+    }              
   }  
 }

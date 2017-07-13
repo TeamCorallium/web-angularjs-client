@@ -262,6 +262,16 @@
       "TEXT7": "Enter your account details below",
       "TEXT8": "I agree",
       "TEXT9": "Already have an account?"
-    }           
+    },
+    "notifications": {
+      "TITLE": "Notifications",
+      "CREATEDBY": "New proposal created by",
+      "VIEWPROPOSAL": "View proposal",
+      "VIEWPROFILE": "View profile",
+      "VIEWPROJECT": "View project",
+      "VIEWFINANCES": "View finances",
+      "VIEWUFINANCES": "View your finances",
+      "VIEWVOTE": "View vote"
+    }        
   }
 }

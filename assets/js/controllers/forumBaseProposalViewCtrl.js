@@ -49,12 +49,6 @@ app.controller('ForumBaseProposalViewCtrl', ["$scope", "$state", "toaster", "Web
                             $scope.allVotes = data;
 
                             $scope.calculateVotes();
-
-                            for (var i = 0; i < $scope.allVotes.length; i++) {
-                                if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {
-                                    $state.go('app.forum.viewvotation');
-                                }
-                            }
                         },
                         function (errResponse) {
                             console.log(errResponse);

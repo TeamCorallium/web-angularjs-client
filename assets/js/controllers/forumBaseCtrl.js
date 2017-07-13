@@ -103,6 +103,7 @@ app.controller('ForumBaseCtrl', ["$scope", "$rootScope", "$state", "toaster", "W
                             $scope.allVotes = data;
 
                             var flag = false;
+
                             for (var i = 0; i < $scope.allVotes.length; i++) {
                                 if ($scope.allVotes[i].userId == localStorageService.get('currentUserId')) {
                                     flag = true;

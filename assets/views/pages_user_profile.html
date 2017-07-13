@@ -18,6 +18,9 @@
 				<uib-tabset class="tabbable">
 					<!-- start: TAB OVERVIEW -->
 					<uib-tab heading="Overview">
+						<uib-tab-heading>
+							<span translate="pages.profile.OVERVIEW"></span>
+						</uib-tab-heading>					
 						<div class="row">
 							<div class="col-md-4">
 								<div class="user-left">
@@ -39,27 +42,27 @@
 											<ul>
 												<li ng-show="userInfo.twitter != ''" data-placement="top" data-original-title="Twitter" class="social-twitter tooltips">
 													<a ng-click="goToLink(userInfo.twitter)" target="_blank">
-														Twitter
+														<span translate="pages.profile.TWITTER"></span>
 													</a>
 												</li>
 												<li ng-show="userInfo.facebook != ''"  data-placement="top" data-original-title="Facebook" class="social-facebook tooltips">
 													<a ng-click="goToLink(userInfo.facebook)" target="_blank">
-														Facebook
+														<span translate="pages.profile.FACEBOOK"></span>
 													</a>
 												</li>
 												<li ng-show="userInfo.google != ''"  data-placement="top" data-original-title="Google" class="social-google tooltips">
 													<a ng-click="goToLink(userInfo.google)" target="_blank">
-														Google+
+														<span translate="pages.profile.GOOGLE"></span>
 													</a>
 												</li>
 												<li ng-show="userInfo.linkedin != ''" data-placement="top" data-original-title="LinkedIn" class="social-linkedin tooltips">
 													<a ng-click="goToLink(userInfo.linkedin)" target="_blank">
-														LinkedIn
+														<span translate="pages.profile.LINKEDIN"></span>
 													</a>
 												</li>
 												<li ng-show="userInfo.github != ''" data-placement="top" data-original-title="Github" class="social-github tooltips">
 													<a ng-click="goToLink(userInfo.github)" target="_blank">
-														Github
+														<span translate="pages.profile.GITHUB"></span>
 													</a>
 												</li>
 											</ul>
@@ -69,36 +72,36 @@
 									<table class="table table-condensed">
 										<thead>
 										<tr>
-											<th colspan="3">User Information</th>
+											<th colspan="3"><span translate="pages.profile.USERINFO"></span></th>
 										</tr>
 										</thead>
 										<tbody>
 										<tr>
-											<td>email:</td>
+											<td><span translate="pages.profile.EMAIL"></span>:</td>
 											<td>{{userInfo.email}}</td>
 										</tr>
 										<tr>
-											<td>phone:</td>
+											<td><span translate="pages.profile.PHONE">:</td>
 											<td>{{userInfo.phone}}</td>
 										</tr>
 										<tr>
-											<td>gender:</td>
+											<td><span translate="pages.profile.GENDER">:</td>
 											<td>{{userInfo.gender}}</td>
 										</tr>
 										<tr>
-											<td>city:</td>
+											<td><span translate="pages.profile.CITY">:</td>
 											<td>{{userInfo.city}}</td>
 										</tr>
 										<tr>
-											<td>zip code:</td>
+											<td><span translate="pages.profile.ZIPCODE">:</td>
 											<td>{{userInfo.zipCode}}</td>
 										</tr>
 										<tr>
-											<td>birthday:</td>
+											<td><span translate="pages.profile.BIRTHDAY">:</td>
 											<td>{{getBirthday(userInfo.birthday)}}</td>
 										</tr>
 										<tr>
-											<td>identity card:</td>
+											<td><span translate="pages.profile.IDENTITYCARD">:</td>
 											<td>{{userInfo.identityCard}}</td>
 										</tr>
 									</table>
@@ -109,19 +112,19 @@
 									<div class="col-sm-3">
 										<button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block" ui-sref="app.project.user_project">
 											<i class="ti-briefcase block text-primary text-extra-large margin-bottom-10"></i>
-											Projects
+											<span translate="pages.profile.PROJECTS">
 										</button>
 									</div>
 									<div class="col-sm-3">
 										<button ui-sref="app.notification" class="btn btn-icon margin-bottom-5 btn-block">
 											<i class="ti-bell block text-primary text-extra-large margin-bottom-10"></i>
-											Notifies
+											<span translate="pages.profile.NOTIFIES">
 										</button>
 									</div>
 								</div>
 								<div class="panel panel-white" id="activities">
 									<div class="panel-heading border-light">
-										<h4 class="panel-title text-primary">Recent Activities</h4>
+										<h4 class="panel-title text-primary"><span translate="pages.profile.RACTIVITIES"></h4>
 										<paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
 									</div>
 									<div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
@@ -146,7 +149,7 @@
 								</div>
 								<div class="panel panel-white space20">
 									<div class="panel-heading">
-										<h4 class="panel-title">Recent Comments</h4>
+										<h4 class="panel-title"><span translate="pages.profile.RCOMMENTS"></span></h4>
 									</div>
 									<div class="panel-body">
 										<ul class="ltwt">
@@ -162,7 +165,10 @@
 							</div>
 						</div>
 					</uib-tab>
-					<uib-tab heading="Edit Account" active="editActive">
+					<uib-tab active="editActive">
+						<uib-tab-heading>
+							<span translate="pages.profile.EDITACCOUNT"></span>
+						</uib-tab-heading>					
 						<form role="form" id="form">
 							<fieldset>
 								<legend>

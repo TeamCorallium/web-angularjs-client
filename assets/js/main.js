@@ -16,6 +16,7 @@ app.run(['$rootScope', '$state', '$stateParams', 'localStorageService', 'RestSer
             author: 'Corallium', // author's name or company name
             description: 'Corallium System', // brief description
             version: '2.0', // current version
+            frontEndUrl: 'http://10.8.25.202:8001/Front-End/HTML/index.html',
             year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
             isMobile: (function () {// true if the browser is a mobile device
                 var check = false;

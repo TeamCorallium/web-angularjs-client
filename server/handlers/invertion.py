@@ -48,7 +48,6 @@ class InvertionHandler(tornado.web.RequestHandler):
         transactionAmount = self.json_args['amount']
 
         if len(invertions) != 0:
-            print("REPETIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
             id = invertions[0]['id'];
             amount = float(invertions[0]['amount']) + float(self.json_args['amount']) 
             table_invertion.update({'amount': amount}, eids=[id])
@@ -73,12 +72,20 @@ class InvertionHandler(tornado.web.RequestHandler):
         project = projects[0]
         ownerId = project['userId']
 
+        interestedUserIds = []
+        interestedUserIds.append(ownerId)
+
+        invertions = table_invertion.search((where('projectId') == projectId) | (where('projectId') == int(projectId)))
+        for invertion in invertions:
+            interestedUserIds.append(invertion['userId'])
+
         notificationType = 'NEW INVERTION'
-        table_notification.insert({'userId': ownerId, 'projectId': projectId, 'proposalId': '', 'from': '', 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        for userId in interestedUserIds:
+            table_notification.insert({'userId': userId, 'projectId': projectId, 'proposalId': '', 'from': '', 'read': False, 'type': notificationType, 'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                                    'subject': "Invertion", 'content': "New invertion in your project"})
-        for c in clients:
-            if int(c.id) == int(ownerId):
-                c.connection.write_message("NOTIFICATION")
+            for c in clients:
+                if int(c.id) == int(userId):
+                    c.connection.write_message("NOTIFICATION")
 
 class TransactionByProjectIdHandler(tornado.web.RequestHandler):
     def set_default_headers(self):

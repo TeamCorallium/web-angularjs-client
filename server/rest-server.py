@@ -121,7 +121,6 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             notifieType = 'PROPOSAL VOTE'
             content = 'New vote for: ' + proposal['name'];
 
-            print('STATE:::::::::::::::::::::::::::::::::' + proposal['state'])
             if proposal['state'] == 'publish':
                 percent = 0
                 for v in votes:

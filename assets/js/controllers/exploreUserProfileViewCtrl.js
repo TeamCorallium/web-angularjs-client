@@ -24,7 +24,14 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
             skype: '',
             password: '',
             projectsFollow: [],
-            id: ''
+            id: '',
+            rating: '',
+            birthday: '',
+            identityCard: '',
+            industries: '',
+            skills: '',
+            experiencies: '',
+            previusWorks: ''
         };
 
         $scope.getUserData = function () {
@@ -47,6 +54,7 @@ app.controller('ExploreUserProfileViewCtrl', ["$scope", "localStorageService", "
                         $scope.userInfo.password = data[0].password;
                         $scope.userInfo.projectsFollow = data[0].projectsFollow;
                         $scope.userInfo.id = data[0].id;
+                        $scope.userInfo.rating = data[0].rating;
                         if (data[0].birthday == '') {
                             $scope.userInfo.birthday = '';
                         } else {

@@ -186,7 +186,26 @@
       "NEWS6DESC": "News 6 Description"
     },
     "profile": {
-      "TITLE": "User Profile"
+      "TITLE": "User Profile",
+      "OVERVIEW": "Overview",
+      "EDITACCOUNT": "Edit Account",
+      "TWITTER": "Twitter",
+      "FACEBOOK": "Facebook",
+      "GOOGLE": "Google+",
+      "LINKEDIN": "Linkedin",
+      "GITHUB": "Github",
+      "USERINFO": "User Information",
+      "EMAIL": "Email",
+      "PHONE": "Phone",
+      "GENDER": "Gender",
+      "CITY": "City",
+      "ZIPCODE": "Zip Code",
+      "BIRTHDAY": "Birthday",
+      "IDENTITYCARD": "Identity Card",
+      "PROJECTS": "Projects",
+      "NOTIFIES": "Notifies",
+      "RACTIVITIES": "Recent Activities",
+      "RCOMMENTS": "Recent Comments"
     },
     "activities": {
       "TITLE": "Activities"

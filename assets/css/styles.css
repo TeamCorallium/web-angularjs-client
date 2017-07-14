@@ -11289,7 +11289,7 @@ td.small-width {
   }
 }
 #page-title .mainDescription {
-  font-family: "Lato", sans-serif;
+  /*font-family: "Lato", sans-serif;*/
   color: #777;
   display: block;
   font-size: 18px;

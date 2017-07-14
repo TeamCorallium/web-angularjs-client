@@ -40,7 +40,13 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                                 state: $scope.allProjects[i].state,
                                 deathLine: $scope.allProjects[i].deathLine,
                                 ownerId: $scope.allProjects[i].userId,
+                                sector: $scope.allProjects[i].sector,
+                                category: $scope.allProjects[i].category,
+                                minNumInves: $scope.allProjects[i].minNumInves,
+                                maxNumInves: $scope.allProjects[i].maxNumInves,
+                                ownerInvestedCapital: parseFloat($scope.allProjects[i].ownerInvestedCapital),
                                 ownerName: '',
+                                ownerRating: '',
                                 ownerRaiting: '',
                                 coveredCapital: '',
                                 isFollow: '',
@@ -50,7 +56,7 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                             $scope.getUserName($scope.allProjects[i].userId);
                             $scope.invertionByProjectId($scope.allProjects[i].id);
                             if ($scope.logged) {
-                                $scope.getOwnerData($scope.allProjects[i].id);
+                                $scope.getOwnerData();
                             }
                         }
                     },
@@ -70,21 +76,24 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                         $scope.invertions = data;
 
                         var investmentCapitalProject = 0;
-                        var inverted = false;
+                        var invertedFlag = false;
 
                         for (var i = 0; i < $scope.invertions.length; i++) {
                             investmentCapitalProject += parseFloat($scope.invertions[i].amount);
-                            if (localStorageService.get('currentUserId') == $scope.invertions[i].userId) {
-                                inverted = true;
+                            if ($scope.logged){
+                                if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
+                                    invertedFlag = true;
+                                }
                             }
                         }
                         var coveredCapitalPercent = 0;
 
                         for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {
                             if ($scope.allProjectsAbstracts[i].id == projectId) {
+                                investmentCapitalProject += parseFloat($scope.allProjectsAbstracts[i].ownerInvestedCapital);
                                 coveredCapitalPercent = (investmentCapitalProject / parseFloat($scope.allProjectsAbstracts[i].totalCost)) * 100;
                                 $scope.allProjectsAbstracts[i].coveredCapital = coveredCapitalPercent;
-                                $scope.allProjectsAbstracts[i].iInverted = inverted;
+                                $scope.allProjectsAbstracts[i].iInverted = invertedFlag;
                             }
                         }
                     },
@@ -94,26 +103,11 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                 );
         };
 
-        $scope.getOwnerData = function (projectId) {
+        $scope.getOwnerData = function () {
             RestService.fetchUser(localStorageService.get('currentUserId'))
                 .then(
                     function (data) {
                         $scope.owner = data[0];
-
-                        var follow =  false;
-
-                        for (var i = 0; i<$scope.owner.projectsFollow.length; i++) {
-                            if ($scope.owner.projectsFollow[i] == projectId) {
-                                follow = true;
-                                break;
-                            }
-                        }
-
-                        for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {
-                            if ($scope.allProjectsAbstracts[i].id == projectId) {
-                                $scope.allProjectsAbstracts[i].isFollow = follow;
-                            }
-                        }
                     },
                     function (errResponse) {
                         console.log(errResponse);
@@ -126,10 +120,12 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                 .then(
                     function (data) {
                         var name = data[0].fullName;
+                        var rating = data[0].rating;
 
                         for (var i=0 ; i<$scope.allProjectsAbstracts.length; i++) {
                             if ($scope.allProjectsAbstracts[i].ownerId == userId) {
                                 $scope.allProjectsAbstracts[i].ownerName = name;
+                                $scope.allProjectsAbstracts[i].ownerRating = rating;
                             }
                         }
                     },
@@ -142,6 +138,10 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
         $scope.stateArray = ['Under Construction', 'In Preparation', 'Active', 'Active: On time', 'Active: Best than expected', 'Active: Delayed', 'Finished'];
 
         $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property Developments', 'Other'];
+
+        $scope.sectorArray = ['','Agriculture', 'Industry', 'Technology', 'Engineering', 'Real State', 'Academic', 'Food Industry', 'Other'];
 
         $scope.getProjectDate = function (date) {
             var dateTemp = new Date(date);
@@ -166,10 +166,12 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
 
             if (localStorageService.get('isLogged')) {
 
-                for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
-                    if (projectId == $scope.owner.projectsFollow[i]) {
-                        followFlag = true;
-                        break;
+                if ($scope.owner.projectsFollow) {
+                    for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
+                        if (projectId == $scope.owner.projectsFollow[i]) {
+                            followFlag = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -177,13 +179,15 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
             return followFlag;
         };
 
-        $scope.updateUser = function () {
+        $scope.updateUser = function (name, flag) {
             RestService.updateUser($scope.owner)
                 .then(
                     function (data) {
-                        toaster.pop('success', 'Success', 'User updated correctly.');
-
-                        $scope.getAllProjects();
+                        if (flag) {
+                            toaster.pop('success', 'Success', 'You are now follow the project '+name);
+                        } else {
+                            toaster.pop('success', 'Success', 'You are now unfollow the project '+name);
+                        }
                     },
                     function (errResponse) {
                         console.log(errResponse);
@@ -191,7 +195,7 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                 );
         };
 
-        $scope.follow = function (projectId) {
+        $scope.follow = function (projectId, name) {
 
             if (localStorageService.get('isLogged')) {
 
@@ -200,21 +204,21 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                 }
                 $scope.owner.projectsFollow.push(projectId);
 
-                $scope.updateUser();
+                $scope.updateUser(name,true);
             }
             else {
                 toaster.pop('error', 'Error!!!', 'Must be login first.');
             }
         };
 
-        $scope.unfollow = function (projectId) {
+        $scope.unfollow = function (projectId, name) {
             for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
                 if (projectId == $scope.owner.projectsFollow[i]) {
                     $scope.owner.projectsFollow.splice(i, 1);
                     break;
                 }
             }
-            $scope.updateUser();
+            $scope.updateUser(name,false);
         };
 
         $scope.getAllUsers = function () {
@@ -228,8 +232,14 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                                 id: $scope.listAllUser[i].id,
                                 name: $scope.listAllUser[i].fullName,
                                 email: $scope.listAllUser[i].email,
-                                countProjects: ''
+                                countProjects: '',
+                                avatar: $scope.listAllUser[i].avatar,
+                                rating: $scope.listAllUser[i].rating
                             };
+
+                            if (usersAbstract.avatar == '') {
+                                usersAbstract.avatar = 'assets/images/default-user.png';
+                            }
                             $scope.listAllUserAbstracts.push(usersAbstract);
                             $scope.getProjectByUserId($scope.listAllUser[i].id);
                         }

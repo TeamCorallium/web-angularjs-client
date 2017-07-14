@@ -187,12 +187,6 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
-                                                        <p>
-                                                            <strong>Covered Capital:</strong>
-                                                            {{coveredCapitalPercent | number: 2}} %
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                         <p ng-show="projectRole(currentProjectActive.userId) == 'Owner'">
                                                             <strong>My Estimate Revenue: </strong>
                                                             {{currentProjectActive.revenueOwner}} %
@@ -200,6 +194,12 @@
                                                         <p ng-hide="projectRole(currentProjectActive.userId) == 'Owner'">
                                                             <strong>My Estimate Revenue: </strong>
                                                             {{estimateRevenueFinancier | number: 2}} $
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                        <p>
+                                                            <strong>Covered Capital:</strong>
+                                                            {{coveredCapitalPercent | number: 2}} %
                                                         </p>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12" ng-show="currentProjectActive.state > 1">

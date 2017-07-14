@@ -224,9 +224,16 @@
       "TITLE": "Statistics"
     },
     "forums": {
+      "TITLE": "Forum",
       "LISTTITLE": "My Forums",
       "PROPOSAL": "Proposals",
-      "COMMENT": "Comments"
+      "COMMENT": "Comments",
+      "VIEWPROFILE": "View profile",
+      "NCHANGES": "Number of changes",
+      "VIEWPROPOSAL": "View proposal",
+      "CREATEPROPOSAL": "Create Proposal",
+      "LEAVECOMMENT": "Leave a comment",
+      "POSTCOMMENT": "Post Comment"
     },
     "finances": {
       "TITLE": "Finances",

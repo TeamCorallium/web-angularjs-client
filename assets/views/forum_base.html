@@ -3,7 +3,7 @@
 	<section id="page-title">
 		<div class="row">
 			<div class="col-sm-8">
-				<h1 class="mainTitle">{{currentForumActive.projectName}} FORUM</h1>
+				<h1 class="mainTitle">{{currentForumActive.projectName}} <span translate="pages.forums.TITLE"></span></h1>
 			</div>
 			<!--<div ncy-breadcrumb></div>-->
 		</div>
@@ -11,7 +11,10 @@
 	<div class="container-fluid container-fullw bg-white">
 		<div class="container">
 			<uib-tabset class="tabbable" ng-show="currentForumActive.inverted">
-				<uib-tab heading="Proposal">
+				<uib-tab>
+					<uib-tab-heading>
+						<span translate="pages.forums.PROPOSAL"></span>
+					</uib-tab-heading>				
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<ul class="list-unstyled">
@@ -20,7 +23,7 @@
 										<div class="media">
 											<a ng-click="goToProfileView(proposal.proposalOwnerId)" class="notifies_image">
 												<img ng-src="{{proposal.avatar}}" class="media-object img-circle invertion-image image">
-												<span class="middle_forum_proposal">View profile</span>
+												<span class="middle_forum_proposal" translate="pages.forums.VIEWPROFILE"></span>
 											</a>
 											<div class="media-body">
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -28,10 +31,10 @@
 													<span class="notification-time">{{getProjectDate(proposal.deathLine)}}</span>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-													<span>Number of changes: {{proposal.proposalList.length}}</span>
+													<span translate="pages.forums.NCHANGES"></span><span>: {{proposal.proposalList.length}}</span>
 												</div>
 												<button ng-click="goToProposalById(proposal.id)" type="button" class="btn btn-primary btn-xs pull-right margin-top-10">
-													<span class="ti-eye"></span> View Proposal
+													<span class="ti-eye"></span> <span translate="pages.forums.VIEWPROPOSAL"></span>
 												</button>
 											</div>
 											<hr class="tall">
@@ -43,11 +46,14 @@
 					</div>
 					<div class="row">
 						<a ui-sref="app.forum.proposal" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-plus margin-top-15 margin-right-10 pull-right col-xs-3 col-sm-2 col-sm-offset-10 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10" data-caption-class="fadeIn" data-caption-delay="900">
-							<span>Create Proposal</span>
+							<span translate="pages.forums.CREATEPROPOSAL"></span>
 						</a>
 					</div>
 				</uib-tab>
-				<uib-tab heading="Comments" active="editActive">
+				<uib-tab active="editActive">
+					<uib-tab-heading>
+						<span translate="pages.forums.COMMENT"></span>
+					</uib-tab-heading>					
 					<div class="row">
 						<div class="col-md-12">
 							<ul class="list-unstyled">
@@ -56,7 +62,7 @@
 										<div class="media">
 											<a ng-click="goToProfileView(comment.userId)" class="notifies_image">
 												<img ng-src="{{comment.avatar}}" class="media-object img-circle invertion-image image">
-												<span class="middle_forum_comment">View profile</span>
+												<span class="middle_forum_comment" translate="pages.forums.VIEWPROFILE"></span>
 											</a>
 											<div class="media-body">
 												<a ng-click="goToProfileView(comment.userId)" class="media-heading">{{comment.fullName}} </a>
@@ -73,12 +79,11 @@
 						</div>
 						<div class="col-md-12">
 							<div class="post-block post-leave-comment">
-								<h3>Leave a comment</h3>
+								<h3><span translate="pages.forums.LEAVECOMMENT"></span></h3>
 								<form action="" type="post">
 									<div class="row">
 										<div class="form-group">
 											<div class="col-md-12">
-												<label> Comment * </label>
 												<textarea ng-model="comment.value" maxlength="5000" rows="10" class="form-control"></textarea>
 											</div>
 										</div>
@@ -86,7 +91,7 @@
 									<div class="row">
 										<div class="col-md-12">
 											<a ng-click="createComment()" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-comment-alt margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
-												<span>Post Comment</span>
+												<span translate="pages.forums.POSTCOMMENT"></span>
 											</a>
 										</div>
 									</div>
@@ -97,7 +102,10 @@
 				</uib-tab>
 			</uib-tabset>
 			<uib-tabset class="tabbable" ng-show="!currentForumActive.inverted">
-				<uib-tab heading="Comments" active="editActive">
+				<uib-tab active="editActive">
+					<uib-tab-heading>
+						<span translate="pages.forums.COMMENT"></span>
+					</uib-tab-heading>					
 					<div class="row">
 						<div class="col-md-12">
 							<ul class="list-unstyled">
@@ -122,12 +130,11 @@
 						</div>
 						<div class="col-md-12">
 							<div class="post-block post-leave-comment">
-								<h3>Leave a comment</h3>
+								<h3><span translate="pages.forums.LEAVECOMMENT"></span></h3>
 								<form action="" type="post">
 									<div class="row">
 										<div class="form-group">
 											<div class="col-md-12">
-												<label> Comment * </label>
 												<textarea ng-model="comment.value" maxlength="5000" rows="10" class="form-control"></textarea>
 											</div>
 										</div>
@@ -135,7 +142,7 @@
 									<div class="row">
 										<div class="col-md-12">
 											<a ng-click="createComment()" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-comment-alt margin-top-15 pull-right" data-caption-class="fadeIn" data-caption-delay="900">
-												<span>Post Comment</span>
+												<span translate="pages.forums.POSTCOMMENT"></span>
 											</a>
 										</div>
 									</div>
@@ -148,10 +155,10 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-top-15">
 					<button ui-sref="app.forum.allforum" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-arrow-left">
-						<span>Back</span>
+						<span translate="pages.BACK"></span>
 					</button>
 					<button ui-sref="app.project.subproject_detail" type="button" class="pull-right btn btn-primary btn-wide btn-scroll btn-scroll-top ti-folder">
-						<span>Go to project</span>
+						<span translate="pages.GOTOPROJECT"></span>
 					</button>
 				</div>
 			</div>

@@ -219,7 +219,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h5.over-title {
-  font-family: "Lato", sans-serif;
+  font-family: "Lato Regular", sans-serif;
   font-size: 16px;
 }
 
@@ -4764,7 +4764,7 @@ fieldset .form-group {
 }
 fieldset legend {
   background: inherit;
-  font-family: "Lato", sans-serif;
+  font-family: "Lato Regular", sans-serif;
   color: #ff6839;
   font-size: 15px;
   left: 10px;
@@ -11289,7 +11289,7 @@ td.small-width {
   }
 }
 #page-title .mainDescription {
-  font-family: "Lato", sans-serif;
+  font-family: "Lato Regular", sans-serif;
   color: #777;
   display: block;
   font-size: 18px;
@@ -11311,7 +11311,7 @@ td.small-width {
   right: 30px !important;
   top: 50% !important;
   width: auto !important;
-  font-family: "Lato", sans-serif;
+  font-family: "Lato Regular", sans-serif;
 }
 @media (max-width: 767px) {
   #page-title .breadcrumb {

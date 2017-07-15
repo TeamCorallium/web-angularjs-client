@@ -884,8 +884,8 @@
       "password": "a",
       "experiencies": "",
       "fullName": "Alejandro Ravelo Julian",
-      "industries": "",
-      "rating":"Flyweight"
+      "rating": "Flyweight",
+      "industries": ""
     },
     "2": {
       "connected": true,
@@ -915,8 +915,8 @@
       "password": "t",
       "experiencies": "",
       "fullName": "Antonio Cedeno Pozo",
-      "industries": "",
-      "rating":"Flyweight"
+      "rating": "Flyweight",
+      "industries": ""
     },
     "3": {
       "connected": false,
@@ -946,8 +946,8 @@
       "password": "123456",
       "experiencies": "",
       "fullName": "Juan Fung",
-      "industries": "",
-      "rating":"Flyweight"
+      "rating": "Flyweight",
+      "industries": ""
     },
     "4": {
       "connected": false,
@@ -977,6 +977,7 @@
       "password": "123456",
       "experiencies": "",
       "fullName": "Thalia Fung",
+      "rating": "Flyweight",
       "industries": ""
     },
     "6": {
@@ -1007,8 +1008,8 @@
       "password": "123456",
       "experiencies": "",
       "fullName": "Bepsi Collazo",
-      "industries": "",
-      "rating":"Flyweight"
+      "rating": "Flyweight",
+      "industries": ""
     },
     "7": {
       "connected": false,
@@ -1036,8 +1037,8 @@
       "password": "yoe",
       "experiencies": "",
       "fullName": "Yoenia Lapido",
-      "industries": "",
-      "rating":"Flyweight"
+      "rating": "Flyweight",
+      "industries": ""
     },
     "8": {
       "connected": false,
@@ -1064,8 +1065,8 @@
       "password": "r",
       "experiencies": "",
       "fullName": "Raul Acosta",
-      "industries": "",
-      "rating":"Flyweight"
+      "rating": "Flyweight",
+      "industries": ""
     },
     "9": {
       "connected": false,
@@ -1093,8 +1094,8 @@
       "password": "mdqmlcjald",
       "experiencies": "",
       "fullName": "Julio Alberto Leyva Durán",
-      "industries": "",
-      "rating":"Flyweight"
+      "rating": "Flyweight",
+      "industries": ""
     }
   },
   "table_invertion": {

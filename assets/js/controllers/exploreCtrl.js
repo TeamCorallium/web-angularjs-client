@@ -257,16 +257,20 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
 
         $scope.getAllUsers(localStorageService.get('currentUserId'));
 
-        $scope.viewProfile = function (userId) {
-            localStorageService.set('viewUserProfileId', userId);
-            $state.go('app.pages.exploreuser');
-        };
-
         $scope.tabSelectedUser = function () {
             $scope.selectedTabProjects = false;
         };
 
         $scope.tabSelectedProjects = function () {
             $scope.selectedTabProjects = true;
+        };
+
+        $scope.goToProfileView = function (userId) {
+            localStorageService.set('viewUserProfileId', userId);
+            if (localStorageService.get('currentUserId') == userId) {
+                $state.go('app.pages.user');
+            } else {
+                $state.go('app.pages.exploreuser');
+            }
         };
     }]);

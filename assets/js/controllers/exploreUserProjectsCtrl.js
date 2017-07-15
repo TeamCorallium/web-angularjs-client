@@ -269,11 +269,6 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
 
         $scope.getAllUsers(localStorageService.get('currentUserId'));
 
-        $scope.viewProfile = function (userId) {
-            localStorageService.set('viewUserProfileId', userId);
-            $state.go('app.pages.exploreuser');
-        };
-
         $scope.tabSelectedUser = function () {
             $scope.selectedTabProjects = false;
         };
@@ -288,5 +283,14 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                 flag = true;
             }
             return flag;
+        };
+
+        $scope.goToProfileView = function (userId) {
+            localStorageService.set('viewUserProfileId', userId);
+            if (localStorageService.get('currentUserId') == userId) {
+                $state.go('app.pages.user');
+            } else {
+                $state.go('app.pages.exploreuser');
+            }
         };
     }]);

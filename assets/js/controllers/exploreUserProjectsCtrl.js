@@ -47,9 +47,7 @@ app.controller('ExploreUserProjectsCtrl', ["$scope", "localStorageService", "Res
                                 ownerInvestedCapital: parseFloat($scope.allProjects[i].ownerInvestedCapital),
                                 ownerName: '',
                                 ownerRating: '',
-                                ownerRaiting: '',
                                 coveredCapital: '',
-                                isFollow: '',
                                 iInverted: ''
                             };
                             $scope.allProjectsAbstracts.push(projectAbstract);

@@ -13,16 +13,24 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
 
         $scope.allProjects = [];
         $scope.invertions = [];
-        $scope.listAllUserAbstracts = [];
         $scope.allProjectsAbstracts = [];
-        $scope.listAllUser = [];
         $scope.owner = '';
         $scope.filter = '';
         $scope.selectedTabProjects = true;
 
-        $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property Developments', 'Other'];
+        $scope.getOwnerData = function () {
+            RestService.fetchUser(localStorageService.get('currentUserId'))
+                .then(
+                    function (data) {
+                        $scope.owner = data[0];
+                    },
+                    function (errResponse) {
+                        console.log(errResponse);
+                    }
+                );
+        };
 
-        $scope.sectorArray = ['','Agriculture', 'Industry', 'Technology', 'Engineering', 'Real State', 'Academic', 'Food Industry', 'Other'];
+        $scope.getOwnerData();
 
         $scope.getAllProjects = function () {
             RestService.fetchAllOpportunities(localStorageService.get('currentUserId'), $scope.filter)
@@ -52,17 +60,12 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                                 ownerName: '',
                                 ownerRating: '',
                                 coveredCapital: '',
-                                isFollow: '',
                                 iInverted: ''
                             };
 
                             $scope.allProjectsAbstracts.push(projectAbstract);
                             $scope.getUserName($scope.allProjects[i].userId);
                             $scope.invertionByProjectId($scope.allProjects[i].id);
-
-                            if ($scope.logged) {
-                                $scope.getOwnerData($scope.allProjects[i].id);
-                            }
                         }
                     },
                     function (errResponse) {
@@ -81,12 +84,14 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                         $scope.invertions = data;
 
                         var investmentCapitalProject = 0;
-                        var inverted = false;
+                        var invertedFlag = false;
 
                         for (var i = 0; i < $scope.invertions.length; i++) {
                             investmentCapitalProject += parseFloat($scope.invertions[i].amount);
-                            if (localStorageService.get('currentUserId') == $scope.invertions[i].userId) {
-                                inverted = true;
+                            if ($scope.logged){
+                                if ($scope.invertions[i].userId == localStorageService.get('currentUserId')) {
+                                    invertedFlag = true;
+                                }
                             }
                         }
                         var coveredCapitalPercent = 0;
@@ -96,34 +101,7 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                                 investmentCapitalProject += parseFloat($scope.allProjectsAbstracts[i].ownerInvestedCapital);
                                 coveredCapitalPercent = (investmentCapitalProject / parseFloat($scope.allProjectsAbstracts[i].totalCost)) * 100;
                                 $scope.allProjectsAbstracts[i].coveredCapital = coveredCapitalPercent;
-                                $scope.allProjectsAbstracts[i].iInverted = inverted;
-                            }
-                        }
-                    },
-                    function (errResponse) {
-                        console.log(errResponse);
-                    }
-                );
-        };
-
-        $scope.getOwnerData = function (projectId) {
-            RestService.fetchUser(localStorageService.get('currentUserId'))
-                .then(
-                    function (data) {
-                        $scope.owner = data[0];
-
-                        var follow =  false;
-
-                        for (var i = 0; i<$scope.owner.projectsFollow.length; i++) {
-                            if ($scope.owner.projectsFollow[i] == projectId) {
-                                follow = true;
-                                break;
-                            }
-                        }
-
-                        for (var i=0; i<$scope.allProjectsAbstracts.length; i++) {
-                            if ($scope.allProjectsAbstracts[i].id == projectId) {
-                                $scope.allProjectsAbstracts[i].isFollow = follow;
+                                $scope.allProjectsAbstracts[i].iInverted = invertedFlag;
                             }
                         }
                     },
@@ -157,6 +135,10 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
 
         $scope.monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+        $scope.categoryArray = ['','Commodities Production', 'Creating a New Business', 'Diversification', 'Property Developments', 'Other'];
+
+        $scope.sectorArray = ['','Agriculture', 'Industry', 'Technology', 'Engineering', 'Real State', 'Academic', 'Food Industry', 'Other'];
+
         $scope.getProjectDate = function (date) {
             var dateTemp = new Date(date);
             return $scope.monthArray[dateTemp.getMonth()] + " " + dateTemp.getDate() + ", " + dateTemp.getFullYear();
@@ -172,10 +154,12 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
 
             if (localStorageService.get('isLogged')) {
 
-                for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
-                    if (projectId == $scope.owner.projectsFollow[i]) {
-                        followFlag = true;
-                        break;
+                if ($scope.owner.projectsFollow) {
+                    for (var i = 0; i < $scope.owner.projectsFollow.length; i++) {
+                        if (projectId == $scope.owner.projectsFollow[i]) {
+                            followFlag = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -192,8 +176,6 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                         } else {
                             toaster.pop('success', 'Success', 'You are now unfollow the project '+name);
                         }
-
-                        $scope.getAllProjects();
                     },
                     function (errResponse) {
                         console.log(errResponse);
@@ -202,19 +184,13 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
         };
 
         $scope.follow = function (projectId, name) {
-
-            if (localStorageService.get('isLogged')) {
-
-                if (!$scope.owner.projectsFollow) {
-                    $scope.owner.projectsFollow = [];
-                }
-                $scope.owner.projectsFollow.push(projectId);
-
-                $scope.updateUser(name, true);
+            if (!$scope.owner.projectsFollow) {
+                $scope.owner.projectsFollow = [];
             }
-            else {
-                toaster.pop('error', 'Error!!!', 'Must be login first.');
-            }
+
+            $scope.owner.projectsFollow.push(projectId);
+
+            $scope.updateUser(name,true);
         };
 
         $scope.unfollow = function (projectId, name) {
@@ -224,63 +200,6 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
                     break;
                 }
             }
-            $scope.updateUser(name, false);
-        };
-
-        $scope.getAllUsers = function () {
-            RestService.fetchAllUsers(localStorageService.get('currentUserId'))
-                .then(
-                    function (data) {
-                        $scope.listAllUser = data;
-
-                        for (var i = 0; i < $scope.listAllUser.length; i++) {
-                            var usersAbstract = {
-                                id: $scope.listAllUser[i].id,
-                                name: $scope.listAllUser[i].fullName,
-                                email: $scope.listAllUser[i].email,
-                                countProjects: ''
-                            };
-                            $scope.listAllUserAbstracts.push(usersAbstract);
-                            $scope.getProjectByUserId($scope.listAllUser[i].id);
-                        }
-                    },
-                    function (errResponse) {
-                        console.log(errResponse);
-                    }
-                );
-        };
-
-        $scope.getProjectByUserId = function (userId) {
-            RestService.fetchSimpleProjects(userId)
-                .then(
-                    function (data) {
-                        var count = data.length;
-
-                        for (var i=0; i <$scope.listAllUserAbstracts.length; i++) {
-                            if ($scope.listAllUserAbstracts[i].id == userId) {
-                                $scope.listAllUserAbstracts[i].countProjects = count;
-                            }
-                        }
-
-                    },
-                    function (errResponse) {
-                        console.log(errResponse);
-                    }
-                );
-        };
-
-        $scope.getAllUsers(localStorageService.get('currentUserId'));
-
-        $scope.viewProfile = function (userId) {
-            localStorageService.set('viewUserProfileId', userId);
-            $state.go('app.pages.exploreuser');
-        };
-
-        $scope.tabSelectedUser = function () {
-            $scope.selectedTabProjects = false;
-        };
-
-        $scope.tabSelectedProjects = function () {
-            $scope.selectedTabProjects = true;
+            $scope.updateUser(name,false);
         };
     }]);

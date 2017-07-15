@@ -202,4 +202,9 @@ app.controller('OpportunitiesCtrl', ["$scope", "localStorageService", "RestServi
             }
             $scope.updateUser(name,false);
         };
+
+        $scope.viewProfile = function (userId) {
+            localStorageService.set('viewUserProfileId', userId);
+            $state.go('app.pages.exploreuser');
+        };
     }]);

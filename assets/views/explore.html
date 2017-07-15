@@ -84,12 +84,12 @@
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-menu"></i>
 												<strong translate="pages.OWNERRATING"></strong><strong>:</strong>
-												{{project.rating}}
+												{{project.ownerRating}}
 											</span>
 										</div>
 									</div>
 									<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
-										<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding">
+										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-bar-chart"></i>
 												<strong translate="pages.COVEREDCAPITAL"></strong><strong>:</strong>  {{project.coveredCapital | number: 2}} %
 											</span>
@@ -147,7 +147,7 @@
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<label><strong translate="pages.RAITING"></strong><strong>:</strong></label>
-								<span>{{project.ownerRating}}</span>
+								<span> {{user.rating}} </span>
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<label><strong translate="pages.explore.PROJECTS"></strong><strong>:</strong></label>

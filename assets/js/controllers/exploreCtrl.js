@@ -221,7 +221,8 @@ app.controller('ExploreCtrl', ["$scope", "localStorageService", "RestService", "
                                 name: $scope.listAllUser[i].fullName,
                                 email: $scope.listAllUser[i].email,
                                 countProjects: '',
-                                avatar: $scope.listAllUser[i].avatar
+                                avatar: $scope.listAllUser[i].avatar,
+                                rating: $scope.listAllUser[i].rating
                             };
 
                             if (usersAbstract.avatar == '') {

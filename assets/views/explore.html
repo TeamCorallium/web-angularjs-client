@@ -78,7 +78,7 @@
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 											<span><i class="ti-id-badge"></i>
 												<strong translate="pages.OWNER"></strong><strong>:</strong>
-												<a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
+												<a ng-click="goToProfileView(project.ownerId)">{{project.ownerName}}</a>
 											</span>
 										</div>
 										<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
@@ -139,7 +139,7 @@
 								<img  ng-src="{{user.avatar}}" class="img-responsive img-rounded notification-image">
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
-								<span class="notification-author"><a ng-click="viewProfile(user.id)"> {{user.name}} </a></span>
+								<span class="notification-author"><a ng-click="goToProfileView(user.id)"> {{user.name}} </a></span>
 							</div>
 							<div class="thread-content col-sm-10 col-md-10 col-lg-10 no-padding">
 								<label><strong translate="pages.EMAIL"></strong><strong>:</strong></label>
@@ -155,7 +155,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
-									<button type="button" class="btn btn-primary btn-xs pull-right" ng-click="viewProfile(user.id)">
+									<button type="button" class="btn btn-primary btn-xs pull-right" ng-click="goToProfileView(user.id)">
 										<span class="glyphicon glyphicon-upload"></span> <span translate="pages.explore.VIEWPROFILE"></span>
 									</button>
 								</div>

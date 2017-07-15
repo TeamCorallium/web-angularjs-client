@@ -180,9 +180,13 @@ app.controller('ProjectUserCtrl', ["$scope", "localStorageService", "RestService
                     );
             };
 
-            $scope.viewProfile = function (userId) {
+            $scope.goToProfileView = function (userId) {
                 localStorageService.set('viewUserProfileId', userId);
-                $state.go('app.pages.exploreuser');
+                if (localStorageService.get('currentUserId') == userId) {
+                    $state.go('app.pages.user');
+                } else {
+                    $state.go('app.pages.exploreuser');
+                }
             };
         }
     }]);

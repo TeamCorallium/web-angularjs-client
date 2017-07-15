@@ -1,7 +1,7 @@
 <section id="page-title">
 	<div class="row">
 		<div class="col-sm-8">
-			<h1 class="mainTitle">My Forums</h1>
+			<h1 class="mainTitle"><span translate="pages.forums.LISTTITLE"></span></h1>
 		</div>
 		<!--<div ncy-breadcrumb></div>-->
 	</div>
@@ -15,18 +15,18 @@
 						<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-bottom-10">
 							<hr class="tall">
 							<span class="notification-author"><a ng-click="goToForum(forum.projectId)"> {{forum.projectName}} </a></span>
-							<span class="notification-preview margin-top-10"><strong>Description:</strong> {{forum.projectDescription | htmlToPlaintext | words:40 :true}} </span>
+							<span class="notification-preview margin-top-10"><strong translate="pages.DESCRIPTION"></strong><strong>:</strong> {{forum.projectDescription | htmlToPlaintext | words:40 :true}} </span>
 						</div>
 						<div class="thread-content col-xs-12 col-sm-12col-md-12 col-lg-12">
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
-								<span><i class="ti-write"></i><strong> Proposals:</strong> {{forum.proposalsCount}} </span>
+								<span><i class="ti-write"></i><strong translate="pages.forums.PROPOSAL"></strong><strong>:</strong> {{forum.proposalsCount}} </span>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 no-padding">
-								<span><i class="ti-comments"></i><strong> Comments:</strong> {{forum.commentsCount}} </span>
+								<span><i class="ti-comments"></i><strong translate="pages.forums.COMMENT"></strong><strong>:</strong> {{forum.commentsCount}} </span>
 							</div>
 							<button type="button" class="btn btn-primary btn-xs pull-right"
 									ng-click="goToForum(forum.projectId)">
-								<span class="fa fa-angle-right"></span> Read more
+								<span class="fa fa-angle-right"></span> <span translate="pages.READMORE"></span>
 							</button>
 						</div>
 					</li>

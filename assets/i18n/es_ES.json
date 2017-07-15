@@ -214,7 +214,8 @@
       "TITLE": "Proyectos",
       "TITLEDESC": "Busque proyectos de acuerdo a los criterios de su preferencia",
       "USERS": "Usuarios",
-      "PROJECTS": "Proyectos"
+      "PROJECTS": "Proyectos",
+      "VIEWPROFILE": "Ver perfil"
     },
     "notifications": {
       "TITLE": "Notificaciones"
@@ -223,9 +224,16 @@
       "TITLE": "Estadísticas"
     },
     "forums": {
+      "TITLE": "Forum",
       "LISTTITLE": "Mis Forums",
       "PROPOSAL": "Propuestas",
-      "COMMENT": "Comentarios"
+      "COMMENT": "Comentarios",
+      "VIEWPROFILE": "Ver perfil",
+      "NCHANGES": "Número de cambios",
+      "VIEWPROPOSAL": "Ver propuesta",
+      "CREATEPROPOSAL": "Crear Propuesta",
+      "LEAVECOMMENT": "Dejar un comentario",
+      "POSTCOMMENT": "Escribir comentario"      
     },
     "finances": {
       "TITLE": "Finanzas",
@@ -263,7 +271,14 @@
       "TEXT9": "¿Ya tiene una cuenta?"
     },
     "notifications": {
-      "TITLE": "Notificaciones"
+      "TITLE": "Notificaciones",
+      "CREATEDBY": "Nueva propuesta creada por",
+      "VIEWPROPOSAL": "Ver propuesta",
+      "VIEWPROFILE": "Ver perfil",
+      "VIEWPROJECT": "Ver proyecto",
+      "VIEWFINANCES": "Ver finanzas",
+      "VIEWUFINANCES": "Ver tus finanzas",
+      "VIEWVOTE": "Ver voto"      
     }              
   }  
 }

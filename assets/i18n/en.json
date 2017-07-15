@@ -166,6 +166,7 @@
     "DELETE": "Delete",
     "UPDATE": "Update",
     "CREATEPROJECT": "Create project",
+    "PROJECTS": "Projects",
     "home": {
       "WELCOME": "Welcome to Corallium",
       "MYPROYECTS": "My Projects",
@@ -191,6 +192,7 @@
     },
     "profile": {
       "TITLE": "User Profile",
+      "TITLEUSER": "Profile",
       "OVERVIEW": "Overview",
       "EDITACCOUNT": "Edit Account",
       "TWITTER": "Twitter",
@@ -209,7 +211,8 @@
       "PROJECTS": "Projects",
       "NOTIFIES": "Notifies",
       "RACTIVITIES": "Recent Activities",
-      "RCOMMENTS": "Recent Comments"
+      "RCOMMENTS": "Recent Comments",
+      "NPROJECTS": "Number of projects"
     },
     "activities": {
       "TITLE": "Activities"

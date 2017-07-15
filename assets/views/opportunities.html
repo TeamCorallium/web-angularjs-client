@@ -3,7 +3,7 @@
 <section id="page-title">
 	<div class="row">
 		<div class="col-sm-8">
-			<h1 class="mainTitle">Opportunities</h1>
+			<h1 class="mainTitle"><span translate="pages.opportunities.TITLE"></span></h1>
 		</div>
 		<!--<div ncy-breadcrumb></div>-->
 	</div>
@@ -15,10 +15,10 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding margin-bottom-15">
 			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right no-padding">
 				<select ng-change="getAllProjects()" ng-model="filter" class="cs-select cs-skin-elastic border-combo-projects">
-					<option value="" disabled selected>Order By</option>
-					<option value="totalCost">Total Cost</option>
-					<option value="totalRevenue">Total Revenue</option>
-					<option value="deathLine">Deathline</option>
+					<option value="" disabled selected translate="pages.ORDERBY">Order By</option>
+					<option value="totalCost" translate="pages.TOTALCOST">Total Cost</option>
+					<option value="totalRevenue" translate="pages.TOTALREVENUE">Total Revenue</option>
+					<option value="deathLine" translate="pages.DEATHLINE">Deathline</option>
 				</select>
 			</div>
 		</div>
@@ -39,40 +39,40 @@
 								</div>
 								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
 									<span class="notification-preview">
-										<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
+										<strong translate="pages.DESCRIPTION"></strong><strong>:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
 									</span>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-pencil-alt"></i>
-											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
+											<strong translate="pages.TOTALCOST"></strong><strong>:</strong>  {{project.totalCost | number: 2}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-wallet"></i>
-											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
+											<strong translate="pages.TOTALREVENUE"></strong><strong>:</strong>  {{project.totalRevenue | number: 2}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-stats-up"></i>
-											<strong> State:</strong>  {{stateArray[project.state]}}
+											<strong translate="pages.STATE"></strong><strong>:</strong>  {{stateArray[project.state]}}
 										</span>
 									</div>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-calendar"></i>
-											<strong> Deathline:</strong>  {{getProjectDate(project.deathLine)}}
+											<strong translate="pages.DEATHLINE"></strong><strong>:</strong>  {{getProjectDate(project.deathLine)}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-id-badge"></i>
-											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
+											<strong translate="pages.OWNER"></strong><strong>:</strong> <a ng-click="viewProfile(project.ownerId)">{{project.ownerName}}</a>
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-menu"></i>
-											<strong> Owner Raiting:</strong>
+											<strong translate="pages.OWNERRATING"></strong><strong>:</strong>
 											{{project.ownerRating}}
 										</span>
 									</div>
@@ -80,17 +80,17 @@
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-bar-chart"></i>
-											<strong> Covered Capital:</strong> {{project.coveredCapital | number: 2}} %
+											<strong translate="pages.COVEREDCAPITAL"></strong><strong>:</strong> {{project.coveredCapital | number: 2}} %
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-widget"></i>
-											<strong> Sector:</strong> {{sectorArray[project.sector]}}
+											<strong translate="pages.SECTOR"></strong><strong>:</strong> {{sectorArray[project.sector]}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class=" ti-view-list-alt"></i>
-											<strong> Category:</strong> {{categoryArray[project.category]}}
+											<strong translate="pages.CATEGORY"></strong><strong>:</strong> {{categoryArray[project.category]}}
 										</span>
 									</div>
 								</div>
@@ -99,15 +99,15 @@
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10">
 									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
 											ng-click="goToOpportunityProject(project.id)">
-										<span class="fa fa-angle-right"></span> Read more
+										<span class="fa fa-angle-right"></span> <span translate="pages.READMORE"></span>
 									</button>
 									<button ng-click="follow(project.id, project.name)" ng-hide="(isFollowProject(project.id)) || (project.iInverted)"
 											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
-										<span class="ti-thumb-up"></span> Follow
+										<span class="ti-thumb-up"></span> <span translate="pages.FOLLOW"></span>
 									</button>
 									<button ng-click="unfollow(project.id, project.name)" ng-show="(isFollowProject(project.id)) && (!project.iInverted)"
 											type="button" class="btn btn-success btn-xs pull-right margin-left-5">
-										<span class="ti-thumb-down"></span> Following
+										<span class="ti-thumb-down"></span> <span translate="pages.FOLLOWING"></span>
 									</button>
 								</div>
 							</div>

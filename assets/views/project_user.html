@@ -25,40 +25,40 @@
 								</div>
 								<div class="thread-content col-sm-12 col-md-12 col-lg-12 no-padding margin-top-10">
 									<span class="notification-preview">
-										<strong>Description:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
+										<strong translate="pages.DESCRIPTION"></strong><strong>:</strong> {{ project.description | htmlToPlaintext | words:40 :true }}
 									</span>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-pencil-alt"></i>
-											<strong> Total Cost:</strong>  {{project.totalCost | number: 2}} $
+											<strong translate="pages.TOTALCOST"></strong><strong>:</strong>  {{project.totalCost | number: 2}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-wallet"></i>
-											<strong> Total Revenue:</strong>  {{project.totalRevenue | number: 2}} $
+											<strong translate="pages.TOTALREVENUE"></strong><strong>:</strong>  {{project.totalRevenue | number: 2}} $
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-stats-up"></i>
-											<strong> State:</strong>  {{stateArray[project.state]}}
+											<strong translate="pages.STATE"></strong><strong>:</strong>  {{stateArray[project.state]}}
 										</span>
 									</div>
 								</div>
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-user"></i>
-											<strong> Role:</strong>  {{projectRole(project.ownerId)}}
+											<strong translate="pages.ROLE"></strong><strong>:</strong>  {{projectRole(project.ownerId)}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-bar-chart"></i>
-											<strong> Covered Capital: </strong>  {{project.coveredCapital | number: 2}} %
+											<strong translate="pages.COVEREDCAPITAL"></strong><strong>:</strong>  {{project.coveredCapital | number: 2}} %
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-menu"></i>
-											<strong> Owner Raiting: </strong>
+											<strong translate="pages.OWNERRATING"></strong><strong>:</strong>
 											{{project.ownerRating}}
 										</span>
 									</div>
@@ -66,17 +66,17 @@
 								<div class="thread-content col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-10 no-padding">
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-widget"></i>
-											<strong> Sector:</strong> {{sectorArray[project.sector]}}
+											<strong translate="pages.SECTOR"></strong><strong>:</strong> {{sectorArray[project.sector]}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
 										<span><i class="ti-view-list-alt"></i>
-											<strong> Category:</strong> {{categoryArray[project.category]}}
+											<strong translate="pages.CATEGORY"></strong><strong>:</strong> {{categoryArray[project.category]}}
 										</span>
 									</div>
 									<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding" ng-show="projectRole(project.ownerId) != 'Owner'">
 										<span><i class="ti-id-badge"></i>
-											<strong> Owner:</strong> <a ng-click="viewProfile(project.ownerId)"> {{project.ownerName}}</a>
+											<strong translate="pages.OWNER"></strong><strong>:</strong> <a ng-click="viewProfile(project.ownerId)"> {{project.ownerName}}</a>
 										</span>
 									</div>
 								</div>
@@ -86,16 +86,16 @@
 									<button ng-show="((project.state == 1 || project.state == 0) && (projectRole(project.ownerId) == 'Owner') && (!project.inverted))"
 											type="button" class="btn btn-danger btn-xs pull-right margin-left-5"
 											ng-click="deleteProject(project.id)">
-										<span class="ti-trash"></span> Delete
+										<span class="ti-trash"></span><span translate="pages.DELETE"></span>
 									</button>
 									<button ng-show="((project.state == 1 || project.state == 0) && (projectRole(project.ownerId) == 'Owner') && (!project.inverted))"
 											type="button" class="btn btn-success btn-xs pull-right margin-left-5"
 											ng-click="updateProject(project.id)">
-										<span class="ti-reload"></span> Update
+										<span class="ti-reload"></span><span translate="pages.UPDATE"></span>
 									</button>
 									<button type="button" class="btn btn-primary btn-xs pull-right margin-left-5"
 											ng-click="goToProject(project.id)">
-										<span class="fa fa-angle-right"></span> Read more
+										<span class="fa fa-angle-right"></span><span translate="pages.READMORE"></span>
 									</button>
 								</div>
 							</div>
@@ -108,7 +108,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
 				<button ui-sref="app.project.create" type="button" class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-plus pull-right">
-					<span>Create project</span>
+					<span translate="pages.CREATEPROJECT"></span>
 				</button>
 			</div>
 		</div>

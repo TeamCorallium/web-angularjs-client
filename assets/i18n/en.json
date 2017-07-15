@@ -162,6 +162,10 @@
     "OPERATION": "Operation",
     "DATE": "Date",
     "AMOUNT": "Amount",
+    "ROLE": "Role",
+    "DELETE": "Delete",
+    "UPDATE": "Update",
+    "CREATEPROJECT": "Create project",
     "home": {
       "WELCOME": "Welcome to Corallium",
       "MYPROYECTS": "My Projects",
